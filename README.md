@@ -141,7 +141,7 @@ Learner state is written atomically to the operating system's application-data d
 
 ### Installer
 
-**Latest stable build:** [SkillForge Academy 1.3.0 (Windows x64 installer)](https://github.com/ForgeWireLabs/skillforge-academy/releases/download/v1.3.0/SkillForge.Academy_1.3.0_x64-setup.exe) · [all releases](https://github.com/ForgeWireLabs/skillforge-academy/releases)
+**Latest stable build:** [SkillForge Academy 1.3.1 (Windows x64 installer)](https://github.com/ForgeWireLabs/skillforge-academy/releases/download/v1.3.1/SkillForge.Academy_1.3.1_x64-setup.exe) · [all releases](https://github.com/ForgeWireLabs/skillforge-academy/releases)
 
 > `1.3.0` is the first release under the SkillForge Academy name. Earlier installers were published as `Apex A+ Academy_*` (e.g. `Apex A+ Academy_1.2.1_x64-setup.exe`).
 
@@ -150,7 +150,7 @@ Download the `.exe`, run it, and follow the prompts. Because the build is not ye
 A SHA-256 checksum is attached to each release as `SHA256SUMS.txt`. Verify your download in PowerShell:
 
 ```powershell
-Get-FileHash ".\SkillForge.Academy_1.3.0_x64-setup.exe" -Algorithm SHA256
+Get-FileHash ".\SkillForge.Academy_1.3.1_x64-setup.exe" -Algorithm SHA256
 ```
 
 ## Development

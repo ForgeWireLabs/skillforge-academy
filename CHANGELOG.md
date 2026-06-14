@@ -2,6 +2,12 @@
 
 All notable changes to SkillForge Academy are documented here. SkillForge Academy was previously developed under the working name Apex A+ Academy.
 
+## 1.3.1 - 2026-06-14
+
+### Changed
+
+- The installer now removes a previous **Apex A+ Academy** installation before installing instead of leaving it alongside the new app. Your learner data, settings, and backups are preserved (the data location is unchanged).
+
 ## 1.3.0 - 2026-06-14
 
 ### Changed
