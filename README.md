@@ -141,16 +141,16 @@ Learner state is written atomically to the operating system's application-data d
 
 ### Installer
 
-**Latest stable build:** [SkillForge Academy 1.2.1 (Windows x64 installer)](https://github.com/ForgeWireLabs/skillforge-academy/releases/download/v1.2.1/Apex.A%2B.Academy_1.2.1_x64-setup.exe) · [all releases](https://github.com/ForgeWireLabs/skillforge-academy/releases)
+**Latest stable build:** [SkillForge Academy 1.3.0 (Windows x64 installer)](https://github.com/ForgeWireLabs/skillforge-academy/releases/download/v1.3.0/SkillForge%20Academy_1.3.0_x64-setup.exe) · [all releases](https://github.com/ForgeWireLabs/skillforge-academy/releases)
 
-> The `1.2.1` installer was published under the previous name, so its file is `Apex A+ Academy_1.2.1_x64-setup.exe`. Releases from the next version onward are named `SkillForge Academy_*`.
+> `1.3.0` is the first release under the SkillForge Academy name. Earlier installers were published as `Apex A+ Academy_*` (e.g. `Apex A+ Academy_1.2.1_x64-setup.exe`).
 
 Download the `.exe`, run it, and follow the prompts. Because the build is not yet code-signed, Windows SmartScreen may show an unrecognized-publisher warning — choose **More info → Run anyway**. To sign your own builds and remove that warning, see [docs/CODE-SIGNING.md](docs/CODE-SIGNING.md).
 
 A SHA-256 checksum is attached to each release as `SHA256SUMS.txt`. Verify your download in PowerShell:
 
 ```powershell
-Get-FileHash ".\Apex A+ Academy_1.2.1_x64-setup.exe" -Algorithm SHA256
+Get-FileHash ".\SkillForge Academy_1.3.0_x64-setup.exe" -Algorithm SHA256
 ```
 
 ## Development

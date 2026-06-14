@@ -2,6 +2,19 @@
 
 All notable changes to SkillForge Academy are documented here. SkillForge Academy was previously developed under the working name Apex A+ Academy.
 
+## 1.3.0 - 2026-06-14
+
+### Changed
+
+- Renamed the product to **SkillForge Academy** (previously Apex A+ Academy). Existing learner data, settings, and encrypted backups carry over unchanged — the app-data location, browser storage key, and backup format are preserved.
+
+### Added
+
+- Multi-certification architecture: a certification manifest, per-track content directories, and a sidebar track switcher (CompTIA A+ is the first track).
+- Per-certification progress — streaks, daily goals, and exam dates are tracked independently per track.
+- All-tracks analytics overview alongside the per-track performance views.
+- Exam toggles and mock-exam defaults are now driven by the certification manifest rather than hardcoded exam codes.
+
 ## 1.2.1 - 2026-06-14
 
 ### Added
