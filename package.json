@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "validate:content": "node scripts/validate-content.mjs",
+    "validate:a11y": "node scripts/validate-accessibility.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",

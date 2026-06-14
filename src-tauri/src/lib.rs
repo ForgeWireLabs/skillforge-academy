@@ -38,7 +38,8 @@ fn export_state(app: AppHandle) -> Result<String, String> {
 #[tauri::command]
 fn import_state(app: AppHandle, raw: String) -> Result<Value, String> {
     // Validate that the incoming text is well-formed JSON before persisting it.
-    let parsed: Value = serde_json::from_str(&raw).map_err(|e| format!("Invalid backup file: {e}"))?;
+    let parsed: Value =
+        serde_json::from_str(&raw).map_err(|e| format!("Invalid backup file: {e}"))?;
     let path = state_path(&app)?;
     let temp = path.with_extension("tmp");
     let pretty = serde_json::to_string_pretty(&parsed).map_err(|e| e.to_string())?;

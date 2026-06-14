@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import {
   Activity, BarChart3, Bell, BookOpen, Bookmark, Brain, CalendarDays, Check,
@@ -9,13 +9,16 @@ import {
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { loadContent, bundledContent, type ContentBundle } from "./content";
 import { ContentProvider, useContent } from "./ContentContext";
+import { decryptBackup, encryptBackup } from "./backup";
 import type { Attempt, ExamCode, LearnerState, Pbq, Question, View } from "./types";
 import {
   initialState, pct, shuffle, formatTime, dateKey, questionsToday, applyStudyActivity,
-  recordAnswer, scheduleCard, isCardDue, domainMastery, masteredCount, objectiveStats, migrateState,
+  recordAnswer, scheduleCard, isCardDue, domainMastery, masteredCount, migrateState,
   buildNotifications, buildMockExam, scoreMock, gradePbq, MOCK_PASS, MOCK_DEFAULT_QUESTIONS,
   MOCK_DEFAULT_MINUTES, type MockItem
 } from "./logic";
+
+const Analytics = lazy(() => import("./Analytics"));
 
 const nav: { id: View; label: string; icon: typeof Home }[] = [
   { id: "dashboard", label: "Command Center", icon: Home },
@@ -43,12 +46,13 @@ async function writeState(state: LearnerState) {
   else localStorage.setItem("apex-state", JSON.stringify(state));
 }
 
-function exportData(state: LearnerState) {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+async function exportData(state: LearnerState, passphrase: string) {
+  const encrypted = await encryptBackup(state, passphrase);
+  const blob = new Blob([encrypted], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `apex-progress-${dateKey()}.json`;
+  a.download = `apex-progress-${dateKey()}.apexbackup`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -72,6 +76,7 @@ export default function App() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setPalette(p => !p); }
+      if (e.key === "Escape") { setPalette(false); setNotifOpen(false); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -89,10 +94,11 @@ export default function App() {
   if (!ready) return <div className="splash"><div className="brand-mark"><Zap /></div><h1>Apex A+ Academy</h1><p>Preparing your workspace...</p></div>;
 
   return <ContentProvider value={content}><div className={`app ${sidebar ? "" : "collapsed"}`}>
+    <a className="skip-link" href="#main-content">Skip to main content</a>
     <aside className="sidebar">
       <div className="brand"><div className="brand-mark"><Zap /></div><div><b>APEX</b><span>A+ ACADEMY</span></div></div>
       <button className="collapse" aria-label={sidebar ? "Collapse sidebar" : "Expand sidebar"} onClick={() => setSidebar(!sidebar)}>{sidebar ? <ChevronLeft /> : <ChevronRight />}</button>
-      <nav>{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
+      <nav aria-label="Primary navigation">{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} aria-current={view===item.id?"page":undefined} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
       <div className="sidebar-card">
         <div className="mini-ring" style={{ "--value": `${avg}%` } as React.CSSProperties}><span>{avg}%</span></div>
         <div><b>Readiness</b><small>{attempts.length ? "Keep building" : "Take a baseline"}</small></div>
@@ -111,14 +117,14 @@ export default function App() {
         <button className="profile" onClick={() => selectView("settings")}><span>{state.name.slice(0,2).toUpperCase()}</span><div><b>{state.name}</b><small>Exam candidate</small></div></button>
       </header>
 
-      <section className="content" ref={contentRef} tabIndex={-1} aria-live="polite">
+      <section id="main-content" className="content" ref={contentRef} tabIndex={-1} aria-live="polite" aria-label={`${nav.find(item=>item.id===view)?.label} content`}>
         {view === "dashboard" && <Dashboard state={state} setView={setView} />}
         {view === "learn" && <Learn state={state} setState={setState} setView={setView} />}
         {view === "practice" && <Practice state={state} setState={setState} />}
         {view === "pbq" && <PbqLab />}
         {view === "mock" && <MockExam state={state} setState={setState} />}
         {view === "flashcards" && <Flashcards state={state} setState={setState} />}
-        {view === "analytics" && <Analytics state={state} />}
+        {view === "analytics" && <Suspense fallback={<div className="panel analytics-loading" role="status">Loading analytics…</div>}><Analytics state={state} /></Suspense>}
         {view === "notes" && <Notes state={state} setState={setState} />}
         {view === "settings" && <Preferences state={state} update={update} setState={setState} />}
       </section>
@@ -281,12 +287,41 @@ function PbqView({ pbq, response, onChange, revealed }: { pbq: Pbq; response: Pb
   })}{revealed && <small className="pbq-correct-order">Correct order: {pbq.answer.map(id => pbq.steps.find(s => s.id === id)?.text).join(" → ")}</small>}</div>;
 }
 
+function PbqLab() {
+  const { domains, pbqs } = useContent();
+  const [exam, setExam] = useState<ExamCode|"All">("All");
+  const [index, setIndex] = useState(0);
+  const [responses, setResponses] = useState<Record<string,PbqResponse>>({});
+  const [revealed, setRevealed] = useState<Record<string,boolean>>({});
+  const pool = pbqs.filter(p=>exam==="All" || p.exam===exam);
+  const active = pool[index];
+  const score = active && revealed[active.id] ? Math.round(gradePbq(active, responses[active.id])*100) : null;
+  const selectExam = (next:ExamCode|"All") => { setExam(next); setIndex(0); };
+  const next = (delta:number) => setIndex(i=>Math.max(0, Math.min(pool.length-1, i+delta)));
+
+  return <><PageHead eyebrow="PERFORMANCE LAB" title="PBQ simulations" subtitle="Practice interactive technician tasks with immediate scoring and explanations."/>
+    <div className="pbq-lab-controls panel" aria-label="PBQ filters">
+      <div><b>Exam core</b><div className="count-picker">{(["All","220-1201","220-1202"] as const).map(x=><button key={x} className={exam===x?"selected":""} aria-pressed={exam===x} onClick={()=>selectExam(x)}>{x}</button>)}</div></div>
+      <div className="pbq-lab-progress"><b>{pool.length ? index+1 : 0} / {pool.length}</b><span>simulation</span></div>
+    </div>
+    {active ? <div className="question-card panel pbq-lab-card">
+      <div className="question-meta"><span>{active.exam}</span><span>{domains.find(d=>d.id===active.domain)?.name}</span><span>{active.difficulty}</span></div>
+      <h2>{active.prompt}</h2><PbqView pbq={active} response={responses[active.id]} onChange={r=>setResponses(all=>({...all,[active.id]:r}))} revealed={!!revealed[active.id]}/>
+      {score!==null && <div className="explanation" role="status"><Sparkles/><div><b>{score}% earned</b><p>{active.explanation}</p><small>OBJECTIVE · {active.objective}</small></div></div>}
+      <div className="question-actions"><button className="ghost" disabled={index===0} onClick={()=>next(-1)}><ChevronLeft/> Previous</button>
+        {!revealed[active.id] ? <button className="primary" onClick={()=>setRevealed(r=>({...r,[active.id]:true}))}>Check simulation</button> : <button className="primary" disabled={index===pool.length-1} onClick={()=>next(1)}>Next simulation <ChevronRight/></button>}
+      </div>
+    </div> : <Empty message="No PBQ simulations are available for this exam."/>}
+  </>;
+}
+
 function MockExam({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
   const { domains, questions, pbqs } = useContent();
   const [phase, setPhase] = useState<"setup"|"active"|"results">("setup");
   const [exam, setExam] = useState<ExamCode>("220-1201");
   const [qCount, setQCount] = useState(MOCK_DEFAULT_QUESTIONS);
   const [minutes, setMinutes] = useState(MOCK_DEFAULT_MINUTES);
+  const [requestedPbqs, setRequestedPbqs] = useState(3);
   const [items, setItems] = useState<MockItem[]>([]);
   const [index, setIndex] = useState(0);
   const [mcqAnswers, setMcqAnswers] = useState<Record<string,number>>({});
@@ -296,7 +331,8 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   const [grade, setGrade] = useState<ReturnType<typeof scoreMock>|null>(null);
 
   const availableMcq = questions.filter(q=>q.exam===exam).length;
-  const pbqCount = Math.min(pbqs.filter(p=>p.exam===exam).length, 3);
+  const availablePbqs = pbqs.filter(p=>p.exam===exam).length;
+  const pbqCount = Math.min(availablePbqs, requestedPbqs);
   const plannedQ = Math.min(qCount, availableMcq);
 
   const finish = () => {
@@ -332,8 +368,9 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
     <PageHead eyebrow="EXAM SIMULATION" title="Mock exam" subtitle="A full-length, timed, domain-weighted exam. No feedback until you submit — just like the real thing."/>
     <div className="setup-grid"><div className="panel setup-main"><h3>Configure your exam</h3>
       <label>Exam core</label><div className="option-grid">{(["220-1201","220-1202"] as const).map(x=><button key={x} className={exam===x?"selected":""} onClick={()=>setExam(x)}><span>{x==="220-1201"?<Activity/>:<ShieldCheck/>}</span><b>{x}</b><small>{x==="220-1201"?"Core 1":"Core 2"}</small></button>)}</div>
-      <label>Questions</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={qCount===x?"selected":""} onClick={()=>setQCount(x)}>{x}</button>)}</div>
-      <label>Time limit (minutes)</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={minutes===x?"selected":""} onClick={()=>setMinutes(x)}>{x}</button>)}</div>
+      <label>Multiple-choice questions</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={qCount===x?"selected":""} aria-pressed={qCount===x} onClick={()=>setQCount(x)}>{x}</button>)}<input aria-label="Custom question count" type="number" min="10" max={availableMcq} value={qCount} onChange={e=>setQCount(Math.max(10, Number(e.target.value)||10))}/></div>
+      <label>Performance-based questions</label><div className="count-picker">{[0,1,2,3].map(x=><button key={x} disabled={x>availablePbqs} className={requestedPbqs===x?"selected":""} aria-pressed={requestedPbqs===x} onClick={()=>setRequestedPbqs(x)}>{x}</button>)}</div>
+      <label>Time limit (minutes)</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={minutes===x?"selected":""} aria-pressed={minutes===x} onClick={()=>setMinutes(x)}>{x}</button>)}<input aria-label="Custom time limit in minutes" type="number" min="15" max="240" value={minutes} onChange={e=>setMinutes(Math.max(15, Number(e.target.value)||15))}/></div>
       <button className="primary wide launch" onClick={start}><ClipboardCheck/> Begin mock exam</button></div>
       <div className="panel setup-side"><span className="pill purple"><Sparkles/> EXAM PREVIEW</span><h2>{plannedQ} questions</h2>
         <div className="preview-row"><Clock3/><div><b>Time limit</b><small>{minutes} minutes, counts down</small></div></div>
@@ -388,14 +425,6 @@ function Flashcards({ state, setState }: { state:LearnerState; setState:React.Di
   return <><PageHead eyebrow="SPACED REPETITION" title="Recall deck" subtitle="Actively retrieve the answer, then rate your recall honestly."/><div className="deck-status"><div><b>{due.length}</b><span>due now</span></div><div><b>{Object.keys(state.cardRatings).length}</b><span>in rotation</span></div><div><b>{flashcards.length}</b><span>total cards</span></div></div><div className="flash-wrap"><div className={`flashcard ${flipped?"flipped":""}`} role="button" tabIndex={0} aria-pressed={flipped} aria-label={flipped?"Card answer shown. Activate to hide.":"Card prompt shown. Activate to reveal the answer."} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setFlipped(f=>!f);}}} onClick={()=>setFlipped(!flipped)}><div className="flash-face front"><span>{domains.find(d=>d.id===card.domain)?.name}</span><Brain/><h2>{card.front}</h2><small>Click card to reveal</small></div><div className="flash-face back"><span>ANSWER</span><Sparkles/><p>{card.back}</p><small>How well did you recall it?</small></div></div>{flipped?<div className="rating"><button onClick={()=>rate(1)}><span>Again</span><small>1 day</small></button><button onClick={()=>rate(2)}><span>Hard</span><small>Short interval</small></button><button onClick={()=>rate(3)}><span>Good</span><small>Growing interval</small></button><button onClick={()=>rate(4)}><span>Easy</span><small>Long interval</small></button></div>:<button className="primary" onClick={()=>setFlipped(true)}>Reveal answer</button>}<div className="deck-nav"><button aria-label="Previous card" onClick={()=>{setIndex(i=>Math.max(0,i-1));setFlipped(false)}}><ChevronLeft/></button><span>{index%deck.length+1} / {deck.length}</span><button aria-label="Next card" onClick={()=>{setIndex(i=>i+1);setFlipped(false)}}><ChevronRight/></button></div></div></>;
 }
 
-function Analytics({ state }: { state:LearnerState }) {
-  const { domains, questions } = useContent();
-  const rows=domains.map(d=>({name:d.name.split(" ")[0],full:d.name,score:domainMastery(questions.filter(q=>q.domain===d.id),state.answered),color:d.color}));
-  const objectives=objectiveStats(questions,state.answered).slice(0,6);
-  const history=state.attempts.slice(-10).map((a,i)=>({name:`#${i+1}`,score:pct(a.score,a.total)}));
-  return <><PageHead eyebrow="INSIGHT ENGINE" title="Performance analytics" subtitle="See the pattern behind your scores and put study time where it matters."/><div className="analytics-grid"><div className="panel"><div className="panel-title"><div><span>DOMAIN MASTERY</span><h3>Coverage by domain</h3></div></div><ResponsiveContainer width="100%" height={310}><BarChart data={rows} layout="vertical" margin={{left:15}}><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis type="number" domain={[0,100]} stroke="var(--muted)"/><YAxis dataKey="name" type="category" width={80} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Bar dataKey="score" radius={[0,6,6,0]}>{rows.map(r=><Cell key={r.full} fill={r.color}/>)}</Bar></BarChart></ResponsiveContainer></div><div className="panel readiness-card"><span>READINESS SIGNAL</span><div className="big-score">{state.attempts.length?Math.round(state.attempts.reduce((x,a)=>x+pct(a.score,a.total),0)/state.attempts.length):0}<sup>%</sup></div><p>Based on completed practice sessions. Aim for consistent 85%+ results across every domain.</p><div className="readiness-bands"><i/><i/><i/><i/></div><small>Building foundation · Developing · Ready · Strong</small></div></div><div className="panel chart-panel"><div className="panel-title"><div><span>RECENT SESSIONS</span><h3>Score trajectory</h3></div></div>{history.length?<ResponsiveContainer width="100%" height={260}><AreaChart data={history}><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis dataKey="name" stroke="var(--muted)"/><YAxis domain={[0,100]} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Area dataKey="score" stroke="#36d6b5" fill="#36d6b533" strokeWidth={3}/></AreaChart></ResponsiveContainer>:<Empty message="Your score history will appear after your first session."/>}</div><div className="history-list panel"><div className="panel-title"><div><span>WEAKEST OBJECTIVES</span><h3>Where to focus next</h3></div></div>{objectives.length?objectives.map(o=><div key={o.objective}><span className={o.mastery>=75?"pass":""}>{o.mastery}%</span><div><b>{o.objective}</b><small>{o.mastered}/{o.total} questions mastered</small></div><strong>{domains.find(d=>d.id===o.domain)?.name.split(" ")[0]}</strong></div>):<Empty message="Answer practice questions to surface your weakest objectives."/>}</div><div className="history-list panel"><div className="panel-title"><div><span>ATTEMPT LOG</span><h3>Recent activity</h3></div></div>{state.attempts.length?state.attempts.slice().reverse().map(a=><div key={a.id}><span className={pct(a.score,a.total)>=75?"pass":""}>{pct(a.score,a.total)}%</span><div><b>{a.exam} {a.kind==="mock"?"mock exam":"practice"}{a.kind==="mock"?(a.passed?" · PASS":" · FAIL"):""}</b><small>{new Date(a.date).toLocaleDateString()} · {a.score}/{a.total} correct</small></div><strong>{formatTime(a.durationSec)}</strong></div>):<Empty message="No attempts recorded yet."/>}</div></>;
-}
-
 function Notes({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
   const { questions } = useContent();
   const [active,setActive]=useState(state.notes[0]?.id||""); const [title,setTitle]=useState(""); const [body,setBody]=useState("");
@@ -408,18 +437,30 @@ function Notes({ state, setState }: { state:LearnerState; setState:React.Dispatc
 
 function Preferences({ state, update, setState }: { state:LearnerState; update:(n:Partial<LearnerState>)=>void; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [passphrase, setPassphrase] = useState("");
+  const [backupNotice, setBackupNotice] = useState("");
+  const onExport = async () => {
+    try {
+      await exportData(state, passphrase);
+      setPassphrase("");
+      setBackupNotice("Encrypted backup created. Keep the passphrase somewhere safe; it cannot be recovered.");
+    } catch (error) {
+      setBackupNotice(error instanceof Error ? error.message : "The encrypted backup could not be created.");
+    }
+  };
   const onImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
     try {
       const text = await file.text();
-      const parsed = JSON.parse(text);
-      if (isTauri()) await invoke("import_state", { raw: text });
+      const parsed = await decryptBackup(text, passphrase);
+      if (isTauri()) await invoke("import_state", { raw: JSON.stringify(parsed) });
       setState(migrateState(parsed));
-      alert("Backup imported. Your progress has been restored.");
-    } catch {
-      alert("That file could not be imported. Choose a valid Apex backup (.json) file.");
+      setPassphrase("");
+      setBackupNotice("Backup imported. Your progress has been restored on this device.");
+    } catch (error) {
+      setBackupNotice(error instanceof Error ? error.message : "That backup could not be imported.");
     }
   };
   const onReset = async () => {
@@ -427,7 +468,7 @@ function Preferences({ state, update, setState }: { state:LearnerState; update:(
     if (isTauri()) { try { await invoke("reset_state"); } catch { /* file may not exist yet */ } }
     setState(migrateState({}));
   };
-  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={state.targetDate} onChange={e=>update({targetDate:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={state.dailyGoal} onChange={e=>update({dailyGoal:Number(e.target.value)})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Data & backup</h3><p>Export your progress to a file, restore it on another machine, or start fresh. Everything stays on your computer.</p><div className="theme-toggle"><button onClick={()=>exportData(state)}><Download/> Export backup</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div><input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={onImport}/></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>Apex A+ Academy</h3><p>Version 1.2.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. This independent educational app is not affiliated with or endorsed by CompTIA.</small></div></div></div></>;
+  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={state.targetDate} onChange={e=>update({targetDate:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={state.dailyGoal} onChange={e=>update({dailyGoal:Number(e.target.value)})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} aria-pressed={state.theme==="dark"} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} aria-pressed={state.theme==="light"} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Encrypted backup</h3><p>Use the same passphrase to restore this portable backup on another device. Legacy plain JSON backups can still be imported.</p><label>Backup passphrase<input type="password" minLength={8} autoComplete="new-password" value={passphrase} onChange={e=>setPassphrase(e.target.value)} placeholder="At least 8 characters"/></label><div className="theme-toggle data-actions"><button onClick={onExport}><Download/> Export encrypted</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div>{backupNotice&&<span className="setting-notice" role="status">{backupNotice}</span>}<input ref={fileRef} type="file" accept="application/json,.json,.apexbackup" hidden onChange={onImport}/></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>Apex A+ Academy</h3><p>Version 1.2.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. This independent educational app is not affiliated with or endorsed by CompTIA.</small></div></div></div></>;
 }
 
 function PageHead({eyebrow,title,subtitle}:{eyebrow:string;title:string;subtitle:string}) { return <div className="page-title"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div></div>; }

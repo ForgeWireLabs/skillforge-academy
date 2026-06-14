@@ -55,7 +55,7 @@ Sit a full-length, timed, domain-weighted exam for `220-1201` or `220-1202`. Que
 
 ### Performance-Based Questions
 
-Beyond multiple choice, practice interactive **matching** (assign items to categories) and **ordering** (sequence steps) questions, graded with partial credit and presented at the start of mock exams.
+Beyond multiple choice, practice interactive **matching** (assign items to categories) and **ordering** (sequence steps) questions in a dedicated PBQ Lab or at the start of mock exams. Each simulation is graded with partial credit and includes an explanation.
 
 ### Spaced-Repetition Flashcards
 
@@ -75,7 +75,7 @@ Press `Ctrl+K` to search domains, objectives, practice explanations, answers, an
 
 ### Progress Backup
 
-Export learner progress, notes, bookmarks, settings, daily activity, and spaced-repetition scheduling as a portable JSON backup from Preferences.
+Export learner progress, notes, bookmarks, settings, daily activity, and spaced-repetition scheduling as a passphrase-protected portable backup. AES-256-GCM encryption keeps cross-device transfers private, while legacy plain JSON backups remain importable.
 
 ### Private by Design
 
@@ -183,6 +183,7 @@ src-tauri/target/release/bundle/nsis/
 
 ```powershell
 npm run validate:content   # schema-checks the question and flashcard banks
+npm run validate:a11y      # checks required keyboard/accessibility affordances
 npm test                   # unit tests for scoring, streaks, scheduling, mastery
 npm run build
 cargo fmt --check --manifest-path src-tauri/Cargo.toml
@@ -198,25 +199,23 @@ cargo check --manifest-path src-tauri/Cargo.toml
 
 ## Roadmap
 
-Recently shipped:
+Shipped:
 
 - Objective/command search with a `Ctrl K` command palette
-- Plain-JSON backup, restore, and progress reset in Preferences
+- Encrypted backup restore and cross-device transfer with legacy JSON import support
 - Content banks moved to validated JSON loaded by the desktop backend
 - Spaced repetition upgraded to an SM-2 scheduler
+- Expanded original banks with 88 questions, 36 flashcards, and 8 PBQs
+- Dedicated PBQ simulations with matching, ordering, scoring, and explanations
+- Configurable full-length mock exams with custom question, PBQ, and time limits
+- Automated tagged Windows release builds and SHA-256 checksum publishing
+- Skip navigation, visible keyboard focus, labelled landmarks, escape handling, and automated accessibility checks
 
-Planned:
+Next:
 
-- Continue expanding the original question and flashcard banks
-- Add dedicated performance-based question simulations
-<<<<<<< HEAD
-- Add encryption to the backup and restore flow
-=======
-- Support encrypted backup restore and cross-device transfer
->>>>>>> b8751f2663a3abb74f06d0731838d1920606524b
-- Add configurable full-length mock exams
-- Publish automated Windows release builds and checksums
-- Continue improving keyboard navigation and accessibility coverage
+- Continue expanding original assessment content and simulation formats
+- Add installer code signing when a trusted Windows certificate is available
+- Continue usability testing with keyboard-only and assistive-technology users
 
 ## Contributing
 

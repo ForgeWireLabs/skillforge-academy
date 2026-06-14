@@ -2,6 +2,25 @@
 
 All notable changes to Apex A+ Academy are documented here.
 
+## Unreleased
+
+### Added
+
+- Dedicated PBQ Lab for standalone matching and ordering simulations
+- Passphrase-protected AES-256-GCM backups for private cross-device transfer, with legacy JSON import support
+- Custom mock exam question counts, PBQ counts, and time limits
+- Automated Windows tag builds, draft GitHub releases, and SHA-256 checksum uploads
+- Ten original questions, ten flashcards, and two additional PBQ scenarios
+- Automated accessibility affordance validation
+
+### Accessibility
+
+- Skip-to-content navigation, labelled primary navigation and content regions, current-page semantics, visible focus rings, and Escape handling for transient overlays
+
+### Performance
+
+- Split charting dependencies and the Analytics screen into separate production chunks, removing the oversized initial-bundle warning
+
 ## 1.2.0 - 2026-06-13
 
 Headline: full-length timed mock exams and performance-based questions, deepening the A+ track.
