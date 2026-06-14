@@ -71,11 +71,6 @@ export interface LearnerState {
   attempts: Attempt[];
   bookmarks: string[];
   notes: { id: string; title: string; body: string; updatedAt: string }[];
-<<<<<<< HEAD
   cardRatings: Record<string, CardSchedule>;
-=======
-  cardRatings: Record<string, { ease: number; due: string; interval: number }>;
-  dailyActivity: Record<string, { questions: number; cards: number }>;
->>>>>>> b8751f2663a3abb74f06d0731838d1920606524b
   theme: "dark" | "light";
 }
