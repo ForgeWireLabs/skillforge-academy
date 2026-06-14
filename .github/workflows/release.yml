@@ -31,6 +31,12 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: test
     runs-on: windows-latest
+    # Code signing activates automatically once these repository secrets exist.
+    # While they are unset, the env values are empty and the signing step is
+    # skipped, so releases still build (unsigned) as before.
+    env:
+      WINDOWS_PFX_BASE64: ${{ secrets.WINDOWS_PFX_BASE64 }}
+      WINDOWS_PFX_PASSWORD: ${{ secrets.WINDOWS_PFX_PASSWORD }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -48,6 +54,22 @@ jobs:
           releaseBody: "See CHANGELOG.md for release details."
           releaseDraft: true
           prerelease: false
+      - name: Sign Windows installer
+        # Runs only when a code-signing certificate is configured (see docs/CODE-SIGNING.md).
+        if: ${{ env.WINDOWS_PFX_BASE64 != '' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $pfxPath = Join-Path $env:RUNNER_TEMP 'codesign.pfx'
+          [IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:WINDOWS_PFX_BASE64))
+          $securePwd = ConvertTo-SecureString $env:WINDOWS_PFX_PASSWORD -AsPlainText -Force
+          ./scripts/sign-windows.ps1 -PfxPath $pfxPath -PfxPassword $securePwd
+          Remove-Item $pfxPath -Force
+          # Replace the unsigned installer that tauri-action already uploaded.
+          $installer = Get-ChildItem src-tauri/target/release/bundle/nsis/*_x64-setup.exe |
+            Sort-Object LastWriteTime | Select-Object -Last 1
+          gh release upload "${{ github.ref_name }}" "$($installer.FullName)" --clobber
       - name: Create SHA-256 checksums
         shell: pwsh
         run: |
