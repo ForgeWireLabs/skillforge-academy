@@ -1,4 +1,4 @@
-import type { AnsweredStat, Attempt, CardSchedule, CertId, CertProgress, Domain, ExamCode, Flashcard, LearnerState, Pbq, Question, View } from "./types";
+import type { AnsweredStat, Attempt, CardSchedule, CertId, CertProgress, Domain, ExamId, Flashcard, LearnerState, Pbq, Question, View } from "./types";
 
 export const SCHEMA_VERSION = 3;
 export const DEFAULT_CERT_ID = "a-plus";
@@ -199,7 +199,7 @@ export type MockItem = { type: "mcq"; question: Question } | { type: "pbq"; pbq:
  * real blueprint). Falls back to filling any rounding shortfall from the rest
  * of the pool, and never returns more than the pool holds.
  */
-export function buildWeightedQuestionSet(questions: Question[], domains: Domain[], exam: ExamCode, count: number): Question[] {
+export function buildWeightedQuestionSet(questions: Question[], domains: Domain[], exam: ExamId, count: number): Question[] {
   const examDomains = domains.filter(d => d.exam === exam);
   const pool = questions.filter(q => q.exam === exam);
   const totalWeight = examDomains.reduce((s, d) => s + d.weight, 0) || 1;
@@ -223,7 +223,7 @@ export function buildWeightedQuestionSet(questions: Question[], domains: Domain[
 }
 
 /** Builds a mock exam: a few PBQs up front (like the real exam), then weighted MCQs. */
-export function buildMockExam(questions: Question[], pbqs: Pbq[], domains: Domain[], exam: ExamCode, mcqCount: number, pbqCount: number): MockItem[] {
+export function buildMockExam(questions: Question[], pbqs: Pbq[], domains: Domain[], exam: ExamId, mcqCount: number, pbqCount: number): MockItem[] {
   const examPbqs = shuffle(pbqs.filter(p => p.exam === exam)).slice(0, pbqCount);
   const mcqs = buildWeightedQuestionSet(questions, domains, exam, mcqCount);
   return [

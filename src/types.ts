@@ -1,4 +1,3 @@
-export type ExamCode = "220-1201" | "220-1202";
 /** A certification track id, e.g. "a-plus", "network-plus". */
 export type CertId = string;
 /** A specific exam within a certification, e.g. "220-1201", "n10-009". */
@@ -35,7 +34,7 @@ export interface Certification {
 export interface Domain {
   id: string;
   certId: CertId;
-  exam: ExamCode;
+  exam: ExamId;
   name: string;
   weight: number;
   color: string;
@@ -46,7 +45,7 @@ export interface Domain {
 export interface Question {
   id: string;
   certId: CertId;
-  exam: ExamCode;
+  exam: ExamId;
   domain: string;
   difficulty: Difficulty;
   prompt: string;
@@ -59,7 +58,7 @@ export interface Question {
 interface PbqBase {
   id: string;
   certId: CertId;
-  exam: ExamCode;
+  exam: ExamId;
   domain: string;
   difficulty: Difficulty;
   prompt: string;
@@ -98,7 +97,7 @@ export interface Attempt {
   id: string;
   certId: CertId;
   date: string;
-  exam: ExamCode | "Mixed";
+  exam: ExamId | "Mixed";
   score: number;
   total: number;
   durationSec: number;

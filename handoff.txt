@@ -1,0 +1,232 @@
+Paste this into Codex:
+
+````md
+We are rebranding and polishing the public GitHub presence for ForgeWire Labs.
+
+Context:
+- The GitHub username/account has recently changed to ForgeWireLabs.
+- There is now a `ForgeWireLabs/ForgeWireLabs` profile README repo.
+- The parent/public identity is **ForgeWire Labs**.
+- The certification learning / exam-prep app will be named **SkillForge Academy**.
+- The old repo/name `apex-a-plus-academy` should be treated as the previous working name.
+- The desired public positioning is: local-first AI infrastructure, secure agent tooling, and offline-first technical learning systems.
+
+Goal:
+Make the GitHub account and repos look polished, discoverable, consistent, and credible to outside visitors.
+
+Primary branding structure:
+```text
+ForgeWire Labs
+└── SkillForge Academy
+    └── CompTIA A+ track
+````
+
+Recommended repo rename:
+
+```text
+apex-a-plus-academy -> skillforge-academy
+```
+
+Use this product title everywhere:
+
+```text
+SkillForge Academy
+```
+
+Use this short product description:
+
+```text
+Offline-first certification learning and exam-prep desktop app, starting with CompTIA A+.
+```
+
+Use this README opening for the renamed repo:
+
+```md
+# SkillForge Academy
+
+Offline-first certification learning and exam-preparation software.
+
+Current track: CompTIA A+.
+```
+
+Profile README should reference it like this:
+
+```md
+- **SkillForge Academy** — offline-first certification learning and exam-preparation software, beginning with CompTIA A+.
+```
+
+ForgeWire Labs profile positioning:
+
+```md
+# ForgeWire Labs
+
+Local-first AI infrastructure, secure agent tooling, and offline-capable technical learning software.
+
+I build systems for running AI-assisted work on machines you own: signed task dispatch, policy-gated runners, repo-native automation, auditable execution, and desktop tools that keep user data local.
+```
+
+Add or revise a “Start here” section in the profile README:
+
+```md
+## Start here
+
+- **ForgeWire Fabric** — self-hosted control plane for trusted remote task execution.
+- **SkillForge Academy** — offline-first certification learning and exam-preparation software, beginning with CompTIA A+.
+- **SCOUT-2** — earlier multi-agent assistant platform and historical foundation for later ForgeWire work.
+```
+
+Add this differentiation section to the profile README:
+
+```md
+## What makes this different?
+
+Most AI tooling assumes hosted control planes, cloud-first state, and broad agent permissions. ForgeWire Labs works in the opposite direction:
+
+- user-owned machines
+- signed task envelopes
+- explicit policy gates
+- auditable execution trails
+- local-first app data
+- agents treated as constrained tools, not magic
+
+The goal is practical infrastructure that remains useful under real-world constraints.
+```
+
+Update public status language to avoid sounding abandoned:
+
+```md
+## Public status
+
+ForgeWire Labs uses private development branches and public release mirrors. Public repositories are cleaned before release so docs, tests, security notes, and changelogs remain understandable to outside readers.
+
+Current public focus:
+- ForgeWire Fabric: public mirror and documentation hardening
+- SkillForge Academy: desktop certification-learning MVP
+- ForgeWire core: private active development
+```
+
+Important account cleanup:
+
+* Fix any typo like `ForgeWiere Labs` to `ForgeWire Labs`.
+* Make repo descriptions consistent.
+* Add GitHub topics to the serious public repos.
+* Reorder pinned repos so the strongest work is first.
+
+Suggested pinned repo order:
+
+1. `forgewire-fabric`
+2. `skillforge-academy`
+3. `SCOUT-2`
+4. `ForgeWireLabs`
+5. Optional polished secondary repo
+6. Optional polished secondary repo
+
+Suggested topics for `forgewire-fabric`:
+
+```text
+ai-agents
+agent-orchestration
+mcp
+remote-execution
+task-runner
+control-plane
+local-first
+self-hosted
+rust
+python
+rqlite
+developer-tools
+automation
+audit-log
+```
+
+Suggested topics for `skillforge-academy`:
+
+```text
+comptia
+comptia-a-plus
+certification
+exam-prep
+study-app
+spaced-repetition
+flashcards
+tauri
+react
+typescript
+rust
+windows
+offline-first
+education
+```
+
+Suggested topics for the profile repo:
+
+```text
+forgewire
+forgewire-labs
+ai-agents
+local-first
+developer-tools
+technical-education
+```
+
+For SkillForge Academy, add or verify these files:
+
+```text
+README.md
+LICENSE
+CHANGELOG.md
+SECURITY.md
+CONTRIBUTING.md
+ROADMAP.md
+docs/
+.github/workflows/
+.github/ISSUE_TEMPLATE/
+.github/PULL_REQUEST_TEMPLATE.md
+```
+
+For SkillForge Academy README, make sure it includes:
+
+* Clear product summary
+* Current track: CompTIA A+
+* Offline-first positioning
+* Screenshots section placeholder
+* Features
+* Installation/dev setup
+* Roadmap
+* Project status
+* License
+* Prior-name migration note if needed
+
+Suggested migration note:
+
+```md
+> SkillForge Academy was previously developed under the working name Apex A+ Academy.
+```
+
+Add screenshot placeholders if real screenshots are not ready:
+
+```md
+## Screenshots
+
+Screenshots will be added as the public UI stabilizes.
+
+Planned:
+- Dashboard
+- Learning path view
+- Flashcard review
+- Mock exam results
+- PBQ/practice lab flow
+```
+
+Do not overhype. Keep the tone grounded, technical, and credible. Avoid claims like “revolutionary,” “world-class,” “AI sentience,” or anything that sounds startup-fluffy.
+
+The goal is to make the public profile feel intentional:
+
+* ForgeWire Labs = builder identity
+* ForgeWire Fabric = serious infrastructure credibility
+* SkillForge Academy = practical product people can understand
+* SCOUT-2 = history/proof of prior work
+
+```
+```

@@ -10,7 +10,7 @@ import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContaine
 import { loadContent, bundledContent, type ContentBundle } from "./content";
 import { ContentProvider, useContent } from "./ContentContext";
 import { decryptBackup, encryptBackup } from "./backup";
-import type { Attempt, ExamCode, LearnerState, Pbq, Question, View } from "./types";
+import type { Attempt, CertId, Certification, LearnerState, Pbq, Question, View } from "./types";
 import {
   initialState, pct, shuffle, formatTime, dateKey, questionsToday, applyStudyActivity,
   recordAnswer, scheduleCard, isCardDue, domainMastery, migrateState,
@@ -97,8 +97,9 @@ export default function App() {
   return <ContentProvider value={content}><div className={`app ${sidebar ? "" : "collapsed"}`}>
     <a className="skip-link" href="#main-content">Skip to main content</a>
     <aside className="sidebar">
-      <div className="brand"><div className="brand-mark"><Zap /></div><div><b>APEX</b><span>A+ ACADEMY</span></div></div>
+      <div className="brand"><div className="brand-mark"><Zap /></div><div><b>APEX</b><span>ACADEMY</span></div></div>
       <button className="collapse" aria-label={sidebar ? "Collapse sidebar" : "Expand sidebar"} onClick={() => setSidebar(!sidebar)}>{sidebar ? <ChevronLeft /> : <ChevronRight />}</button>
+      <TrackSwitcher certs={content.certifications} activeCertId={state.activeCertId} onSelect={id => { setState(s => ({ ...s, activeCertId: id })); setView("dashboard"); }} />
       <nav aria-label="Primary navigation">{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} aria-current={view===item.id?"page":undefined} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
       <div className="sidebar-card">
         <div className="mini-ring" style={{ "--value": `${avg}%` } as React.CSSProperties}><span>{avg}%</span></div>
@@ -120,21 +121,36 @@ export default function App() {
 
       <section id="main-content" className="content" ref={contentRef} tabIndex={-1} aria-live="polite" aria-label={`${nav.find(item=>item.id===view)?.label} content`}>
         {view === "dashboard" && <Dashboard state={state} setView={setView} />}
-        {view === "learn" && <Learn state={state} setState={setState} setView={setView} />}
-        {view === "practice" && <Practice state={state} setState={setState} />}
-        {view === "pbq" && <PbqLab />}
-        {view === "mock" && <MockExam state={state} setState={setState} />}
-        {view === "flashcards" && <Flashcards state={state} setState={setState} />}
+        {view === "learn" && <Learn key={state.activeCertId} state={state} setState={setState} setView={setView} />}
+        {view === "practice" && <Practice key={state.activeCertId} state={state} setState={setState} />}
+        {view === "pbq" && <PbqLab key={state.activeCertId} activeCertId={state.activeCertId} />}
+        {view === "mock" && <MockExam key={state.activeCertId} state={state} setState={setState} />}
+        {view === "flashcards" && <Flashcards key={state.activeCertId} state={state} setState={setState} />}
         {view === "analytics" && <Suspense fallback={<div className="panel analytics-loading" role="status">Loading analytics…</div>}><Analytics state={state} /></Suspense>}
         {view === "notes" && <Notes state={state} setState={setState} />}
         {view === "settings" && <Preferences state={state} update={update} setState={setState} />}
       </section>
     </main>
-    {palette && <CommandPalette onClose={() => setPalette(false)} onPick={v => { selectView(v); setPalette(false); }} />}
+    {palette && <CommandPalette activeCertId={state.activeCertId} onClose={() => setPalette(false)} onPick={v => { selectView(v); setPalette(false); }} />}
   </div></ContentProvider>;
 }
 
-function CommandPalette({ onClose, onPick }: { onClose: () => void; onPick: (v: View) => void }) {
+function TrackSwitcher({ certs, activeCertId, onSelect }: { certs: Certification[]; activeCertId: CertId; onSelect: (id: CertId) => void }) {
+  const [open, setOpen] = useState(false);
+  const active = certs.find(c => c.id === activeCertId) ?? certs[0];
+  if (!active) return null;
+  const multi = certs.length > 1;
+  return <div className={`track-switcher${open ? " open" : ""}`}>
+    <button className="track-current" aria-haspopup={multi || undefined} aria-expanded={multi ? open : undefined} disabled={!multi} onClick={() => setOpen(o => !o)} title={`${active.name} (${active.vendor})`}>
+      <GraduationCap/><div><b>{active.shortName} Track</b><small>{active.vendor}</small></div>{multi && <ChevronDown/>}
+    </button>
+    {open && multi && <div className="track-menu" role="menu" aria-label="Switch certification track">
+      {certs.map(c => <button key={c.id} role="menuitem" className={c.id === activeCertId ? "active" : ""} onClick={() => { onSelect(c.id); setOpen(false); }}><b>{c.shortName} Track</b><small>{c.name}</small></button>)}
+    </div>}
+  </div>;
+}
+
+function CommandPalette({ activeCertId, onClose, onPick }: { activeCertId: CertId; onClose: () => void; onPick: (v: View) => void }) {
   const { domains, questions, flashcards } = useContent();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -144,10 +160,10 @@ function CommandPalette({ onClose, onPick }: { onClose: () => void; onPick: (v: 
   type Cmd = { id: string; label: string; hint: string; view: View; icon: typeof Home };
   const items = useMemo<Cmd[]>(() => [
     ...nav.map(n => ({ id: `nav-${n.id}`, label: `Go to ${n.label}`, hint: "Navigation", view: n.id, icon: n.icon })),
-    ...domains.map(d => ({ id: `dom-${d.id}`, label: d.name, hint: `${d.exam} learning path`, view: "learn" as View, icon: BookOpen })),
-    ...questions.map(q => ({ id: `q-${q.id}`, label: q.objective, hint: `${q.exam} · ${q.difficulty} question`, view: "practice" as View, icon: Target })),
-    ...flashcards.map(f => ({ id: `f-${f.id}`, label: f.front, hint: "Flashcard", view: "flashcards" as View, icon: Layers3 }))
-  ], [domains, questions, flashcards]);
+    ...domains.filter(d => d.certId === activeCertId).map(d => ({ id: `dom-${d.id}`, label: d.name, hint: `${d.exam} learning path`, view: "learn" as View, icon: BookOpen })),
+    ...questions.filter(q => q.certId === activeCertId).map(q => ({ id: `q-${q.id}`, label: q.objective, hint: `${q.exam} · ${q.difficulty} question`, view: "practice" as View, icon: Target })),
+    ...flashcards.filter(f => f.certId === activeCertId).map(f => ({ id: `f-${f.id}`, label: f.front, hint: "Flashcard", view: "flashcards" as View, icon: Layers3 }))
+  ], [domains, questions, flashcards, activeCertId]);
 
   const term = query.trim().toLowerCase();
   const results = (term ? items.filter(i => i.label.toLowerCase().includes(term) || i.hint.toLowerCase().includes(term)) : items).slice(0, 8);
@@ -214,15 +230,18 @@ function Stat({ icon: Icon, label, value, sub, color }: { icon: typeof Gauge; la
 }
 
 function Learn({ state, setState, setView }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>>; setView:(v:View)=>void }) {
-  const { domains, questions } = useContent();
-  const [exam, setExam] = useState<ExamCode>("220-1201");
-  const [selected, setSelected] = useState(domains[0].id);
-  const list = domains.filter(d => d.exam === exam);
-  const active = domains.find(d => d.id === selected && d.exam === exam) || list[0];
+  const { certifications, domains, questions } = useContent();
+  const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
+  const certDomains = domains.filter(d => d.certId === cert.id);
+  const [exam, setExam] = useState<string>(cert.exams[0]?.id ?? "");
+  const [selected, setSelected] = useState(certDomains.find(d => d.exam === exam)?.id ?? certDomains[0]?.id ?? "");
+  const list = certDomains.filter(d => d.exam === exam);
+  const active = certDomains.find(d => d.id === selected && d.exam === exam) || list[0];
+  if (!active) return <><PageHead eyebrow="STRUCTURED CURRICULUM" title="Learning paths" subtitle="Move objective by objective."/><Empty message="No learning content is available for this track yet."/></>;
   const activeQuestions = questions.filter(q => q.domain === active.id);
   return <>
     <PageHead eyebrow="STRUCTURED CURRICULUM" title="Learning paths" subtitle="Move objective by objective. Every lesson connects concepts to technician decisions."/>
-    <div className="segmented"><button className={exam==="220-1201"?"active":""} onClick={()=>{setExam("220-1201");setSelected("aplus-mobile")}}>Core 1 · 220-1201</button><button className={exam==="220-1202"?"active":""} onClick={()=>{setExam("220-1202");setSelected("aplus-os")}}>Core 2 · 220-1202</button></div>
+    <div className="segmented">{cert.exams.map(e => <button key={e.id} className={exam===e.id?"active":""} onClick={()=>{setExam(e.id);setSelected(certDomains.find(d=>d.exam===e.id)?.id ?? "")}}>{e.name?`${e.name} · ${e.id}`:e.id}</button>)}</div>
     <div className="learn-layout"><div className="domain-nav panel">{list.map((d,i) => { const qs=questions.filter(q=>q.domain===d.id); const done=qs.filter(q=>state.answered[q.id]?.lastCorrect).length; return <button key={d.id} className={active.id===d.id?"active":""} onClick={()=>setSelected(d.id)}><span className="domain-index" style={{color:d.color}}>{String(i+1).padStart(2,"0")}</span><div><b>{d.name}</b><small>{d.weight}% of exam · {done}/{qs.length} checked</small></div><ChevronRight/></button>})}</div>
       <div className="lesson panel"><div className="lesson-hero" style={{"--accent":active.color} as React.CSSProperties}><span>{active.exam} DOMAIN</span><h2>{active.name}</h2><p>{active.description}</p><div className="lesson-meta"><span><Target/> {active.weight}% exam weight</span><span><Clock3/> 30-45 min path</span></div></div><h3>What you'll master</h3><div className="topic-grid">{active.topics.map((t,i)=><div key={t}><span>{i+1}</span><div><b>{t}</b><small>Concepts, scenarios, and field notes</small></div><Check/></div>)}</div><h3>Knowledge checks</h3><div className="check-list">{activeQuestions.map(q=><div key={q.id}><div className={`status ${state.answered[q.id]?.lastCorrect ? "done":""}`}>{state.answered[q.id]?.lastCorrect?<Check/>:<CircleHelp/>}</div><div><b>{q.objective}</b><small>{q.difficulty} · Original practice scenario</small></div><button className="ghost" aria-label="Bookmark this question and open practice" onClick={()=>{setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks:s.bookmarks.concat(q.id)}));setView("practice")}}><Bookmark/></button></div>)}</div><button className="primary wide" onClick={()=>setView("practice")}><Play/> Practice this domain</button></div>
     </div>
@@ -230,9 +249,11 @@ function Learn({ state, setState, setView }: { state:LearnerState; setState:Reac
 }
 
 function Practice({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
-  const { domains, questions } = useContent();
+  const { certifications, domains, questions } = useContent();
+  const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
+  const certQuestions = questions.filter(q => q.certId === cert.id);
   const [mode, setMode] = useState<"setup"|"active"|"results">("setup");
-  const [exam, setExam] = useState<ExamCode|"Mixed">("220-1201");
+  const [exam, setExam] = useState<string>(cert.exams[0]?.id ?? "Mixed");
   const [count, setCount] = useState(10);
   const [session, setSession] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
@@ -242,7 +263,7 @@ function Practice({ state, setState }: { state:LearnerState; setState:React.Disp
   const [elapsed, setElapsed] = useState(0);
   useEffect(()=>{ if(mode!=="active") return; const t=setInterval(()=>setElapsed(x=>x+1),1000); return ()=>clearInterval(t); },[mode]);
   const start = () => {
-    const pool=exam==="Mixed"?questions:questions.filter(q=>q.exam===exam);
+    const pool=exam==="Mixed"?certQuestions:certQuestions.filter(q=>q.exam===exam);
     const picked=shuffle(pool).slice(0,Math.min(count,pool.length));
     const ord:Record<string,number[]>={}; picked.forEach(q=>{ord[q.id]=shuffle(q.options.map((_,i)=>i));});
     setSession(picked);setOrder(ord);setIndex(0);setAnswers({});setElapsed(0);setRevealed(false);setMode("active");
@@ -259,7 +280,7 @@ function Practice({ state, setState }: { state:LearnerState; setState:React.Disp
     });
     setMode("results");
   };
-  if(mode==="setup") return <><PageHead eyebrow="ADAPTIVE PRACTICE" title="Practice lab" subtitle="Choose a target, enter focus mode, and learn from every explanation."/><div className="setup-grid"><div className="panel setup-main"><h3>Build your session</h3><label>Exam track</label><div className="option-grid">{(["220-1201","220-1202","Mixed"] as const).map(x=><button key={x} className={exam===x?"selected":""} onClick={()=>setExam(x)}><span>{x==="Mixed"?<Brain/>:x==="220-1201"?<Activity/>:<ShieldCheck/>}</span><b>{x}</b><small>{x==="Mixed"?"Both cores":"Focused objective mix"}</small></button>)}</div><label>Question count</label><div className="count-picker">{[5,10,15,20].map(x=><button key={x} className={count===x?"selected":""} onClick={()=>setCount(x)}>{x}</button>)}</div><button className="primary wide launch" onClick={start}><Play/> Launch session</button></div><div className="panel setup-side"><span className="pill purple"><Sparkles/> SESSION PREVIEW</span><h2>{Math.min(count,exam==="Mixed"?questions.length:questions.filter(q=>q.exam===exam).length)} questions</h2><div className="preview-row"><Clock3/><div><b>Estimated time</b><small>{Math.min(count,20)*1.5} minutes</small></div></div><div className="preview-row"><Target/><div><b>Coverage</b><small>{exam === "Mixed" ? "All Core 1 & Core 2 domains" : `Weighted ${exam} mix`}</small></div></div><div className="preview-row"><CircleHelp/><div><b>Learning mode</b><small>Explanations available after answering</small></div></div></div></div></>;
+  if(mode==="setup") return <><PageHead eyebrow="ADAPTIVE PRACTICE" title="Practice lab" subtitle="Choose a target, enter focus mode, and learn from every explanation."/><div className="setup-grid"><div className="panel setup-main"><h3>Build your session</h3><label>Exam track</label><div className="option-grid">{[...cert.exams.map(e=>e.id), "Mixed"].map(x=>{const meta=cert.exams.find(e=>e.id===x);return <button key={x} className={exam===x?"selected":""} onClick={()=>setExam(x)}><span>{x==="Mixed"?<Brain/>:<Activity/>}</span><b>{x==="Mixed"?"Mixed":(meta?.name||x)}</b><small>{x==="Mixed"?"All exams":x}</small></button>})}</div><label>Question count</label><div className="count-picker">{[5,10,15,20].map(x=><button key={x} className={count===x?"selected":""} onClick={()=>setCount(x)}>{x}</button>)}</div><button className="primary wide launch" onClick={start}><Play/> Launch session</button></div><div className="panel setup-side"><span className="pill purple"><Sparkles/> SESSION PREVIEW</span><h2>{Math.min(count,exam==="Mixed"?certQuestions.length:certQuestions.filter(q=>q.exam===exam).length)} questions</h2><div className="preview-row"><Clock3/><div><b>Estimated time</b><small>{Math.min(count,20)*1.5} minutes</small></div></div><div className="preview-row"><Target/><div><b>Coverage</b><small>{exam === "Mixed" ? `All ${cert.shortName} domains` : `Weighted ${exam} mix`}</small></div></div><div className="preview-row"><CircleHelp/><div><b>Learning mode</b><small>Explanations available after answering</small></div></div></div></div></>;
   if(mode==="results") { const score=session.filter(q=>answers[q.id]===q.answer).length; return <><PageHead eyebrow="SESSION COMPLETE" title="Your results" subtitle="Review what clicked and turn misses into your next study plan."/><div className="results panel"><div className={`result-ring ${pct(score,session.length)>=75?"pass":""}`}><b>{pct(score,session.length)}%</b><span>{score} of {session.length}</span></div><h2>{pct(score,session.length)>=75?"Strong work.":"Good baseline. Keep sharpening."}</h2><p>{pct(score,session.length)>=75?"Your decisions are trending toward exam readiness.":"Review the explanations below, then run a focused domain drill."}</p><div className="result-actions"><button className="primary" onClick={()=>setMode("setup")}><RotateCcw/> New session</button></div></div><div className="review-list">{session.map((q,i)=>{const ok=answers[q.id]===q.answer;return <div className={`panel review ${ok?"correct":"wrong"}`} key={q.id}><span>{ok?<Check/>:<X/>}</span><div><small>QUESTION {i+1} · {q.objective}</small><b>{q.prompt}</b><p><strong>Your answer:</strong> {q.options[answers[q.id]] || "Unanswered"}</p>{!ok&&<p><strong>Correct:</strong> {q.options[q.answer]}</p>}<em>{q.explanation}</em></div></div>})}</div></>; }
   const q=session[index]; const selected=answers[q.id]; const isLast=index===session.length-1;
   return <div className="exam-shell"><div className="exam-top"><button className="ghost" onClick={()=>setMode("setup")}><X/> Exit</button><div><span>QUESTION {index+1} OF {session.length}</span><div className="exam-progress"><i style={{width:`${pct(index+1,session.length)}%`}}/></div></div><div className="timer"><Clock3/>{formatTime(elapsed)}</div></div><div className="question-card panel"><div className="question-meta"><span>{q.exam}</span><span>{domains.find(d=>d.id===q.domain)?.name}</span><span>{q.difficulty}</span><button className={state.bookmarks.includes(q.id)?"saved":""} aria-label={state.bookmarks.includes(q.id)?"Remove bookmark":"Bookmark this question"} aria-pressed={state.bookmarks.includes(q.id)} onClick={()=>setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks.filter(x=>x!==q.id):[...s.bookmarks,q.id]}))}><Bookmark/></button></div><h2>{q.prompt}</h2><div className="answers">{(order[q.id]||q.options.map((_,i)=>i)).map((oi,k)=>{const opt=q.options[oi];const cls=revealed?(oi===q.answer?"correct":selected===oi?"wrong":""):selected===oi?"selected":"";return <button key={oi} className={cls} disabled={revealed} aria-label={`Option ${String.fromCharCode(65+k)}: ${opt}`} onClick={()=>setAnswers(a=>({...a,[q.id]:oi}))}><span>{String.fromCharCode(65+k)}</span><b>{opt}</b>{revealed&&oi===q.answer&&<Check/>}{revealed&&selected===oi&&oi!==q.answer&&<X/>}</button>})}</div>{revealed&&<div className="explanation"><Sparkles/><div><b>{selected===q.answer?"Exactly right":"Key takeaway"}</b><p>{q.explanation}</p><small>OBJECTIVE · {q.objective}</small></div></div>}<div className="question-actions"><button className="ghost" disabled={index===0} onClick={()=>{setIndex(i=>i-1);setRevealed(false)}}><ChevronLeft/> Previous</button>{!revealed?<button className="primary" disabled={selected===undefined} onClick={()=>setRevealed(true)}>Check answer</button>:<button className="primary" onClick={()=>{if(isLast)finish();else{setIndex(i=>i+1);setRevealed(false)}}}>{isLast?"Finish session":"Next question"}<ChevronRight/></button>}</div></div></div>;
@@ -295,21 +316,22 @@ function PbqView({ pbq, response, onChange, revealed }: { pbq: Pbq; response: Pb
   })}{revealed && <small className="pbq-correct-order">Correct order: {pbq.answer.map(id => pbq.steps.find(s => s.id === id)?.text).join(" → ")}</small>}</div>;
 }
 
-function PbqLab() {
-  const { domains, pbqs } = useContent();
-  const [exam, setExam] = useState<ExamCode|"All">("All");
+function PbqLab({ activeCertId }: { activeCertId: CertId }) {
+  const { certifications, domains, pbqs } = useContent();
+  const cert = certifications.find(c => c.id === activeCertId) ?? certifications[0];
+  const [exam, setExam] = useState<string>("All");
   const [index, setIndex] = useState(0);
   const [responses, setResponses] = useState<Record<string,PbqResponse>>({});
   const [revealed, setRevealed] = useState<Record<string,boolean>>({});
-  const pool = pbqs.filter(p=>exam==="All" || p.exam===exam);
+  const pool = pbqs.filter(p=>p.certId===cert.id && (exam==="All" || p.exam===exam));
   const active = pool[index];
   const score = active && revealed[active.id] ? Math.round(gradePbq(active, responses[active.id])*100) : null;
-  const selectExam = (next:ExamCode|"All") => { setExam(next); setIndex(0); };
+  const selectExam = (next:string) => { setExam(next); setIndex(0); };
   const next = (delta:number) => setIndex(i=>Math.max(0, Math.min(pool.length-1, i+delta)));
 
   return <><PageHead eyebrow="PERFORMANCE LAB" title="PBQ simulations" subtitle="Practice interactive technician tasks with immediate scoring and explanations."/>
     <div className="pbq-lab-controls panel" aria-label="PBQ filters">
-      <div><b>Exam core</b><div className="count-picker">{(["All","220-1201","220-1202"] as const).map(x=><button key={x} className={exam===x?"selected":""} aria-pressed={exam===x} onClick={()=>selectExam(x)}>{x}</button>)}</div></div>
+      <div><b>Exam core</b><div className="count-picker">{["All", ...cert.exams.map(e=>e.id)].map(x=><button key={x} className={exam===x?"selected":""} aria-pressed={exam===x} onClick={()=>selectExam(x)}>{x}</button>)}</div></div>
       <div className="pbq-lab-progress"><b>{pool.length ? index+1 : 0} / {pool.length}</b><span>simulation</span></div>
     </div>
     {active ? <div className="question-card panel pbq-lab-card">
@@ -324,11 +346,16 @@ function PbqLab() {
 }
 
 function MockExam({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
-  const { domains, questions, pbqs } = useContent();
+  const { certifications, domains, questions, pbqs } = useContent();
+  const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
+  const certQuestions = questions.filter(q => q.certId === cert.id);
+  const certPbqs = pbqs.filter(p => p.certId === cert.id);
+  const certDomains = domains.filter(d => d.certId === cert.id);
+  const firstExam = cert.exams[0];
   const [phase, setPhase] = useState<"setup"|"active"|"results">("setup");
-  const [exam, setExam] = useState<ExamCode>("220-1201");
-  const [qCount, setQCount] = useState(MOCK_DEFAULT_QUESTIONS);
-  const [minutes, setMinutes] = useState(MOCK_DEFAULT_MINUTES);
+  const [exam, setExam] = useState<string>(firstExam?.id ?? "");
+  const [qCount, setQCount] = useState(firstExam?.defaultQuestions ?? MOCK_DEFAULT_QUESTIONS);
+  const [minutes, setMinutes] = useState(firstExam?.defaultMinutes ?? MOCK_DEFAULT_MINUTES);
   const [requestedPbqs, setRequestedPbqs] = useState(3);
   const [items, setItems] = useState<MockItem[]>([]);
   const [index, setIndex] = useState(0);
@@ -338,8 +365,8 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   const [remaining, setRemaining] = useState(0);
   const [grade, setGrade] = useState<ReturnType<typeof scoreMock>|null>(null);
 
-  const availableMcq = questions.filter(q=>q.exam===exam).length;
-  const availablePbqs = pbqs.filter(p=>p.exam===exam).length;
+  const availableMcq = certQuestions.filter(q=>q.exam===exam).length;
+  const availablePbqs = certPbqs.filter(p=>p.exam===exam).length;
   const pbqCount = Math.min(availablePbqs, requestedPbqs);
   const plannedQ = Math.min(qCount, availableMcq);
 
@@ -361,7 +388,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   useEffect(()=>{ if(phase==="active" && remaining<=0) finishRef.current(); },[phase,remaining]);
 
   const start = () => {
-    const built = buildMockExam(questions, pbqs, domains, exam, plannedQ, pbqCount);
+    const built = buildMockExam(certQuestions, certPbqs, certDomains, exam, plannedQ, pbqCount);
     const ord:Record<string,number[]>={}; const resp:Record<string,PbqResponse>={};
     built.forEach(it=>{
       if(it.type==="mcq") ord[it.question.id]=shuffle(it.question.options.map((_,i)=>i));
@@ -376,7 +403,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   if(phase==="setup") return <>
     <PageHead eyebrow="EXAM SIMULATION" title="Mock exam" subtitle="A full-length, timed, domain-weighted exam. No feedback until you submit — just like the real thing."/>
     <div className="setup-grid"><div className="panel setup-main"><h3>Configure your exam</h3>
-      <label>Exam core</label><div className="option-grid">{(["220-1201","220-1202"] as const).map(x=><button key={x} className={exam===x?"selected":""} onClick={()=>setExam(x)}><span>{x==="220-1201"?<Activity/>:<ShieldCheck/>}</span><b>{x}</b><small>{x==="220-1201"?"Core 1":"Core 2"}</small></button>)}</div>
+      <label>Exam</label><div className="option-grid">{cert.exams.map(e=><button key={e.id} className={exam===e.id?"selected":""} onClick={()=>{setExam(e.id);setQCount(e.defaultQuestions);setMinutes(e.defaultMinutes);}}><span><Activity/></span><b>{e.id}</b><small>{e.name||cert.shortName}</small></button>)}</div>
       <label>Multiple-choice questions</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={qCount===x?"selected":""} aria-pressed={qCount===x} onClick={()=>setQCount(x)}>{x}</button>)}<input aria-label="Custom question count" type="number" min="10" max={availableMcq} value={qCount} onChange={e=>setQCount(Math.max(10, Number(e.target.value)||10))}/></div>
       <label>Performance-based questions</label><div className="count-picker">{[0,1,2,3].map(x=><button key={x} disabled={x>availablePbqs} className={requestedPbqs===x?"selected":""} aria-pressed={requestedPbqs===x} onClick={()=>setRequestedPbqs(x)}>{x}</button>)}</div>
       <label>Time limit (minutes)</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={minutes===x?"selected":""} aria-pressed={minutes===x} onClick={()=>setMinutes(x)}>{x}</button>)}<input aria-label="Custom time limit in minutes" type="number" min="15" max="240" value={minutes} onChange={e=>setMinutes(Math.max(15, Number(e.target.value)||15))}/></div>
@@ -428,10 +455,13 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
 
 function Flashcards({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
   const { domains, flashcards } = useContent();
-  const due=flashcards.filter(f=>isCardDue(state.cardRatings[f.id]));
-  const deck=due.length?due:flashcards; const [index,setIndex]=useState(0); const [flipped,setFlipped]=useState(false); const card=deck[index%deck.length];
-  const rate=(rating:1|2|3|4)=>{setState(s=>({...s,cardRatings:{...s.cardRatings,[card.id]:scheduleCard(s.cardRatings[card.id],rating)}}));setIndex(i=>i+1);setFlipped(false);};
-  return <><PageHead eyebrow="SPACED REPETITION" title="Recall deck" subtitle="Actively retrieve the answer, then rate your recall honestly."/><div className="deck-status"><div><b>{due.length}</b><span>due now</span></div><div><b>{Object.keys(state.cardRatings).length}</b><span>in rotation</span></div><div><b>{flashcards.length}</b><span>total cards</span></div></div><div className="flash-wrap"><div className={`flashcard ${flipped?"flipped":""}`} role="button" tabIndex={0} aria-pressed={flipped} aria-label={flipped?"Card answer shown. Activate to hide.":"Card prompt shown. Activate to reveal the answer."} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setFlipped(f=>!f);}}} onClick={()=>setFlipped(!flipped)}><div className="flash-face front"><span>{domains.find(d=>d.id===card.domain)?.name}</span><Brain/><h2>{card.front}</h2><small>Click card to reveal</small></div><div className="flash-face back"><span>ANSWER</span><Sparkles/><p>{card.back}</p><small>How well did you recall it?</small></div></div>{flipped?<div className="rating"><button onClick={()=>rate(1)}><span>Again</span><small>1 day</small></button><button onClick={()=>rate(2)}><span>Hard</span><small>Short interval</small></button><button onClick={()=>rate(3)}><span>Good</span><small>Growing interval</small></button><button onClick={()=>rate(4)}><span>Easy</span><small>Long interval</small></button></div>:<button className="primary" onClick={()=>setFlipped(true)}>Reveal answer</button>}<div className="deck-nav"><button aria-label="Previous card" onClick={()=>{setIndex(i=>Math.max(0,i-1));setFlipped(false)}}><ChevronLeft/></button><span>{index%deck.length+1} / {deck.length}</span><button aria-label="Next card" onClick={()=>{setIndex(i=>i+1);setFlipped(false)}}><ChevronRight/></button></div></div></>;
+  const certCards=flashcards.filter(f=>f.certId===state.activeCertId);
+  const due=certCards.filter(f=>isCardDue(state.cardRatings[f.id]));
+  const deck=due.length?due:certCards; const [index,setIndex]=useState(0); const [flipped,setFlipped]=useState(false);
+  const rate=(id:string,rating:1|2|3|4)=>{setState(s=>({...s,cardRatings:{...s.cardRatings,[id]:scheduleCard(s.cardRatings[id],rating)}}));setIndex(i=>i+1);setFlipped(false);};
+  if(!deck.length) return <><PageHead eyebrow="SPACED REPETITION" title="Recall deck" subtitle="Actively retrieve the answer, then rate your recall honestly."/><Empty message="No flashcards are available for this track yet."/></>;
+  const card=deck[index%deck.length];
+  return <><PageHead eyebrow="SPACED REPETITION" title="Recall deck" subtitle="Actively retrieve the answer, then rate your recall honestly."/><div className="deck-status"><div><b>{due.length}</b><span>due now</span></div><div><b>{certCards.filter(f=>state.cardRatings[f.id]).length}</b><span>in rotation</span></div><div><b>{certCards.length}</b><span>total cards</span></div></div><div className="flash-wrap"><div className={`flashcard ${flipped?"flipped":""}`} role="button" tabIndex={0} aria-pressed={flipped} aria-label={flipped?"Card answer shown. Activate to hide.":"Card prompt shown. Activate to reveal the answer."} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setFlipped(f=>!f);}}} onClick={()=>setFlipped(!flipped)}><div className="flash-face front"><span>{domains.find(d=>d.id===card.domain)?.name}</span><Brain/><h2>{card.front}</h2><small>Click card to reveal</small></div><div className="flash-face back"><span>ANSWER</span><Sparkles/><p>{card.back}</p><small>How well did you recall it?</small></div></div>{flipped?<div className="rating"><button onClick={()=>rate(card.id,1)}><span>Again</span><small>1 day</small></button><button onClick={()=>rate(card.id,2)}><span>Hard</span><small>Short interval</small></button><button onClick={()=>rate(card.id,3)}><span>Good</span><small>Growing interval</small></button><button onClick={()=>rate(card.id,4)}><span>Easy</span><small>Long interval</small></button></div>:<button className="primary" onClick={()=>setFlipped(true)}>Reveal answer</button>}<div className="deck-nav"><button aria-label="Previous card" onClick={()=>{setIndex(i=>Math.max(0,i-1));setFlipped(false)}}><ChevronLeft/></button><span>{index%deck.length+1} / {deck.length}</span><button aria-label="Next card" onClick={()=>{setIndex(i=>i+1);setFlipped(false)}}><ChevronRight/></button></div></div></>;
 }
 
 function Notes({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
