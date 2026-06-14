@@ -1,0 +1,404 @@
+[
+  {
+    "certId": "a-plus",
+    "id": "aplus-p01",
+    "kind": "matching",
+    "exam": "220-1201",
+    "domain": "aplus-networking",
+    "difficulty": "Intermediate",
+    "prompt": "Match each TCP/UDP port number to the protocol that uses it by default.",
+    "objective": "Compare common ports and protocols",
+    "items": [
+      {
+        "id": "n443",
+        "text": "443"
+      },
+      {
+        "id": "n22",
+        "text": "22"
+      },
+      {
+        "id": "n53",
+        "text": "53"
+      },
+      {
+        "id": "n3389",
+        "text": "3389"
+      }
+    ],
+    "targets": [
+      {
+        "id": "https",
+        "label": "HTTPS"
+      },
+      {
+        "id": "ssh",
+        "label": "SSH"
+      },
+      {
+        "id": "dns",
+        "label": "DNS"
+      },
+      {
+        "id": "rdp",
+        "label": "RDP"
+      }
+    ],
+    "answer": {
+      "n443": "https",
+      "n22": "ssh",
+      "n53": "dns",
+      "n3389": "rdp"
+    },
+    "explanation": "HTTPS uses 443, SSH uses 22, DNS uses 53, and RDP uses 3389. Memorizing common ports is a frequent exam requirement."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p02",
+    "kind": "ordering",
+    "exam": "220-1201",
+    "domain": "aplus-hardware",
+    "difficulty": "Intermediate",
+    "prompt": "Place the seven steps of the laser printing (imaging) process in the correct order.",
+    "objective": "Explain the laser imaging process",
+    "steps": [
+      {
+        "id": "process",
+        "text": "Processing"
+      },
+      {
+        "id": "charge",
+        "text": "Charging"
+      },
+      {
+        "id": "expose",
+        "text": "Exposing"
+      },
+      {
+        "id": "develop",
+        "text": "Developing"
+      },
+      {
+        "id": "transfer",
+        "text": "Transferring"
+      },
+      {
+        "id": "fuse",
+        "text": "Fusing"
+      },
+      {
+        "id": "clean",
+        "text": "Cleaning"
+      }
+    ],
+    "answer": [
+      "process",
+      "charge",
+      "expose",
+      "develop",
+      "transfer",
+      "fuse",
+      "clean"
+    ],
+    "explanation": "The laser imaging process is processing, charging, exposing, developing, transferring, fusing, and cleaning."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p03",
+    "kind": "ordering",
+    "exam": "220-1201",
+    "domain": "aplus-hw-troubleshooting",
+    "difficulty": "Foundation",
+    "prompt": "Order the CompTIA best-practice troubleshooting methodology steps.",
+    "objective": "Apply the troubleshooting methodology",
+    "steps": [
+      {
+        "id": "identify",
+        "text": "Identify the problem"
+      },
+      {
+        "id": "theory",
+        "text": "Establish a theory of probable cause"
+      },
+      {
+        "id": "test",
+        "text": "Test the theory to determine cause"
+      },
+      {
+        "id": "plan",
+        "text": "Establish a plan of action and implement the solution"
+      },
+      {
+        "id": "verify",
+        "text": "Verify full functionality and implement prevention"
+      },
+      {
+        "id": "document",
+        "text": "Document findings, actions, and outcomes"
+      }
+    ],
+    "answer": [
+      "identify",
+      "theory",
+      "test",
+      "plan",
+      "verify",
+      "document"
+    ],
+    "explanation": "Identify, theorize, test the theory, plan and implement, verify and prevent, then document."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p04",
+    "kind": "matching",
+    "exam": "220-1202",
+    "domain": "aplus-security",
+    "difficulty": "Intermediate",
+    "prompt": "Match each social-engineering attack to its description.",
+    "objective": "Compare social engineering attacks",
+    "items": [
+      {
+        "id": "phish",
+        "text": "Phishing"
+      },
+      {
+        "id": "vish",
+        "text": "Vishing"
+      },
+      {
+        "id": "tail",
+        "text": "Tailgating"
+      },
+      {
+        "id": "shoulder",
+        "text": "Shoulder surfing"
+      }
+    ],
+    "targets": [
+      {
+        "id": "email",
+        "label": "Deceptive email to a look-alike site"
+      },
+      {
+        "id": "voice",
+        "label": "Fraudulent phone or voice call"
+      },
+      {
+        "id": "door",
+        "label": "Following an authorized person through a secure door"
+      },
+      {
+        "id": "watch",
+        "label": "Watching a screen or keypad to steal information"
+      }
+    ],
+    "answer": {
+      "phish": "email",
+      "vish": "voice",
+      "tail": "door",
+      "shoulder": "watch"
+    },
+    "explanation": "Phishing is email-based, vishing uses voice calls, tailgating is physical entry behind someone, and shoulder surfing is observing screens or keypads."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p05",
+    "kind": "ordering",
+    "exam": "220-1202",
+    "domain": "aplus-security",
+    "difficulty": "Advanced",
+    "prompt": "Order the CompTIA best-practice malware removal steps.",
+    "objective": "Apply malware-removal procedures",
+    "steps": [
+      {
+        "id": "symptoms",
+        "text": "Investigate and verify malware symptoms"
+      },
+      {
+        "id": "quarantine",
+        "text": "Quarantine the infected system"
+      },
+      {
+        "id": "disable",
+        "text": "Disable System Restore (in Windows)"
+      },
+      {
+        "id": "remediate",
+        "text": "Remediate: update anti-malware and scan/remove"
+      },
+      {
+        "id": "schedule",
+        "text": "Schedule scans and run updates"
+      },
+      {
+        "id": "enable",
+        "text": "Enable System Restore and create a restore point"
+      },
+      {
+        "id": "educate",
+        "text": "Educate the end user"
+      }
+    ],
+    "answer": [
+      "symptoms",
+      "quarantine",
+      "disable",
+      "remediate",
+      "schedule",
+      "enable",
+      "educate"
+    ],
+    "explanation": "Verify symptoms, quarantine, disable System Restore, remediate, schedule scans and updates, re-enable System Restore, then educate the user."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p06",
+    "kind": "matching",
+    "exam": "220-1202",
+    "domain": "aplus-os",
+    "difficulty": "Foundation",
+    "prompt": "Match each Windows command-line tool to its primary purpose.",
+    "objective": "Use Windows command-line tools",
+    "items": [
+      {
+        "id": "ipconfig",
+        "text": "ipconfig"
+      },
+      {
+        "id": "sfc",
+        "text": "sfc"
+      },
+      {
+        "id": "chkdsk",
+        "text": "chkdsk"
+      },
+      {
+        "id": "gpupdate",
+        "text": "gpupdate"
+      }
+    ],
+    "targets": [
+      {
+        "id": "ip",
+        "label": "Show/refresh IP configuration"
+      },
+      {
+        "id": "files",
+        "label": "Verify and repair system files"
+      },
+      {
+        "id": "disk",
+        "label": "Check a disk for errors"
+      },
+      {
+        "id": "policy",
+        "label": "Refresh Group Policy settings"
+      }
+    ],
+    "answer": {
+      "ipconfig": "ip",
+      "sfc": "files",
+      "chkdsk": "disk",
+      "gpupdate": "policy"
+    },
+    "explanation": "ipconfig shows IP config, sfc repairs system files, chkdsk checks disks, and gpupdate refreshes Group Policy."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p07",
+    "kind": "matching",
+    "exam": "220-1201",
+    "domain": "aplus-hardware",
+    "difficulty": "Intermediate",
+    "prompt": "Match each component symptom to the most likely failing component.",
+    "objective": "Diagnose common hardware failures",
+    "items": [
+      {
+        "id": "artifact",
+        "text": "Colored artifacts under graphics load"
+      },
+      {
+        "id": "smart",
+        "text": "S.M.A.R.T. warning and read errors"
+      },
+      {
+        "id": "beeps",
+        "text": "Memory beep code during POST"
+      },
+      {
+        "id": "shutdown",
+        "text": "Thermal shutdown near the processor"
+      }
+    ],
+    "targets": [
+      {
+        "id": "gpu",
+        "label": "GPU"
+      },
+      {
+        "id": "drive",
+        "label": "Storage drive"
+      },
+      {
+        "id": "ram",
+        "label": "RAM"
+      },
+      {
+        "id": "cooling",
+        "label": "CPU cooling system"
+      }
+    ],
+    "answer": {
+      "artifact": "gpu",
+      "smart": "drive",
+      "beeps": "ram",
+      "shutdown": "cooling"
+    },
+    "explanation": "Artifacts indicate graphics trouble, S.M.A.R.T. errors indicate storage failure, POST memory codes point to RAM, and CPU-area thermal shutdowns point to cooling."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-p08",
+    "kind": "ordering",
+    "exam": "220-1202",
+    "domain": "aplus-operations",
+    "difficulty": "Intermediate",
+    "prompt": "Order a controlled production change from preparation through closure.",
+    "objective": "Apply change-management procedures",
+    "steps": [
+      {
+        "id": "scope",
+        "text": "Document scope, risk, and affected systems"
+      },
+      {
+        "id": "approve",
+        "text": "Obtain required approval"
+      },
+      {
+        "id": "test",
+        "text": "Test the change and rollback plan"
+      },
+      {
+        "id": "schedule",
+        "text": "Schedule and communicate the maintenance window"
+      },
+      {
+        "id": "implement",
+        "text": "Implement and validate the change"
+      },
+      {
+        "id": "close",
+        "text": "Document results and close the change"
+      }
+    ],
+    "answer": [
+      "scope",
+      "approve",
+      "test",
+      "schedule",
+      "implement",
+      "close"
+    ],
+    "explanation": "A controlled change is scoped, approved, tested, scheduled and communicated, implemented and validated, then documented and closed."
+  }
+]

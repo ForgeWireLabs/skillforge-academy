@@ -1,0 +1,137 @@
+[
+  {
+    "certId": "a-plus",
+    "id": "aplus-mobile",
+    "exam": "220-1201",
+    "name": "Mobile Devices",
+    "weight": 13,
+    "color": "#36d6b5",
+    "description": "Laptop hardware, mobile accessories, connectivity, and device configuration.",
+    "topics": [
+      "Laptop components",
+      "Displays and digitizers",
+      "Mobile connectivity",
+      "Accessories"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-networking",
+    "exam": "220-1201",
+    "name": "Networking",
+    "weight": 23,
+    "color": "#55a8ff",
+    "description": "Protocols, ports, wireless standards, network services, and small-office configuration.",
+    "topics": [
+      "TCP/UDP ports",
+      "Wi-Fi standards",
+      "SOHO networks",
+      "Network tools"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-hardware",
+    "exam": "220-1201",
+    "name": "Hardware",
+    "weight": 25,
+    "color": "#a78bfa",
+    "description": "PC components, storage, memory, printers, cables, and power systems.",
+    "topics": [
+      "Motherboards and CPUs",
+      "RAM and storage",
+      "Power and cooling",
+      "Printers"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-virtualization",
+    "exam": "220-1201",
+    "name": "Virtualization & Cloud",
+    "weight": 11,
+    "color": "#f2b84b",
+    "description": "Virtual machines, cloud delivery models, and resource concepts.",
+    "topics": [
+      "Hypervisors",
+      "Cloud models",
+      "Virtual resources",
+      "Containers"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-hw-troubleshooting",
+    "exam": "220-1201",
+    "name": "Hardware Troubleshooting",
+    "weight": 28,
+    "color": "#ff7c70",
+    "description": "Systematic diagnosis of hardware, network, mobile, and printer failures.",
+    "topics": [
+      "Troubleshooting method",
+      "PC symptoms",
+      "Network faults",
+      "Printer issues"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-os",
+    "exam": "220-1202",
+    "name": "Operating Systems",
+    "weight": 28,
+    "color": "#55a8ff",
+    "description": "Windows, Linux, macOS, command-line tools, installation, and administration.",
+    "topics": [
+      "Windows editions",
+      "System utilities",
+      "Linux/macOS",
+      "OS deployment"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-security",
+    "exam": "220-1202",
+    "name": "Security",
+    "weight": 28,
+    "color": "#36d6b5",
+    "description": "Threats, hardening, authentication, malware response, and data protection.",
+    "topics": [
+      "Threats and attacks",
+      "Access control",
+      "Device hardening",
+      "Malware removal"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-sw-troubleshooting",
+    "exam": "220-1202",
+    "name": "Software Troubleshooting",
+    "weight": 23,
+    "color": "#ff7c70",
+    "description": "Diagnose operating system, application, security, and mobile software issues.",
+    "topics": [
+      "Windows symptoms",
+      "Application failures",
+      "Mobile issues",
+      "Security symptoms"
+    ]
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-operations",
+    "exam": "220-1202",
+    "name": "Operational Procedures",
+    "weight": 21,
+    "color": "#f2b84b",
+    "description": "Safety, professionalism, documentation, change management, and backup practices.",
+    "topics": [
+      "Documentation",
+      "Safety and environment",
+      "Professionalism",
+      "Backup and recovery"
+    ]
+  }
+]

@@ -28,10 +28,11 @@
     "active": true,
     "targets": ["nsis"],
     "resources": {
-      "../src/content/domains.json": "content/domains.json",
-      "../src/content/questions.json": "content/questions.json",
-      "../src/content/flashcards.json": "content/flashcards.json",
-      "../src/content/pbqs.json": "content/pbqs.json"
+      "../src/content/certifications.json": "content/certifications.json",
+      "../src/content/a-plus/domains.json": "content/a-plus/domains.json",
+      "../src/content/a-plus/questions.json": "content/a-plus/questions.json",
+      "../src/content/a-plus/flashcards.json": "content/a-plus/flashcards.json",
+      "../src/content/a-plus/pbqs.json": "content/a-plus/pbqs.json"
     },
     "shortDescription": "Offline-first CompTIA A+ study and exam prep",
     "longDescription": "A focused desktop learning environment with objective tracking, practice exams, spaced repetition, notes, bookmarks, and detailed analytics.",

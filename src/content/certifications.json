@@ -1,0 +1,15 @@
+[
+  {
+    "id": "a-plus",
+    "name": "CompTIA A+",
+    "shortName": "A+",
+    "vendor": "CompTIA",
+    "idPrefix": "aplus",
+    "description": "Entry-level technician certification covering hardware, operating systems, networking, security, troubleshooting, and operational procedures across two core exams.",
+    "passThreshold": 0.75,
+    "exams": [
+      { "id": "220-1201", "certId": "a-plus", "name": "Core 1", "defaultQuestions": 90, "defaultMinutes": 90 },
+      { "id": "220-1202", "certId": "a-plus", "name": "Core 2", "defaultQuestions": 90, "defaultMinutes": 90 }
+    ]
+  }
+]

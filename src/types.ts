@@ -1,9 +1,40 @@
 export type ExamCode = "220-1201" | "220-1202";
+/** A certification track id, e.g. "a-plus", "network-plus". */
+export type CertId = string;
+/** A specific exam within a certification, e.g. "220-1201", "n10-009". */
+export type ExamId = string;
 export type View = "dashboard" | "learn" | "practice" | "pbq" | "mock" | "flashcards" | "analytics" | "notes" | "settings";
 export type Difficulty = "Foundation" | "Intermediate" | "Advanced";
 
+/** One exam (paper) belonging to a certification. A+ has two cores; most certs have one. */
+export interface ExamMeta {
+  id: ExamId;
+  certId: CertId;
+  /** Display label, e.g. "Core 1" — empty for single-exam certifications. */
+  name: string;
+  /** Default question count for a full-length mock of this exam. */
+  defaultQuestions: number;
+  /** Default time limit (minutes) for a full-length mock of this exam. */
+  defaultMinutes: number;
+}
+
+/** A certification track. The manifest of these is the umbrella over all content. */
+export interface Certification {
+  id: CertId;
+  name: string;        // "CompTIA A+"
+  shortName: string;   // "A+"
+  vendor: string;      // "CompTIA"
+  /** Slug every content id in this track must be prefixed with, e.g. "aplus". */
+  idPrefix: string;
+  description: string;
+  /** Mock-exam pass line as a fraction (0..1). */
+  passThreshold: number;
+  exams: ExamMeta[];
+}
+
 export interface Domain {
   id: string;
+  certId: CertId;
   exam: ExamCode;
   name: string;
   weight: number;
@@ -14,6 +45,7 @@ export interface Domain {
 
 export interface Question {
   id: string;
+  certId: CertId;
   exam: ExamCode;
   domain: string;
   difficulty: Difficulty;
@@ -26,6 +58,7 @@ export interface Question {
 
 interface PbqBase {
   id: string;
+  certId: CertId;
   exam: ExamCode;
   domain: string;
   difficulty: Difficulty;
@@ -55,6 +88,7 @@ export type Pbq = MatchingPbq | OrderingPbq;
 
 export interface Flashcard {
   id: string;
+  certId: CertId;
   domain: string;
   front: string;
   back: string;

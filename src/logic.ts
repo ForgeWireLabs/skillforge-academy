@@ -1,6 +1,6 @@
-import type { AnsweredStat, CardSchedule, Domain, ExamCode, Flashcard, LearnerState, Pbq, Question, View } from "./types";
+import type { AnsweredStat, Attempt, CardSchedule, Domain, ExamCode, Flashcard, LearnerState, Pbq, Question, View } from "./types";
 
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 export const initialState: LearnerState = {
   schemaVersion: SCHEMA_VERSION,
@@ -276,11 +276,18 @@ export function migrateState(raw: unknown): LearnerState {
   const obj = <T>(v: unknown): Record<string, T> => (v && typeof v === "object" && !Array.isArray(v) ? (v as Record<string, T>) : {});
   const arr = <T>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
 
+  // v3 namespaced every bundled A+ content id under an "aplus-" prefix so ids stay
+  // unique once other certifications ship. Saves from earlier schemas keyed progress
+  // by the bare ids (e.g. "q01", "mobile"), so re-key those on upgrade — without it,
+  // a returning learner would silently lose all answered/flashcard/bookmark history.
+  const fromVersion = num((data as { schemaVersion?: unknown }).schemaVersion, 0);
+  const certKey = (id: string): string => (fromVersion < 3 && !id.startsWith("aplus-") ? `aplus-${id}` : id);
+
   const answered: Record<string, AnsweredStat> = {};
   for (const [id, a] of Object.entries(obj<Partial<AnsweredStat>>(data.answered))) {
     if (!a || typeof a !== "object") continue;
     const correct = num(a.correct, 0);
-    answered[id] = {
+    answered[certKey(id)] = {
       correct,
       attempts: num(a.attempts, 0),
       lastCorrect: typeof a.lastCorrect === "boolean" ? a.lastCorrect : correct > 0
@@ -290,7 +297,7 @@ export function migrateState(raw: unknown): LearnerState {
   const cardRatings: Record<string, CardSchedule> = {};
   for (const [id, c] of Object.entries(obj<Partial<CardSchedule>>(data.cardRatings))) {
     if (!c || typeof c !== "object") continue;
-    cardRatings[id] = {
+    cardRatings[certKey(id)] = {
       ease: num(c.ease, 2.5),
       interval: num(c.interval, 0),
       due: str(c.due, ""),
@@ -305,6 +312,15 @@ export function migrateState(raw: unknown): LearnerState {
     if (Number.isFinite(v)) dailyCounts[day] = v;
   }
 
+  // Attempt.domainScores is keyed by domain id, so re-key those too on upgrade.
+  const attempts = arr<Attempt>(data.attempts).map(a => {
+    if (!a || typeof a !== "object") return a;
+    const scores = obj<{ correct: number; total: number }>(a.domainScores);
+    const domainScores: Attempt["domainScores"] = {};
+    for (const [d, v] of Object.entries(scores)) domainScores[certKey(d)] = v;
+    return { ...a, domainScores };
+  });
+
   return {
     schemaVersion: SCHEMA_VERSION,
     name: str(data.name, initialState.name),
@@ -314,8 +330,8 @@ export function migrateState(raw: unknown): LearnerState {
     lastStudyDate: str(data.lastStudyDate, ""),
     dailyCounts,
     answered,
-    attempts: arr(data.attempts),
-    bookmarks: arr<string>(data.bookmarks).filter(b => typeof b === "string"),
+    attempts,
+    bookmarks: arr<string>(data.bookmarks).filter(b => typeof b === "string").map(certKey),
     notes: arr(data.notes),
     cardRatings,
     theme: data.theme === "light" ? "light" : "dark"

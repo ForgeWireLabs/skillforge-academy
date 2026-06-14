@@ -1,0 +1,254 @@
+[
+  {
+    "certId": "a-plus",
+    "id": "aplus-f01",
+    "domain": "aplus-networking",
+    "front": "HTTPS / SSH / RDP ports",
+    "back": "HTTPS: 443 TCP; SSH: 22 TCP; RDP: 3389 TCP/UDP."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f02",
+    "domain": "aplus-networking",
+    "front": "DHCP DORA",
+    "back": "Discover, Offer, Request, Acknowledge: the basic IPv4 lease sequence."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f03",
+    "domain": "aplus-hardware",
+    "front": "NVMe vs SATA",
+    "back": "NVMe uses PCIe and parallel queues; SATA SSDs use the AHCI/SATA path and are generally slower."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f04",
+    "domain": "aplus-hardware",
+    "front": "Laser printing process",
+    "back": "Processing, charging, exposing, developing, transferring, fusing, cleaning."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f05",
+    "domain": "aplus-mobile",
+    "front": "NFC",
+    "back": "Very short-range wireless communication used for tap-to-pay, badges, and quick pairing."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f06",
+    "domain": "aplus-virtualization",
+    "front": "Type 1 vs Type 2 hypervisor",
+    "back": "Type 1 runs on hardware; Type 2 runs as an application on a host operating system."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f07",
+    "domain": "aplus-os",
+    "front": "Windows repair commands",
+    "back": "SFC checks protected system files. DISM services and repairs the Windows image."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f08",
+    "domain": "aplus-os",
+    "front": "chmod 755",
+    "back": "Owner: read/write/execute. Group and others: read/execute."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f09",
+    "domain": "aplus-security",
+    "front": "AAA",
+    "back": "Authentication verifies identity, authorization grants permissions, accounting records activity."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f10",
+    "domain": "aplus-security",
+    "front": "Malware response opening steps",
+    "back": "Identify symptoms, quarantine the system, disable System Restore when appropriate, remediate, update, scan, re-enable, educate."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f11",
+    "domain": "aplus-operations",
+    "front": "Differential vs incremental backup",
+    "back": "Differential: changes since full. Incremental: changes since the latest backup of any type."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f12",
+    "domain": "aplus-hw-troubleshooting",
+    "front": "Troubleshooting sequence",
+    "back": "Identify, theorize, test, plan and implement, verify and prevent, document."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f13",
+    "domain": "aplus-networking",
+    "front": "Common mail ports",
+    "back": "SMTP: 25 (587 submission); IMAP: 143; POP3: 110. Secure variants: 465/993/995."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f14",
+    "domain": "aplus-networking",
+    "front": "APIPA range",
+    "back": "169.254.0.0/16, self-assigned when DHCP is unreachable."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f15",
+    "domain": "aplus-networking",
+    "front": "Wi-Fi bands",
+    "back": "2.4 GHz: longer range, more congestion. 5/6 GHz: more capacity, shorter range."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f16",
+    "domain": "aplus-hardware",
+    "front": "RAID 0/1/5/10",
+    "back": "0: stripe (speed, no redundancy). 1: mirror. 5: stripe+parity. 10: mirror+stripe."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f17",
+    "domain": "aplus-hardware",
+    "front": "DDR generations",
+    "back": "DDR4 and DDR5 are current desktop DIMMs; they are keyed differently and not interchangeable."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f18",
+    "domain": "aplus-mobile",
+    "front": "USB-C Alt Mode",
+    "back": "Carries DisplayPort/Thunderbolt video plus data and power over one reversible connector."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f19",
+    "domain": "aplus-virtualization",
+    "front": "Cloud service models",
+    "back": "IaaS: infrastructure. PaaS: platform. SaaS: finished application."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f20",
+    "domain": "aplus-virtualization",
+    "front": "Containers vs VMs",
+    "back": "Containers share the host kernel (lightweight); VMs run full guest OSes via a hypervisor."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f21",
+    "domain": "aplus-os",
+    "front": "FAT32 vs exFAT vs NTFS",
+    "back": "FAT32: 4 GB file limit. exFAT: large files, cross-platform removable media. NTFS: permissions, EFS, journaling."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f22",
+    "domain": "aplus-security",
+    "front": "Wi-Fi security strength",
+    "back": "WPA3 > WPA2 > WPA > WEP. Use WPA3/WPA2; avoid WEP."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f23",
+    "domain": "aplus-security",
+    "front": "MFA factors",
+    "back": "Something you know, something you have, something you are (and sometimes location/behavior)."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f24",
+    "domain": "aplus-sw-troubleshooting",
+    "front": "Ransomware first response",
+    "back": "Isolate the system from the network, then follow incident response and restore from clean backups."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f25",
+    "domain": "aplus-operations",
+    "front": "ESD protection",
+    "back": "Use an anti-static wrist strap and mat; equalize potential before handling components."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f26",
+    "domain": "aplus-operations",
+    "front": "Change management essentials",
+    "back": "Purpose, scope, risk, approval, schedule, testing, and a rollback plan."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f27",
+    "domain": "aplus-mobile",
+    "front": "Mobile hotspot vs tethering",
+    "back": "A hotspot shares cellular data over Wi-Fi; tethering can share it over USB or Bluetooth."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f28",
+    "domain": "aplus-networking",
+    "front": "DNS troubleshooting clue",
+    "back": "If an IP address works but the hostname does not, investigate DNS resolution first."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f29",
+    "domain": "aplus-hardware",
+    "front": "ATX vs EPS power",
+    "back": "The 24-pin ATX connector powers the motherboard; the 4/8-pin EPS connector powers the CPU."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f30",
+    "domain": "aplus-virtualization",
+    "front": "Snapshot caution",
+    "back": "A VM snapshot is a short-term rollback point, not a substitute for an independent backup."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f31",
+    "domain": "aplus-hw-troubleshooting",
+    "front": "New disk not visible",
+    "back": "If firmware sees a new disk, initialize, partition, format, and assign a drive letter in Disk Management."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f32",
+    "domain": "aplus-os",
+    "front": "Linux navigation commands",
+    "back": "pwd shows the current directory; cd changes directories; ls lists directory contents."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f33",
+    "domain": "aplus-security",
+    "front": "Least privilege",
+    "back": "Grant only the access required for a role or task, and remove access when it is no longer needed."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f34",
+    "domain": "aplus-sw-troubleshooting",
+    "front": "Browser hijacker response",
+    "back": "Remove suspicious extensions, reset browser settings if needed, and run an updated anti-malware scan."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f35",
+    "domain": "aplus-operations",
+    "front": "RTO vs RPO",
+    "back": "RTO is how quickly service must return. RPO is how much data loss, measured in time, is acceptable."
+  },
+  {
+    "certId": "a-plus",
+    "id": "aplus-f36",
+    "domain": "aplus-operations",
+    "front": "Secure media disposal",
+    "back": "Use approved wiping, degaussing, shredding, or physical destruction based on the media and policy."
+  }
+]

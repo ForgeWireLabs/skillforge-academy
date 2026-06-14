@@ -1,13 +1,13 @@
-import type { Domain, Flashcard, Pbq, Question } from "../types";
+import type { Certification, Domain, Flashcard, Pbq, Question } from "../types";
 
 export interface ContentBundle {
+  certifications: Certification[];
   domains: Domain[];
   questions: Question[];
   flashcards: Flashcard[];
   pbqs: Pbq[];
 }
 
-const EXAM_CODES = ["220-1201", "220-1202"];
 const DIFFICULTIES = ["Foundation", "Intermediate", "Advanced"];
 
 /**
@@ -15,32 +15,76 @@ const DIFFICULTIES = ["Foundation", "Intermediate", "Advanced"];
  * An empty array means the content is structurally sound. Shared by the
  * runtime loader (to reject malformed backend content) and the
  * `validate:content` authoring script.
+ *
+ * The certification manifest is the source of truth: every domain/question/PBQ
+ * must reference a known cert and one of that cert's exams, and every content id
+ * must carry its cert's id prefix so ids stay globally unique across tracks.
  */
 export function validateContent(content: Partial<ContentBundle> | null | undefined): string[] {
   const errors: string[] = [];
   if (!content || typeof content !== "object") return ["Content is not an object"];
 
-  const { domains, questions, flashcards, pbqs } = content;
+  const { certifications, domains, questions, flashcards, pbqs } = content;
+  if (!Array.isArray(certifications) || certifications.length === 0) errors.push("certifications must be a non-empty array");
   if (!Array.isArray(domains) || domains.length === 0) errors.push("domains must be a non-empty array");
   if (!Array.isArray(questions) || questions.length === 0) errors.push("questions must be a non-empty array");
   if (!Array.isArray(flashcards) || flashcards.length === 0) errors.push("flashcards must be a non-empty array");
   if (pbqs !== undefined && !Array.isArray(pbqs)) errors.push("pbqs must be an array when present");
   if (errors.length) return errors;
 
+  // ---- Certification manifest ------------------------------------------------
+  const certIds = new Set<string>();
+  const prefixByCert = new Map<string, string>();
+  const examToCert = new Map<string, string>(); // examId -> certId
+  for (const c of certifications as Certification[]) {
+    if (certIds.has(c.id)) errors.push(`Duplicate certification id: ${c.id}`);
+    certIds.add(c.id);
+    if (!c.idPrefix?.trim()) errors.push(`Certification ${c.id}: empty idPrefix`);
+    else prefixByCert.set(c.id, c.idPrefix);
+    for (const field of ["name", "shortName", "vendor"] as const)
+      if (!c[field]?.trim()) errors.push(`Certification ${c.id}: empty ${field}`);
+    if (typeof c.passThreshold !== "number" || c.passThreshold <= 0 || c.passThreshold > 1)
+      errors.push(`Certification ${c.id}: passThreshold must be between 0 and 1`);
+    if (!Array.isArray(c.exams) || c.exams.length === 0) errors.push(`Certification ${c.id}: needs at least one exam`);
+    for (const e of c.exams ?? []) {
+      if (examToCert.has(e.id)) errors.push(`Duplicate exam id: ${e.id}`);
+      examToCert.set(e.id, c.id);
+      if (e.certId !== c.id) errors.push(`Exam ${e.id}: certId "${e.certId}" does not match certification "${c.id}"`);
+      if (!Number.isFinite(e.defaultQuestions) || e.defaultQuestions <= 0) errors.push(`Exam ${e.id}: invalid defaultQuestions`);
+      if (!Number.isFinite(e.defaultMinutes) || e.defaultMinutes <= 0) errors.push(`Exam ${e.id}: invalid defaultMinutes`);
+    }
+  }
+
+  /** Shared cert/exam/prefix checks for any content item that carries them. */
+  const checkCertRefs = (label: string, certId: string, id: string, exam?: string) => {
+    if (!certIds.has(certId)) errors.push(`${label}: unknown certId "${certId}"`);
+    else {
+      const prefix = prefixByCert.get(certId);
+      if (prefix && !id.startsWith(`${prefix}-`)) errors.push(`${label}: id must start with "${prefix}-"`);
+    }
+    if (exam !== undefined) {
+      if (!examToCert.has(exam)) errors.push(`${label}: invalid exam "${exam}"`);
+      else if (certIds.has(certId) && examToCert.get(exam) !== certId)
+        errors.push(`${label}: exam "${exam}" does not belong to cert "${certId}"`);
+    }
+  };
+
+  // ---- Domains ---------------------------------------------------------------
   const domainIds = new Set((domains as Domain[]).map(d => d.id));
   const seenDomain = new Set<string>();
   for (const d of domains as Domain[]) {
     if (seenDomain.has(d.id)) errors.push(`Duplicate domain id: ${d.id}`);
     seenDomain.add(d.id);
-    if (!EXAM_CODES.includes(d.exam)) errors.push(`Domain ${d.id}: invalid exam "${d.exam}"`);
+    checkCertRefs(`Domain ${d.id}`, d.certId, d.id, d.exam);
   }
 
+  // ---- Questions -------------------------------------------------------------
   const seenQ = new Set<string>();
   for (const q of questions as Question[]) {
     if (seenQ.has(q.id)) errors.push(`Duplicate question id: ${q.id}`);
     seenQ.add(q.id);
+    checkCertRefs(`Question ${q.id}`, q.certId, q.id, q.exam);
     if (!domainIds.has(q.domain)) errors.push(`Question ${q.id}: unknown domain "${q.domain}"`);
-    if (!EXAM_CODES.includes(q.exam)) errors.push(`Question ${q.id}: invalid exam "${q.exam}"`);
     if (!DIFFICULTIES.includes(q.difficulty)) errors.push(`Question ${q.id}: invalid difficulty "${q.difficulty}"`);
     if (!Array.isArray(q.options) || q.options.length < 2) errors.push(`Question ${q.id}: needs at least 2 options`);
     else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.options.length)
@@ -50,21 +94,24 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
     if (!q.objective?.trim()) errors.push(`Question ${q.id}: empty objective`);
   }
 
+  // ---- Flashcards ------------------------------------------------------------
   const seenF = new Set<string>();
   for (const f of flashcards as Flashcard[]) {
     if (seenF.has(f.id)) errors.push(`Duplicate flashcard id: ${f.id}`);
     seenF.add(f.id);
+    checkCertRefs(`Flashcard ${f.id}`, f.certId, f.id);
     if (!domainIds.has(f.domain)) errors.push(`Flashcard ${f.id}: unknown domain "${f.domain}"`);
     if (!f.front?.trim()) errors.push(`Flashcard ${f.id}: empty front`);
     if (!f.back?.trim()) errors.push(`Flashcard ${f.id}: empty back`);
   }
 
+  // ---- PBQs ------------------------------------------------------------------
   const seenP = new Set<string>();
   for (const p of (pbqs ?? []) as Pbq[]) {
     if (seenP.has(p.id)) errors.push(`Duplicate PBQ id: ${p.id}`);
     seenP.add(p.id);
+    checkCertRefs(`PBQ ${p.id}`, p.certId, p.id, p.exam);
     if (!domainIds.has(p.domain)) errors.push(`PBQ ${p.id}: unknown domain "${p.domain}"`);
-    if (!EXAM_CODES.includes(p.exam)) errors.push(`PBQ ${p.id}: invalid exam "${p.exam}"`);
     if (!p.prompt?.trim()) errors.push(`PBQ ${p.id}: empty prompt`);
     if (!p.explanation?.trim()) errors.push(`PBQ ${p.id}: empty explanation`);
     if (p.kind === "matching") {

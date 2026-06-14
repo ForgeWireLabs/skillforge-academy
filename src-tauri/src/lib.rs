@@ -57,9 +57,11 @@ fn reset_state(app: AppHandle) -> Result<(), String> {
     Ok(())
 }
 
-/// Reads the study content (domains, questions, flashcards) from the bundled
-/// resource directory. Keeping content in external resource files lets the
-/// banks grow or be corrected without rebuilding the application binary.
+/// Reads the study content from the bundled resource directory. The
+/// `certifications.json` manifest lists each track; per-track banks live under
+/// `content/<certId>/` and are concatenated into flat arrays. Keeping content in
+/// external resource files lets the banks grow or be corrected without
+/// rebuilding the application binary.
 #[tauri::command]
 fn load_content(app: AppHandle) -> Result<Value, String> {
     let dir = app
@@ -67,16 +69,57 @@ fn load_content(app: AppHandle) -> Result<Value, String> {
         .resource_dir()
         .map_err(|e| e.to_string())?
         .join("content");
-    let read = |name: &str| -> Result<Value, String> {
-        let raw = fs::read_to_string(dir.join(name)).map_err(|e| format!("{name}: {e}"))?;
-        serde_json::from_str(&raw).map_err(|e| format!("{name}: {e}"))
+    let read = |path: PathBuf, label: &str| -> Result<Value, String> {
+        let raw = fs::read_to_string(&path).map_err(|e| format!("{label}: {e}"))?;
+        serde_json::from_str(&raw).map_err(|e| format!("{label}: {e}"))
     };
-    // PBQs are optional so older content directories still load.
-    let pbqs = read("pbqs.json").unwrap_or_else(|_| json!([]));
+
+    let certifications = read(dir.join("certifications.json"), "certifications.json")?;
+    let cert_ids: Vec<String> = certifications
+        .as_array()
+        .map(|certs| {
+            certs
+                .iter()
+                .filter_map(|c| c.get("id").and_then(Value::as_str).map(String::from))
+                .collect()
+        })
+        .unwrap_or_default();
+
+    let (mut domains, mut questions, mut flashcards, mut pbqs) =
+        (Vec::new(), Vec::new(), Vec::new(), Vec::new());
+    let extend = |target: &mut Vec<Value>, value: Value| {
+        if let Value::Array(items) = value {
+            target.extend(items);
+        }
+    };
+    for id in &cert_ids {
+        let cdir = dir.join(id);
+        extend(
+            &mut domains,
+            read(cdir.join("domains.json"), &format!("{id}/domains.json"))?,
+        );
+        extend(
+            &mut questions,
+            read(cdir.join("questions.json"), &format!("{id}/questions.json"))?,
+        );
+        extend(
+            &mut flashcards,
+            read(
+                cdir.join("flashcards.json"),
+                &format!("{id}/flashcards.json"),
+            )?,
+        );
+        // PBQs are optional so a track without simulations still loads.
+        if let Ok(value) = read(cdir.join("pbqs.json"), &format!("{id}/pbqs.json")) {
+            extend(&mut pbqs, value);
+        }
+    }
+
     Ok(json!({
-        "domains": read("domains.json")?,
-        "questions": read("questions.json")?,
-        "flashcards": read("flashcards.json")?,
+        "certifications": certifications,
+        "domains": domains,
+        "questions": questions,
+        "flashcards": flashcards,
         "pbqs": pbqs
     }))
 }

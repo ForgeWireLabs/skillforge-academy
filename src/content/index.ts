@@ -1,22 +1,26 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { Domain, Flashcard, Pbq, Question } from "../types";
+import type { Certification, Domain, Flashcard, Pbq, Question } from "../types";
 import { validateContent, type ContentBundle } from "./validate";
-import domainsJson from "./domains.json";
-import questionsJson from "./questions.json";
-import flashcardsJson from "./flashcards.json";
-import pbqsJson from "./pbqs.json";
+import certificationsJson from "./certifications.json";
+import aplusDomains from "./a-plus/domains.json";
+import aplusQuestions from "./a-plus/questions.json";
+import aplusFlashcards from "./a-plus/flashcards.json";
+import aplusPbqs from "./a-plus/pbqs.json";
 
 export type { ContentBundle } from "./validate";
 
 /**
  * Bundled content shipped with the app. Acts as the offline fallback and as
- * the source consumed by tests and the validation script.
+ * the source consumed by tests and the validation script. Each certification's
+ * banks live under its own directory and are concatenated into flat arrays
+ * tagged by `certId`; add a track by importing its banks and spreading them in.
  */
 export const bundledContent: ContentBundle = {
-  domains: domainsJson as Domain[],
-  questions: questionsJson as Question[],
-  flashcards: flashcardsJson as Flashcard[],
-  pbqs: pbqsJson as Pbq[]
+  certifications: certificationsJson as Certification[],
+  domains: [...(aplusDomains as Domain[])],
+  questions: [...(aplusQuestions as Question[])],
+  flashcards: [...(aplusFlashcards as Flashcard[])],
+  pbqs: [...(aplusPbqs as Pbq[])]
 };
 
 function isTauri() {
@@ -39,8 +43,9 @@ export async function loadContent(): Promise<ContentBundle> {
       console.warn("Backend content failed validation; using bundled content.", errors);
       return bundledContent;
     }
-    // A backend that predates PBQs may omit them; fall back to the bundled set.
-    return { pbqs: bundledContent.pbqs, ...remote } as ContentBundle;
+    // A backend that predates the cert manifest or PBQs may omit them; fall back
+    // to the bundled sets for any missing top-level field.
+    return { certifications: bundledContent.certifications, pbqs: bundledContent.pbqs, ...remote } as ContentBundle;
   } catch (err) {
     console.warn("Could not load backend content; using bundled content.", err);
     return bundledContent;

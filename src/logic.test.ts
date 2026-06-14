@@ -10,7 +10,7 @@ import type { AnsweredStat, Domain, LearnerState, Pbq, Question } from "./types"
 const baseState = (over: Partial<LearnerState> = {}): LearnerState => ({ ...initialState, ...over });
 
 const q = (id: string, domain: string, objective: string, exam: "220-1201" | "220-1202" = "220-1201"): Question => ({
-  id, exam, domain, difficulty: "Foundation", prompt: id, options: ["a", "b"], answer: 0, explanation: "x", objective
+  id, certId: "a-plus", exam, domain, difficulty: "Foundation", prompt: id, options: ["a", "b"], answer: 0, explanation: "x", objective
 });
 
 describe("pct / formatTime", () => {
@@ -151,23 +151,46 @@ describe("migrateState", () => {
     };
     const s = migrateState(legacy);
     expect(s.theme).toBe("light");
-    expect(s.answered.q1.lastCorrect).toBe(true); // best-effort from correct>0
-    expect(s.cardRatings.f1.reps).toBe(0);
-    expect(s.cardRatings.f1.lapses).toBe(0);
+    // pre-v3 content ids are namespaced under "aplus-" on upgrade
+    expect(s.answered["aplus-q1"].lastCorrect).toBe(true); // best-effort from correct>0
+    expect(s.cardRatings["aplus-f1"].reps).toBe(0);
+    expect(s.cardRatings["aplus-f1"].lapses).toBe(0);
     expect(s.dailyCounts).toEqual({});
   });
   it("drops corrupt fields without throwing", () => {
     const s = migrateState({ answered: "nope", attempts: 42, bookmarks: [1, "ok", null] });
     expect(s.answered).toEqual({});
     expect(s.attempts).toEqual([]);
-    expect(s.bookmarks).toEqual(["ok"]);
+    expect(s.bookmarks).toEqual(["aplus-ok"]); // surviving bookmark is re-keyed
+  });
+  it("re-keys all content ids under aplus- when upgrading a pre-v3 save", () => {
+    const s = migrateState({
+      schemaVersion: 2,
+      answered: { q01: { correct: 1, attempts: 1, lastCorrect: true } },
+      cardRatings: { f01: { ease: 2.5, interval: 1, due: "", reps: 1, lapses: 0 } },
+      bookmarks: ["q02"],
+      attempts: [{ id: "a", date: "", exam: "220-1201", score: 1, total: 1, durationSec: 1, domainScores: { mobile: { correct: 1, total: 1 } } }]
+    });
+    expect(Object.keys(s.answered)).toEqual(["aplus-q01"]);
+    expect(Object.keys(s.cardRatings)).toEqual(["aplus-f01"]);
+    expect(s.bookmarks).toEqual(["aplus-q02"]);
+    expect(Object.keys(s.attempts[0].domainScores)).toEqual(["aplus-mobile"]);
+  });
+  it("leaves an already-migrated v3 save untouched (idempotent)", () => {
+    const s = migrateState({
+      schemaVersion: 3,
+      answered: { "aplus-q01": { correct: 1, attempts: 1, lastCorrect: true } },
+      bookmarks: ["aplus-q02"]
+    });
+    expect(Object.keys(s.answered)).toEqual(["aplus-q01"]); // no double prefix
+    expect(s.bookmarks).toEqual(["aplus-q02"]);
   });
 });
 
 describe("mock exam: weighted selection", () => {
   const domains: Domain[] = [
-    { id: "net", exam: "220-1201", name: "Networking", weight: 75, color: "#000", description: "", topics: [] },
-    { id: "hw", exam: "220-1201", name: "Hardware", weight: 25, color: "#000", description: "", topics: [] }
+    { id: "net", certId: "a-plus", exam: "220-1201", name: "Networking", weight: 75, color: "#000", description: "", topics: [] },
+    { id: "hw", certId: "a-plus", exam: "220-1201", name: "Hardware", weight: 25, color: "#000", description: "", topics: [] }
   ];
   const questions: Question[] = [
     ...Array.from({ length: 8 }, (_, i) => q(`n${i}`, "net", "obj")),
@@ -190,13 +213,13 @@ describe("mock exam: weighted selection", () => {
 
 describe("PBQ grading (partial credit)", () => {
   const matching: Pbq = {
-    id: "m", kind: "matching", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
+    id: "m", certId: "a-plus", kind: "matching", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
     items: [{ id: "a", text: "A" }, { id: "b", text: "B" }, { id: "c", text: "C" }, { id: "d", text: "D" }],
     targets: [{ id: "1", label: "1" }, { id: "2", label: "2" }, { id: "3", label: "3" }, { id: "4", label: "4" }],
     answer: { a: "1", b: "2", c: "3", d: "4" }
   };
   const ordering: Pbq = {
-    id: "o", kind: "ordering", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
+    id: "o", certId: "a-plus", kind: "ordering", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
     steps: [{ id: "s1", text: "1" }, { id: "s2", text: "2" }, { id: "s3", text: "3" }, { id: "s4", text: "4" }],
     answer: ["s1", "s2", "s3", "s4"]
   };
@@ -214,7 +237,7 @@ describe("PBQ grading (partial credit)", () => {
 
 describe("mock exam: scoring and assembly", () => {
   const pbq: Pbq = {
-    id: "p1", kind: "ordering", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
+    id: "p1", certId: "a-plus", kind: "ordering", exam: "220-1201", domain: "net", difficulty: "Foundation", prompt: "", objective: "", explanation: "",
     steps: [{ id: "s1", text: "1" }, { id: "s2", text: "2" }], answer: ["s1", "s2"]
   };
   const items: MockItem[] = [
@@ -236,7 +259,7 @@ describe("mock exam: scoring and assembly", () => {
     expect(g.pct).toBe(100);
   });
   it("places PBQs before MCQs in a built exam", () => {
-    const domains: Domain[] = [{ id: "net", exam: "220-1201", name: "Networking", weight: 100, color: "#000", description: "", topics: [] }];
+    const domains: Domain[] = [{ id: "net", certId: "a-plus", exam: "220-1201", name: "Networking", weight: 100, color: "#000", description: "", topics: [] }];
     const qs = Array.from({ length: 5 }, (_, i) => q(`q${i}`, "net", "obj"));
     const exam = buildMockExam(qs, [pbq], domains, "220-1201", 3, 1);
     expect(exam[0].type).toBe("pbq");
@@ -245,7 +268,7 @@ describe("mock exam: scoring and assembly", () => {
 });
 
 describe("buildNotifications", () => {
-  const content = { flashcards: [{ id: "f1", domain: "net", front: "x", back: "y" }] };
+  const content = { flashcards: [{ id: "f1", certId: "a-plus", domain: "net", front: "x", back: "y" }] };
   it("reports due cards, remaining goal, countdown, and baseline prompt", () => {
     const now = new Date("2026-06-13T12:00:00Z");
     const s = baseState({ dailyGoal: 10, targetDate: "2026-06-20" });
