@@ -254,7 +254,7 @@ Before contributing assessment content:
 
 ## License
 
-A project license has not yet been selected. Until a LICENSE file is published, default copyright applies.
+Licensed under the [Apache License, Version 2.0](LICENSE).
 
 ## Trademark Notice
 
