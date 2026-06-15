@@ -26,15 +26,21 @@ CompTIA A+ preparation often means jumping between notes, flashcard sites, video
 
 ## Screenshots
 
-Screenshots will be added as the public UI stabilizes.
+**Study Command Center** — your readiness, daily mission, and the next best drill at a glance.
 
-Planned:
+![SkillForge Academy — Study Command Center](docs/screenshots/01-command-center.png)
 
-- Dashboard
-- Learning path view
-- Flashcard review
-- Mock exam results
-- PBQ/practice lab flow
+**Learning Paths** — structured curriculum by exam domain, with lessons and knowledge checks.
+
+![SkillForge Academy — Learning Paths](docs/screenshots/02-learning-paths.png)
+
+| Practice Lab | Mock Exam |
+|---|---|
+| ![Practice Lab](docs/screenshots/03-practice-lab.png) | ![Mock Exam](docs/screenshots/04-mock-exam.png) |
+
+**Recall Deck** — spaced-repetition flashcards that schedule themselves.
+
+![SkillForge Academy — Recall Deck](docs/screenshots/05-recall-deck.png)
 
 ## Features
 
