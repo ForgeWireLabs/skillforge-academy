@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schemas/audit-finding.schema.json",
+  "id": "005",
+  "scope": "governance",
+  "observed": "[RISK-005] Future orchestration adoption could overwrite or duplicate repo-native tracking.",
+  "risk": "low",
+  "reconciliation": "Treat current IDs as canonical and map them forward rather than replacing them.",
+  "state": "open",
+  "created": "2026-06-16",
+  "source": "tracking/risks.md#RISK-005"
+}

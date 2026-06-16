@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schemas/audit-finding.schema.json",
+  "id": "004",
+  "scope": "governance",
+  "observed": "[RISK-004] Manual markdown tracking can drift from actual repo state.",
+  "risk": "medium",
+  "reconciliation": "Keep audits lightweight and update tracking during work; consider validation later.",
+  "state": "open",
+  "created": "2026-06-16",
+  "source": "tracking/risks.md#RISK-004"
+}

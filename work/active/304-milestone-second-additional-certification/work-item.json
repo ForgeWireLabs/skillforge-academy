@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/work-item.schema.json",
-  "id": "200",
-  "title": "Todo Index",
+  "id": "304",
+  "title": "M4: Second Additional Certification",
   "status": "active",
   "owner_scope": "governance",
   "affected_scopes": [],
@@ -9,12 +9,12 @@
   "acceptance_criteria": [
     {
       "id": "AC-1",
-      "text": "Deliver the outcome described in the imported plan narrative (`todos/index.md`).",
+      "text": "Achieve the milestone described in the imported narrative (`tracking/milestones.md#M4`).",
       "state": "pending",
       "evidence": []
     }
   ],
   "created": "2026-06-16",
   "updated": "2026-06-16",
-  "source": "todos/index.md"
+  "source": "tracking/milestones.md#M4"
 }

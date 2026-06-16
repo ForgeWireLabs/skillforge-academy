@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "301",
+  "title": "M1: Repo-Native Work Foundation",
+  "status": "completed",
+  "owner_scope": "governance",
+  "affected_scopes": [],
+  "depends_on": [],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Milestone delivered prior to/at RepoPact adoption (imported from `tracking/milestones.md#M1`); waived: no RepoPact evidence captured.",
+      "state": "waived",
+      "evidence": []
+    }
+  ],
+  "created": "2026-06-16",
+  "updated": "2026-06-16",
+  "source": "tracking/milestones.md#M1"
+}

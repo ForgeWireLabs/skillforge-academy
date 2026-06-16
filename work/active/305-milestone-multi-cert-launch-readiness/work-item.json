@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/work-item.schema.json",
-  "id": "201",
-  "title": "TODO-000: Title",
+  "id": "305",
+  "title": "M5: Multi-Cert Launch Readiness",
   "status": "active",
   "owner_scope": "governance",
   "affected_scopes": [],
@@ -9,12 +9,12 @@
   "acceptance_criteria": [
     {
       "id": "AC-1",
-      "text": "Deliver the outcome described in the imported plan narrative (`todos/TEMPLATE.md`).",
+      "text": "Achieve the milestone described in the imported narrative (`tracking/milestones.md#M5`).",
       "state": "pending",
       "evidence": []
     }
   ],
   "created": "2026-06-16",
   "updated": "2026-06-16",
-  "source": "todos/TEMPLATE.md"
+  "source": "tracking/milestones.md#M5"
 }
