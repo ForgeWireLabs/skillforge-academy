@@ -260,7 +260,12 @@ export interface MockGrade {
 }
 
 /** Grades a finished mock exam. MCQs score 1/0; PBQs award partial credit. */
-export function scoreMock(items: MockItem[], mcqAnswers: Record<string, number>, pbqResponses: Record<string, unknown>): MockGrade {
+export function scoreMock(
+  items: MockItem[],
+  mcqAnswers: Record<string, number>,
+  pbqResponses: Record<string, unknown>,
+  passThreshold = MOCK_PASS
+): MockGrade {
   let earned = 0;
   const total = items.length;
   const domainScores: Record<string, { correct: number; total: number }> = {};
@@ -275,7 +280,7 @@ export function scoreMock(items: MockItem[], mcqAnswers: Record<string, number>,
     domainScores[domain].correct += frac;
   }
   const ratio = total ? earned / total : 0;
-  return { earned, total, pct: Math.round(ratio * 100), passed: total > 0 && ratio >= MOCK_PASS, domainScores };
+  return { earned, total, pct: Math.round(ratio * 100), passed: total > 0 && ratio >= passThreshold, domainScores };
 }
 
 export interface ObjectiveStat {

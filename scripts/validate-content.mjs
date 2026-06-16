@@ -11,7 +11,20 @@ const here = dirname(fileURLToPath(import.meta.url));
 const lessonAssetDir = join(here, "..", "public", "lessons");
 const contentDir = join(here, "..", "src", "content");
 const read = path => JSON.parse(readFileSync(join(contentDir, path), "utf8"));
-const readOptional = path => { try { return read(path); } catch { return []; } };
+const readBank = (certId, file, required, errors) => {
+  const rel = join(certId, file);
+  try {
+    const value = read(rel);
+    if (!Array.isArray(value)) {
+      errors.push(`${rel}: expected an array`);
+      return [];
+    }
+    return value;
+  } catch (err) {
+    if (required) errors.push(`${rel}: required bank is missing or invalid (${err.message})`);
+    return [];
+  }
+};
 
 const DIFFICULTIES = ["Foundation", "Intermediate", "Advanced"];
 
@@ -54,7 +67,19 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
     }
   };
 
+  for (const c of certifications) {
+    const counts = {
+      domains: domains.filter(d => d.certId === c.id).length,
+      questions: questions.filter(q => q.certId === c.id).length,
+      flashcards: flashcards.filter(f => f.certId === c.id).length
+    };
+    for (const [bank, count] of Object.entries(counts)) {
+      if (count === 0) errors.push(`Certification ${c.id}: missing required ${bank} bank content`);
+    }
+  }
+
   const domainIds = new Set(domains.map(d => d.id));
+  const domainToCert = new Map(domains.map(d => [d.id, d.certId]));
 
   const seenD = new Set();
   for (const d of domains) {
@@ -69,6 +94,7 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
     seenQ.add(q.id);
     checkCertRefs(`Question ${q.id}`, q.certId, q.id, q.exam);
     if (!domainIds.has(q.domain)) errors.push(`Question ${q.id}: unknown domain "${q.domain}"`);
+    else if (domainToCert.get(q.domain) !== q.certId) errors.push(`Question ${q.id}: domain "${q.domain}" does not belong to cert "${q.certId}"`);
     if (!DIFFICULTIES.includes(q.difficulty)) errors.push(`Question ${q.id}: invalid difficulty "${q.difficulty}"`);
     if (!Array.isArray(q.options) || q.options.length < 2) errors.push(`Question ${q.id}: needs >= 2 options`);
     else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.options.length)
@@ -83,6 +109,7 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
     seenF.add(f.id);
     checkCertRefs(`Flashcard ${f.id}`, f.certId, f.id);
     if (!domainIds.has(f.domain)) errors.push(`Flashcard ${f.id}: unknown domain "${f.domain}"`);
+    else if (domainToCert.get(f.domain) !== f.certId) errors.push(`Flashcard ${f.id}: domain "${f.domain}" does not belong to cert "${f.certId}"`);
     for (const field of ["front", "back"])
       if (!f[field]?.trim()) errors.push(`Flashcard ${f.id}: empty ${field}`);
   }
@@ -93,6 +120,7 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
     seenP.add(p.id);
     checkCertRefs(`PBQ ${p.id}`, p.certId, p.id, p.exam);
     if (!domainIds.has(p.domain)) errors.push(`PBQ ${p.id}: unknown domain "${p.domain}"`);
+    else if (domainToCert.get(p.domain) !== p.certId) errors.push(`PBQ ${p.id}: domain "${p.domain}" does not belong to cert "${p.certId}"`);
     if (p.kind === "matching") {
       const itemIds = new Set((p.items || []).map(i => i.id));
       const targetIds = new Set((p.targets || []).map(t => t.id));
@@ -117,6 +145,7 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
     seenL.add(l.id);
     checkCertRefs(`Lesson ${l.id}`, l.certId, l.id, l.exam);
     if (!domainIds.has(l.domain)) errors.push(`Lesson ${l.id}: unknown domain "${l.domain}"`);
+    else if (domainToCert.get(l.domain) !== l.certId) errors.push(`Lesson ${l.id}: domain "${l.domain}" does not belong to cert "${l.certId}"`);
     if (!l.title?.trim()) errors.push(`Lesson ${l.id}: empty title`);
     if (typeof l.order !== "number") errors.push(`Lesson ${l.id}: order must be a number`);
     if (!Array.isArray(l.sections) || l.sections.length === 0) errors.push(`Lesson ${l.id}: needs at least one section`);
@@ -134,14 +163,15 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons)
 
 const certifications = read("certifications.json");
 const certIds = certifications.map(c => c.id);
-const collect = file => certIds.flatMap(id => readOptional(join(id, file)));
+const bankErrors = [];
+const collect = (file, required) => certIds.flatMap(id => readBank(id, file, required, bankErrors));
 
-const domains = collect("domains.json");
-const questions = collect("questions.json");
-const flashcards = collect("flashcards.json");
-const pbqs = collect("pbqs.json");
-const lessons = collect("lessons.json");
-const errors = validate(certifications, domains, questions, flashcards, pbqs, lessons);
+const domains = collect("domains.json", true);
+const questions = collect("questions.json", true);
+const flashcards = collect("flashcards.json", true);
+const pbqs = collect("pbqs.json", false);
+const lessons = collect("lessons.json", false);
+const errors = [...bankErrors, ...validate(certifications, domains, questions, flashcards, pbqs, lessons)];
 
 if (errors.length) {
   console.error(`✗ Content validation failed (${errors.length} issue(s)):`);
@@ -152,5 +182,12 @@ if (errors.length) {
 const perDomain = domains
   .map(d => `${d.id}:${questions.filter(q => q.domain === d.id).length}`)
   .join("  ");
+const perCert = certifications
+  .map(c => {
+    const count = items => items.filter(item => item.certId === c.id).length;
+    return `${c.id}: ${count(domains)} domains, ${count(questions)} questions, ${count(flashcards)} flashcards, ${count(pbqs)} PBQs, ${count(lessons)} lessons`;
+  })
+  .join("\n  ");
 console.log(`✓ Content valid: ${certifications.length} certification(s), ${domains.length} domains, ${questions.length} questions, ${flashcards.length} flashcards, ${pbqs.length} PBQs, ${lessons.length} lessons`);
+console.log(`  per cert -> ${perCert}`);
 console.log(`  questions per domain -> ${perDomain}`);

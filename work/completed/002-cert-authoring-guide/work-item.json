@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "002",
   "title": "TODO-002: Certification Authoring Guide And Quality Rubric",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [],
   "depends_on": [],
@@ -10,8 +10,11 @@
     {
       "id": "AC-1",
       "text": "Deliver the outcome described in the imported plan narrative (`todos/TODO-002-cert-authoring-guide.md`).",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "docs/certification-authoring.md",
+        "audits/AUDIT-2026-06-16-true-cert-factory.md"
+      ]
     }
   ],
   "created": "2026-06-16",

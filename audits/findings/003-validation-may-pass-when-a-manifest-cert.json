@@ -4,8 +4,8 @@
   "scope": "governance",
   "observed": "[RISK-003] Validation may pass when a manifest cert lacks required per-cert banks because missing files are read as empty arrays.",
   "risk": "high",
-  "reconciliation": "Add strict per-cert validation under `TODO-001`.",
-  "state": "open",
+  "reconciliation": "Reconciled by work item 001: runtime and CLI validation enforce required bank content per cert.",
+  "state": "reconciled",
   "created": "2026-06-16",
   "source": "tracking/risks.md#RISK-003"
 }

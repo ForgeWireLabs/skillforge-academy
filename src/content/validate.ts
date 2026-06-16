@@ -71,10 +71,29 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
     }
   };
 
+  const certList = certifications as Certification[];
+  const domainList = domains as Domain[];
+  const questionList = questions as Question[];
+  const flashcardList = flashcards as Flashcard[];
+  const pbqList = (pbqs ?? []) as Pbq[];
+  const lessonList = (lessons ?? []) as Lesson[];
+
+  for (const c of certList) {
+    const counts = {
+      domains: domainList.filter(d => d.certId === c.id).length,
+      questions: questionList.filter(q => q.certId === c.id).length,
+      flashcards: flashcardList.filter(f => f.certId === c.id).length
+    };
+    for (const [bank, count] of Object.entries(counts)) {
+      if (count === 0) errors.push(`Certification ${c.id}: missing required ${bank} bank content`);
+    }
+  }
+
   // ---- Domains ---------------------------------------------------------------
-  const domainIds = new Set((domains as Domain[]).map(d => d.id));
+  const domainIds = new Set(domainList.map(d => d.id));
+  const domainToCert = new Map(domainList.map(d => [d.id, d.certId]));
   const seenDomain = new Set<string>();
-  for (const d of domains as Domain[]) {
+  for (const d of domainList) {
     if (seenDomain.has(d.id)) errors.push(`Duplicate domain id: ${d.id}`);
     seenDomain.add(d.id);
     checkCertRefs(`Domain ${d.id}`, d.certId, d.id, d.exam);
@@ -82,11 +101,12 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
 
   // ---- Questions -------------------------------------------------------------
   const seenQ = new Set<string>();
-  for (const q of questions as Question[]) {
+  for (const q of questionList) {
     if (seenQ.has(q.id)) errors.push(`Duplicate question id: ${q.id}`);
     seenQ.add(q.id);
     checkCertRefs(`Question ${q.id}`, q.certId, q.id, q.exam);
     if (!domainIds.has(q.domain)) errors.push(`Question ${q.id}: unknown domain "${q.domain}"`);
+    else if (domainToCert.get(q.domain) !== q.certId) errors.push(`Question ${q.id}: domain "${q.domain}" does not belong to cert "${q.certId}"`);
     if (!DIFFICULTIES.includes(q.difficulty)) errors.push(`Question ${q.id}: invalid difficulty "${q.difficulty}"`);
     if (!Array.isArray(q.options) || q.options.length < 2) errors.push(`Question ${q.id}: needs at least 2 options`);
     else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.options.length)
@@ -98,22 +118,24 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
 
   // ---- Flashcards ------------------------------------------------------------
   const seenF = new Set<string>();
-  for (const f of flashcards as Flashcard[]) {
+  for (const f of flashcardList) {
     if (seenF.has(f.id)) errors.push(`Duplicate flashcard id: ${f.id}`);
     seenF.add(f.id);
     checkCertRefs(`Flashcard ${f.id}`, f.certId, f.id);
     if (!domainIds.has(f.domain)) errors.push(`Flashcard ${f.id}: unknown domain "${f.domain}"`);
+    else if (domainToCert.get(f.domain) !== f.certId) errors.push(`Flashcard ${f.id}: domain "${f.domain}" does not belong to cert "${f.certId}"`);
     if (!f.front?.trim()) errors.push(`Flashcard ${f.id}: empty front`);
     if (!f.back?.trim()) errors.push(`Flashcard ${f.id}: empty back`);
   }
 
   // ---- PBQs ------------------------------------------------------------------
   const seenP = new Set<string>();
-  for (const p of (pbqs ?? []) as Pbq[]) {
+  for (const p of pbqList) {
     if (seenP.has(p.id)) errors.push(`Duplicate PBQ id: ${p.id}`);
     seenP.add(p.id);
     checkCertRefs(`PBQ ${p.id}`, p.certId, p.id, p.exam);
     if (!domainIds.has(p.domain)) errors.push(`PBQ ${p.id}: unknown domain "${p.domain}"`);
+    else if (domainToCert.get(p.domain) !== p.certId) errors.push(`PBQ ${p.id}: domain "${p.domain}" does not belong to cert "${p.certId}"`);
     if (!p.prompt?.trim()) errors.push(`PBQ ${p.id}: empty prompt`);
     if (!p.explanation?.trim()) errors.push(`PBQ ${p.id}: empty explanation`);
     if (p.kind === "matching") {
@@ -138,11 +160,12 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
 
   // ---- Lessons (optional) ----------------------------------------------------
   const seenL = new Set<string>();
-  for (const l of (lessons ?? []) as Lesson[]) {
+  for (const l of lessonList) {
     if (seenL.has(l.id)) errors.push(`Duplicate lesson id: ${l.id}`);
     seenL.add(l.id);
     checkCertRefs(`Lesson ${l.id}`, l.certId, l.id, l.exam);
     if (!domainIds.has(l.domain)) errors.push(`Lesson ${l.id}: unknown domain "${l.domain}"`);
+    else if (domainToCert.get(l.domain) !== l.certId) errors.push(`Lesson ${l.id}: domain "${l.domain}" does not belong to cert "${l.certId}"`);
     if (!l.title?.trim()) errors.push(`Lesson ${l.id}: empty title`);
     if (typeof l.order !== "number") errors.push(`Lesson ${l.id}: order must be a number`);
     if (!Array.isArray(l.sections) || l.sections.length === 0) errors.push(`Lesson ${l.id}: needs at least one section`);

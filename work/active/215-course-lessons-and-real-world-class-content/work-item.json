@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "215",
+  "title": "Build course lessons and real-world class content",
+  "status": "active",
+  "owner_scope": "content",
+  "affected_scopes": ["content", "curriculum", "app-ui", "accessibility"],
+  "depends_on": ["210", "214"],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Define a course content model that treats questions as assessment, not the primary lesson experience.",
+      "state": "satisfied",
+      "evidence": [
+        "docs/course-lesson-content-model.md",
+        "decisions/0005-adopt-course-first-content-architecture.md"
+      ]
+    },
+    {
+      "id": "AC-2",
+      "text": "Draft the complete A+ course architecture with domains, units, class-style lessons, real-world scenarios, checks for understanding, labs, review paths, and PBQ tie-ins.",
+      "state": "satisfied",
+      "evidence": [
+        "docs/a-plus-complete-course-map.md"
+      ]
+    },
+    {
+      "id": "AC-3",
+      "text": "Document authoring standards for original lesson content, field relevance, accessibility, objective mapping, and cert-id/id-prefix requirements.",
+      "state": "satisfied",
+      "evidence": [
+        "docs/course-lesson-content-model.md",
+        "docs/certification-authoring.md"
+      ]
+    },
+    {
+      "id": "AC-4",
+      "text": "Identify required app changes for browsing lessons, tracking lesson completion, and connecting lessons to practice questions, labs, flashcards, and mock readiness.",
+      "state": "satisfied",
+      "evidence": [
+        "docs/course-lesson-content-model.md"
+      ]
+    }
+  ],
+  "created": "2026-06-16",
+  "updated": "2026-06-16",
+  "source": "user-product-direction"
+}

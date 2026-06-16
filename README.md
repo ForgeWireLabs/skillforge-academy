@@ -206,6 +206,17 @@ cargo fmt --check --manifest-path src-tauri/Cargo.toml
 cargo check --manifest-path src-tauri/Cargo.toml
 ```
 
+### Certification Authoring
+
+New certification tracks are scaffolded and validated through the content factory:
+
+```powershell
+npm run scaffold:cert -- --id network-plus --prefix netplus --name "CompTIA Network+" --shortName "Network+" --exam N10-009
+npm run validate:content
+```
+
+See [docs/certification-authoring.md](docs/certification-authoring.md) for the full manifest, bank, ID, lesson, and quality rules.
+
 ## Data and Privacy
 
 - No registration or learner account is required.

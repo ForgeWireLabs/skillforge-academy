@@ -392,6 +392,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   const certPbqs = pbqs.filter(p => p.certId === cert.id);
   const certDomains = domains.filter(d => d.certId === cert.id);
   const firstExam = cert.exams[0];
+  const passThreshold = cert.passThreshold || MOCK_PASS;
   const [phase, setPhase] = useState<"setup"|"active"|"results">("setup");
   const [exam, setExam] = useState<string>(firstExam?.id ?? "");
   const [qCount, setQCount] = useState(firstExam?.defaultQuestions ?? MOCK_DEFAULT_QUESTIONS);
@@ -411,7 +412,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   const plannedQ = Math.min(qCount, availableMcq);
 
   const finish = () => {
-    const g = scoreMock(items, mcqAnswers, responses);
+    const g = scoreMock(items, mcqAnswers, responses, passThreshold);
     const mcqItems = items.filter(it=>it.type==="mcq");
     const attempt: Attempt = { id: crypto.randomUUID(), certId: state.activeCertId, date: new Date().toISOString(), exam, score: Math.round(g.earned), total: g.total, durationSec: minutes*60 - remaining, domainScores: g.domainScores, kind: "mock", passed: g.passed };
     setState(s=>{
@@ -452,7 +453,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
         <div className="preview-row"><Clock3/><div><b>Time limit</b><small>{minutes} minutes, counts down</small></div></div>
         <div className="preview-row"><ClipboardCheck/><div><b>Performance-based</b><small>{pbqCount ? `${pbqCount} PBQ${pbqCount>1?"s":""} first, then multiple choice` : "Multiple choice"}</small></div></div>
         <div className="preview-row"><Target/><div><b>Domain-weighted</b><small>Questions mirror exam objective weights</small></div></div>
-        <div className="preview-row"><Gauge/><div><b>Passing score</b><small>{Math.round(MOCK_PASS*100)}% to pass</small></div></div>
+        <div className="preview-row"><Gauge/><div><b>Passing score</b><small>{Math.round(passThreshold*100)}% to pass</small></div></div>
       </div></div>
   </>;
 
@@ -461,7 +462,7 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
     return <>
       <PageHead eyebrow="EXAM COMPLETE" title={grade.passed?"Passed":"Not yet"} subtitle="A full breakdown of your performance, domain by domain."/>
       <div className="results panel"><div className={`result-ring ${grade.passed?"pass":""}`}><b>{grade.pct}%</b><span>{Math.round(grade.earned)} / {grade.total}</span></div>
-        <h2>{grade.passed?"You cleared the passing bar.":`${Math.round(MOCK_PASS*100)}% needed to pass.`}</h2>
+        <h2>{grade.passed?"You cleared the passing bar.":`${Math.round(passThreshold*100)}% needed to pass.`}</h2>
         <p>{grade.passed?"Keep this consistency and you're exam ready.":"Review the misses below and drill your weakest domains."}</p>
         <div className="result-actions"><button className="primary" onClick={()=>setPhase("setup")}><RotateCcw/> New exam</button></div>
       </div>

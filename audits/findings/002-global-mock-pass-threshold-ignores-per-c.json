@@ -4,8 +4,8 @@
   "scope": "governance",
   "observed": "[RISK-002] Global mock pass threshold ignores per-cert `passThreshold`.",
   "risk": "medium",
-  "reconciliation": "Update scoring/caller logic under `TODO-001`.",
-  "state": "open",
+  "reconciliation": "Reconciled by work item 001: mock scoring accepts a threshold and MockExam passes `Certification.passThreshold`.",
+  "state": "reconciled",
   "created": "2026-06-16",
   "source": "tracking/risks.md#RISK-002"
 }

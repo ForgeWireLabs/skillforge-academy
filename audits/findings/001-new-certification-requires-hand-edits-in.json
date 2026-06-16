@@ -4,8 +4,8 @@
   "scope": "governance",
   "observed": "[RISK-001] New certification requires hand-edits in multiple code/config files, making expansion error-prone.",
   "risk": "high",
-  "reconciliation": "Complete `TODO-001`; automate content discovery and bundling.",
-  "state": "open",
+  "reconciliation": "Reconciled by work item 001: content discovery now uses Vite glob imports and Tauri bundles the full content directory.",
+  "state": "reconciled",
   "created": "2026-06-16",
   "source": "tracking/risks.md#RISK-001"
 }

@@ -28,12 +28,7 @@
     "active": true,
     "targets": ["nsis"],
     "resources": {
-      "../src/content/certifications.json": "content/certifications.json",
-      "../src/content/a-plus/domains.json": "content/a-plus/domains.json",
-      "../src/content/a-plus/questions.json": "content/a-plus/questions.json",
-      "../src/content/a-plus/flashcards.json": "content/a-plus/flashcards.json",
-      "../src/content/a-plus/pbqs.json": "content/a-plus/pbqs.json",
-      "../src/content/a-plus/lessons.json": "content/a-plus/lessons.json"
+      "../src/content": "content"
     },
     "shortDescription": "Offline-first certification learning and exam-prep desktop app, starting with CompTIA A+.",
     "longDescription": "Offline-first certification learning and exam-prep desktop app, starting with CompTIA A+. A focused desktop learning environment with objective tracking, practice exams, spaced repetition, notes, bookmarks, and detailed analytics.",

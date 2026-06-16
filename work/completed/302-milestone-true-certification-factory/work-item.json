@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "302",
   "title": "M2: True Certification Factory",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [],
   "depends_on": [],
@@ -10,8 +10,12 @@
     {
       "id": "AC-1",
       "text": "Achieve the milestone described in the imported narrative (`tracking/milestones.md#M2`).",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "work/completed/001-true-cert-factory/README.md",
+        "work/completed/002-cert-authoring-guide/README.md",
+        "audits/AUDIT-2026-06-16-true-cert-factory.md"
+      ]
     }
   ],
   "created": "2026-06-16",

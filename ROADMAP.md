@@ -18,6 +18,8 @@
 
 ## Next
 
+- Build course lessons and real-world class content so questions become the
+  assessment layer, not the whole learning experience
 - Expand original assessment content and simulation formats
 - Add stable public screenshots and onboarding documentation
 - Add installer code signing when a trusted certificate is available

@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "001",
   "title": "TODO-001: True Certification Factory",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [],
   "depends_on": [],
@@ -10,8 +10,10 @@
     {
       "id": "AC-1",
       "text": "Deliver the outcome described in the imported plan narrative (`todos/TODO-001-true-cert-factory.md`).",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "audits/AUDIT-2026-06-16-true-cert-factory.md"
+      ]
     }
   ],
   "created": "2026-06-16",

@@ -16,4 +16,6 @@ Issues and focused pull requests are welcome. Useful contributions include origi
 - Include the relevant exam, domain, objective, answer, and rationale.
 - Verify commands, ports, standards, and platform behavior against authoritative documentation.
 
+For complete certification-bank structure, ID rules, lesson assets, and validation expectations, see [docs/certification-authoring.md](docs/certification-authoring.md).
+
 Keep pull requests narrow, explain user-visible behavior, and include tests when logic changes.

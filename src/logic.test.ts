@@ -260,6 +260,11 @@ describe("mock exam: scoring and assembly", () => {
     expect(g.passed).toBe(true);
     expect(g.pct).toBe(100);
   });
+  it("honors a caller-provided pass threshold", () => {
+    const g = scoreMock(items, { q1: 0, q2: 1 }, { p1: ["s1", "s2"] }, 0.6);
+    expect(g.pct).toBe(67);
+    expect(g.passed).toBe(true);
+  });
   it("places PBQs before MCQs in a built exam", () => {
     const domains: Domain[] = [{ id: "net", certId: "a-plus", exam: "220-1201", name: "Networking", weight: 100, color: "#000", description: "", topics: [] }];
     const qs = Array.from({ length: 5 }, (_, i) => q(`q${i}`, "net", "obj"));
