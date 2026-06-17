@@ -20,10 +20,16 @@
 > - **2026-06-17 — objective lists verified** against official CompTIA objectives
 >   PDFs (pdfplumber). Network+ gained 2.4; A+ rebuilt to V15. 116 verified
 >   sub-objectives (A+ 63, Network+ 25, Security+ 28).
-> - **2026-06-17 — Phase 2 batch 1:** Security+ Domain 1 complete to the deep
->   target — 1.1 (1 lesson/6 Q), 1.2 (2/8), 1.3 (1/6), 1.4 (2/7). Coverage 4/116.
+> - **2026-06-17 — Phase 2 batches 1-5: Security+ 100% objective-complete**
+>   (28/28 objectives, all to deep target). Security+ now 193 questions / 41
+>   lessons. Overall objective coverage **28/116**.
 >
 > Cadence: author domain by domain, commit per domain, watch the coverage report.
+> **Next:** Network+ (25 objectives), then A+ (63). Note for those tracks: some
+> existing content lives in a different content-domain than where CompTIA places
+> the objective (e.g., cabling/media authored under "implementation" but objective
+> 1.5 is in "Networking Concepts"). Objective tags may cross content-domains
+> (validator allows it; only cert must match), or re-domain as needed.
 
 ## Intent
 
