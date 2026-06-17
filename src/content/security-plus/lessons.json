@@ -135,6 +135,7 @@
   },
   {
     "id": "secplus-threats-l1",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -167,6 +168,7 @@
   },
   {
     "id": "secplus-threats-l2",
+    "objectiveId": "secplus-2.1",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -192,6 +194,7 @@
   },
   {
     "id": "secplus-threats-l3",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -217,6 +220,7 @@
   },
   {
     "id": "secplus-threats-l4",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -241,6 +245,7 @@
   },
   {
     "id": "secplus-threats-l5",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -265,6 +270,7 @@
   },
   {
     "id": "secplus-threats-l6",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -290,6 +296,7 @@
   },
   {
     "id": "secplus-threats-l7",
+    "objectiveId": "secplus-2.3",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -314,6 +321,7 @@
   },
   {
     "id": "secplus-threats-l8",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -923,6 +931,37 @@
       {
         "heading": "Why security cares",
         "body": "Unmanaged changes break security: an undocumented firewall edit can open a hole, a skipped review can disable logging, and a missing rollback plan can turn a small error into an outage. Change management also covers technical details like updating allow/deny lists, handling service restarts and downtime, and accounting for dependencies and legacy applications that a change might affect."
+      }
+    ]
+  },
+  {
+    "id": "secplus-threats-l9",
+    "objectiveId": "secplus-2.5",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "title": "Mitigation techniques to secure the enterprise",
+    "order": 9,
+    "estMinutes": 6,
+    "objectives": ["Explain the purpose of mitigation techniques used to secure the enterprise"],
+    "sections": [
+      {
+        "body": "Knowing the attacks is half the job; the other half is reducing exposure before and after they happen. Mitigation techniques are the standard moves that shrink the attack surface and limit damage."
+      },
+      {
+        "heading": "Core mitigations",
+        "body": "Most enterprise hardening comes back to a familiar set.",
+        "bullets": [
+          "Segmentation and isolation: contain a breach to one zone.",
+          "Access control and least privilege: limit what any account can reach.",
+          "Patching and configuration enforcement: close known holes and stop drift.",
+          "Application allow lists: run only approved software.",
+          "Encryption and monitoring: protect data and detect misuse."
+        ]
+      },
+      {
+        "heading": "Hardening targets",
+        "body": "Apply hardening across the estate: enforce secure baselines, disable unused services and ports, change default credentials, and decommission end-of-life systems. Each removes an avenue an attacker would otherwise use."
       }
     ]
   }

@@ -133,6 +133,7 @@
   },
   {
     "id": "secplus-q010",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -145,6 +146,7 @@
   },
   {
     "id": "secplus-q011",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -157,6 +159,7 @@
   },
   {
     "id": "secplus-q012",
+    "objectiveId": "secplus-2.1",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -169,6 +172,7 @@
   },
   {
     "id": "secplus-q013",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -186,6 +190,7 @@
   },
   {
     "id": "secplus-q014",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -210,6 +215,7 @@
   },
   {
     "id": "secplus-q016",
+    "objectiveId": "secplus-2.3",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -222,6 +228,7 @@
   },
   {
     "id": "secplus-q017",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -234,6 +241,7 @@
   },
   {
     "id": "secplus-q018",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -246,6 +254,7 @@
   },
   {
     "id": "secplus-q019",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -258,6 +267,7 @@
   },
   {
     "id": "secplus-q020",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -270,6 +280,7 @@
   },
   {
     "id": "secplus-q021",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -819,6 +830,7 @@
   },
   {
     "id": "secplus-q062",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -831,6 +843,7 @@
   },
   {
     "id": "secplus-q063",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -843,6 +856,7 @@
   },
   {
     "id": "secplus-q064",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -855,6 +869,7 @@
   },
   {
     "id": "secplus-q065",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -867,6 +882,7 @@
   },
   {
     "id": "secplus-q066",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -879,6 +895,7 @@
   },
   {
     "id": "secplus-q067",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -891,6 +908,7 @@
   },
   {
     "id": "secplus-q068",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -903,6 +921,7 @@
   },
   {
     "id": "secplus-q069",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -915,6 +934,7 @@
   },
   {
     "id": "secplus-q070",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -932,6 +952,7 @@
   },
   {
     "id": "secplus-q071",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -944,6 +965,7 @@
   },
   {
     "id": "secplus-q072",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -956,6 +978,7 @@
   },
   {
     "id": "secplus-q073",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -968,6 +991,7 @@
   },
   {
     "id": "secplus-q074",
+    "objectiveId": "secplus-2.3",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -980,6 +1004,7 @@
   },
   {
     "id": "secplus-q075",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -992,6 +1017,7 @@
   },
   {
     "id": "secplus-q076",
+    "objectiveId": "secplus-2.4",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -1004,6 +1030,7 @@
   },
   {
     "id": "secplus-q077",
+    "objectiveId": "secplus-2.2",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -1016,6 +1043,7 @@
   },
   {
     "id": "secplus-q078",
+    "objectiveId": "secplus-2.3",
     "certId": "security-plus",
     "exam": "SY0-701",
     "domain": "secplus-threats",
@@ -1918,5 +1946,192 @@
     "answer": 0,
     "explanation": "Unapproved, undocumented changes bypass risk review and leave no audit trail or rollback path, so they can introduce exposure that is hard to detect or undo.",
     "objective": "Explain the security impact of unmanaged change"
+  },
+  {
+    "id": "secplus-q145",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.1",
+    "difficulty": "Foundation",
+    "prompt": "Which threat actor is characterized by low skill, relying on existing tools and scripts they did not write?",
+    "options": ["Unskilled attacker (script kiddie)", "Nation-state actor", "Organized crime", "Insider threat"],
+    "answer": 0,
+    "explanation": "An unskilled attacker uses prebuilt tools without deep knowledge. Nation-state and organized-crime actors are far more capable and resourced.",
+    "objective": "Compare threat actors and motivations"
+  },
+  {
+    "id": "secplus-q146",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.1",
+    "difficulty": "Intermediate",
+    "prompt": "A group defaces websites to promote a political cause. Which threat-actor type and motivation best fit?",
+    "options": ["Hacktivist motivated by philosophical/political beliefs", "Organized crime motivated by money", "Nation-state motivated by espionage", "Unskilled attacker motivated by curiosity"],
+    "answer": 0,
+    "explanation": "Hacktivists act on ideological or political motives, often via defacement or disruption, rather than financial gain or espionage.",
+    "objective": "Compare threat actors and motivations"
+  },
+  {
+    "id": "secplus-q147",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.1",
+    "difficulty": "Intermediate",
+    "prompt": "Which attribute distinguishes a nation-state actor from most other threat actors?",
+    "options": ["High resources/funding and sophistication with long-term goals", "Always external with no funding", "Only uses phishing", "Acts purely by accident"],
+    "answer": 0,
+    "explanation": "Nation-state actors have substantial resources, advanced capabilities, and strategic, patient objectives — the hallmarks of an advanced persistent threat.",
+    "objective": "Compare threat actor attributes"
+  },
+  {
+    "id": "secplus-q148",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.1",
+    "difficulty": "Advanced",
+    "prompt": "Employees install an unsanctioned cloud app to share files, creating risk outside IT's control. What is this called?",
+    "options": ["Shadow IT", "A honeypot", "A logic bomb", "A SIEM"],
+    "answer": 0,
+    "explanation": "Shadow IT is technology used without IT approval or oversight, introducing unmanaged risk. It is an internal, often well-intentioned, threat source.",
+    "objective": "Recognize internal threat sources"
+  },
+  {
+    "id": "secplus-q149",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.1",
+    "difficulty": "Intermediate",
+    "prompt": "Stealing trade secrets to gain a competitive or strategic edge is which motivation?",
+    "options": ["Espionage", "Service disruption", "Financial fraud", "Revenge"],
+    "answer": 0,
+    "explanation": "Espionage seeks confidential information for strategic advantage, common to nation-state and corporate-espionage actors. Disruption targets availability instead.",
+    "objective": "Compare threat actor motivations"
+  },
+  {
+    "id": "secplus-q150",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.3",
+    "difficulty": "Intermediate",
+    "prompt": "A hypervisor flaw lets code in one virtual machine reach the host or other VMs. Which vulnerability is this?",
+    "options": ["Virtual machine escape", "SQL injection", "Cross-site scripting", "Tailgating"],
+    "answer": 0,
+    "explanation": "VM escape breaks the isolation between a guest and the hypervisor/host, a serious virtualization vulnerability. Strong hypervisor patching and isolation mitigate it.",
+    "objective": "Recognize virtualization vulnerabilities"
+  },
+  {
+    "id": "secplus-q151",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.3",
+    "difficulty": "Advanced",
+    "prompt": "Running an operating system that no longer receives security updates introduces which vulnerability category?",
+    "options": ["End-of-life / unsupported system risk", "A race condition", "A tailgating risk", "A jailbreak"],
+    "answer": 0,
+    "explanation": "End-of-life systems stop receiving patches, so newly discovered flaws remain permanently open. Replacement or strict isolation is required.",
+    "objective": "Recognize end-of-life and legacy vulnerabilities"
+  },
+  {
+    "id": "secplus-q152",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.3",
+    "difficulty": "Advanced",
+    "prompt": "Two operations whose result depends on uncontrolled timing allow an attacker to slip in between a check and its use. Which vulnerability is this?",
+    "options": ["Race condition (TOCTOU)", "Buffer overflow", "Phishing", "Misconfiguration"],
+    "answer": 0,
+    "explanation": "A race condition such as time-of-check to time-of-use (TOCTOU) exploits the gap between validating and using a resource. Proper locking and atomic operations mitigate it.",
+    "objective": "Recognize application vulnerabilities"
+  },
+  {
+    "id": "secplus-q153",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Foundation",
+    "prompt": "Dividing a network into zones so a breach in one cannot easily reach others is which mitigation technique?",
+    "options": ["Segmentation", "Default credentials", "Disabling logging", "Open service ports"],
+    "answer": 0,
+    "explanation": "Segmentation contains compromises by limiting lateral movement between zones. The other options increase, not reduce, risk.",
+    "objective": "Apply mitigation techniques"
+  },
+  {
+    "id": "secplus-q154",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Intermediate",
+    "prompt": "Allowing only explicitly approved applications to run on endpoints is which mitigation technique?",
+    "options": ["Application allow list", "Application deny list only", "Open execution", "Disabling EDR"],
+    "answer": 0,
+    "explanation": "An application allow list permits only sanctioned software, blocking unknown or malicious programs by default — stronger than blocking known-bad alone.",
+    "objective": "Apply mitigation techniques"
+  },
+  {
+    "id": "secplus-q155",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Intermediate",
+    "prompt": "Applying a standardized, secure configuration to every system to reduce drift and weaknesses is called what?",
+    "options": ["Configuration enforcement / secure baselines", "Privilege escalation", "Social engineering", "Tailgating"],
+    "answer": 0,
+    "explanation": "Enforcing secure baselines keeps systems in a known-good, hardened state and prevents the configuration drift attackers exploit.",
+    "objective": "Apply mitigation techniques"
+  },
+  {
+    "id": "secplus-q156",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Foundation",
+    "prompt": "Disabling unused ports and services and changing default credentials are examples of what?",
+    "options": ["Hardening to reduce the attack surface", "Increasing the attack surface", "Social engineering", "Data exfiltration"],
+    "answer": 0,
+    "explanation": "Hardening removes unnecessary entry points and weak defaults, shrinking the attack surface available to an attacker.",
+    "objective": "Apply mitigation techniques"
+  },
+  {
+    "id": "secplus-q157",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Advanced",
+    "prompt": "On detecting an infected host, automatically moving it to a restricted network is which mitigation?",
+    "options": ["Isolation/quarantine", "Tokenization", "Federation", "Steganography"],
+    "answer": 0,
+    "explanation": "Isolation (quarantine) contains an infected system so it cannot spread or exfiltrate while it is investigated and cleaned.",
+    "objective": "Apply mitigation techniques"
+  },
+  {
+    "id": "secplus-q158",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "objectiveId": "secplus-2.5",
+    "difficulty": "Intermediate",
+    "prompt": "Why is decommissioning end-of-life systems an important mitigation?",
+    "options": [
+      "Unsupported systems no longer receive patches, leaving permanent vulnerabilities",
+      "It increases the attack surface",
+      "It removes the need for backups",
+      "It disables monitoring"
+    ],
+    "answer": 0,
+    "explanation": "Decommissioning removes systems that can never be patched again, eliminating a permanent and growing source of risk.",
+    "objective": "Apply mitigation techniques"
   }
 ]
