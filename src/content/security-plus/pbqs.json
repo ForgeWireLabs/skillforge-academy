@@ -1,0 +1,46 @@
+[
+  {
+    "id": "secplus-p001",
+    "certId": "security-plus",
+    "kind": "matching",
+    "exam": "SY0-701",
+    "domain": "secplus-governance",
+    "difficulty": "Intermediate",
+    "prompt": "Match each risk-handling decision to the strategy it represents.",
+    "objective": "Apply risk-management strategies",
+    "items": [
+      { "id": "i-insure", "text": "Buy cyber-insurance to cover breach costs" },
+      { "id": "i-stop", "text": "Discontinue a risky legacy service entirely" },
+      { "id": "i-patch", "text": "Apply patches and add MFA to reduce exposure" },
+      { "id": "i-accept", "text": "Document and approve a low, tolerable risk" }
+    ],
+    "targets": [
+      { "id": "transfer", "label": "Transfer" },
+      { "id": "avoid", "label": "Avoid" },
+      { "id": "mitigate", "label": "Mitigate" },
+      { "id": "accept", "label": "Accept" }
+    ],
+    "answer": { "i-insure": "transfer", "i-stop": "avoid", "i-patch": "mitigate", "i-accept": "accept" },
+    "explanation": "Insurance transfers risk, discontinuing the activity avoids it, patching and MFA mitigate it, and formally tolerating a small risk is acceptance."
+  },
+  {
+    "id": "secplus-p002",
+    "certId": "security-plus",
+    "kind": "ordering",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "difficulty": "Intermediate",
+    "prompt": "Place the incident-response phases in the correct order.",
+    "objective": "Order the incident-response phases",
+    "steps": [
+      { "id": "s-prep", "text": "Preparation" },
+      { "id": "s-ident", "text": "Identification" },
+      { "id": "s-contain", "text": "Containment" },
+      { "id": "s-erad", "text": "Eradication" },
+      { "id": "s-recover", "text": "Recovery" },
+      { "id": "s-lessons", "text": "Lessons learned" }
+    ],
+    "answer": ["s-prep", "s-ident", "s-contain", "s-erad", "s-recover", "s-lessons"],
+    "explanation": "The sequence is preparation, identification, containment, eradication, recovery, and finally lessons learned — contain before eradicating, and never skip the review."
+  }
+]

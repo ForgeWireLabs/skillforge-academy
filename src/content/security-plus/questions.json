@@ -1,0 +1,243 @@
+[
+  {
+    "id": "secplus-q001",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-concepts",
+    "difficulty": "Foundation",
+    "prompt": "A company encrypts customer records so that only authorized staff can read them. Which element of the CIA triad does this primarily protect?",
+    "options": ["Confidentiality", "Integrity", "Availability", "Non-repudiation"],
+    "answer": 0,
+    "explanation": "Encryption keeps data unreadable to unauthorized parties, which protects confidentiality. Integrity protects against unauthorized change, and availability keeps data accessible.",
+    "objective": "Apply the CIA triad"
+  },
+  {
+    "id": "secplus-q002",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-concepts",
+    "difficulty": "Intermediate",
+    "prompt": "A security policy that requires verifying every request as though it originates from an untrusted network best describes which model?",
+    "options": ["Zero trust", "Implicit trust", "Defense in depth", "Separation of duties"],
+    "answer": 0,
+    "explanation": "Zero trust assumes no implicit trust based on network location and continuously verifies each request. Defense in depth is layering controls; separation of duties splits sensitive tasks.",
+    "objective": "Explain the zero trust model"
+  },
+  {
+    "id": "secplus-q003",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-concepts",
+    "difficulty": "Intermediate",
+    "prompt": "A locked server-room door and a security guard are examples of which control category?",
+    "options": ["Technical controls", "Physical controls", "Managerial controls", "Detective controls"],
+    "answer": 1,
+    "explanation": "Doors and guards are physical controls. Technical controls are implemented in systems (e.g., firewalls), and managerial controls are policies and procedures.",
+    "objective": "Classify security control types"
+  },
+  {
+    "id": "secplus-q004",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "difficulty": "Foundation",
+    "prompt": "An employee receives an urgent email appearing to come from the CEO asking them to buy gift cards immediately. Which attack is this?",
+    "options": ["Phishing", "SQL injection", "Brute force", "Privilege escalation"],
+    "answer": 0,
+    "explanation": "This is phishing (specifically a business-email-compromise style lure using authority and urgency). It targets the user, not a technical flaw.",
+    "objective": "Identify social-engineering attacks"
+  },
+  {
+    "id": "secplus-q005",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "difficulty": "Intermediate",
+    "prompt": "Malware that encrypts a victim's files and demands payment for the decryption key is best described as which type?",
+    "options": ["Spyware", "Ransomware", "Rootkit", "Worm"],
+    "answer": 1,
+    "explanation": "Ransomware encrypts data and extorts payment. A rootkit hides its presence, spyware secretly collects data, and a worm self-propagates.",
+    "objective": "Classify malware types"
+  },
+  {
+    "id": "secplus-q006",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "difficulty": "Advanced",
+    "prompt": "Which threat actor is typically the best resourced and most likely to pursue long-term, stealthy access for strategic goals?",
+    "options": ["Script kiddie", "Hacktivist", "Nation-state / APT", "Insider acting accidentally"],
+    "answer": 2,
+    "explanation": "Nation-state actors (advanced persistent threats) have the most resources and patience, favoring stealthy, persistent access. Script kiddies use existing tools with little skill.",
+    "objective": "Compare threat actors and motivations"
+  },
+  {
+    "id": "secplus-q007",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-threats",
+    "difficulty": "Intermediate",
+    "prompt": "A web form lets an attacker submit database commands that the application runs directly. Which input-handling control most directly prevents this?",
+    "options": [
+      "Disabling the firewall",
+      "Input validation and parameterized queries",
+      "Increasing password length",
+      "Enabling full-disk encryption"
+    ],
+    "answer": 1,
+    "explanation": "SQL injection is mitigated by validating input and using parameterized (prepared) queries so user data is never treated as code. Encryption and password length do not address it.",
+    "objective": "Mitigate injection vulnerabilities"
+  },
+  {
+    "id": "secplus-q008",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-architecture",
+    "difficulty": "Foundation",
+    "prompt": "Placing public-facing web servers in a separate network segment between the internet and the internal LAN is an example of what?",
+    "options": ["A screened subnet (DMZ)", "A VPN tunnel", "A honeypot", "A jump server"],
+    "answer": 0,
+    "explanation": "A screened subnet (often called a DMZ) isolates internet-facing services so a compromise there does not directly expose the internal network.",
+    "objective": "Apply network segmentation concepts"
+  },
+  {
+    "id": "secplus-q009",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-architecture",
+    "difficulty": "Intermediate",
+    "prompt": "Which approach best protects the confidentiality of data while it is stored on a laptop that could be lost or stolen?",
+    "options": [
+      "Full-disk encryption",
+      "A stronger Wi-Fi password",
+      "Disabling the screensaver",
+      "A faster antivirus scan schedule"
+    ],
+    "answer": 0,
+    "explanation": "Full-disk encryption protects data at rest, so a lost or stolen device does not expose its contents without the key. The other options do not protect stored data.",
+    "objective": "Select data-protection controls"
+  },
+  {
+    "id": "secplus-q010",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-architecture",
+    "difficulty": "Advanced",
+    "prompt": "A design uses two power supplies, RAID storage, and a standby database server. Which architectural goal is being addressed?",
+    "options": ["Resilience and redundancy", "Least privilege", "Data minimization", "Obfuscation"],
+    "answer": 0,
+    "explanation": "Redundant components and standby systems improve resilience by removing single points of failure, supporting availability. Least privilege concerns access, not uptime.",
+    "objective": "Explain resilience and redundancy"
+  },
+  {
+    "id": "secplus-q011",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "difficulty": "Foundation",
+    "prompt": "Requiring both a password and a one-time code from an authenticator app is an example of what?",
+    "options": [
+      "Single sign-on",
+      "Multifactor authentication",
+      "Federation",
+      "Role-based access control"
+    ],
+    "answer": 1,
+    "explanation": "Combining something you know (password) with something you have (the code) is multifactor authentication. SSO lets one login access many services; RBAC assigns rights by role.",
+    "objective": "Apply multifactor authentication"
+  },
+  {
+    "id": "secplus-q012",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "difficulty": "Intermediate",
+    "prompt": "Which control follows the principle of least privilege?",
+    "options": [
+      "Giving every user local administrator rights for convenience",
+      "Granting users only the access required to perform their job",
+      "Sharing one admin account across the team",
+      "Disabling logging to reduce noise"
+    ],
+    "answer": 1,
+    "explanation": "Least privilege grants the minimum access necessary for a role, limiting the damage from compromised or misused accounts. The other options increase risk.",
+    "objective": "Apply least privilege"
+  },
+  {
+    "id": "secplus-q013",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "difficulty": "Intermediate",
+    "prompt": "During incident response, which phase immediately follows containment?",
+    "options": ["Preparation", "Identification", "Eradication", "Lessons learned"],
+    "answer": 2,
+    "explanation": "A common IR sequence is preparation, identification, containment, eradication, recovery, then lessons learned. Eradication removes the threat after it has been contained.",
+    "objective": "Order the incident-response phases"
+  },
+  {
+    "id": "secplus-q014",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "difficulty": "Advanced",
+    "prompt": "A SIEM correlates logs from many sources. What is its primary security value?",
+    "options": [
+      "It replaces the need for firewalls",
+      "It centralizes and correlates events to detect and investigate incidents",
+      "It encrypts all data at rest automatically",
+      "It patches vulnerable systems"
+    ],
+    "answer": 1,
+    "explanation": "A SIEM aggregates and correlates log data to surface suspicious patterns and support investigation. It does not patch systems or replace preventive controls.",
+    "objective": "Explain the role of a SIEM"
+  },
+  {
+    "id": "secplus-q015",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-governance",
+    "difficulty": "Foundation",
+    "prompt": "Which document defines required behavior, such as acceptable use of company systems, that employees must follow?",
+    "options": ["Policy", "Packet capture", "Firewall rule", "Threat feed"],
+    "answer": 0,
+    "explanation": "A policy is a governing document stating required behavior and intent, such as an acceptable use policy. The other options are technical artifacts, not governance documents.",
+    "objective": "Identify governance documents"
+  },
+  {
+    "id": "secplus-q016",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-governance",
+    "difficulty": "Intermediate",
+    "prompt": "A company decides to buy cyber-insurance to offset the financial impact of a potential breach. Which risk-handling strategy is this?",
+    "options": ["Risk acceptance", "Risk avoidance", "Risk transference", "Risk mitigation"],
+    "answer": 2,
+    "explanation": "Buying insurance transfers financial risk to a third party. Acceptance takes on the risk, avoidance stops the activity, and mitigation reduces likelihood or impact.",
+    "objective": "Apply risk-management strategies"
+  },
+  {
+    "id": "secplus-q017",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-governance",
+    "difficulty": "Intermediate",
+    "prompt": "Before granting a vendor access to internal systems, the security team reviews the vendor's controls and signs an agreement defining responsibilities. This addresses which risk area?",
+    "options": ["Third-party / supply-chain risk", "Physical risk", "Cryptographic risk", "Wireless risk"],
+    "answer": 0,
+    "explanation": "Assessing a vendor's security and formalizing responsibilities manages third-party (supply-chain) risk, a common source of breaches.",
+    "objective": "Manage third-party risk"
+  },
+  {
+    "id": "secplus-q018",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-governance",
+    "difficulty": "Foundation",
+    "prompt": "Regular phishing simulations and training for staff are an example of which kind of control?",
+    "options": ["Security awareness", "Network segmentation", "Disk encryption", "Load balancing"],
+    "answer": 0,
+    "explanation": "Phishing simulations and training build security awareness, reducing the human risk that technical controls cannot fully address.",
+    "objective": "Explain security-awareness programs"
+  }
+]

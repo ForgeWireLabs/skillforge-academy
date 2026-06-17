@@ -1,7 +1,15 @@
 # 004 — TODO-004: Security+ Starter Track
 
-> **Status**: 📋 Active
+> **Status**: ✅ Completed (2026-06-17)
 > Imported into RepoPact from `todos/TODO-004-security-plus-starter-track.md`; the source is preserved.
+>
+> **Outcome:** Added a real CompTIA Security+ (SY0-701) starter track under
+> `src/content/security-plus/` — 5 domains, 18 original questions, 15 flashcards,
+> 2 lessons, 2 PBQs — at `order: 3` with `passThreshold` 0.83. Also corrected
+> Network+'s threshold to 0.80 so all three derive from official scaled passing ÷
+> 900 (A+ 0.75, Network+ 0.80, Security+ 0.83). All content is original. Verified
+> by `audits/AUDIT-2026-06-17-security-plus-starter.md` (validate:content, 48
+> tests, build, a11y all green). Starter sample, not full coverage.
 
 ## Imported plan narrative
 

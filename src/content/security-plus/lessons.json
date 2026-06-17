@@ -1,0 +1,61 @@
+[
+  {
+    "id": "secplus-concepts-l1",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-concepts",
+    "title": "The CIA triad and how controls support it",
+    "order": 1,
+    "estMinutes": 6,
+    "objectives": ["Apply the CIA triad", "Classify security control types"],
+    "sections": [
+      {
+        "body": "Almost every security decision traces back to three goals: keeping data secret, keeping it accurate, and keeping it available. Those goals are the CIA triad — Confidentiality, Integrity, and Availability — and they give you a quick way to reason about why a control exists and what it protects."
+      },
+      {
+        "heading": "What each goal means",
+        "body": "The three goals often pull in different directions, so security is usually about balancing them rather than maximizing one.",
+        "bullets": [
+          "Confidentiality: only authorized people can read the data (e.g., encryption, access control).",
+          "Integrity: data is not changed without authorization, and changes are detectable (e.g., hashing, signatures).",
+          "Availability: the data and systems are reachable when needed (e.g., redundancy, backups)."
+        ]
+      },
+      {
+        "heading": "Controls fill the gaps",
+        "body": "Controls are how you achieve the triad, and they come in categories — technical, managerial, operational, and physical — and types such as preventive, detective, and corrective. A locked door is a physical preventive control; a log review is a detective control. When you meet a new control, ask which triad goal it serves and whether it prevents, detects, or corrects."
+      }
+    ]
+  },
+  {
+    "id": "secplus-operations-l1",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "domain": "secplus-operations",
+    "title": "Incident response, phase by phase",
+    "order": 1,
+    "estMinutes": 5,
+    "objectives": ["Order the incident-response phases"],
+    "sections": [
+      {
+        "body": "When something goes wrong, a calm, repeatable process beats improvisation. Incident response gives teams a shared sequence so nothing critical is skipped under pressure — and so the organization actually learns from each event."
+      },
+      {
+        "heading": "The phases in order",
+        "body": "A widely used model runs in six phases.",
+        "bullets": [
+          "Preparation: tools, plans, and training before anything happens.",
+          "Identification: detect and confirm that an incident is real.",
+          "Containment: limit the spread and damage.",
+          "Eradication: remove the cause (malware, compromised accounts).",
+          "Recovery: restore systems and verify they are clean.",
+          "Lessons learned: document what happened and improve."
+        ]
+      },
+      {
+        "heading": "Where teams slip",
+        "body": "Two phases get shortchanged. Containment is sometimes rushed straight to eradication, which can tip off an attacker or destroy evidence. And lessons learned is often skipped once the fire is out — yet that is the step that prevents the next incident. Treat documentation as part of the job, not an afterthought."
+      }
+    ]
+  }
+]

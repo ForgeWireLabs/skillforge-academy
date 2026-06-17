@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260617-165615-004",
+  "timestamp": "2026-06-17T16:56:15Z",
+  "work_item": "004",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "3 certifications valid; security-plus: 5 domains, 18 questions, 15 flashcards, 2 PBQs, 2 lessons."
+    },
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "3 test files, 48 tests passed."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "tsc type-check and vite production build succeeded."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "Accessibility validation passed (6 checks)."
+    }
+  ],
+  "artifacts": [
+    "audits/AUDIT-2026-06-17-security-plus-starter.md",
+    "src/content/certifications.json",
+    "src/content/security-plus/domains.json",
+    "src/content/security-plus/questions.json",
+    "src/content/security-plus/flashcards.json",
+    "src/content/security-plus/lessons.json",
+    "src/content/security-plus/pbqs.json"
+  ],
+  "environment": {
+    "platform": "win32"
+  }
+}

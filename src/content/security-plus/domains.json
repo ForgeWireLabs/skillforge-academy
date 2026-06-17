@@ -1,0 +1,77 @@
+[
+  {
+    "id": "secplus-concepts",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "name": "General Security Concepts",
+    "weight": 12,
+    "color": "#55a8ff",
+    "description": "The vocabulary and building blocks of security: the CIA triad, control types, the principle of least privilege, zero trust, and the basics of cryptography.",
+    "topics": [
+      "CIA triad and AAA",
+      "Security control types",
+      "Zero trust and least privilege",
+      "Cryptography basics"
+    ]
+  },
+  {
+    "id": "secplus-threats",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "name": "Threats, Vulnerabilities, and Mitigations",
+    "weight": 22,
+    "color": "#ff7c70",
+    "description": "Who attacks, how they attack, and how to reduce exposure: threat actors, social engineering, malware, common vulnerabilities, and mitigation techniques.",
+    "topics": [
+      "Threat actors and motivations",
+      "Social engineering",
+      "Malware types",
+      "Vulnerabilities and mitigations"
+    ]
+  },
+  {
+    "id": "secplus-architecture",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "name": "Security Architecture",
+    "weight": 18,
+    "color": "#a78bfa",
+    "description": "Designing secure systems: network segmentation, secure protocols, resilience and redundancy, and protecting data wherever it lives.",
+    "topics": [
+      "Secure network design",
+      "Segmentation and zones",
+      "Resilience and redundancy",
+      "Data protection"
+    ]
+  },
+  {
+    "id": "secplus-operations",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "name": "Security Operations",
+    "weight": 28,
+    "color": "#36d6b5",
+    "description": "Running security day to day: identity and access management, hardening, monitoring and logging, vulnerability management, and incident response.",
+    "topics": [
+      "Identity and access management",
+      "Hardening and baselines",
+      "Monitoring and logging",
+      "Incident response"
+    ]
+  },
+  {
+    "id": "secplus-governance",
+    "certId": "security-plus",
+    "exam": "SY0-701",
+    "name": "Security Program Management and Oversight",
+    "weight": 20,
+    "color": "#f2b84b",
+    "description": "Governing the program: policies and standards, risk management, third-party and vendor risk, and security awareness and compliance.",
+    "topics": [
+      "Governance, policies, standards",
+      "Risk management",
+      "Third-party risk",
+      "Security awareness"
+    ]
+  }
+]

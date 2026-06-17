@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "004",
   "title": "TODO-004: Security+ Starter Track",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [],
   "depends_on": [],
@@ -10,11 +10,14 @@
     {
       "id": "AC-1",
       "text": "Deliver the outcome described in the imported plan narrative (`todos/TODO-004-security-plus-starter-track.md`).",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "audits/AUDIT-2026-06-17-security-plus-starter.md",
+        "evidence/runs/20260617-165615-004.json"
+      ]
     }
   ],
   "created": "2026-06-16",
-  "updated": "2026-06-16",
+  "updated": "2026-06-17",
   "source": "todos/TODO-004-security-plus-starter-track.md"
 }

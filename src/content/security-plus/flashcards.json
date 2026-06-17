@@ -1,0 +1,107 @@
+[
+  {
+    "id": "secplus-f001",
+    "certId": "security-plus",
+    "domain": "secplus-concepts",
+    "front": "CIA triad",
+    "back": "Confidentiality (secrecy), Integrity (no unauthorized change), Availability (accessible when needed)."
+  },
+  {
+    "id": "secplus-f002",
+    "certId": "security-plus",
+    "domain": "secplus-concepts",
+    "front": "Control categories vs control types",
+    "back": "Categories: technical, managerial, operational, physical. Types: preventive, detective, corrective, deterrent, compensating, directive."
+  },
+  {
+    "id": "secplus-f003",
+    "certId": "security-plus",
+    "domain": "secplus-concepts",
+    "front": "Zero trust in one line",
+    "back": "Never trust by location; verify every request explicitly and grant least privilege."
+  },
+  {
+    "id": "secplus-f004",
+    "certId": "security-plus",
+    "domain": "secplus-threats",
+    "front": "Phishing vs spear phishing vs whaling",
+    "back": "Phishing: broad. Spear phishing: targeted at specific people. Whaling: targets executives."
+  },
+  {
+    "id": "secplus-f005",
+    "certId": "security-plus",
+    "domain": "secplus-threats",
+    "front": "Ransomware",
+    "back": "Malware that encrypts files and demands payment for the key. Best defense: tested offline backups."
+  },
+  {
+    "id": "secplus-f006",
+    "certId": "security-plus",
+    "domain": "secplus-threats",
+    "front": "APT (advanced persistent threat)",
+    "back": "Well-resourced (often nation-state) actor seeking long-term, stealthy access for strategic goals."
+  },
+  {
+    "id": "secplus-f007",
+    "certId": "security-plus",
+    "domain": "secplus-architecture",
+    "front": "Screened subnet (DMZ)",
+    "back": "An isolated segment for internet-facing services so their compromise doesn't expose the internal LAN."
+  },
+  {
+    "id": "secplus-f008",
+    "certId": "security-plus",
+    "domain": "secplus-architecture",
+    "front": "Data states",
+    "back": "Data at rest (storage), in transit (network), and in use (memory) — each needs its own protections."
+  },
+  {
+    "id": "secplus-f009",
+    "certId": "security-plus",
+    "domain": "secplus-architecture",
+    "front": "Resilience vs redundancy",
+    "back": "Redundancy duplicates components; resilience is the broader ability to keep operating and recover from failure."
+  },
+  {
+    "id": "secplus-f010",
+    "certId": "security-plus",
+    "domain": "secplus-operations",
+    "front": "MFA factors",
+    "back": "Something you know, something you have, something you are (plus somewhere you are / something you do)."
+  },
+  {
+    "id": "secplus-f011",
+    "certId": "security-plus",
+    "domain": "secplus-operations",
+    "front": "Incident response phases",
+    "back": "Preparation → Identification → Containment → Eradication → Recovery → Lessons learned."
+  },
+  {
+    "id": "secplus-f012",
+    "certId": "security-plus",
+    "domain": "secplus-operations",
+    "front": "What does a SIEM do?",
+    "back": "Centralizes and correlates logs from many sources to detect, alert on, and investigate incidents."
+  },
+  {
+    "id": "secplus-f013",
+    "certId": "security-plus",
+    "domain": "secplus-governance",
+    "front": "Risk-handling strategies",
+    "back": "Accept, avoid, transfer (e.g., insurance), and mitigate (reduce likelihood or impact)."
+  },
+  {
+    "id": "secplus-f014",
+    "certId": "security-plus",
+    "domain": "secplus-governance",
+    "front": "Policy vs standard vs procedure",
+    "back": "Policy = intent/rules; standard = specific requirements; procedure = step-by-step how-to."
+  },
+  {
+    "id": "secplus-f015",
+    "certId": "security-plus",
+    "domain": "secplus-governance",
+    "front": "RTO vs RPO",
+    "back": "RTO = target time to restore service. RPO = maximum acceptable data loss measured in time."
+  }
+]
