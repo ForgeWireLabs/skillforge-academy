@@ -994,5 +994,71 @@
         "body": "A backup you have never restored is only a hope. Periodically perform a test restore to confirm the data is intact and recoverable, and document the recovery steps so anyone can follow them under pressure."
       }
     ]
+  },
+  {
+    "id": "aplus-networking-l5", "objectiveId": "aplus-c1-2.3",
+    "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking",
+    "title": "Services provided by networked hosts",
+    "order": 5, "estMinutes": 5,
+    "objectives": ["Summarize services provided by networked hosts"],
+    "sections": [
+      { "body": "Networks are useful because of the services that run on them. A technician should recognize the common server roles and what each one does." },
+      { "heading": "Common server roles", "body": "Match the service to its job.", "bullets": [
+        "DHCP: hands out IP configuration automatically.",
+        "DNS: resolves names to IP addresses.",
+        "File and print servers: share storage and printers.",
+        "Web, mail, and authentication (e.g., directory) servers provide their named services."
+      ] },
+      { "body": "Internet appliances such as spam filters, load balancers, and proxy/IDS/IPS devices also act as networked hosts that shape or protect traffic." }
+    ]
+  },
+  {
+    "id": "aplus-networking-l6", "objectiveId": "aplus-c1-2.4",
+    "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking",
+    "title": "Common network configuration concepts",
+    "order": 6, "estMinutes": 6,
+    "objectives": ["Explain common network configuration concepts"],
+    "sections": [
+      { "body": "Beyond plugging in cables, hosts need correct logical configuration to communicate. A few concepts come up constantly." },
+      { "heading": "The essentials", "body": "What every host needs.", "bullets": [
+        "IP address, subnet mask, default gateway, and DNS server.",
+        "Private ranges (10/8, 172.16/12, 192.168/16) and APIPA (169.254/16).",
+        "VLANs segment a switch; NAT shares a public IP.",
+        "Static vs DHCP assignment, and DNS records (A, AAAA, CNAME, MX)."
+      ] },
+      { "body": "Knowing what 'good' configuration looks like makes spotting a misconfiguration — like an APIPA address or wrong gateway — much faster." }
+    ]
+  },
+  {
+    "id": "aplus-networking-l7", "objectiveId": "aplus-c1-2.5",
+    "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking",
+    "title": "Common networking hardware devices",
+    "order": 7, "estMinutes": 5,
+    "objectives": ["Compare common networking hardware devices"],
+    "sections": [
+      { "body": "Each networking device operates at a layer and solves a specific problem. Knowing which is which speeds both design and troubleshooting." },
+      { "heading": "The lineup", "body": "From the LAN to the internet.", "bullets": [
+        "Switch (Layer 2): forwards frames by MAC within a LAN.",
+        "Router (Layer 3): forwards between networks by IP.",
+        "Access point: bridges Wi-Fi clients to the wired LAN.",
+        "Modem connects to the ISP; firewall filters traffic; PoE switch powers devices over Ethernet."
+      ] }
+    ]
+  },
+  {
+    "id": "aplus-networking-l8", "objectiveId": "aplus-c1-2.7",
+    "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking",
+    "title": "Internet connection and network types",
+    "order": 8, "estMinutes": 5,
+    "objectives": ["Compare internet connection types, network types, and their features"],
+    "sections": [
+      { "body": "Choosing how a site reaches the internet depends on speed, cost, and what is available at the location." },
+      { "heading": "Connection types", "body": "Trade-offs at a glance.", "bullets": [
+        "Fiber: fastest, low latency; cable: fast and common.",
+        "DSL: over phone lines, slower; dial-up: legacy.",
+        "Cellular and satellite: for mobile or remote sites (satellite has high latency)."
+      ] },
+      { "heading": "Network types", "body": "Scope matters: PAN (personal), LAN (building/campus), MAN (metro), and WAN (long distance, often via an ISP)." }
+    ]
   }
 ]
