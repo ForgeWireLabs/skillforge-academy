@@ -1,6 +1,6 @@
 [
   {
-    "id": "aplus-mobile-l1",
+    "id": "aplus-mobile-l1", "objectiveId": "aplus-c1-1.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-mobile",
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "id": "aplus-mobile-l2",
+    "id": "aplus-mobile-l2", "objectiveId": "aplus-c1-1.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-mobile",
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "id": "aplus-mobile-l3",
+    "id": "aplus-mobile-l3", "objectiveId": "aplus-c1-1.3",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-mobile",
@@ -91,7 +91,7 @@
     ]
   },
   {
-    "id": "aplus-mobile-l4",
+    "id": "aplus-mobile-l4", "objectiveId": "aplus-c1-1.2",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-mobile",
@@ -122,7 +122,7 @@
     ]
   },
   {
-    "id": "aplus-networking-l1",
+    "id": "aplus-networking-l1", "objectiveId": "aplus-c1-2.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-networking",
@@ -152,7 +152,7 @@
     ]
   },
   {
-    "id": "aplus-networking-l2",
+    "id": "aplus-networking-l2", "objectiveId": "aplus-c1-2.2",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-networking",
@@ -183,7 +183,7 @@
     ]
   },
   {
-    "id": "aplus-networking-l3",
+    "id": "aplus-networking-l3", "objectiveId": "aplus-c1-2.6",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-networking",
@@ -213,7 +213,7 @@
     ]
   },
   {
-    "id": "aplus-networking-l4",
+    "id": "aplus-networking-l4", "objectiveId": "aplus-c1-2.8",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-networking",
@@ -243,7 +243,7 @@
     ]
   },
   {
-    "id": "aplus-hardware-l1",
+    "id": "aplus-hardware-l1", "objectiveId": "aplus-c1-3.5",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hardware",
@@ -268,7 +268,7 @@
     ]
   },
   {
-    "id": "aplus-hardware-l2",
+    "id": "aplus-hardware-l2", "objectiveId": "aplus-c1-3.3",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hardware",
@@ -298,7 +298,7 @@
     ]
   },
   {
-    "id": "aplus-hardware-l3",
+    "id": "aplus-hardware-l3", "objectiveId": "aplus-c1-3.6",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hardware",
@@ -323,7 +323,7 @@
     ]
   },
   {
-    "id": "aplus-hardware-l4",
+    "id": "aplus-hardware-l4", "objectiveId": "aplus-c1-3.7",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hardware",
@@ -354,7 +354,7 @@
     ]
   },
   {
-    "id": "aplus-virtualization-l1",
+    "id": "aplus-virtualization-l1", "objectiveId": "aplus-c1-4.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
@@ -379,7 +379,7 @@
     ]
   },
   {
-    "id": "aplus-virtualization-l2",
+    "id": "aplus-virtualization-l2", "objectiveId": "aplus-c1-4.2",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
@@ -405,7 +405,7 @@
     ]
   },
   {
-    "id": "aplus-virtualization-l3",
+    "id": "aplus-virtualization-l3", "objectiveId": "aplus-c1-4.2",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
@@ -432,7 +432,7 @@
     ]
   },
   {
-    "id": "aplus-virtualization-l4",
+    "id": "aplus-virtualization-l4", "objectiveId": "aplus-c1-4.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
@@ -453,7 +453,7 @@
     ]
   },
   {
-    "id": "aplus-hw-troubleshooting-l1",
+    "id": "aplus-hw-troubleshooting-l1", "objectiveId": "aplus-c1-5.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
@@ -482,7 +482,7 @@
     ]
   },
   {
-    "id": "aplus-hw-troubleshooting-l2",
+    "id": "aplus-hw-troubleshooting-l2", "objectiveId": "aplus-c1-5.1",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
@@ -507,7 +507,7 @@
     ]
   },
   {
-    "id": "aplus-hw-troubleshooting-l3",
+    "id": "aplus-hw-troubleshooting-l3", "objectiveId": "aplus-c1-5.5",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
@@ -532,7 +532,7 @@
     ]
   },
   {
-    "id": "aplus-hw-troubleshooting-l4",
+    "id": "aplus-hw-troubleshooting-l4", "objectiveId": "aplus-c1-5.6",
     "certId": "a-plus",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
@@ -563,7 +563,7 @@
     ]
   },
   {
-    "id": "aplus-os-l1",
+    "id": "aplus-os-l1", "objectiveId": "aplus-c2-1.3",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-os",
@@ -593,7 +593,7 @@
     ]
   },
   {
-    "id": "aplus-os-l2",
+    "id": "aplus-os-l2", "objectiveId": "aplus-c2-1.4",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-os",
@@ -624,7 +624,7 @@
     ]
   },
   {
-    "id": "aplus-os-l3",
+    "id": "aplus-os-l3", "objectiveId": "aplus-c2-1.9",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-os",
@@ -655,7 +655,7 @@
     ]
   },
   {
-    "id": "aplus-os-l4",
+    "id": "aplus-os-l4", "objectiveId": "aplus-c2-1.2",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-os",
@@ -680,7 +680,7 @@
     ]
   },
   {
-    "id": "aplus-security-l1",
+    "id": "aplus-security-l1", "objectiveId": "aplus-c2-2.5",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-security",
@@ -711,7 +711,7 @@
     ]
   },
   {
-    "id": "aplus-security-l2",
+    "id": "aplus-security-l2", "objectiveId": "aplus-c2-2.1",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-security",
@@ -736,7 +736,7 @@
     ]
   },
   {
-    "id": "aplus-security-l3",
+    "id": "aplus-security-l3", "objectiveId": "aplus-c2-2.7",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-security",
@@ -761,7 +761,7 @@
     ]
   },
   {
-    "id": "aplus-security-l4",
+    "id": "aplus-security-l4", "objectiveId": "aplus-c2-2.4",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-security",
@@ -792,7 +792,7 @@
     ]
   },
   {
-    "id": "aplus-sw-troubleshooting-l1",
+    "id": "aplus-sw-troubleshooting-l1", "objectiveId": "aplus-c2-3.1",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
@@ -817,7 +817,7 @@
     ]
   },
   {
-    "id": "aplus-sw-troubleshooting-l2",
+    "id": "aplus-sw-troubleshooting-l2", "objectiveId": "aplus-c2-3.1",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
@@ -842,7 +842,7 @@
     ]
   },
   {
-    "id": "aplus-sw-troubleshooting-l3",
+    "id": "aplus-sw-troubleshooting-l3", "objectiveId": "aplus-c2-3.2",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
@@ -867,7 +867,7 @@
     ]
   },
   {
-    "id": "aplus-sw-troubleshooting-l4",
+    "id": "aplus-sw-troubleshooting-l4", "objectiveId": "aplus-c2-3.4",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
@@ -888,7 +888,7 @@
     ]
   },
   {
-    "id": "aplus-operations-l1",
+    "id": "aplus-operations-l1", "objectiveId": "aplus-c2-4.1",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-operations",
@@ -915,7 +915,7 @@
     ]
   },
   {
-    "id": "aplus-operations-l2",
+    "id": "aplus-operations-l2", "objectiveId": "aplus-c2-4.4",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-operations",
@@ -940,7 +940,7 @@
     ]
   },
   {
-    "id": "aplus-operations-l3",
+    "id": "aplus-operations-l3", "objectiveId": "aplus-c2-4.7",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-operations",
@@ -965,7 +965,7 @@
     ]
   },
   {
-    "id": "aplus-operations-l4",
+    "id": "aplus-operations-l4", "objectiveId": "aplus-c2-4.3",
     "certId": "a-plus",
     "exam": "220-1202",
     "domain": "aplus-operations",

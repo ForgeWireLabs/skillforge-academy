@@ -1,7 +1,7 @@
 [
   {
     "certId": "a-plus",
-    "id": "aplus-q01",
+    "id": "aplus-q01", "objectiveId": "aplus-c1-1.1",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Foundation",
@@ -18,7 +18,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q02",
+    "id": "aplus-q02", "objectiveId": "aplus-c1-1.2",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -35,7 +35,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q25",
+    "id": "aplus-q25", "objectiveId": "aplus-c1-1.1",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Foundation",
@@ -52,7 +52,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q26",
+    "id": "aplus-q26", "objectiveId": "aplus-c1-1.1",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -69,7 +69,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q27",
+    "id": "aplus-q27", "objectiveId": "aplus-c1-1.1",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -86,7 +86,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q28",
+    "id": "aplus-q28", "objectiveId": "aplus-c1-1.3",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Foundation",
@@ -103,7 +103,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q29",
+    "id": "aplus-q29", "objectiveId": "aplus-c1-1.2",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -120,7 +120,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q03",
+    "id": "aplus-q03", "objectiveId": "aplus-c1-2.1",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Foundation",
@@ -137,7 +137,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q04",
+    "id": "aplus-q04", "objectiveId": "aplus-c1-2.3",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Intermediate",
@@ -154,7 +154,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q05",
+    "id": "aplus-q05", "objectiveId": "aplus-c1-2.2",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Advanced",
@@ -171,7 +171,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q30",
+    "id": "aplus-q30", "objectiveId": "aplus-c1-2.1",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Foundation",
@@ -188,7 +188,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q31",
+    "id": "aplus-q31", "objectiveId": "aplus-c1-2.6",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Intermediate",
@@ -205,7 +205,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q32",
+    "id": "aplus-q32", "objectiveId": "aplus-c1-2.8",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Intermediate",
@@ -222,7 +222,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q33",
+    "id": "aplus-q33", "objectiveId": "aplus-c1-2.3",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Advanced",
@@ -239,7 +239,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q06",
+    "id": "aplus-q06", "objectiveId": "aplus-c1-3.4",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Foundation",
@@ -256,7 +256,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q07",
+    "id": "aplus-q07", "objectiveId": "aplus-c1-3.5",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Intermediate",
@@ -273,7 +273,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q08",
+    "id": "aplus-q08", "objectiveId": "aplus-c1-3.8",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Intermediate",
@@ -290,7 +290,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q34",
+    "id": "aplus-q34", "objectiveId": "aplus-c1-3.3",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Foundation",
@@ -307,7 +307,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q35",
+    "id": "aplus-q35", "objectiveId": "aplus-c1-3.6",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Intermediate",
@@ -324,7 +324,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q36",
+    "id": "aplus-q36", "objectiveId": "aplus-c1-3.4",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Foundation",
@@ -341,7 +341,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q37",
+    "id": "aplus-q37", "objectiveId": "aplus-c1-3.8",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Intermediate",
@@ -358,7 +358,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q09",
+    "id": "aplus-q09", "objectiveId": "aplus-c1-4.2",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Foundation",
@@ -375,7 +375,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q10",
+    "id": "aplus-q10", "objectiveId": "aplus-c1-4.1",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Intermediate",
@@ -392,7 +392,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q38",
+    "id": "aplus-q38", "objectiveId": "aplus-c1-4.2",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Intermediate",
@@ -409,7 +409,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q39",
+    "id": "aplus-q39", "objectiveId": "aplus-c1-4.1",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Advanced",
@@ -426,7 +426,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q11",
+    "id": "aplus-q11", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Intermediate",
@@ -443,7 +443,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q12",
+    "id": "aplus-q12", "objectiveId": "aplus-c1-5.6",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Advanced",
@@ -460,7 +460,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q40",
+    "id": "aplus-q40", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Foundation",
@@ -477,7 +477,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q41",
+    "id": "aplus-q41", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Intermediate",
@@ -494,7 +494,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q42",
+    "id": "aplus-q42", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Advanced",
@@ -511,7 +511,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q13",
+    "id": "aplus-q13", "objectiveId": "aplus-c2-1.5",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Foundation",
@@ -528,7 +528,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q14",
+    "id": "aplus-q14", "objectiveId": "aplus-c2-1.4",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Intermediate",
@@ -545,7 +545,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q15",
+    "id": "aplus-q15", "objectiveId": "aplus-c2-1.9",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Intermediate",
@@ -562,7 +562,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q43",
+    "id": "aplus-q43", "objectiveId": "aplus-c2-1.4",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Foundation",
@@ -579,7 +579,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q44",
+    "id": "aplus-q44", "objectiveId": "aplus-c2-1.5",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Intermediate",
@@ -596,7 +596,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q45",
+    "id": "aplus-q45", "objectiveId": "aplus-c2-1.2",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Advanced",
@@ -613,7 +613,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q16",
+    "id": "aplus-q16", "objectiveId": "aplus-c2-2.1",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Foundation",
@@ -630,7 +630,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q17",
+    "id": "aplus-q17", "objectiveId": "aplus-c2-2.5",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Intermediate",
@@ -647,7 +647,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q18",
+    "id": "aplus-q18", "objectiveId": "aplus-c2-2.4",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Advanced",
@@ -664,7 +664,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q46",
+    "id": "aplus-q46", "objectiveId": "aplus-c2-2.1",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Foundation",
@@ -681,7 +681,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q47",
+    "id": "aplus-q47", "objectiveId": "aplus-c2-2.3",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Intermediate",
@@ -698,7 +698,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q48",
+    "id": "aplus-q48", "objectiveId": "aplus-c2-2.5",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Intermediate",
@@ -715,7 +715,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q19",
+    "id": "aplus-q19", "objectiveId": "aplus-c2-3.1",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Intermediate",
@@ -732,7 +732,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q20",
+    "id": "aplus-q20", "objectiveId": "aplus-c2-3.4",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Advanced",
@@ -749,7 +749,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q49",
+    "id": "aplus-q49", "objectiveId": "aplus-c2-3.1",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Foundation",
@@ -766,7 +766,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q50",
+    "id": "aplus-q50", "objectiveId": "aplus-c2-3.2",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Intermediate",
@@ -783,7 +783,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q51",
+    "id": "aplus-q51", "objectiveId": "aplus-c2-3.4",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Advanced",
@@ -800,7 +800,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q21",
+    "id": "aplus-q21", "objectiveId": "aplus-c2-4.2",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Foundation",
@@ -817,7 +817,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q22",
+    "id": "aplus-q22", "objectiveId": "aplus-c2-4.4",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Intermediate",
@@ -834,7 +834,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q23",
+    "id": "aplus-q23", "objectiveId": "aplus-c2-4.3",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Intermediate",
@@ -851,7 +851,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q24",
+    "id": "aplus-q24", "objectiveId": "aplus-c2-4.7",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Advanced",
@@ -868,7 +868,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q52",
+    "id": "aplus-q52", "objectiveId": "aplus-c2-4.4",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Foundation",
@@ -885,9 +885,9 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q53",
+    "id": "aplus-q53", "objectiveId": "aplus-c2-2.9",
     "exam": "220-1202",
-    "domain": "aplus-operations",
+    "domain": "aplus-security",
     "difficulty": "Intermediate",
     "prompt": "A device contains sensitive data and is being retired and reused internally. Which method securely removes data while keeping the drive usable?",
     "options": [
@@ -902,7 +902,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q54",
+    "id": "aplus-q54", "objectiveId": "aplus-c2-4.1",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Intermediate",
@@ -919,7 +919,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q55",
+    "id": "aplus-q55", "objectiveId": "aplus-c1-1.3",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Foundation",
@@ -936,7 +936,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q56",
+    "id": "aplus-q56", "objectiveId": "aplus-c1-1.1",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -953,7 +953,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q57",
+    "id": "aplus-q57", "objectiveId": "aplus-c1-2.4",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Intermediate",
@@ -970,7 +970,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q58",
+    "id": "aplus-q58", "objectiveId": "aplus-c1-2.3",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Foundation",
@@ -987,7 +987,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q59",
+    "id": "aplus-q59", "objectiveId": "aplus-c1-2.5",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Intermediate",
@@ -1004,7 +1004,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q60",
+    "id": "aplus-q60", "objectiveId": "aplus-c1-3.6",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Foundation",
@@ -1021,7 +1021,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q61",
+    "id": "aplus-q61", "objectiveId": "aplus-c1-3.5",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Foundation",
@@ -1038,9 +1038,9 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q62",
+    "id": "aplus-q62", "objectiveId": "aplus-c1-5.3",
     "exam": "220-1201",
-    "domain": "aplus-hardware",
+    "domain": "aplus-hw-troubleshooting",
     "difficulty": "Advanced",
     "prompt": "A PC displays random colored artifacts and graphical glitches across the screen during normal use. Which component is the most likely cause?",
     "options": [
@@ -1055,7 +1055,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q63",
+    "id": "aplus-q63", "objectiveId": "aplus-c1-3.3",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Advanced",
@@ -1072,7 +1072,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q64",
+    "id": "aplus-q64", "objectiveId": "aplus-c1-4.2",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Intermediate",
@@ -1089,7 +1089,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q65",
+    "id": "aplus-q65", "objectiveId": "aplus-c1-4.1",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Intermediate",
@@ -1106,7 +1106,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q66",
+    "id": "aplus-q66", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Intermediate",
@@ -1123,7 +1123,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q67",
+    "id": "aplus-q67", "objectiveId": "aplus-c1-5.2",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Intermediate",
@@ -1140,7 +1140,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q68",
+    "id": "aplus-q68", "objectiveId": "aplus-c1-5.1",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Advanced",
@@ -1157,7 +1157,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q69",
+    "id": "aplus-q69", "objectiveId": "aplus-c2-1.4",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Foundation",
@@ -1174,9 +1174,9 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q70",
+    "id": "aplus-q70", "objectiveId": "aplus-c2-3.1",
     "exam": "220-1202",
-    "domain": "aplus-os",
+    "domain": "aplus-sw-troubleshooting",
     "difficulty": "Intermediate",
     "prompt": "Why would a technician boot Windows into Safe Mode?",
     "options": [
@@ -1191,7 +1191,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q71",
+    "id": "aplus-q71", "objectiveId": "aplus-c2-1.1",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Intermediate",
@@ -1208,7 +1208,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q72",
+    "id": "aplus-q72", "objectiveId": "aplus-c2-2.1",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Intermediate",
@@ -1225,7 +1225,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q73",
+    "id": "aplus-q73", "objectiveId": "aplus-c2-2.1",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Foundation",
@@ -1242,7 +1242,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q74",
+    "id": "aplus-q74", "objectiveId": "aplus-c2-2.7",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Foundation",
@@ -1259,7 +1259,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q75",
+    "id": "aplus-q75", "objectiveId": "aplus-c2-3.1",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Foundation",
@@ -1276,7 +1276,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q76",
+    "id": "aplus-q76", "objectiveId": "aplus-c2-3.1",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Intermediate",
@@ -1293,7 +1293,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q77",
+    "id": "aplus-q77", "objectiveId": "aplus-c2-4.3",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Advanced",
@@ -1310,7 +1310,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q78",
+    "id": "aplus-q78", "objectiveId": "aplus-c2-4.1",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Advanced",
@@ -1327,7 +1327,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q79",
+    "id": "aplus-q79", "objectiveId": "aplus-c1-1.2",
     "exam": "220-1201",
     "domain": "aplus-mobile",
     "difficulty": "Intermediate",
@@ -1344,7 +1344,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q80",
+    "id": "aplus-q80", "objectiveId": "aplus-c1-2.3",
     "exam": "220-1201",
     "domain": "aplus-networking",
     "difficulty": "Advanced",
@@ -1361,7 +1361,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q81",
+    "id": "aplus-q81", "objectiveId": "aplus-c1-3.6",
     "exam": "220-1201",
     "domain": "aplus-hardware",
     "difficulty": "Intermediate",
@@ -1378,7 +1378,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q82",
+    "id": "aplus-q82", "objectiveId": "aplus-c1-4.2",
     "exam": "220-1201",
     "domain": "aplus-virtualization",
     "difficulty": "Advanced",
@@ -1395,7 +1395,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q83",
+    "id": "aplus-q83", "objectiveId": "aplus-c1-5.2",
     "exam": "220-1201",
     "domain": "aplus-hw-troubleshooting",
     "difficulty": "Intermediate",
@@ -1412,7 +1412,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q84",
+    "id": "aplus-q84", "objectiveId": "aplus-c2-1.9",
     "exam": "220-1202",
     "domain": "aplus-os",
     "difficulty": "Intermediate",
@@ -1429,7 +1429,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q85",
+    "id": "aplus-q85", "objectiveId": "aplus-c2-2.1",
     "exam": "220-1202",
     "domain": "aplus-security",
     "difficulty": "Advanced",
@@ -1446,7 +1446,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q86",
+    "id": "aplus-q86", "objectiveId": "aplus-c2-3.4",
     "exam": "220-1202",
     "domain": "aplus-sw-troubleshooting",
     "difficulty": "Intermediate",
@@ -1463,7 +1463,7 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q87",
+    "id": "aplus-q87", "objectiveId": "aplus-c2-4.2",
     "exam": "220-1202",
     "domain": "aplus-operations",
     "difficulty": "Intermediate",
@@ -1480,9 +1480,9 @@
   },
   {
     "certId": "a-plus",
-    "id": "aplus-q88",
+    "id": "aplus-q88", "objectiveId": "aplus-c2-2.9",
     "exam": "220-1202",
-    "domain": "aplus-operations",
+    "domain": "aplus-security",
     "difficulty": "Foundation",
     "prompt": "Which disposal method is appropriate for documents containing confidential customer information?",
     "options": [
@@ -1495,49 +1495,49 @@
     "explanation": "Sensitive paper records require secure destruction, such as cross-cut shredding, under organizational data-handling policy.",
     "objective": "Apply data handling and disposal procedures"
   },
-  { "id": "aplus-q89", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Foundation", "prompt": "Which sensor lets a phone automatically rotate its screen when turned sideways?", "options": ["Accelerometer", "GPS receiver", "NFC chip", "Barometer"], "answer": 0, "explanation": "The accelerometer (often with a gyroscope) detects the device's orientation so the OS can rotate the display.", "objective": "Configure mobile device features" },
-  { "id": "aplus-q90", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "A laptop suddenly has no Wi-Fi and the wireless adapter is missing from the network list. What should you check first?", "options": ["The physical wireless switch or Fn-key toggle", "Replace the motherboard", "Reinstall Windows", "Buy a new access point"], "answer": 0, "explanation": "Many laptops have a hardware switch or Fn-key combo that disables the radio; rule that out before deeper steps.", "objective": "Troubleshoot mobile device connectivity" },
-  { "id": "aplus-q91", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "Which method shares a phone's cellular data with a laptop over a USB cable?", "options": ["USB tethering", "An evil twin", "NFC", "A Wi-Fi hotspot"], "answer": 0, "explanation": "USB tethering shares cellular data through the cable; a hotspot shares it over Wi-Fi.", "objective": "Configure mobile connectivity" },
-  { "id": "aplus-q92", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "Which standard lets a single USB-C cable both fast-charge a laptop and carry data?", "options": ["USB-C Power Delivery (PD)", "Power over Ethernet", "SATA", "Thunderbolt audio"], "answer": 0, "explanation": "USB-C Power Delivery negotiates higher wattage for charging over the same cable that carries data.", "objective": "Configure laptop and mobile power" },
-  { "id": "aplus-q93", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Foundation", "prompt": "A laptop overheats and throttles during video calls. What is the best first action?", "options": ["Clear dust and make sure the vents are not blocked", "Add more RAM", "Replace the CPU", "Reinstall the operating system"], "answer": 0, "explanation": "Overheating is usually airflow-related; clean the vents and confirm the fans spin before replacing hardware.", "objective": "Troubleshoot mobile device hardware" },
-  { "id": "aplus-q94", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Foundation", "prompt": "Which TCP port does HTTPS use by default?", "options": ["443", "80", "21", "3389"], "answer": 0, "explanation": "HTTPS uses TCP 443; unencrypted HTTP uses 80.", "objective": "Compare common ports and protocols" },
-  { "id": "aplus-q95", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Foundation", "prompt": "Which port does Remote Desktop Protocol (RDP) use?", "options": ["3389", "22", "23", "53"], "answer": 0, "explanation": "RDP listens on TCP 3389.", "objective": "Compare common ports and protocols" },
-  { "id": "aplus-q96", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "A workstation shows an IP address of 169.254.10.5. What does this indicate?", "options": ["It failed to obtain a DHCP lease (APIPA)", "It has a static public IP", "DNS is misconfigured", "It is using IPv6"], "answer": 0, "explanation": "A 169.254.x.x address is APIPA, assigned automatically when no DHCP server responds.", "objective": "Troubleshoot network connectivity" },
-  { "id": "aplus-q97", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "Which service resolves a domain name such as example.com to an IP address?", "options": ["DNS", "DHCP", "SMTP", "SNMP"], "answer": 0, "explanation": "DNS maps human-readable names to IP addresses.", "objective": "Explain networking services" },
-  { "id": "aplus-q98", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "Which wireless encryption should you choose when the hardware supports it?", "options": ["WPA3", "WEP", "WPA (original)", "Open / none"], "answer": 0, "explanation": "WPA3 is the strongest option; WEP and original WPA are deprecated and easily broken.", "objective": "Secure a wireless network" },
-  { "id": "aplus-q99", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Foundation", "prompt": "Which memory form factor is used in laptops?", "options": ["SO-DIMM", "DIMM", "SIMM", "RIMM"], "answer": 0, "explanation": "Laptops use the physically shorter SO-DIMM modules.", "objective": "Compare memory technologies" },
-  { "id": "aplus-q100", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Intermediate", "prompt": "A desktop resets its clock and loses BIOS settings every time it is unplugged. What is the cause?", "options": ["A dead CMOS battery", "A failing power supply", "Bad RAM", "A corrupt operating system"], "answer": 0, "explanation": "The CMOS battery preserves firmware settings and the real-time clock; a dead one loses them on power-off.", "objective": "Diagnose motherboard components" },
-  { "id": "aplus-q101", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Intermediate", "prompt": "Which storage option offers the highest performance?", "options": ["NVMe SSD over PCIe", "SATA SSD", "7200 RPM SATA HDD", "USB 2.0 flash drive"], "answer": 0, "explanation": "NVMe over PCIe is faster than SATA SSDs and far faster than spinning disks.", "objective": "Compare storage technologies" },
-  { "id": "aplus-q102", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Foundation", "prompt": "What is applied between a CPU and its heatsink to improve heat transfer?", "options": ["Thermal paste", "Dielectric grease", "Solder flux", "Epoxy"], "answer": 0, "explanation": "Thermal paste fills microscopic gaps so heat moves efficiently into the heatsink.", "objective": "Install cooling solutions" },
-  { "id": "aplus-q103", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Intermediate", "prompt": "Toner rubs off a laser printout when touched. Which component most likely failed?", "options": ["Fuser", "Drum", "Pickup roller", "Toner cartridge"], "answer": 0, "explanation": "The fuser uses heat and pressure to bond toner to the page; if it fails, toner is not fused and smears.", "objective": "Troubleshoot printers" },
-  { "id": "aplus-q104", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Foundation", "prompt": "A hypervisor that runs directly on the hardware with no host OS is which type?", "options": ["Type 1 (bare-metal)", "Type 2 (hosted)", "A container runtime", "An emulator"], "answer": 0, "explanation": "Type 1 runs on bare metal; Type 2 runs as an application on top of a host OS.", "objective": "Explain virtualization concepts" },
-  { "id": "aplus-q105", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "In which cloud model does the provider manage everything and you simply use finished software?", "options": ["SaaS", "IaaS", "PaaS", "On-premises"], "answer": 0, "explanation": "Software as a Service delivers ready-to-use apps; you manage nothing beneath them.", "objective": "Compare cloud service models" },
-  { "id": "aplus-q106", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "A company keeps sensitive workloads private but bursts to a public provider for extra capacity. Which deployment model is this?", "options": ["Hybrid", "Public", "Community", "Private"], "answer": 0, "explanation": "A hybrid cloud combines private and public infrastructure.", "objective": "Compare cloud deployment models" },
-  { "id": "aplus-q107", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "What is the main advantage of containers over full virtual machines?", "options": ["They share the host OS kernel and start quickly", "They provide stronger hardware isolation", "Each one runs a separate operating system", "They eliminate the need for any host"], "answer": 0, "explanation": "Containers share the host OS, so they are small and start in seconds.", "objective": "Contrast containers and virtual machines" },
-  { "id": "aplus-q108", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Foundation", "prompt": "What must be enabled in firmware before a machine can run virtual machines?", "options": ["CPU virtualization (Intel VT-x / AMD-V)", "Secure Boot only", "The TPM only", "Fast Boot"], "answer": 0, "explanation": "Hardware virtualization extensions must be enabled for a hypervisor to work.", "objective": "Explain virtualization requirements" },
-  { "id": "aplus-q109", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Foundation", "prompt": "What is the first step of the CompTIA troubleshooting method?", "options": ["Identify the problem", "Establish a theory of probable cause", "Test the theory", "Document findings"], "answer": 0, "explanation": "You first identify the problem by questioning the user and noting recent changes.", "objective": "Apply the troubleshooting methodology" },
-  { "id": "aplus-q110", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "A PC powers on with repeating beep codes and no display. What is the most likely area to check?", "options": ["RAM or video card seating", "The hard drive", "The network cable", "The printer"], "answer": 0, "explanation": "POST beep codes commonly indicate memory or GPU problems.", "objective": "Diagnose PC hardware" },
-  { "id": "aplus-q111", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "After implementing a fix, what is the next step in the methodology?", "options": ["Verify full system functionality and apply preventive measures", "Document and close before testing", "Establish a new theory", "Immediately escalate"], "answer": 0, "explanation": "Step 5 verifies the system works and adds preventive measures before documenting.", "objective": "Apply the troubleshooting methodology" },
-  { "id": "aplus-q112", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "A computer shuts down randomly only under heavy load. What is the most likely cause?", "options": ["Overheating or an undersized power supply", "A DNS misconfiguration", "A full Recycle Bin", "A missing system font"], "answer": 0, "explanation": "Load-related shutdowns point to thermal problems or insufficient power.", "objective": "Diagnose power and thermal issues" },
-  { "id": "aplus-q113", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Foundation", "prompt": "Which command tests basic reachability to another host?", "options": ["ping", "format", "chkdsk", "robocopy"], "answer": 0, "explanation": "ping sends ICMP echo requests to check connectivity to a target.", "objective": "Troubleshoot network connectivity" },
-  { "id": "aplus-q114", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Foundation", "prompt": "Which Windows edition can join an Active Directory domain?", "options": ["Pro", "Home", "Starter", "S mode (Home)"], "answer": 0, "explanation": "Domain join requires Pro or higher; Home editions cannot join a domain.", "objective": "Compare Windows editions" },
-  { "id": "aplus-q115", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which command scans and repairs protected Windows system files?", "options": ["sfc /scannow", "ipconfig /all", "gpupdate /force", "format C:"], "answer": 0, "explanation": "System File Checker (sfc) scans and repairs corrupt system files.", "objective": "Use Windows command-line tools" },
-  { "id": "aplus-q116", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Foundation", "prompt": "Which built-in macOS feature performs automatic backups?", "options": ["Time Machine", "Spotlight", "Mission Control", "Keychain"], "answer": 0, "explanation": "Time Machine backs up a Mac automatically to an external or network drive.", "objective": "Identify macOS features" },
-  { "id": "aplus-q117", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which Linux command changes a file's permissions?", "options": ["chmod", "ls", "pwd", "grep"], "answer": 0, "explanation": "chmod sets read, write, and execute permissions on files and directories.", "objective": "Use core Linux commands" },
-  { "id": "aplus-q118", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which partition style supports drives larger than 2 TB and works with UEFI Secure Boot?", "options": ["GPT", "MBR", "FAT32", "exFAT"], "answer": 0, "explanation": "GPT with UEFI supports large drives, many partitions, and Secure Boot.", "objective": "Perform OS installation" },
-  { "id": "aplus-q119", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Foundation", "prompt": "An email pretends to be from your bank and links to a fake login page. What is this attack?", "options": ["Phishing", "Tailgating", "A DDoS attack", "Shoulder surfing"], "answer": 0, "explanation": "Phishing uses fraudulent messages to trick users into revealing credentials.", "objective": "Recognize social engineering" },
-  { "id": "aplus-q120", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Which is an example of true multifactor authentication?", "options": ["A password plus a code from an authenticator app", "Two different passwords", "A PIN and a passphrase", "Two security questions"], "answer": 0, "explanation": "MFA combines factors from different categories — here something you know plus something you have.", "objective": "Apply authentication" },
-  { "id": "aplus-q121", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Ransomware has encrypted a user's files. What is the best response?", "options": ["Isolate the system and restore from a clean backup", "Pay the ransom immediately", "Reboot and hope it clears", "Reply to the attacker for instructions"], "answer": 0, "explanation": "Disconnect the device, remediate, and restore from backup; paying is discouraged and unreliable.", "objective": "Respond to malware" },
-  { "id": "aplus-q122", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Foundation", "prompt": "Which Windows feature provides full-disk encryption?", "options": ["BitLocker", "Windows Defender", "Robocopy", "User Account Control"], "answer": 0, "explanation": "BitLocker encrypts the drive so a lost or stolen device does not leak data.", "objective": "Harden workstations" },
-  { "id": "aplus-q123", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Which principle gives each account only the access it needs to do its job?", "options": ["Least privilege", "Implicit allow", "Defense in depth", "Single sign-on"], "answer": 0, "explanation": "Least privilege limits accounts to the minimum rights required.", "objective": "Apply access control" },
-  { "id": "aplus-q124", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "Windows will not boot after a driver update. What is the quickest way to undo it?", "options": ["Boot into Safe Mode and roll back the driver", "Reinstall Windows from scratch", "Replace the SSD", "Reset the BIOS to defaults"], "answer": 0, "explanation": "Safe Mode loads minimal drivers so you can roll back the bad one.", "objective": "Troubleshoot Windows problems" },
-  { "id": "aplus-q125", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "One application crashes on launch while everything else works. What is a good early step?", "options": ["Run it as administrator, then repair or reinstall it", "Reimage the whole PC", "Replace the RAM", "Reset all network settings"], "answer": 0, "explanation": "A single misbehaving app usually points to its own permissions, files, or compatibility.", "objective": "Troubleshoot applications" },
-  { "id": "aplus-q126", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "A phone suddenly drains its battery fast and runs hot right after a new app was installed. Likely cause?", "options": ["A misbehaving background app", "A failed digitizer", "A dead CMOS battery", "A worn fuser"], "answer": 0, "explanation": "A rogue app consuming resources causes rapid drain and heat; update or remove it.", "objective": "Troubleshoot mobile software" },
-  { "id": "aplus-q127", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Foundation", "prompt": "Frequent browser redirects and a flood of pop-ups most likely indicate what?", "options": ["A malware or adware infection", "A failing power supply", "A dead pixel", "Slow disk speed"], "answer": 0, "explanation": "Redirects and pop-ups are classic symptoms of malware or adware.", "objective": "Recognize security symptoms" },
-  { "id": "aplus-q128", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "Which command repairs the Windows image when sfc cannot fix a corruption?", "options": ["DISM /Online /Cleanup-Image /RestoreHealth", "chkdsk /r", "ipconfig /flushdns", "sfc /verifyonly"], "answer": 0, "explanation": "DISM repairs the component store that System File Checker depends on.", "objective": "Repair Windows" },
-  { "id": "aplus-q129", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "How many copies of important data does the 3-2-1 rule recommend?", "options": ["3", "1", "2", "5"], "answer": 0, "explanation": "Keep 3 copies, on 2 different media, with 1 stored off-site.", "objective": "Implement backup methods" },
-  { "id": "aplus-q130", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Intermediate", "prompt": "Which backup type copies only the data changed since the last backup of any kind?", "options": ["Incremental", "Full", "Differential", "Synthetic full"], "answer": 0, "explanation": "Incremental backs up changes since the last backup; differential backs up changes since the last full.", "objective": "Compare backup types" },
-  { "id": "aplus-q131", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "Which document explains the safe handling and disposal of a chemical or battery?", "options": ["Safety Data Sheet (SDS)", "Acceptable Use Policy", "End User License Agreement", "Standard Operating Procedure"], "answer": 0, "explanation": "The SDS details hazards, safe handling, and proper disposal.", "objective": "Apply safety procedures" },
-  { "id": "aplus-q132", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Intermediate", "prompt": "What is a best practice before making a significant change in a production environment?", "options": ["Document the change and prepare a rollback plan", "Make it during peak business hours", "Skip approvals to save time", "Avoid notifying affected users"], "answer": 0, "explanation": "Change management requires documentation, approval, and a tested rollback plan.", "objective": "Apply change management" },
-  { "id": "aplus-q133", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "An anti-static wrist strap protects components against what?", "options": ["Electrostatic discharge (ESD)", "Magnetic fields", "Overheating", "Power surges"], "answer": 0, "explanation": "A grounded wrist strap drains static so ESD does not damage sensitive components.", "objective": "Apply safety procedures" }
+  { "id": "aplus-q89", "objectiveId": "aplus-c1-1.3", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Foundation", "prompt": "Which sensor lets a phone automatically rotate its screen when turned sideways?", "options": ["Accelerometer", "GPS receiver", "NFC chip", "Barometer"], "answer": 0, "explanation": "The accelerometer (often with a gyroscope) detects the device's orientation so the OS can rotate the display.", "objective": "Configure mobile device features" },
+  { "id": "aplus-q90", "objectiveId": "aplus-c1-1.3", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "A laptop suddenly has no Wi-Fi and the wireless adapter is missing from the network list. What should you check first?", "options": ["The physical wireless switch or Fn-key toggle", "Replace the motherboard", "Reinstall Windows", "Buy a new access point"], "answer": 0, "explanation": "Many laptops have a hardware switch or Fn-key combo that disables the radio; rule that out before deeper steps.", "objective": "Troubleshoot mobile device connectivity" },
+  { "id": "aplus-q91", "objectiveId": "aplus-c1-1.3", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "Which method shares a phone's cellular data with a laptop over a USB cable?", "options": ["USB tethering", "An evil twin", "NFC", "A Wi-Fi hotspot"], "answer": 0, "explanation": "USB tethering shares cellular data through the cable; a hotspot shares it over Wi-Fi.", "objective": "Configure mobile connectivity" },
+  { "id": "aplus-q92", "objectiveId": "aplus-c1-1.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Intermediate", "prompt": "Which standard lets a single USB-C cable both fast-charge a laptop and carry data?", "options": ["USB-C Power Delivery (PD)", "Power over Ethernet", "SATA", "Thunderbolt audio"], "answer": 0, "explanation": "USB-C Power Delivery negotiates higher wattage for charging over the same cable that carries data.", "objective": "Configure laptop and mobile power" },
+  { "id": "aplus-q93", "objectiveId": "aplus-c1-1.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-mobile", "difficulty": "Foundation", "prompt": "A laptop overheats and throttles during video calls. What is the best first action?", "options": ["Clear dust and make sure the vents are not blocked", "Add more RAM", "Replace the CPU", "Reinstall the operating system"], "answer": 0, "explanation": "Overheating is usually airflow-related; clean the vents and confirm the fans spin before replacing hardware.", "objective": "Troubleshoot mobile device hardware" },
+  { "id": "aplus-q94", "objectiveId": "aplus-c1-2.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Foundation", "prompt": "Which TCP port does HTTPS use by default?", "options": ["443", "80", "21", "3389"], "answer": 0, "explanation": "HTTPS uses TCP 443; unencrypted HTTP uses 80.", "objective": "Compare common ports and protocols" },
+  { "id": "aplus-q95", "objectiveId": "aplus-c1-2.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Foundation", "prompt": "Which port does Remote Desktop Protocol (RDP) use?", "options": ["3389", "22", "23", "53"], "answer": 0, "explanation": "RDP listens on TCP 3389.", "objective": "Compare common ports and protocols" },
+  { "id": "aplus-q96", "objectiveId": "aplus-c1-2.8", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "A workstation shows an IP address of 169.254.10.5. What does this indicate?", "options": ["It failed to obtain a DHCP lease (APIPA)", "It has a static public IP", "DNS is misconfigured", "It is using IPv6"], "answer": 0, "explanation": "A 169.254.x.x address is APIPA, assigned automatically when no DHCP server responds.", "objective": "Troubleshoot network connectivity" },
+  { "id": "aplus-q97", "objectiveId": "aplus-c1-2.3", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "Which service resolves a domain name such as example.com to an IP address?", "options": ["DNS", "DHCP", "SMTP", "SNMP"], "answer": 0, "explanation": "DNS maps human-readable names to IP addresses.", "objective": "Explain networking services" },
+  { "id": "aplus-q98", "objectiveId": "aplus-c1-2.6", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-networking", "difficulty": "Intermediate", "prompt": "Which wireless encryption should you choose when the hardware supports it?", "options": ["WPA3", "WEP", "WPA (original)", "Open / none"], "answer": 0, "explanation": "WPA3 is the strongest option; WEP and original WPA are deprecated and easily broken.", "objective": "Secure a wireless network" },
+  { "id": "aplus-q99", "objectiveId": "aplus-c1-3.3", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Foundation", "prompt": "Which memory form factor is used in laptops?", "options": ["SO-DIMM", "DIMM", "SIMM", "RIMM"], "answer": 0, "explanation": "Laptops use the physically shorter SO-DIMM modules.", "objective": "Compare memory technologies" },
+  { "id": "aplus-q100", "objectiveId": "aplus-c1-3.5", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Intermediate", "prompt": "A desktop resets its clock and loses BIOS settings every time it is unplugged. What is the cause?", "options": ["A dead CMOS battery", "A failing power supply", "Bad RAM", "A corrupt operating system"], "answer": 0, "explanation": "The CMOS battery preserves firmware settings and the real-time clock; a dead one loses them on power-off.", "objective": "Diagnose motherboard components" },
+  { "id": "aplus-q101", "objectiveId": "aplus-c1-3.4", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Intermediate", "prompt": "Which storage option offers the highest performance?", "options": ["NVMe SSD over PCIe", "SATA SSD", "7200 RPM SATA HDD", "USB 2.0 flash drive"], "answer": 0, "explanation": "NVMe over PCIe is faster than SATA SSDs and far faster than spinning disks.", "objective": "Compare storage technologies" },
+  { "id": "aplus-q102", "objectiveId": "aplus-c1-3.5", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hardware", "difficulty": "Foundation", "prompt": "What is applied between a CPU and its heatsink to improve heat transfer?", "options": ["Thermal paste", "Dielectric grease", "Solder flux", "Epoxy"], "answer": 0, "explanation": "Thermal paste fills microscopic gaps so heat moves efficiently into the heatsink.", "objective": "Install cooling solutions" },
+  { "id": "aplus-q103", "objectiveId": "aplus-c1-5.6", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "Toner rubs off a laser printout when touched. Which component most likely failed?", "options": ["Fuser", "Drum", "Pickup roller", "Toner cartridge"], "answer": 0, "explanation": "The fuser uses heat and pressure to bond toner to the page; if it fails, toner is not fused and smears.", "objective": "Troubleshoot printers" },
+  { "id": "aplus-q104", "objectiveId": "aplus-c1-4.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Foundation", "prompt": "A hypervisor that runs directly on the hardware with no host OS is which type?", "options": ["Type 1 (bare-metal)", "Type 2 (hosted)", "A container runtime", "An emulator"], "answer": 0, "explanation": "Type 1 runs on bare metal; Type 2 runs as an application on top of a host OS.", "objective": "Explain virtualization concepts" },
+  { "id": "aplus-q105", "objectiveId": "aplus-c1-4.2", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "In which cloud model does the provider manage everything and you simply use finished software?", "options": ["SaaS", "IaaS", "PaaS", "On-premises"], "answer": 0, "explanation": "Software as a Service delivers ready-to-use apps; you manage nothing beneath them.", "objective": "Compare cloud service models" },
+  { "id": "aplus-q106", "objectiveId": "aplus-c1-4.2", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "A company keeps sensitive workloads private but bursts to a public provider for extra capacity. Which deployment model is this?", "options": ["Hybrid", "Public", "Community", "Private"], "answer": 0, "explanation": "A hybrid cloud combines private and public infrastructure.", "objective": "Compare cloud deployment models" },
+  { "id": "aplus-q107", "objectiveId": "aplus-c1-4.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Intermediate", "prompt": "What is the main advantage of containers over full virtual machines?", "options": ["They share the host OS kernel and start quickly", "They provide stronger hardware isolation", "Each one runs a separate operating system", "They eliminate the need for any host"], "answer": 0, "explanation": "Containers share the host OS, so they are small and start in seconds.", "objective": "Contrast containers and virtual machines" },
+  { "id": "aplus-q108", "objectiveId": "aplus-c1-4.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-virtualization", "difficulty": "Foundation", "prompt": "What must be enabled in firmware before a machine can run virtual machines?", "options": ["CPU virtualization (Intel VT-x / AMD-V)", "Secure Boot only", "The TPM only", "Fast Boot"], "answer": 0, "explanation": "Hardware virtualization extensions must be enabled for a hypervisor to work.", "objective": "Explain virtualization requirements" },
+  { "id": "aplus-q109", "objectiveId": "aplus-c1-5.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Foundation", "prompt": "What is the first step of the CompTIA troubleshooting method?", "options": ["Identify the problem", "Establish a theory of probable cause", "Test the theory", "Document findings"], "answer": 0, "explanation": "You first identify the problem by questioning the user and noting recent changes.", "objective": "Apply the troubleshooting methodology" },
+  { "id": "aplus-q110", "objectiveId": "aplus-c1-5.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "A PC powers on with repeating beep codes and no display. What is the most likely area to check?", "options": ["RAM or video card seating", "The hard drive", "The network cable", "The printer"], "answer": 0, "explanation": "POST beep codes commonly indicate memory or GPU problems.", "objective": "Diagnose PC hardware" },
+  { "id": "aplus-q111", "objectiveId": "aplus-c1-5.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "After implementing a fix, what is the next step in the methodology?", "options": ["Verify full system functionality and apply preventive measures", "Document and close before testing", "Establish a new theory", "Immediately escalate"], "answer": 0, "explanation": "Step 5 verifies the system works and adds preventive measures before documenting.", "objective": "Apply the troubleshooting methodology" },
+  { "id": "aplus-q112", "objectiveId": "aplus-c1-5.1", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Intermediate", "prompt": "A computer shuts down randomly only under heavy load. What is the most likely cause?", "options": ["Overheating or an undersized power supply", "A DNS misconfiguration", "A full Recycle Bin", "A missing system font"], "answer": 0, "explanation": "Load-related shutdowns point to thermal problems or insufficient power.", "objective": "Diagnose power and thermal issues" },
+  { "id": "aplus-q113", "objectiveId": "aplus-c1-5.5", "certId": "a-plus", "exam": "220-1201", "domain": "aplus-hw-troubleshooting", "difficulty": "Foundation", "prompt": "Which command tests basic reachability to another host?", "options": ["ping", "format", "chkdsk", "robocopy"], "answer": 0, "explanation": "ping sends ICMP echo requests to check connectivity to a target.", "objective": "Troubleshoot network connectivity" },
+  { "id": "aplus-q114", "objectiveId": "aplus-c2-1.3", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Foundation", "prompt": "Which Windows edition can join an Active Directory domain?", "options": ["Pro", "Home", "Starter", "S mode (Home)"], "answer": 0, "explanation": "Domain join requires Pro or higher; Home editions cannot join a domain.", "objective": "Compare Windows editions" },
+  { "id": "aplus-q115", "objectiveId": "aplus-c2-1.5", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which command scans and repairs protected Windows system files?", "options": ["sfc /scannow", "ipconfig /all", "gpupdate /force", "format C:"], "answer": 0, "explanation": "System File Checker (sfc) scans and repairs corrupt system files.", "objective": "Use Windows command-line tools" },
+  { "id": "aplus-q116", "objectiveId": "aplus-c2-1.8", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Foundation", "prompt": "Which built-in macOS feature performs automatic backups?", "options": ["Time Machine", "Spotlight", "Mission Control", "Keychain"], "answer": 0, "explanation": "Time Machine backs up a Mac automatically to an external or network drive.", "objective": "Identify macOS features" },
+  { "id": "aplus-q117", "objectiveId": "aplus-c2-1.9", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which Linux command changes a file's permissions?", "options": ["chmod", "ls", "pwd", "grep"], "answer": 0, "explanation": "chmod sets read, write, and execute permissions on files and directories.", "objective": "Use core Linux commands" },
+  { "id": "aplus-q118", "objectiveId": "aplus-c2-1.2", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-os", "difficulty": "Intermediate", "prompt": "Which partition style supports drives larger than 2 TB and works with UEFI Secure Boot?", "options": ["GPT", "MBR", "FAT32", "exFAT"], "answer": 0, "explanation": "GPT with UEFI supports large drives, many partitions, and Secure Boot.", "objective": "Perform OS installation" },
+  { "id": "aplus-q119", "objectiveId": "aplus-c2-2.5", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Foundation", "prompt": "An email pretends to be from your bank and links to a fake login page. What is this attack?", "options": ["Phishing", "Tailgating", "A DDoS attack", "Shoulder surfing"], "answer": 0, "explanation": "Phishing uses fraudulent messages to trick users into revealing credentials.", "objective": "Recognize social engineering" },
+  { "id": "aplus-q120", "objectiveId": "aplus-c2-2.1", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Which is an example of true multifactor authentication?", "options": ["A password plus a code from an authenticator app", "Two different passwords", "A PIN and a passphrase", "Two security questions"], "answer": 0, "explanation": "MFA combines factors from different categories — here something you know plus something you have.", "objective": "Apply authentication" },
+  { "id": "aplus-q121", "objectiveId": "aplus-c2-2.4", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Ransomware has encrypted a user's files. What is the best response?", "options": ["Isolate the system and restore from a clean backup", "Pay the ransom immediately", "Reboot and hope it clears", "Reply to the attacker for instructions"], "answer": 0, "explanation": "Disconnect the device, remediate, and restore from backup; paying is discouraged and unreliable.", "objective": "Respond to malware" },
+  { "id": "aplus-q122", "objectiveId": "aplus-c2-2.7", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Foundation", "prompt": "Which Windows feature provides full-disk encryption?", "options": ["BitLocker", "Windows Defender", "Robocopy", "User Account Control"], "answer": 0, "explanation": "BitLocker encrypts the drive so a lost or stolen device does not leak data.", "objective": "Harden workstations" },
+  { "id": "aplus-q123", "objectiveId": "aplus-c2-2.1", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-security", "difficulty": "Intermediate", "prompt": "Which principle gives each account only the access it needs to do its job?", "options": ["Least privilege", "Implicit allow", "Defense in depth", "Single sign-on"], "answer": 0, "explanation": "Least privilege limits accounts to the minimum rights required.", "objective": "Apply access control" },
+  { "id": "aplus-q124", "objectiveId": "aplus-c2-3.1", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "Windows will not boot after a driver update. What is the quickest way to undo it?", "options": ["Boot into Safe Mode and roll back the driver", "Reinstall Windows from scratch", "Replace the SSD", "Reset the BIOS to defaults"], "answer": 0, "explanation": "Safe Mode loads minimal drivers so you can roll back the bad one.", "objective": "Troubleshoot Windows problems" },
+  { "id": "aplus-q125", "objectiveId": "aplus-c2-3.1", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "One application crashes on launch while everything else works. What is a good early step?", "options": ["Run it as administrator, then repair or reinstall it", "Reimage the whole PC", "Replace the RAM", "Reset all network settings"], "answer": 0, "explanation": "A single misbehaving app usually points to its own permissions, files, or compatibility.", "objective": "Troubleshoot applications" },
+  { "id": "aplus-q126", "objectiveId": "aplus-c2-3.2", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "A phone suddenly drains its battery fast and runs hot right after a new app was installed. Likely cause?", "options": ["A misbehaving background app", "A failed digitizer", "A dead CMOS battery", "A worn fuser"], "answer": 0, "explanation": "A rogue app consuming resources causes rapid drain and heat; update or remove it.", "objective": "Troubleshoot mobile software" },
+  { "id": "aplus-q127", "objectiveId": "aplus-c2-3.4", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Foundation", "prompt": "Frequent browser redirects and a flood of pop-ups most likely indicate what?", "options": ["A malware or adware infection", "A failing power supply", "A dead pixel", "Slow disk speed"], "answer": 0, "explanation": "Redirects and pop-ups are classic symptoms of malware or adware.", "objective": "Recognize security symptoms" },
+  { "id": "aplus-q128", "objectiveId": "aplus-c2-3.1", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-sw-troubleshooting", "difficulty": "Intermediate", "prompt": "Which command repairs the Windows image when sfc cannot fix a corruption?", "options": ["DISM /Online /Cleanup-Image /RestoreHealth", "chkdsk /r", "ipconfig /flushdns", "sfc /verifyonly"], "answer": 0, "explanation": "DISM repairs the component store that System File Checker depends on.", "objective": "Repair Windows" },
+  { "id": "aplus-q129", "objectiveId": "aplus-c2-4.3", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "How many copies of important data does the 3-2-1 rule recommend?", "options": ["3", "1", "2", "5"], "answer": 0, "explanation": "Keep 3 copies, on 2 different media, with 1 stored off-site.", "objective": "Implement backup methods" },
+  { "id": "aplus-q130", "objectiveId": "aplus-c2-4.3", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Intermediate", "prompt": "Which backup type copies only the data changed since the last backup of any kind?", "options": ["Incremental", "Full", "Differential", "Synthetic full"], "answer": 0, "explanation": "Incremental backs up changes since the last backup; differential backs up changes since the last full.", "objective": "Compare backup types" },
+  { "id": "aplus-q131", "objectiveId": "aplus-c2-4.4", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "Which document explains the safe handling and disposal of a chemical or battery?", "options": ["Safety Data Sheet (SDS)", "Acceptable Use Policy", "End User License Agreement", "Standard Operating Procedure"], "answer": 0, "explanation": "The SDS details hazards, safe handling, and proper disposal.", "objective": "Apply safety procedures" },
+  { "id": "aplus-q132", "objectiveId": "aplus-c2-4.2", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Intermediate", "prompt": "What is a best practice before making a significant change in a production environment?", "options": ["Document the change and prepare a rollback plan", "Make it during peak business hours", "Skip approvals to save time", "Avoid notifying affected users"], "answer": 0, "explanation": "Change management requires documentation, approval, and a tested rollback plan.", "objective": "Apply change management" },
+  { "id": "aplus-q133", "objectiveId": "aplus-c2-4.4", "certId": "a-plus", "exam": "220-1202", "domain": "aplus-operations", "difficulty": "Foundation", "prompt": "An anti-static wrist strap protects components against what?", "options": ["Electrostatic discharge (ESD)", "Magnetic fields", "Overheating", "Power surges"], "answer": 0, "explanation": "A grounded wrist strap drains static so ESD does not damage sensitive components.", "objective": "Apply safety procedures" }
 ]
