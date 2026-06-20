@@ -78,8 +78,9 @@ only as a default fallback. Retaining them as fallbacks is correct, not stale.
 
 Status: documented
 Evidence: TODO-007 asks to update `tracking/status.md` and
-`tracking/milestones.md`; those files are archived under `archive/tracking/`. The
-live tracking system is the RepoPact `work/` queue plus `audits/`.
+`tracking/milestones.md`; those files had been moved to `archive/tracking/` and
+have since been deleted as a confusing duplicate of live state. The live tracking
+system is the RepoPact `work/` queue plus `audits/`.
 Recommendation: do not resurrect the archived files; this audit + the `work/`
 item status is the reconciled record of truth.
 
