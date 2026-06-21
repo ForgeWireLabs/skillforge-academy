@@ -1,6 +1,6 @@
 [package]
 name = "skillforge-academy"
-version = "1.3.2"
+version = "1.4.0"
 description = "Offline-first certification learning and exam-prep desktop app, starting with CompTIA A+."
 authors = ["ForgeWire Labs"]
 edition = "2021"
