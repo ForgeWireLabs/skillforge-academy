@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "228",
+  "title": "Real learner beta pilot and feedback loop",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["docs", "README.md", "audits", "work"],
+  "depends_on": ["219", "220", "221", "222"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Define a beta pilot script that asks real learners to install, choose a track, study for at least 30 minutes, complete practice, take or start a mock exam, use flashcards, create a backup, restore/import if practical, and report friction.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Recruit or identify a small beta cohort with at least one A+ learner and one non-A+ track learner, or record the exact recruiting blocker.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Create a structured feedback form that separates install friction, study clarity, content trust, assessment difficulty, accessibility, performance, backup confidence, and overall willingness to keep using the app.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Triage beta feedback into defects, content issues, UX issues, docs/support issues, and future ideas, creating follow-up work items for actionable findings.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Produce a beta pilot report with participant count, scenarios completed, major findings, fixes made, unresolved risks, and release recommendation.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: real learner beta loop"
+}

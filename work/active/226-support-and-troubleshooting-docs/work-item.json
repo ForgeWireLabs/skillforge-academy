@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "226",
+  "title": "Support and troubleshooting documentation",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["docs", "README.md"],
+  "depends_on": ["219", "221", "225"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Create troubleshooting docs for install, SmartScreen, code signing status, app launch, content loading, backup restore, corrupted state, and reset/recovery.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Document where learner data lives on each supported platform and how to preserve, reset, or move it.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Document how to collect local diagnostics according to the stance from 225.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Add mobile-specific support sections once 217/218 establish Android/iOS behavior.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Link support docs from README and release notes where users naturally look during install or recovery.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: support docs"
+}

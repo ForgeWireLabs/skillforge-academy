@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "224",
+  "title": "Next-generation PBQ UX depth",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["src/types.ts", "src/logic.ts", "src/App.tsx", "src/styles.css", "src/content", "scripts", "docs"],
+  "depends_on": ["216"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Design at least one richer PBQ format beyond matching, ordering, and fill-in, with a preference for hotspot/diagram, categorization, or tool-output simulation.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Implement the selected PBQ format end to end: type, grading, Practice/PBQ Lab/Mock rendering, validators, content authoring rules, and tests.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Improve PBQ review explanations for partial credit so learners can see which sub-parts were correct, missing, or wrong.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Author original PBQ content for at least one shipped track, with no exam dumps or proprietary assessment material.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Verify desktop keyboard accessibility and mobile touch usability for the new PBQ interaction, or record mobile follow-up tied to 217/218.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: PBQ UX depth"
+}

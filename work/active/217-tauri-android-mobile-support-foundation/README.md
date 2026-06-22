@@ -29,10 +29,15 @@ In scope:
 - Add package scripts for Android dev/build workflows.
 - Adjust Vite/Tauri dev host configuration if required by Android device or
   emulator networking.
-- Make bundled `src/content` loading work on Android.
+- Make bundled `src/content` loading work on Android, including lesson assets
+  and PBQ data, with airplane-mode/offline proof after install.
 - Verify local learner state persistence through the existing Rust/Tauri command
   surface or an Android-specific Tauri-compatible path.
-- Make the UI usable at phone and tablet breakpoints with touch interaction.
+- Define the Android small-screen information architecture: navigation pattern,
+  touch target rules, sidebar behavior, chart simplification, virtual-keyboard
+  behavior, and review/PBQ layout rules for phone and tablet breakpoints.
+- Validate Android file/storage behavior for local state and encrypted backup
+  import/export under sandbox rules.
 - Document Android prerequisites and build/run instructions.
 - Add Android-specific validation evidence and screenshots or emulator notes.
 
@@ -73,6 +78,7 @@ Out of scope:
    - Open each track.
    - Confirm A+, Network+, and Security+ domains, lessons, questions,
      flashcards, and PBQs are available offline.
+   - Confirm lesson SVG assets render from the bundled package.
    - Run with network disabled after install if practical.
 
 6. Prove persistence.
@@ -84,15 +90,20 @@ Out of scope:
 
 7. Make UI touch-usable.
    - Check small phone viewport and a tablet viewport.
-   - Fix overflow, cramped navigation, dialogs, PBQ controls, mock setup,
-     analytics charts, and notes editor as needed.
+   - Decide the mobile navigation model before patching: retained sidebar,
+     drawer, bottom navigation, or another Tauri-friendly pattern.
+   - Fix overflow, cramped navigation, safe areas, dialogs, PBQ controls, mock
+     setup, analytics charts, review screens, virtual keyboard behavior, and
+     notes editor as needed.
    - Preserve keyboard/accessibility affordances.
 
 8. Handle backup/export/import.
    - Test encrypted `.apexbackup` export/import on Android.
-   - If Android file picker/storage integration needs a plugin or permission
-     change, implement it if scoped; otherwise record the blocker and exact next
-     work item needed.
+   - Identify the local state path and backup handoff path in the Android app
+     sandbox.
+   - If Android file picker, share-sheet, storage integration, or permissions
+     need a Tauri plugin or native change, implement it if scoped; otherwise
+     record the blocker and exact next work item needed.
 
 9. Validate.
    - `node scripts/validate-content.mjs --strict-coverage`

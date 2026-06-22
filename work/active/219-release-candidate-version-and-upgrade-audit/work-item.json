@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "219",
+  "title": "Release candidate, version, installer, and upgrade audit",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["README.md", "CHANGELOG.md", "VERSION", "package.json", "src-tauri", "docs", "audits"],
+  "depends_on": ["305"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Cut a release-candidate checklist for the next desktop release, including version source of truth, changelog cut, tag plan, installer artifact, checksum artifact, and rollback note.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Resolve the current stable/latest-release documentation mismatch so README, CHANGELOG, package version, Tauri version, VERSION, and release artifacts tell one consistent story.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Verify installer upgrade behavior from the old Apex A+ naming line and current SkillForge line, documenting whether installs replace, coexist, or migrate.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Run a Windows release smoke test: install, launch, switch tracks, answer content, create backup, close/reopen, uninstall/reinstall or upgrade, and confirm learner data behavior.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Record a release audit with commands, installer paths, checksum evidence, signing status, SmartScreen expectation, and residual risks.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: release/version cleanup and upgrade/install behavior audit"
+}

@@ -34,7 +34,7 @@
     },
     {
       "id": "AC-4",
-      "text": "Verify bundled certification content loads on iOS for A+, Network+, and Security+ without network access.",
+      "text": "Verify bundled certification content and lesson assets load on iOS for A+, Network+, and Security+ without network access, including JSON banks, SVG lesson assets, and PBQ data.",
       "state": "pending",
       "evidence": []
     },
@@ -46,13 +46,13 @@
     },
     {
       "id": "AC-6",
-      "text": "Make the core study flows usable on iPhone-sized and iPad-sized touch viewports, building on the Android responsive work from 217.",
+      "text": "Define and implement the iOS small-screen information architecture and touch/safe-area rules for core study flows on iPhone and iPad, building on the Android responsive work from 217.",
       "state": "pending",
       "evidence": []
     },
     {
       "id": "AC-7",
-      "text": "Define and validate iOS backup/export/import behavior under iOS sandbox/document-picker rules, or explicitly record the platform blocker and mitigation.",
+      "text": "Define and validate iOS file/storage behavior under sandbox rules, including local state location, encrypted backup export/import, document picker or share-sheet flow, entitlements, and any required Tauri plugin; if blocked, record the exact mitigation.",
       "state": "pending",
       "evidence": []
     },

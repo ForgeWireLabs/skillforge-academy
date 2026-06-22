@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "220",
+  "title": "Real screen-reader walkthrough",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["src", "scripts", "docs", "audits"],
+  "depends_on": ["213"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Run a real NVDA walkthrough on Windows across dashboard, track switcher, learning paths, lesson reader, practice, PBQ Lab, mock setup, mock review, flashcards, analytics, notes, and preferences.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Document any screen-reader blockers with file/line references or reproducible steps, then fix P0/P1 issues discovered during the walkthrough.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Verify focus order, landmark navigation, dialog announcements, menu dismissal, form labels, chart/heatmap names, PBQ controls, and live feedback announcements.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Add or extend automated accessibility checks for any screen-reader regression that can be cheaply detected.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Create an accessibility audit record with assistive technology version, browser/WebView context, evidence, findings, fixes, and residual risks.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: real screen-reader walkthrough"
+}

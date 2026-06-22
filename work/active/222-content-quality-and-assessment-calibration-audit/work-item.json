@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "222",
+  "title": "Content quality and assessment calibration audit",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": ["src/content", "docs", "audits"],
+  "depends_on": ["215", "216"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Review a representative sample from A+, Network+, and Security+ for clarity, originality, ambiguity, distractor quality, explanation usefulness, and objective fit.", "state": "pending", "evidence": []},
+    {"id": "AC-2", "text": "Evaluate mock exam calibration signals: domain weighting, difficulty mix, PBQ count, multi-select density, pass/fail feel, and whether scores are likely too easy or too harsh.", "state": "pending", "evidence": []},
+    {"id": "AC-3", "text": "Create a rubric for future question, lesson, flashcard, and PBQ review that is stricter than schema/coverage validation.", "state": "pending", "evidence": []},
+    {"id": "AC-4", "text": "Fix high-confidence content defects found during the audit and track lower-confidence calibration questions as follow-up work.", "state": "pending", "evidence": []},
+    {"id": "AC-5", "text": "Create a content audit with sample size, findings, fixes, residual risks, and recommendation on whether current content is release-ready.", "state": "pending", "evidence": []}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: assessment calibration and content quality audit"
+}

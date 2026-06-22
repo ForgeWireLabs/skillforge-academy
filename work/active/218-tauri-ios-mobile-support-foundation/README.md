@@ -29,8 +29,12 @@ In scope:
 - Add package scripts for iOS dev/build workflows.
 - Configure development host behavior required by iOS Simulator or physical
   devices.
-- Verify bundled content loading and local state persistence on iOS.
-- Reuse and refine responsive/touch work from Android.
+- Verify bundled content loading and local state persistence on iOS, including
+  lesson assets and PBQ data with offline proof.
+- Reuse and refine responsive/touch work from Android, including iOS safe areas,
+  virtual keyboard behavior, and iPad split-space assumptions.
+- Validate iOS file/storage behavior for local state and encrypted backup
+  import/export under sandbox and document-picker rules.
 - Document iOS prerequisites, signing/provisioning, Simulator flow, device flow,
   and known blockers.
 - Identify whether TestFlight/App Store readiness needs a separate release item.
@@ -71,7 +75,8 @@ Out of scope:
 5. Prove content loading.
    - Open A+, Network+, and Security+.
    - Confirm domains, lessons, questions, flashcards, and PBQs load offline.
-   - Confirm bundled resource paths work in the iOS app container.
+   - Confirm bundled resource paths and lesson SVG assets work in the iOS app
+     container.
 
 6. Prove persistence.
    - Change active track.
@@ -84,13 +89,16 @@ Out of scope:
    - Test iPhone-size and iPad-size layouts.
    - Fix remaining mobile layout issues from Android work.
    - Pay special attention to safe areas, virtual keyboard, notes editor, modal
-     focus, scroll containers, charts, and PBQ controls.
+     focus, scroll containers, charts, PBQ controls, review screens, and iPad
+     split-screen widths.
 
 8. Handle backup/export/import.
    - Validate encrypted `.apexbackup` export/import through iOS-compatible file
      picker/document sharing behavior.
-   - If plugin or entitlement work is needed, implement if scoped; otherwise
-     record a follow-up with exact requirements.
+   - Identify the local state path and backup handoff path in the iOS app
+     sandbox.
+   - If plugin, entitlement, document picker, or share-sheet work is needed,
+     implement if scoped; otherwise record a follow-up with exact requirements.
 
 9. Document signing and distribution.
    - Record Apple Developer enrollment requirement.
