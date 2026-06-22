@@ -102,6 +102,8 @@ Press `Ctrl+K` to search domains, objectives, practice explanations, answers, an
 
 Export learner progress, notes, bookmarks, settings, daily activity, and spaced-repetition scheduling as a passphrase-protected portable backup. AES-256-GCM encryption keeps cross-device transfers private, while legacy plain JSON backups remain importable.
 
+See [Backup, Restore, And Cross-Device Transfer](docs/backup-restore.md) for platform compatibility, restore steps, and recovery guidance.
+
 ### Private by Design
 
 Progress is stored locally through the Rust backend. The app does not require a cloud account or send learner activity to an external service.

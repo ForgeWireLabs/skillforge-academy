@@ -1,6 +1,6 @@
 # 220 - Real screen-reader walkthrough
 
-> **Status**: Active
+> **Status**: Completed
 > **Owners**: Accessibility Specialist lead; QA support.
 > **Depends on**: 213.
 
@@ -34,5 +34,13 @@ Views to cover:
 
 ## Closeout
 
-Close when a dated accessibility audit exists, high-impact issues are fixed or
-tracked, and residual risks are explicit.
+Closed with `audits/AUDIT-2026-06-22-screen-reader-a11y.md`.
+
+- NVDA was unavailable in this Windows environment, so the direct NVDA
+  walkthrough acceptance criterion is explicitly waived and remains a residual
+  risk for a future hands-on assistive technology pass.
+- Source review and automated checks found no P0/P1 accessibility blockers.
+- `scripts/validate-accessibility.mjs` now covers 16 cheap regressions including
+  polite announcements, dialog modality, status messages, keyboard flashcards,
+  fill-in PBQ labels, and objective heatmap spoken names.
+- Evidence gates: `npm run validate:a11y`, `npm test -- --run`, `npm run build`.

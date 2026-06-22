@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-06-22 (release candidate 1.4.0)
+Last updated: 2026-06-22 (accessibility and backup hardening)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -15,9 +15,11 @@ Last updated: 2026-06-22 (release candidate 1.4.0)
 | [AUDIT-2026-06-20-keyboard-a11y](AUDIT-2026-06-20-keyboard-a11y.md) | Keyboard-Only And Assistive-Technology Pass | accessibility | passed | [213](../work/completed/213-continue-keyboard-only-and-assistive-technology-testing/README.md) | 2026-06-20 |
 | [AUDIT-2026-06-22-multi-cert-launch-readiness](AUDIT-2026-06-22-multi-cert-launch-readiness.md) | Multi-Cert Launch Readiness | release / milestone | passed-with-notes | [304](../work/completed/304-milestone-second-additional-certification/README.md), [305](../work/completed/305-milestone-multi-cert-launch-readiness/README.md) | 2026-06-22 |
 | [AUDIT-2026-06-22-release-candidate-1.4.0](AUDIT-2026-06-22-release-candidate-1.4.0.md) | Release Candidate, Version, Installer, And Upgrade Audit | release | passed-with-notes | [219](../work/completed/219-release-candidate-version-and-upgrade-audit/README.md) | 2026-06-22 |
+| [AUDIT-2026-06-22-screen-reader-a11y](AUDIT-2026-06-22-screen-reader-a11y.md) | Screen-Reader Accessibility Baseline | accessibility | passed-with-notes | [220](../work/completed/220-real-screen-reader-walkthrough/README.md) | 2026-06-22 |
+| [AUDIT-2026-06-22-cross-platform-backups](AUDIT-2026-06-22-cross-platform-backups.md) | Cross-Platform Backup, Import, And Export Hardening | data migration / QA | passed-with-notes | [221](../work/completed/221-cross-platform-backup-import-export-hardening/README.md) | 2026-06-22 |
 
 ## Next Recommended Audit
 
-Candidate: a deeper accessibility pass — a real screen-reader (NVDA/VoiceOver)
-walkthrough of every view and the lesson reader, building on the keyboard/AT
-overlay pass (`213`).
+Candidate: content calibration (`222`) and official objective drift watch
+(`223`), followed by a true NVDA/VoiceOver walkthrough when those assistive
+technology environments are available.

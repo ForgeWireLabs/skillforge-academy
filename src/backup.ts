@@ -46,6 +46,10 @@ export function isEncryptedBackup(value: unknown): value is EncryptedBackup {
     typeof item.data === "string" && Number.isInteger(item.iterations) && (item.iterations ?? 0) >= 100_000;
 }
 
+function isEncryptedBackupEnvelope(value: unknown): boolean {
+  return !!value && typeof value === "object" && (value as Partial<EncryptedBackup>).format === FORMAT;
+}
+
 export async function encryptBackup(value: unknown, passphrase: string): Promise<string> {
   if (passphrase.length < 8) throw new Error("Passphrase must be at least 8 characters.");
   const salt = crypto.getRandomValues(new Uint8Array(16));
@@ -60,7 +64,15 @@ export async function encryptBackup(value: unknown, passphrase: string): Promise
 }
 
 export async function decryptBackup(raw: string, passphrase: string): Promise<unknown> {
-  const envelope: unknown = JSON.parse(raw);
+  let envelope: unknown;
+  try {
+    envelope = JSON.parse(raw);
+  } catch {
+    throw new Error("Backup file is not valid JSON.");
+  }
+  if (isEncryptedBackupEnvelope(envelope) && !isEncryptedBackup(envelope)) {
+    throw new Error("Unsupported or invalid encrypted backup format.");
+  }
   if (!isEncryptedBackup(envelope)) return envelope;
   if (!passphrase) throw new Error("Enter the backup passphrase.");
   try {

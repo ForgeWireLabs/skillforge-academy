@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "221",
+  "title": "Cross-platform backup, import, and export hardening",
+  "status": "completed",
+  "owner_scope": "governance",
+  "affected_scopes": ["src/backup.ts", "src/App.tsx", "src-tauri", "docs", "audits"],
+  "depends_on": ["207", "217", "218"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "text": "Define a cross-platform backup compatibility matrix for Windows, Android, and iOS, including encrypted .apexbackup export/import and legacy JSON import.", "state": "satisfied", "evidence": ["docs/backup-restore.md compatibility matrix"]},
+    {"id": "AC-2", "text": "Add automated tests or scripted fixtures proving backup decrypt/import compatibility across schema versions and representative learner data.", "state": "satisfied", "evidence": ["src/backup.test.ts covers representative multi-track state, encrypted round-trip, legacy JSON import, and legacy schema migration.", "npm test -- --run"]},
+    {"id": "AC-3", "text": "Verify corrupted, wrong-passphrase, unsupported-version, and partial-file failures produce safe, understandable errors without data loss.", "state": "satisfied", "evidence": ["src/backup.ts rejects malformed JSON and unsupported encrypted envelopes safely.", "src/backup.test.ts covers malformed JSON, wrong passphrase, unsupported version, and truncated encrypted payloads."]},
+    {"id": "AC-4", "text": "Validate backup/export/import behavior on each supported platform or record exact platform blockers tied to 217/218.", "state": "satisfied", "evidence": ["docs/backup-restore.md records Windows support plus Android blocker on 217 and iOS blocker on 218.", "audits/AUDIT-2026-06-22-cross-platform-backups.md platform status table"]},
+    {"id": "AC-5", "text": "Document user-facing backup restore, cross-device transfer, and recovery instructions.", "state": "satisfied", "evidence": ["docs/backup-restore.md", "README.md Progress Backup link"]}
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "Gap review: backup/import/export hardening"
+}
