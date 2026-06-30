@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "223",
   "title": "Official certification objective drift watch",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [
     "content",
@@ -18,35 +18,45 @@
     {
       "id": "AC-1",
       "text": "Create a repeatable objective-version audit process for A+ V15, Network+ N10-009, Security+ SY0-701, and future tracks.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260630-223-objective-drift-watch"
+      ]
     },
     {
       "id": "AC-2",
       "text": "Record official-source links, checked dates, exam retirement or draft-successor signals, and next review dates for each shipped track.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260630-223-objective-drift-watch"
+      ]
     },
     {
       "id": "AC-3",
       "text": "Add a durable ledger or audit entry for objective drift, including Security+ V8 draft-watch status.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260630-223-objective-drift-watch"
+      ]
     },
     {
       "id": "AC-4",
       "text": "Define what docs and app claims must change when a cert objective set is superseded, retired, or replaced.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260630-223-objective-drift-watch"
+      ]
     },
     {
       "id": "AC-5",
       "text": "Ensure content validation or release checklist points future agents to the drift-watch evidence before claiming current/objective-complete coverage.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260630-223-objective-drift-watch"
+      ]
     }
   ],
   "created": "2026-06-22",
-  "updated": "2026-06-22",
+  "updated": "2026-06-30",
   "source": "Gap review: exam objective drift watch"
 }

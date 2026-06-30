@@ -110,7 +110,7 @@ Progress is stored locally through the Rust backend. The app does not require a 
 
 ## Certification Tracks
 
-SkillForge Academy ships three CompTIA tracks. Every published exam objective in each track has a dedicated lesson and a mapped practice set, and each track keeps its own progress, streaks, and analytics.
+SkillForge Academy ships three CompTIA tracks. Every published exam objective in each track has a dedicated lesson and a mapped practice set, and each track keeps its own progress, streaks, and analytics. Objective currency is tracked in [docs/objective-drift-watch.md](docs/objective-drift-watch.md).
 
 | Track | Exam(s) | Objective coverage |
 | --- | --- | --- |

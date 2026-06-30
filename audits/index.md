@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-06-30 (Android blocker and content calibration)
+Last updated: 2026-06-30 (Android blocker, content calibration, and objective drift)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -19,9 +19,9 @@ Last updated: 2026-06-30 (Android blocker and content calibration)
 | [AUDIT-2026-06-22-cross-platform-backups](AUDIT-2026-06-22-cross-platform-backups.md) | Cross-Platform Backup, Import, And Export Hardening | data migration / QA | passed-with-notes | [221](../work/completed/221-cross-platform-backup-import-export-hardening/README.md) | 2026-06-22 |
 | [AUDIT-2026-06-30-android-mobile-foundation](AUDIT-2026-06-30-android-mobile-foundation.md) | Android Mobile Foundation | implementation / mobile readiness | blocked-with-repo-foundation | [217](../work/blocked/217-tauri-android-mobile-support-foundation/README.md) | 2026-06-30 |
 | [AUDIT-2026-06-30-content-quality-calibration](AUDIT-2026-06-30-content-quality-calibration.md) | Content Quality And Assessment Calibration | content / assessment calibration | passed-with-notes | [222](../work/completed/222-content-quality-and-assessment-calibration-audit/README.md) | 2026-06-30 |
+| [AUDIT-2026-06-30-objective-drift-watch](AUDIT-2026-06-30-objective-drift-watch.md) | Official Objective Drift Watch | content / release governance | passed-with-notes | [223](../work/completed/223-official-objective-drift-watch/README.md) | 2026-06-30 |
 
 ## Next Recommended Audit
 
-Candidate: official objective drift watch (`223`), followed by a true
-NVDA/VoiceOver walkthrough when those assistive technology environments are
-available.
+Candidate: a true NVDA/VoiceOver walkthrough when those assistive technology
+environments are available.

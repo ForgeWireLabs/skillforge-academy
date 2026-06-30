@@ -48,6 +48,8 @@ SmartScreen unrecognized-publisher warnings.
 
 ## Required Gates
 
+- Refresh `docs/objective-drift-watch.md` and confirm the checked date is within
+  the required release window before claiming current/objective-complete tracks.
 - `node scripts/validate-content.mjs --strict-coverage`
 - `npm test -- --run`
 - `npm run validate:a11y`

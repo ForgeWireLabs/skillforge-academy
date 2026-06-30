@@ -83,6 +83,11 @@ When the content is ready, author the banks and remove `"status": "coming-soon"`
 The app guards `activeCertId`: if a learner's focused track is removed or flipped
 to coming-soon, the workspace falls back to the first available track.
 
+Before a track is published as current or objective-complete, add or refresh its
+row in [Official Objective Drift Watch](objective-drift-watch.md). The checked
+date, official source links, and next review date are part of the release
+evidence, not optional notes.
+
 ## Other Vendors (Non-CompTIA Tracks)
 
 The content model is **vendor-agnostic** — nothing in the app hardcodes CompTIA.

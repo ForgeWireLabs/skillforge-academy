@@ -1,0 +1,52 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260630-223-objective-drift-watch",
+  "timestamp": "2026-06-30T21:00:00Z",
+  "work_item": "223",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "live source check for CompTIA A+, Network+, Security+ official/objective pages",
+      "exit_code": 0,
+      "summary": "[AC-2] Checked official CompTIA certification pages/resource hub links and recorded source availability constraints in docs/objective-drift-watch.md."
+    },
+    {
+      "command": "repo manifest/objective review",
+      "exit_code": 0,
+      "summary": "[AC-1] Confirmed shipped app tracks and exam codes in src/content/certifications.json: A+ 220-1201/220-1202, Network+ N10-009, Security+ SY0-701."
+    },
+    {
+      "command": "node scripts/validate-content.mjs --strict-coverage",
+      "exit_code": 0,
+      "summary": "[AC-5] Strict objective coverage validation passed after adding the drift-watch release gate."
+    },
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "[AC-5] Content validation passed."
+    },
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-5] Unit tests passed."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 1,
+      "summary": "[AC-5] Governance validation still fails on the repo-wide preflight-marker requirement affecting existing work items."
+    }
+  ],
+  "artifacts": [
+    "docs/objective-drift-watch.md",
+    "docs/release-candidate-1.4.0.md",
+    "docs/certification-authoring.md",
+    "README.md",
+    "audits/AUDIT-2026-06-30-objective-drift-watch.md",
+    "work/completed/223-official-objective-drift-watch"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "process_note": "Objective drift watch process and ledger created for A+ V15, Network+ N10-009, and Security+ SY0-701; Security+ V8 recorded as draft-watch only."
+  }
+}
