@@ -18,6 +18,8 @@
     "tauri": "tauri",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
+    "mobile:android:doctor": "powershell -File scripts/android-sdk-doctor.ps1",
+    "mobile:android:repair": "powershell -File scripts/android-sdk-doctor.ps1 -Repair -CleanPartial",
     "mobile:android:init": "tauri android init --ci",
     "mobile:android:dev": "tauri android dev",
     "mobile:android:studio": "tauri android dev --open",
