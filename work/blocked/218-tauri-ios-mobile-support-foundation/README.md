@@ -1,6 +1,6 @@
 # 218 - Add Tauri iOS mobile support foundation
 
-> **Status**: Active
+> **Status**: Blocked
 > **Owners**: Desktop/Mobile Specialist lead; QA Specialist support.
 > **Depends on**: 217.
 
@@ -133,3 +133,39 @@ Close only when iOS is a real Tauri mobile target in the repo, the app has
 launched in Simulator or on device, content and learner state work offline, core
 study flows are usable on iPhone/iPad viewports, and iOS signing/distribution
 requirements are documented with honest evidence.
+
+## Work Log
+
+### 2026-07-01 - Repository foundation complete; macOS/Xcode blocker
+
+- Added Tauri iOS npm scripts for init, dev, build, and Xcode handoff.
+- Confirmed the repository already had mobile-aware Vite `TAURI_DEV_HOST`
+  handling, iOS icon assets, and the Rust Tauri mobile entry point.
+- Added `docs/ios-mobile.md` with iOS prerequisites, commands, small-screen
+  information architecture, safe-area rules, storage/backup stance,
+  signing/provisioning requirements, and validation checklist.
+- Updated `docs/backup-restore.md` and `README.md` with iOS status and mobile
+  development entry points.
+- Added iOS safe-area CSS hardening for the app shell, sidebar drawer, sticky
+  header, content padding, track menu, search palette, and mobile overlays.
+- Created `audits/AUDIT-2026-07-01-ios-mobile-foundation.md`.
+
+Host evidence:
+
+- `npm run mobile:ios:init` failed because this Windows host's Tauri CLI
+  exposes no `ios` subcommand.
+- `npm run tauri -- --help` listed Android commands but no iOS commands.
+- `npm run tauri -- info` passed on Windows and reported the current Tauri app
+  environment.
+- `rustup target list --installed` reported only Windows and Linux targets.
+- `npm run validate:content`, `node scripts/validate-content.mjs
+  --strict-coverage`, `npm run validate:a11y`, `npm test -- --run`, `npm run
+  build`, `cargo fmt --check --manifest-path src-tauri/Cargo.toml`, and `cargo
+  check --manifest-path src-tauri/Cargo.toml` passed.
+- `python -m repopact_cli validate` still fails on the repo-wide
+  preflight-marker requirement affecting active, blocked, and completed work
+  items.
+
+Status: blocked, not done. iOS target generation, Simulator/device launch,
+offline content proof, persistence proof, encrypted backup document/share
+handoff, and IPA output require a macOS host with Xcode and the Tauri iOS CLI.

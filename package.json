@@ -21,7 +21,11 @@
     "mobile:android:init": "tauri android init --ci",
     "mobile:android:dev": "tauri android dev",
     "mobile:android:studio": "tauri android dev --open",
-    "mobile:android:build": "tauri android build -- --apk"
+    "mobile:android:build": "tauri android build -- --apk",
+    "mobile:ios:init": "tauri ios init --ci",
+    "mobile:ios:dev": "tauri ios dev",
+    "mobile:ios:build": "tauri ios build",
+    "mobile:ios:xcode": "tauri ios build -- --open"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.8.0",

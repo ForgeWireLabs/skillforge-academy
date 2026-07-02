@@ -10,7 +10,8 @@ mobile application.
 The repository is prepared for Tauri Android development with mobile scripts and
 Vite dev-server host support. The local Windows host has Java 17 and an Android
 SDK root at `C:\Android\Sdk`, but `tauri android init` is currently blocked
-because the Android NDK is not installed successfully in SDK metadata.
+because required Android SDK packages are not installed successfully in SDK
+metadata.
 
 Attempted NDK installs with `sdkmanager` created temporary package directories
 but did not complete cleanly:
@@ -20,6 +21,11 @@ but did not complete cleanly:
   directory but did not produce `source.properties`. `npm run
   mobile:android:init` now finds that partial directory and fails while reading
   the missing file.
+- A 2026-07-01 retry moved stale partial NDK/build-tools directories aside and
+  confirmed that `sdkmanager --list_installed` still lists only CMake, emulator,
+  platform-tools, and the Android 35 x86_64 system image. Direct downloads from
+  Google's Android repository are reachable but too slow in this host session to
+  complete the 64 MB platform, 60 MB build-tools, and 665 MB NDK archives.
 
 Do not treat Android launch, offline content loading, persistence, or backup
 handoff as validated until the NDK install succeeds and the app has run on an
@@ -39,15 +45,17 @@ $env:ANDROID_SDK_ROOT = "C:\Android\Sdk"
 $env:PATH = "C:\Android\Sdk\platform-tools;C:\Android\Sdk\cmdline-tools\latest\bin;C:\Android\Sdk\emulator;$env:PATH"
 ```
 
-Recommended SDK packages for the next retry:
+Required SDK packages for the next retry:
 
 ```powershell
 sdkmanager "platforms;android-35" "build-tools;35.0.0" "ndk;26.3.11579264" "cmake;3.22.1"
 sdkmanager --list_installed
 ```
 
-The NDK is usable only when `sdkmanager --list_installed` lists it and
-`C:\Android\Sdk\ndk\<version>\source.properties` exists.
+The Android SDK is usable for this work only when `sdkmanager --list_installed`
+lists `platforms;android-35`, `build-tools;35.0.0`, and
+`ndk;26.3.11579264`, and
+`C:\Android\Sdk\ndk\26.3.11579264\source.properties` exists.
 
 ## Commands
 

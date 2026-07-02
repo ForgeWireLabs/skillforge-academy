@@ -11,7 +11,7 @@ a learner can recover or move devices without a cloud account.
 | --- | --- | --- | --- | --- |
 | Windows desktop | `%APPDATA%\com.apexlearning.aplusacademy\learner-state.json` through the Tauri backend | Validated by unit tests and release smoke checks | Supported through `decryptBackup` plus `migrateState` | Supported in `1.4.0` |
 | Android | Tauri app sandbox through `app.path().app_data_dir()` once the Android target is initialized | Must use Android document/share APIs and preserve the same backup envelope | Must route imported JSON through the same migration path | Designed in `217`; runtime validation blocked by local NDK install |
-| iOS | Tauri app container path to be finalized by `218` | Must use iOS document picker/share APIs and preserve the same backup envelope | Must route imported JSON through the same migration path | Blocked on `218` |
+| iOS | Tauri app container through `app.path().app_data_dir()` once the iOS target is initialized | Must use iOS document picker/share APIs and preserve the same backup envelope | Must route imported JSON through the same migration path | Designed in `218`; runtime validation blocked by macOS/Xcode dependency |
 
 The encrypted backup envelope remains:
 
@@ -69,3 +69,15 @@ desktop. Do not request broad storage permissions for normal progress storage.
 
 See [Android Mobile Support](android-mobile.md) for the current Tauri Android
 host blocker and the validation checklist.
+
+## iOS Notes
+
+iOS learner state should remain private app data owned by the Tauri shell.
+Portable backups are the explicit transfer path: the app should export the same
+encrypted `.apexbackup` envelope and hand it to an iOS share sheet or document
+export flow, then import user-selected files through the same
+decrypt-and-migrate path used on desktop. Do not request broad file access for
+normal progress storage.
+
+See [iOS Mobile Support](ios-mobile.md) for the current macOS/Xcode blocker,
+signing requirements, and validation checklist.

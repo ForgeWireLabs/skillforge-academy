@@ -89,3 +89,29 @@ foundation is in place, but the product acceptance criteria require a real
 Tauri Android target and runtime proof. Resume by completing the Android NDK
 install, then run `npm run mobile:android:init`, launch on an emulator/device,
 validate offline content and learner state, and produce an APK.
+
+## 2026-07-01 Retry Addendum
+
+Related evidence: `evidence/runs/20260701-217-android-runtime-retry.json`.
+
+- Moved stale partial NDK and build-tools directories aside after verifying they
+  contained only installer metadata and no usable `source.properties`.
+- `sdkmanager --list_installed` still lists only CMake, emulator,
+  platform-tools, and the Android 35 x86_64 system image. It does not list
+  `platforms;android-35`, `build-tools;35.0.0`, or `ndk;26.3.11579264`.
+- Retried `sdkmanager` for the required platform/build-tools/NDK packages; the
+  process stalled and left partial package-operation downloads.
+- Direct downloads from Google's Android repository are reachable, but observed
+  throughput was too slow for this run: the platform archive reached only about
+  3.9 MB of 64.3 MB after roughly 2.5 minutes, and the required NDK archive is
+  about 665 MB.
+- `npm run mobile:android:init` still fails with `Android NDK not found. Make
+  sure the NDK is installed and the NDK_HOME environment variable is set.`
+- `adb devices` reported no connected/running devices. `emulator -list-avds`
+  reports `forge_moto_one_hyper_lab_api35`, but runtime launch cannot proceed
+  until the Android target is generated.
+
+Updated recommendation: keep `217` blocked. The precise prerequisite is a
+complete Android SDK install containing `platforms;android-35`,
+`build-tools;35.0.0`, and `ndk;26.3.11579264`, with
+`C:\Android\Sdk\ndk\26.3.11579264\source.properties` present.

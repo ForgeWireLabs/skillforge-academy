@@ -169,3 +169,33 @@ Host evidence:
 Status: blocked, not done. Android launch, offline content proof, persistence
 proof, backup document/share handoff, and APK output still require a complete
 Android NDK install followed by `npm run mobile:android:init`.
+
+### 2026-07-01 - Runtime retry; SDK acquisition still blocked
+
+- Moved the stale partial `C:\Android\Sdk\ndk\26.3.11579264` directory aside
+  after verifying it contained only `.installer` metadata and no
+  `source.properties`.
+- Retried `sdkmanager "platforms;android-35" "build-tools;35.0.0"
+  "ndk;26.3.11579264" "cmake;3.22.1"`. The process produced no useful output,
+  stalled, and left only partial temp downloads.
+- Retried a narrower platform/build-tools install. It also stalled and left a
+  partial build-tools `.installer` stub, which was moved aside.
+- Downloaded the official Android repository XML and resolved exact package
+  archive names and SHA-1 checksums. Direct archive download worked, but
+  throughput stayed around tens of KB/sec; the platform download reached only
+  about 3.9 MB of 64.3 MB after roughly 2.5 minutes, making the 665 MB NDK
+  archive impractical during this run.
+- Searched common Android/AppData/Program Files locations for an existing NDK
+  `source.properties`; none was found.
+- `npm run mobile:android:init` still fails with `Android NDK not found. Make
+  sure the NDK is installed and the NDK_HOME environment variable is set.`
+- `adb devices` reported no connected/running devices. `emulator -list-avds`
+  reports `forge_moto_one_hyper_lab_api35`, but app launch remains blocked
+  before Android project generation.
+
+Status: blocked, not done. Required host prerequisites are now precise:
+`platforms;android-35`, `build-tools;35.0.0`, and `ndk;26.3.11579264` must be
+fully installed in `C:\Android\Sdk`, and the NDK must include
+`C:\Android\Sdk\ndk\26.3.11579264\source.properties`. Resume with a reliable SDK
+package install or a verified local copy of the official Android SDK/NDK
+archives, then run `npm run mobile:android:init`.

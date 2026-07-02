@@ -1,0 +1,83 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260701-218-ios-mobile-foundation",
+  "timestamp": "2026-07-01T00:00:00Z",
+  "work_item": "218",
+  "result": "blocked",
+  "commands": [
+    {
+      "command": "npm run mobile:ios:init",
+      "exit_code": 1,
+      "summary": "[AC-1] iOS initialization blocked on Windows because the installed Tauri CLI exposes no ios subcommand."
+    },
+    {
+      "command": "npm run tauri -- --help",
+      "exit_code": 0,
+      "summary": "[AC-1] CLI help listed android commands but no ios commands on this Windows host."
+    },
+    {
+      "command": "npm run tauri -- info",
+      "exit_code": 0,
+      "summary": "[AC-9] Confirmed current Tauri 2 app environment before iOS initialization attempt."
+    },
+    {
+      "command": "rustup target list --installed",
+      "exit_code": 0,
+      "summary": "[AC-9] Confirmed only Windows and Linux Rust targets are installed locally; no iOS target is available on this host."
+    },
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "[AC-4] Content validation passed for A+, Network+, and Security+ bundled banks before iOS runtime proof."
+    },
+    {
+      "command": "node scripts/validate-content.mjs --strict-coverage",
+      "exit_code": 0,
+      "summary": "[AC-4] Strict objective coverage validation passed: 3 certifications, 19 domains, 770 questions, 135 flashcards, 28 PBQs, and 150 lessons."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "[AC-6] Accessibility validation passed after iOS safe-area and mobile CSS hardening."
+    },
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-9] Unit tests passed after iOS repo-foundation changes."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "[AC-9] TypeScript and Vite production build passed after iOS repo-foundation changes."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-9] Rust formatting check passed."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-9] Rust backend check passed."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 1,
+      "summary": "[AC-9] Governance validation still fails on the repo-wide preflight-marker requirement affecting active, blocked, and completed work items; 218 now has the same pre-existing marker class after being moved to blocked."
+    }
+  ],
+  "artifacts": [
+    "package.json",
+    "src/styles.css",
+    "docs/ios-mobile.md",
+    "docs/backup-restore.md",
+    "README.md",
+    "audits/AUDIT-2026-07-01-ios-mobile-foundation.md",
+    "work/blocked/218-tauri-ios-mobile-support-foundation"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "process_note": "Repository-side iOS foundation is present; iOS target generation, Simulator/device launch, offline-content runtime proof, persistence proof, backup document/share handoff, and IPA output remain blocked until work resumes on macOS with Xcode."
+  }
+}

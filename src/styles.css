@@ -116,6 +116,27 @@ main{min-width:0;background:radial-gradient(circle at 70% -10%,#12345655,transpa
 .track-soon-tag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .app.collapsed .track-current>div,.app.collapsed .track-current>svg:last-child{display:none}
 
+/* iOS/Tauri mobile safe-area hardening layered over the shared Android phone rules. */
+html,body,.app{min-height:100dvh}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.sidebar{height:100dvh;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+.collapse{top:calc(72px + env(safe-area-inset-top))}
+.splash{height:100dvh}
+.search-overlay{padding:calc(11vh + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+.search-dialog{max-height:72dvh}
+.search-results{max-height:58dvh}
+@media(max-width:760px){
+  .sidebar{width:min(288px,86vw);transform:translateX(calc(-100% - env(safe-area-inset-left)))}
+  .app:not(.collapsed) .sidebar{transform:translateX(0)}
+  .content{padding-right:max(16px,env(safe-area-inset-right));padding-bottom:calc(52px + env(safe-area-inset-bottom));padding-left:max(16px,env(safe-area-inset-left))}
+}
+@media(max-width:560px){
+  header{padding-top:calc(10px + env(safe-area-inset-top));padding-right:max(12px,env(safe-area-inset-right));padding-left:max(12px,env(safe-area-inset-left))}
+  .content{padding-right:max(12px,env(safe-area-inset-right));padding-bottom:calc(44px + env(safe-area-inset-bottom));padding-left:max(12px,env(safe-area-inset-left))}
+  .track-menu{left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:calc(92px + env(safe-area-inset-top));max-height:70dvh}
+  .search-overlay{padding:calc(8vh + env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+}
+
 /* Lessons ("classes") — list + reading view inside the Learn panel */
 .lesson-list{display:flex;flex-direction:column;gap:8px;margin:4px 0 8px}
 .lesson-item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--text);cursor:pointer;transition:border-color .15s,transform .05s}

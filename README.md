@@ -131,7 +131,7 @@ All practice material across every track is original educational content. It doe
 
 | Layer | Technology | Purpose |
 | --- | --- | --- |
-| Desktop/mobile shell | Tauri 2 | Native Windows packaging plus the planned Android mobile target |
+| Desktop/mobile shell | Tauri 2 | Native Windows packaging plus planned Android and iOS mobile targets |
 | Backend | Rust | Durable local JSON persistence and desktop commands |
 | Interface | React 19 + TypeScript | Responsive study, testing, and analytics workflows |
 | Build system | Vite 8 | Fast development and optimized production builds |
@@ -229,6 +229,24 @@ the Android validation checklist.
 npm run mobile:android:init
 npm run mobile:android:dev
 npm run mobile:android:build
+```
+
+### iOS Mobile Development
+
+iOS support follows the Tauri mobile CLI path from the same app codebase and
+requires a macOS host with Xcode. The repository has iOS scripts, mobile-aware
+Vite host handling, safe-area layout rules, and documentation in place, but iOS
+target generation and Simulator/device proof are blocked from this Windows
+workspace.
+
+See [docs/ios-mobile.md](docs/ios-mobile.md) for macOS prerequisites, commands,
+storage and backup stance, signing/provisioning requirements, and the validation
+checklist.
+
+```bash
+npm run mobile:ios:init
+npm run mobile:ios:dev
+npm run mobile:ios:build
 ```
 
 ### Validation

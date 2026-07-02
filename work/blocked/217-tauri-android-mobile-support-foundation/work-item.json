@@ -15,7 +15,8 @@
       "text": "Initialize first-class Tauri Android support without introducing a PWA or alternate architecture.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     },
     {
@@ -31,7 +32,8 @@
       "text": "Verify the Android app launches on an emulator or physical device and renders the SkillForge Academy shell.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     },
     {
@@ -39,7 +41,8 @@
       "text": "Verify bundled certification content and lesson assets load on Android for A+, Network+, and Security+ without network access, including JSON banks, SVG lesson assets, and PBQ data.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     },
     {
@@ -47,7 +50,8 @@
       "text": "Verify learner state persistence on Android for progress, notes, bookmarks, settings, and active track selection.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     },
     {
@@ -63,7 +67,8 @@
       "text": "Define and validate Android file/storage behavior under sandbox rules, including local state location, encrypted backup export/import, file picker or share-sheet flow, permissions, and any required Tauri plugin; if blocked, record the exact mitigation.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     },
     {
@@ -71,11 +76,12 @@
       "text": "Run the standard validation gates plus an Android build gate, documenting any host-machine dependency that prevents local execution.",
       "state": "pending",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260701-217-android-runtime-retry"
       ]
     }
   ],
   "created": "2026-06-22",
-  "updated": "2026-06-30",
+  "updated": "2026-07-01",
   "source": "User request: direct Tauri mobile support, Android first"
 }
