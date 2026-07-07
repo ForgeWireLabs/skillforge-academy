@@ -24,3 +24,11 @@ learner-state.json
 
 # Generated demo state for documentation screenshots (regenerate with npm run demo:state)
 docs/screenshots/demo-state.json
+
+# Tauri mobile generated output / local Android builds
+src-tauri/gen/
+*.apk
+*.aab
+*.jks
+*.keystore
+android_gradle_warning_mode_all.log
