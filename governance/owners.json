@@ -82,5 +82,9 @@
   ],
   "concurrency": {
     "enforce_disjoint_active_scopes": false
+  },
+  "preflight": {
+    "enabled": true,
+    "required_from_date": "2026-07-15"
   }
 }
