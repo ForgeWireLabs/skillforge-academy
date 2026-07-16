@@ -60,6 +60,22 @@ function isTauri() {
   return typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 }
 
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = window.setTimeout(() => reject(new Error(`${label} timed out`)), ms);
+    promise.then(
+      value => {
+        window.clearTimeout(timer);
+        resolve(value);
+      },
+      error => {
+        window.clearTimeout(timer);
+        reject(error);
+      }
+    );
+  });
+}
+
 /**
  * Loads the active content bundle. On the desktop build it prefers content read
  * by the Rust backend from bundled resource files. Any failure or malformed
@@ -69,7 +85,7 @@ function isTauri() {
 export async function loadContent(): Promise<ContentBundle> {
   if (!isTauri()) return bundledContent;
   try {
-    const remote = await invoke<Partial<ContentBundle>>("load_content");
+    const remote = await withTimeout(invoke<Partial<ContentBundle>>("load_content"), 5000, "load_content");
     const errors = validateContent(remote);
     if (errors.length) {
       console.warn("Backend content failed validation; using bundled content.", errors);

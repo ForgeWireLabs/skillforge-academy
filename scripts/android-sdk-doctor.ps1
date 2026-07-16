@@ -180,7 +180,20 @@ Write-Section "217 required package status"
 $Missing = New-Object System.Collections.Generic.List[string]
 foreach ($Package in $RequiredPackages) {
     $Present = Test-PackageListed -InstalledOutput $Installed -PackageName $Package
-    Write-Host ("{0,-24} {1}" -f $Package, $(if ($Present) { "OK" } else { "MISSING" }))
+    $Status = if ($Present) { "OK" } else { "MISSING" }
+
+    # A verified official NDK archive is also a supported installation route.
+    # sdkmanager does not add manually extracted archives to its package list,
+    # so accept the exact required revision from source.properties.
+    if (-not $Present -and $Package -eq "ndk;26.3.11579264" -and (Test-Path $NdkSourceProperties)) {
+        $NdkMetadata = Get-Content -LiteralPath $NdkSourceProperties -Raw
+        if ($NdkMetadata -match '(?m)^Pkg\.Revision\s*=\s*26\.3\.11579264\s*$') {
+            $Present = $true
+            $Status = "OK (source.properties)"
+        }
+    }
+
+    Write-Host ("{0,-24} {1}" -f $Package, $Status)
     if (-not $Present) {
         $Missing.Add($Package)
     }

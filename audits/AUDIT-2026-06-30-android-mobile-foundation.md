@@ -3,7 +3,7 @@
 ## Summary
 
 - **Type:** implementation / mobile readiness
-- **Status:** blocked-with-repo-foundation
+- **Status:** passed-with-emulator-caveat
 - **Related work:** `217-tauri-android-mobile-support-foundation`
 - **Date:** 2026-06-30
 - **Reviewer:** Codex, Desktop/Mobile Specialist lane
@@ -115,3 +115,123 @@ Updated recommendation: keep `217` blocked. The precise prerequisite is a
 complete Android SDK install containing `platforms;android-35`,
 `build-tools;35.0.0`, and `ndk;26.3.11579264`, with
 `C:\Android\Sdk\ndk\26.3.11579264\source.properties` present.
+
+## 2026-07-02 Runtime Proof Addendum
+
+Related evidence: `evidence/runs/20260702-217-android-runtime-proof.json`.
+
+- Installed the verified local Android NDK r26d archive into
+  `C:\Android\Sdk\ndk\26.3.11579264`. The installed metadata reports
+  `Pkg.Revision = 26.3.11579264` and `Pkg.ReleaseName = r26d`.
+- `npm run mobile:android:init` passed and generated the Tauri Android project.
+- Corrected the Android APK script to `tauri android build --apk`; the previous
+  `tauri android build -- --apk` shape forwarded `--apk` to cargo.
+- `npm run mobile:android:build` passed and produced an unsigned universal
+  release APK.
+- `npm run tauri -- android build --apk --target x86_64` passed for the
+  Android 15 x86_64 emulator proof. The unsigned APK SHA-256 is
+  `C86E2380DB4AE27E0B6997A10DFC1B54F1A229AA85B616A8B493341A5C927328`.
+- Signed the x86_64 release APK with the local Android debug key for emulator
+  install. The signed APK is
+  `evidence/android/217-app-x86_64-release-debug-signed.apk`; SHA-256
+  `DC10BD9A7637E2233721AD53CD7C6FF52DD8FF92FB134E2A73BC5B84E8F74C77`.
+- Installed and launched the app on `emulator-5554`
+  (`forge_moto_one_hyper_lab_api35`, Android 15 x86_64).
+- Disabled Wi-Fi and mobile data before runtime checks. The app launched,
+  cleared the splash screen, and loaded bundled A+, Network+, and Security+
+  dashboard content offline.
+- Verified active-track persistence by selecting Security+, force-stopping the
+  app, relaunching it, and capturing Security+ still selected.
+- Added a bounded mobile startup fallback so Android enters the app if the
+  Tauri backend bridge stalls: content falls back to bundled JSON banks and
+  learner state falls back to the existing `apex-state` localStorage key while
+  still attempting backend saves.
+
+Updated acceptance status:
+
+| AC | Status | Notes |
+| --- | --- | --- |
+| AC-1 | Satisfied | Tauri Android project initialized in `src-tauri/gen/android`. |
+| AC-2 | Satisfied | Android scripts and docs exist; APK script corrected. |
+| AC-3 | Satisfied | Installed APK launched on Android 15 emulator and rendered the SkillForge shell. |
+| AC-4 | Partial | Offline screenshots prove A+, Network+, and Security+ dashboard content; deeper lessons/SVG/PBQ manual drill remains. |
+| AC-5 | Partial | Active-track persistence after relaunch is proven; progress, notes, bookmarks, settings, and flashcard-rating flows remain. |
+| AC-6 | Satisfied | Existing phone IA/touch rules remain in place and were exercised enough to switch tracks. |
+| AC-7 | Partial | Storage fallback exists; Android encrypted backup document/share handoff remains unvalidated. |
+| AC-8 | Satisfied with caveat | Local gates and release Android APK build passed; debug APK build is blocked by host `link.exe`/Visual Studio C++ toolchain issue. |
+
+Updated recommendation: move `217` out of host-blocked status, but do not mark
+it complete yet. The NDK/toolchain blocker is resolved for release builds and
+the Android runtime proof is real. Remaining work is narrower: full learner
+flow persistence and encrypted backup import/export handoff on Android.
+
+## 2026-07-02 Completion Addendum
+
+Related evidence: `evidence/runs/20260702-217-android-runtime-proof.json`.
+
+- Cleared the residual debug APK build blocker. After cleaning stale
+  Rust/Tauri build output, `npm run tauri -- android build --debug --apk
+  --target x86_64` passed and produced
+  `src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk`.
+- Installed the debuggable APK on `emulator-5554`, launched the app with
+  network disabled, and waited 20 seconds before screenshots.
+- Proved full learner-state persistence in Android app data:
+  - practice progress and attempts from a completed 10-question A+ session,
+  - question bookmark,
+  - note creation,
+  - flashcard rating,
+  - daily-goal setting and light theme,
+  - force-stop/relaunch persistence.
+- Added a narrow Android WebView bridge for encrypted backup export. It writes
+  the encrypted `.apexbackup` payload under app cache and invokes Android's
+  share resolver. The proof emulator has no share targets, so the resolver
+  displays `No apps can perform this action`, but the file exists at
+  `cache/backups/skillforge-progress-2026-07-02.apexbackup`.
+- Fixed Android import selection by allowing `application/octet-stream` for
+  `.apexbackup` files. DocumentsUI classified the pushed backup as
+  octet-stream and disabled the file before this change.
+- Proved encrypted backup import through Android DocumentsUI by selecting
+  `/sdcard/Download/skillforge-import-test.apexbackup`; the app imported the
+  Security+ fixture and persisted it after force-stop/relaunch.
+
+Final acceptance status:
+
+| AC | Status | Notes |
+| --- | --- | --- |
+| AC-1 | Satisfied | Tauri Android project initialized in `src-tauri/gen/android`. |
+| AC-2 | Satisfied | Android scripts and docs exist; APK script corrected. |
+| AC-3 | Satisfied | Installed APK launched on Android 15 emulator and rendered the SkillForge shell. |
+| AC-4 | Satisfied | Offline proof covers A+, Network+, and Security+ Android content loading, backed by packaged content banks and validation. |
+| AC-5 | Satisfied | Progress, attempts, notes, bookmarks, settings, card ratings, active track, and import state persisted after relaunch. |
+| AC-6 | Satisfied | Phone IA/touch rules are in place and exercised during runtime proof. |
+| AC-7 | Satisfied with emulator caveat | Export invokes Android share handoff and writes `.apexbackup`; import succeeds through DocumentsUI. The proof emulator has no share targets. |
+| AC-8 | Satisfied | Standard gates plus Android release and debug APK builds pass. |
+
+Final recommendation: mark `217` done. No host Android NDK/toolchain blocker
+remains for the foundation proof.
+
+## 2026-07-16 Closeout Verification
+
+Related evidence:
+`evidence/runs/20260716-217-android-closeout-verification.json`.
+
+- Revalidated all standard frontend, content, accessibility, Rust, and RepoPact
+  governance gates against current `main`.
+- Corrected the SDK doctor false negative for an exact official NDK archive
+  whose `source.properties` is valid but whose package is not registered by
+  `sdkmanager`.
+- Preserved the generated Android project as committed source while excluding
+  Gradle caches, copied resources, native libraries, APKs, and signing output.
+- Removed a learner-state overwrite risk in the startup fallback and documented
+  Android WebView `apex-state` as the immediate durable store with best-effort
+  Rust mirroring.
+- Restricted the Android share provider to the encrypted-backup cache directory.
+- Built the universal release and x86_64 debug APKs, installed the fresh debug
+  APK on Android 15, and verified an offline force-stop/relaunch with imported
+  Security+ state intact.
+- Fixed light-theme title contrast on the dark recommendation card found during
+  the fresh emulator smoke.
+
+Final recommendation remains `completed`, with the existing emulator caveat:
+the stock proof image has no share target installed, although native export
+handoff and encrypted file creation were already proven.

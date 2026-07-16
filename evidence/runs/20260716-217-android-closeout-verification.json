@@ -1,0 +1,68 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260716-217-android-closeout-verification",
+  "timestamp": "2026-07-16T18:09:14-05:00",
+  "work_item": "217",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm run validate:content; npm run validate:a11y; npm test -- --run; npm run build",
+      "exit_code": 0,
+      "summary": "Content validation, 18 accessibility checks, 68 unit tests, TypeScript, and the Vite production build passed."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml; cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Rust formatting and backend checks passed."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "RepoPact 2.1 repository governance validation passed."
+    },
+    {
+      "command": "npm run mobile:android:doctor",
+      "exit_code": 0,
+      "summary": "Android SDK packages passed; the exact NDK r26d revision was accepted from verified source.properties metadata."
+    },
+    {
+      "command": "npm run mobile:android:build",
+      "exit_code": 0,
+      "summary": "Built the universal unsigned release APK for ARM64, ARMv7, i686, and x86_64. SHA-256 09F3D461476D55C35E3916A193C1D5054785D5EEEC51CF4F94D882A9472BAD52."
+    },
+    {
+      "command": "npm run tauri -- android build --debug --apk --target x86_64",
+      "exit_code": 0,
+      "summary": "Built the debuggable x86_64 emulator APK. SHA-256 508419B72C7930C885E5B883D80EB4945B8896A1B9781950032DC57E1A46B120."
+    },
+    {
+      "command": "adb install -r -t app-universal-debug.apk; disable Wi-Fi/data; force-stop; launch; force-stop; relaunch",
+      "exit_code": 0,
+      "summary": "Fresh debug APK installed on emulator-5554, MainActivity resumed offline, and the imported Security+ state remained visible after force-stop/relaunch."
+    }
+  ],
+  "artifacts": [
+    "src-tauri/gen/android",
+    "src-tauri/gen/schemas/android-schema.json",
+    "src-tauri/gen/schemas/mobile-schema.json",
+    "src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk",
+    "src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk",
+    "evidence/android/217-20260716-final-launch.png",
+    "evidence/runs/20260702-217-android-runtime-proof.json"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "android_sdk_root": "C:\\Android\\Sdk",
+    "ndk": "26.3.11579264 r26d",
+    "java": "Eclipse Adoptium OpenJDK 17.0.19",
+    "avd": "forge_moto_one_hyper_lab_api35",
+    "device": "emulator-5554 Android 15 x86_64",
+    "package": "com.apexlearning.aplusacademy",
+    "version_name": "1.4.0",
+    "network_state": "wifi_on=0 and mobile_data=0 during final launch/relaunch proof",
+    "residual_limits": [
+      "The stock emulator image has no Android share targets; prior evidence proves the share resolver handoff and encrypted cache file creation."
+    ]
+  }
+}

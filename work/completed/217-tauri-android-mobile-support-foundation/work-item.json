@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "217",
   "title": "Add Tauri Android mobile support foundation",
-  "status": "blocked",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [
     "implementation",
@@ -13,10 +13,12 @@
     {
       "id": "AC-1",
       "text": "Initialize first-class Tauri Android support without introducing a PWA or alternate architecture.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
@@ -24,34 +26,41 @@
       "text": "Add documented Android development and build commands that follow the Tauri mobile CLI path.",
       "state": "satisfied",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
       "id": "AC-3",
       "text": "Verify the Android app launches on an emulator or physical device and renders the SkillForge Academy shell.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
       "id": "AC-4",
       "text": "Verify bundled certification content and lesson assets load on Android for A+, Network+, and Security+ without network access, including JSON banks, SVG lesson assets, and PBQ data.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
       "id": "AC-5",
       "text": "Verify learner state persistence on Android for progress, notes, bookmarks, settings, and active track selection.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
@@ -59,29 +68,35 @@
       "text": "Define and implement the Android small-screen information architecture and touch rules for core study flows: navigation, track switcher, dashboard, learning paths, practice, PBQ Lab, mock setup, flashcards, analytics, notes, preferences, dialogs, and review screens.",
       "state": "satisfied",
       "evidence": [
-        "20260630-217-android-mobile-foundation"
+        "20260630-217-android-mobile-foundation",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
       "id": "AC-7",
       "text": "Define and validate Android file/storage behavior under sandbox rules, including local state location, encrypted backup export/import, file picker or share-sheet flow, permissions, and any required Tauri plugin; if blocked, record the exact mitigation.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     },
     {
       "id": "AC-8",
       "text": "Run the standard validation gates plus an Android build gate, documenting any host-machine dependency that prevents local execution.",
-      "state": "pending",
+      "state": "satisfied",
       "evidence": [
         "20260630-217-android-mobile-foundation",
-        "20260701-217-android-runtime-retry"
+        "20260701-217-android-runtime-retry",
+        "20260702-217-android-runtime-proof",
+        "20260716-217-android-closeout-verification"
       ]
     }
   ],
   "created": "2026-06-22",
-  "updated": "2026-07-01",
+  "updated": "2026-07-16",
   "source": "User request: direct Tauri mobile support, Android first"
 }

@@ -1,0 +1,53 @@
+{
+  "activeCertId": "security-plus",
+  "answered": {
+    "secplus-q001": {
+      "attempts": 1,
+      "correct": 1,
+      "lastCorrect": true
+    }
+  },
+  "attempts": [],
+  "bookmarks": [
+    "secplus-q001"
+  ],
+  "cardRatings": {
+    "secplus-f01": {
+      "due": "2026-07-04T03:11:50.473Z",
+      "ease": 2.6,
+      "interval": 6,
+      "lapses": 0,
+      "reps": 2
+    }
+  },
+  "lessonsRead": [],
+  "name": "Imported Android Learner",
+  "notes": [
+    {
+      "body": "Imported through Android WebView file handoff.",
+      "id": "android-import-note",
+      "title": "Imported mobile backup note",
+      "updatedAt": "2026-07-03T03:11:50.470Z"
+    }
+  ],
+  "progress": {
+    "a-plus": {
+      "dailyCounts": {},
+      "dailyGoal": 25,
+      "lastStudyDate": "",
+      "streak": 0,
+      "targetDate": ""
+    },
+    "security-plus": {
+      "dailyCounts": {
+        "2026-07-02": 12
+      },
+      "dailyGoal": 37,
+      "lastStudyDate": "2026-07-02",
+      "streak": 4,
+      "targetDate": "2026-12-31"
+    }
+  },
+  "schemaVersion": 3,
+  "theme": "light"
+}

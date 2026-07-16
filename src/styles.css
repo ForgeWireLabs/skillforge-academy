@@ -178,3 +178,6 @@ body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-i
 .lesson-figure{margin:14px 0 4px;text-align:center}
 .lesson-figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff;display:block;margin:0 auto}
 .lesson-figure figcaption{margin-top:8px;color:var(--muted);font-size:12px;font-style:italic}
+
+/* The recommendation card remains dark in both themes. */
+.glow-card h2,.glow-card .orb span{color:#f4f7fb}

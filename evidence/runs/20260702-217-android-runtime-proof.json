@@ -1,0 +1,169 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260702-217-android-runtime-proof",
+  "timestamp": "2026-07-02T14:05:00-05:00",
+  "work_item": "217",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "Get-FileHash C:\\Users\\jerem\\Downloads\\android-ndk-r26d-windows.zip -Algorithm SHA1",
+      "exit_code": 0,
+      "summary": "[AC-1] Verified the local NDK r26d archive SHA-1 as C7EA35FFE916082876611DA1A6D5618D15430C29 before extraction."
+    },
+    {
+      "command": "Expand-Archive android-ndk-r26d-windows.zip to C:\\Android\\Sdk\\ndk\\26.3.11579264",
+      "exit_code": 0,
+      "summary": "[AC-1] Installed the NDK from the verified local archive; source.properties reports Pkg.Revision 26.3.11579264 and Pkg.ReleaseName r26d."
+    },
+    {
+      "command": "rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android",
+      "exit_code": 0,
+      "summary": "[AC-1] Confirmed all Rust Android targets required by the Tauri universal Android build path are installed."
+    },
+    {
+      "command": "npm run mobile:android:init",
+      "exit_code": 0,
+      "summary": "[AC-1] Generated the Tauri Android project under src-tauri/gen/android."
+    },
+    {
+      "command": "npm run mobile:android:build",
+      "exit_code": 0,
+      "summary": "[AC-8] Produced an unsigned universal release APK at src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk."
+    },
+    {
+      "command": "npm run tauri -- android build --apk --target x86_64",
+      "exit_code": 0,
+      "summary": "[AC-8] Produced an emulator-targeted x86_64 release APK; unsigned APK SHA-256 C86E2380DB4AE27E0B6997A10DFC1B54F1A229AA85B616A8B493341A5C927328."
+    },
+    {
+      "command": "zipalign; apksigner sign; apksigner verify",
+      "exit_code": 0,
+      "summary": "[AC-8] Signed the x86_64 APK with the local Android debug key for emulator proof; signed APK SHA-256 DC10BD9A7637E2233721AD53CD7C6FF52DD8FF92FB134E2A73BC5B84E8F74C77."
+    },
+    {
+      "command": "adb install -r evidence/android/217-app-x86_64-release-debug-signed.apk",
+      "exit_code": 0,
+      "summary": "[AC-3] Installed the signed APK on emulator-5554."
+    },
+    {
+      "command": "adb shell svc wifi disable; adb shell svc data disable; adb shell monkey -p com.apexlearning.aplusacademy -c android.intent.category.LAUNCHER 1",
+      "exit_code": 0,
+      "summary": "[AC-3][AC-4] Launched the installed Android app with network disabled; ActivityTaskManager displayed com.apexlearning.aplusacademy/.MainActivity."
+    },
+    {
+      "command": "adb exec-out screencap -p > evidence/android/217-offline-launch-timeout-fallback.png",
+      "exit_code": 0,
+      "summary": "[AC-4] Captured offline A+ dashboard content after the mobile startup fallback cleared the splash; screenshot shows A+ recommendation content."
+    },
+    {
+      "command": "manual Android track switcher smoke via adb input taps",
+      "exit_code": 0,
+      "summary": "[AC-4] Captured offline track switcher and dashboard screenshots for A+, Network+, and Security+ content loading."
+    },
+    {
+      "command": "adb shell am force-stop com.apexlearning.aplusacademy; relaunch; screenshot",
+      "exit_code": 0,
+      "summary": "[AC-5] Verified active track selection persisted across app relaunch: Security+ remained selected after force-stop and relaunch."
+    },
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "[AC-4][AC-8] Content validation passed for 3 certifications, 19 domains, 770 questions, 135 flashcards, 28 PBQs, and 150 lessons."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "[AC-6][AC-8] Accessibility validation passed with 18 checks."
+    },
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-8] Unit tests passed: 68 tests across 3 files."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "[AC-8] TypeScript and Vite production build passed."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-8] Rust formatting check passed."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-8] Rust backend check passed."
+    },
+    {
+      "command": "npm run tauri -- android build --debug --apk",
+      "exit_code": 1,
+      "summary": "[AC-8] Debug Android build failed on the host Windows linker while compiling the Rust displaydoc proc-macro DLL: link.exe returned an unexpected error and Rust suggested repairing Visual Studio C++ build tools or a missing C++ workload component. Release Android builds still succeeded."
+    },
+    {
+      "command": "cargo clean --manifest-path src-tauri/Cargo.toml; npm run tauri -- android build --debug --apk --target x86_64",
+      "exit_code": 0,
+      "summary": "[AC-8] Cleared stale Rust/Tauri build output and produced src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk; the prior host link.exe debug blocker did not recur."
+    },
+    {
+      "command": "adb install -r src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk; adb shell pm clear com.apexlearning.aplusacademy; offline launch; 20 second wait before screenshot",
+      "exit_code": 0,
+      "summary": "[AC-3][AC-5] Installed debuggable APK, launched on emulator-5554 with network disabled, and used run-as access for sandbox state proof."
+    },
+    {
+      "command": "Android WebView/ADB learner-state proof: practice session, bookmark, note, flashcard rating, settings, force-stop/relaunch",
+      "exit_code": 0,
+      "summary": "[AC-5] Verified learner-state persistence for answered/progress/attempts, bookmarks, notes, cardRatings, dailyGoal/theme, and relaunch survival in learner-state.json."
+    },
+    {
+      "command": "Android encrypted export: SkillForgeAndroid.shareBackup bridge; Export encrypted button",
+      "exit_code": 0,
+      "summary": "[AC-7] Wrote cache/backups/skillforge-progress-2026-07-02.apexbackup and invoked Android share resolver. The stock emulator image had no share targets and displayed No apps can perform this action."
+    },
+    {
+      "command": "Android encrypted import: DocumentsUI selected /sdcard/Download/skillforge-import-test.apexbackup",
+      "exit_code": 0,
+      "summary": "[AC-7] Imported encrypted .apexbackup through Android DocumentsUI after adding application/octet-stream to the file input accept list; Security+ fixture persisted after force-stop/relaunch."
+    }
+  ],
+  "artifacts": [
+    "src-tauri/gen/android",
+    "src-tauri/gen/schemas/android-schema.json",
+    "src-tauri/gen/schemas/mobile-schema.json",
+    "evidence/android/217-app-x86_64-release-debug-signed.apk",
+    "evidence/android/217-x86_64-apk-hashes.txt",
+    "evidence/android/217-x86_64-apksigner-verify.txt",
+    "evidence/android/217-offline-launch-timeout-fallback.png",
+    "evidence/android/217-track-selector-open.png",
+    "evidence/android/217-network-plus-dashboard-offline.png",
+    "evidence/android/217-security-plus-dashboard-offline-2.png",
+    "evidence/android/217-security-plus-persisted-after-relaunch-2.png",
+    "evidence/android/217-offline-launch-logcat.txt",
+    "src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk",
+    "evidence/android/217-debug-practice-after-finish-attempt.png",
+    "evidence/android/217-debug-state-after-practice-finish-attempt.json",
+    "evidence/android/217-debug-state-after-notes-flashcards-settings.json",
+    "evidence/android/217-debug-state-after-relaunch.json",
+    "evidence/android/217-debug-export-share-sheet.png",
+    "evidence/android/217-debug-import-picker-downloads-after-filter.png",
+    "evidence/android/217-debug-state-after-import-success.json",
+    "evidence/android/217-debug-state-after-final-import-relaunch.json",
+    "evidence/android/217-import-test.apexbackup"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "android_sdk_root": "C:\\Android\\Sdk",
+    "ndk": "26.3.11579264 r26d",
+    "java": "OpenJDK 17.0.19",
+    "avd": "forge_moto_one_hyper_lab_api35",
+    "device": "emulator-5554 Android 15 x86_64",
+    "package": "com.apexlearning.aplusacademy",
+    "version_name": "1.4.0",
+    "version_code": "1004000",
+    "network_state": "wifi and data disabled during runtime content proof",
+    "residual_limits": [
+      "The proof emulator image has no Android share targets, so export resolver opened but reported No apps can perform this action; the encrypted .apexbackup file was still written and handed to Android."
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "activeCertId": "a-plus",
+  "answered": {
+    "aplus-q152": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    },
+    "aplus-q154": {
+      "attempts": 1,
+      "correct": 1,
+      "lastCorrect": true
+    },
+    "aplus-q164": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    },
+    "aplus-q206": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    },
+    "aplus-q219": {
+      "attempts": 1,
+      "correct": 1,
+      "lastCorrect": true
+    },
+    "aplus-q225": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    },
+    "aplus-q25": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    },
+    "aplus-q41": {
+      "attempts": 1,
+      "correct": 1,
+      "lastCorrect": true
+    },
+    "aplus-q57": {
+      "attempts": 1,
+      "correct": 1,
+      "lastCorrect": true
+    },
+    "aplus-q59": {
+      "attempts": 1,
+      "correct": 0,
+      "lastCorrect": false
+    }
+  },
+  "attempts": [
+    {
+      "certId": "a-plus",
+      "date": "2026-07-03T03:00:30.622Z",
+      "domainScores": {
+        "aplus-hw-troubleshooting": {
+          "correct": 2,
+          "total": 4
+        },
+        "aplus-mobile": {
+          "correct": 0,
+          "total": 1
+        },
+        "aplus-networking": {
+          "correct": 2,
+          "total": 5
+        }
+      },
+      "durationSec": 348,
+      "exam": "220-1201",
+      "id": "e6da014f-e50b-4c69-ad3e-2ca7f8094397",
+      "score": 4,
+      "total": 10
+    }
+  ],
+  "bookmarks": [
+    "aplus-q152"
+  ],
+  "cardRatings": {
+    "aplus-f01": {
+      "due": "2026-07-04T03:03:16.901Z",
+      "ease": 2.5,
+      "interval": 1,
+      "lapses": 0,
+      "reps": 1
+    }
+  },
+  "lessonsRead": [],
+  "name": "Future Technician",
+  "notes": [
+    {
+      "body": "Created inside the debuggable Android WebView during work item 217.",
+      "id": "19fd3895-41a5-4028-9371-61c7f37713f8",
+      "title": "Android runtime proof note",
+      "updatedAt": "2026-07-03T03:03:14.593Z"
+    }
+  ],
+  "progress": {
+    "a-plus": {
+      "dailyCounts": {
+        "2026-07-02": 10
+      },
+      "dailyGoal": 37,
+      "lastStudyDate": "2026-07-02",
+      "streak": 1,
+      "targetDate": ""
+    }
+  },
+  "schemaVersion": 3,
+  "theme": "light"
+}

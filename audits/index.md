@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-01 (iOS blocker and mobile foundation)
+Last updated: 2026-07-16 (Android mobile foundation closeout reverified)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Last updated: 2026-07-01 (iOS blocker and mobile foundation)
 | [AUDIT-2026-06-22-release-candidate-1.4.0](AUDIT-2026-06-22-release-candidate-1.4.0.md) | Release Candidate, Version, Installer, And Upgrade Audit | release | passed-with-notes | [219](../work/completed/219-release-candidate-version-and-upgrade-audit/README.md) | 2026-06-22 |
 | [AUDIT-2026-06-22-screen-reader-a11y](AUDIT-2026-06-22-screen-reader-a11y.md) | Screen-Reader Accessibility Baseline | accessibility | passed-with-notes | [220](../work/completed/220-real-screen-reader-walkthrough/README.md) | 2026-06-22 |
 | [AUDIT-2026-06-22-cross-platform-backups](AUDIT-2026-06-22-cross-platform-backups.md) | Cross-Platform Backup, Import, And Export Hardening | data migration / QA | passed-with-notes | [221](../work/completed/221-cross-platform-backup-import-export-hardening/README.md) | 2026-06-22 |
-| [AUDIT-2026-06-30-android-mobile-foundation](AUDIT-2026-06-30-android-mobile-foundation.md) | Android Mobile Foundation | implementation / mobile readiness | blocked-with-repo-foundation | [217](../work/blocked/217-tauri-android-mobile-support-foundation/README.md) | 2026-06-30 |
+| [AUDIT-2026-06-30-android-mobile-foundation](AUDIT-2026-06-30-android-mobile-foundation.md) | Android Mobile Foundation | implementation / mobile readiness | passed-with-emulator-caveat | [217](../work/completed/217-tauri-android-mobile-support-foundation/README.md) | 2026-06-30 |
 | [AUDIT-2026-06-30-content-quality-calibration](AUDIT-2026-06-30-content-quality-calibration.md) | Content Quality And Assessment Calibration | content / assessment calibration | passed-with-notes | [222](../work/completed/222-content-quality-and-assessment-calibration-audit/README.md) | 2026-06-30 |
 | [AUDIT-2026-06-30-objective-drift-watch](AUDIT-2026-06-30-objective-drift-watch.md) | Official Objective Drift Watch | content / release governance | passed-with-notes | [223](../work/completed/223-official-objective-drift-watch/README.md) | 2026-06-30 |
 | [AUDIT-2026-06-30-next-generation-pbq-ux-depth](AUDIT-2026-06-30-next-generation-pbq-ux-depth.md) | Next-Generation PBQ UX Depth | implementation / content / accessibility | passed-with-notes | [224](../work/completed/224-next-generation-pbq-ux-depth/README.md) | 2026-06-30 |

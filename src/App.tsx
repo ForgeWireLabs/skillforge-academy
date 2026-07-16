@@ -21,6 +21,14 @@ import {
 
 const Analytics = lazy(() => import("./Analytics"));
 
+declare global {
+  interface Window {
+    SkillForgeAndroid?: {
+      shareBackup: (filename: string, contents: string) => boolean;
+    };
+  }
+}
+
 const nav: { id: View; label: string; icon: typeof Home }[] = [
   { id: "dashboard", label: "Command Center", icon: Home },
   { id: "learn", label: "Learning Paths", icon: BookOpen },
@@ -34,32 +42,88 @@ const nav: { id: View; label: string; icon: typeof Home }[] = [
 ];
 
 function isTauri() { return "__TAURI_INTERNALS__" in window; }
+function hasAndroidBridge() { return Boolean(window.SkillForgeAndroid); }
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = window.setTimeout(() => reject(new Error(`${label} timed out`)), ms);
+    promise.then(
+      value => {
+        window.clearTimeout(timer);
+        resolve(value);
+      },
+      error => {
+        window.clearTimeout(timer);
+        reject(error);
+      }
+    );
+  });
+}
 
 async function readState(): Promise<LearnerState> {
+  const readLocalState = () => migrateState(JSON.parse(localStorage.getItem("apex-state") || "{}"));
   try {
-    const saved = isTauri() ? await invoke<unknown>("load_state") : JSON.parse(localStorage.getItem("apex-state") || "{}");
+    if (!isTauri()) return readLocalState();
+
+    // Android WebView storage is the immediate fallback if the Tauri command
+    // bridge is unavailable. Prefer it after the first successful local save
+    // so a temporarily stale backend file cannot roll learner progress back.
+    if (hasAndroidBridge() && localStorage.getItem("apex-state")) return readLocalState();
+
+    const saved = await withTimeout(invoke<unknown>("load_state"), 5000, "load_state");
     return migrateState(saved);
-  } catch { return initialState; }
+  } catch {
+    try { return readLocalState(); }
+    catch { return initialState; }
+  }
 }
 
 async function writeState(state: LearnerState) {
-  if (isTauri()) await invoke("save_state", { state });
-  else localStorage.setItem("apex-state", JSON.stringify(state));
+  if (!isTauri() || hasAndroidBridge()) {
+    try { localStorage.setItem("apex-state", JSON.stringify(state)); }
+    catch { /* continue to the Tauri store when WebView storage is unavailable */ }
+  }
+  if (isTauri()) {
+    try { await withTimeout(invoke("save_state", { state }), 5000, "save_state"); }
+    catch { /* keep localStorage as the durable mobile fallback */ }
+  }
 }
 
-async function exportData(state: LearnerState, passphrase: string) {
+function canShareBackup(file: File): boolean {
+  return typeof navigator !== "undefined" && typeof navigator.share === "function" &&
+    (!navigator.canShare || navigator.canShare({ files: [file] }));
+}
+
+async function exportData(state: LearnerState, passphrase: string): Promise<"shared" | "downloaded"> {
   const encrypted = await encryptBackup(state, passphrase);
+  const filename = `skillforge-progress-${dateKey()}.apexbackup`;
+  try {
+    if (window.SkillForgeAndroid?.shareBackup(filename, encrypted)) return "shared";
+  } catch {
+    // Continue to Web Share or download if the native Android bridge rejects.
+  }
+
   const blob = new Blob([encrypted], { type: "application/json" });
+  const file = new File([blob], filename, { type: "application/json" });
+  if (canShareBackup(file)) {
+    await navigator.share({
+      files: [file],
+      title: "SkillForge Academy encrypted backup",
+      text: "Save this encrypted SkillForge Academy backup somewhere you trust."
+    });
+    return "shared";
+  }
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   // Filename prefix follows the rebrand; the .apexbackup extension is retained
   // so older backups and the import filter stay compatible.
-  a.download = `skillforge-progress-${dateKey()}.apexbackup`;
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+  return "downloaded";
 }
 
 export default function App() {
@@ -73,7 +137,11 @@ export default function App() {
   const [onboarding, setOnboarding] = useState(false);
 
   useEffect(() => {
-    Promise.all([readState(), loadContent()]).then(([s, c]) => { setState(s); setContent(c); setReady(true); });
+    Promise.all([readState(), loadContent()]).then(([s, c]) => {
+      setState(s);
+      setContent(c);
+      setReady(true);
+    });
   }, []);
   // Show the first-run walkthrough once, only on a genuinely fresh install.
   useEffect(() => {
@@ -715,9 +783,11 @@ function Preferences({ state, update, setState, onReplayTour }: { state:LearnerS
   const progress = activeProgress(state);
   const onExport = async () => {
     try {
-      await exportData(state, passphrase);
+      const mode = await exportData(state, passphrase);
       setPassphrase("");
-      setBackupNotice("Encrypted backup created. Keep the passphrase somewhere safe; it cannot be recovered.");
+      setBackupNotice(mode === "shared"
+        ? "Encrypted backup handed to Android. Keep the passphrase somewhere safe; it cannot be recovered."
+        : "Encrypted backup created. Keep the passphrase somewhere safe; it cannot be recovered.");
     } catch (error) {
       setBackupNotice(error instanceof Error ? error.message : "The encrypted backup could not be created.");
     }
@@ -742,7 +812,7 @@ function Preferences({ state, update, setState, onReplayTour }: { state:LearnerS
     if (isTauri()) { try { await invoke("reset_state"); } catch { /* file may not exist yet */ } }
     setState(migrateState({}));
   };
-  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={progress.targetDate} onChange={e=>setState(s=>patchProgress(s,{targetDate:e.target.value}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={progress.dailyGoal} onChange={e=>setState(s=>patchProgress(s,{dailyGoal:Number(e.target.value)}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} aria-pressed={state.theme==="dark"} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} aria-pressed={state.theme==="light"} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Encrypted backup</h3><p>Use the same passphrase to restore this portable backup on another device. Legacy plain JSON backups can still be imported.</p><label>Backup passphrase<input type="password" minLength={8} autoComplete="new-password" value={passphrase} onChange={e=>setPassphrase(e.target.value)} placeholder="At least 8 characters"/></label><div className="theme-toggle data-actions"><button onClick={onExport}><Download/> Export encrypted</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div>{backupNotice&&<span className="setting-notice" role="status">{backupNotice}</span>}<input ref={fileRef} type="file" accept="application/json,.json,.apexbackup" hidden onChange={onImport}/></div></div><div className="panel settings-card"><div className="setting-icon"><Sparkles/></div><div><h3>Product tour</h3><p>Replay the first-run walkthrough of the study loop.</p><div className="theme-toggle"><button onClick={onReplayTour}><Play/> Replay walkthrough</button></div></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>SkillForge Academy</h3><p>Version 1.4.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. This independent educational app is not affiliated with or endorsed by {activeVendor || "the certification vendors"}.</small></div></div></div></>;
+  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={progress.targetDate} onChange={e=>setState(s=>patchProgress(s,{targetDate:e.target.value}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={progress.dailyGoal} onChange={e=>setState(s=>patchProgress(s,{dailyGoal:Number(e.target.value)}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} aria-pressed={state.theme==="dark"} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} aria-pressed={state.theme==="light"} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Encrypted backup</h3><p>Use the same passphrase to restore this portable backup on another device. Legacy plain JSON backups can still be imported.</p><label>Backup passphrase<input type="password" minLength={8} autoComplete="new-password" value={passphrase} onChange={e=>setPassphrase(e.target.value)} placeholder="At least 8 characters"/></label><div className="theme-toggle data-actions"><button onClick={onExport}><Download/> Export encrypted</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div>{backupNotice&&<span className="setting-notice" role="status">{backupNotice}</span>}<input ref={fileRef} type="file" accept="application/json,application/octet-stream,.json,.apexbackup" hidden onChange={onImport}/></div></div><div className="panel settings-card"><div className="setting-icon"><Sparkles/></div><div><h3>Product tour</h3><p>Replay the first-run walkthrough of the study loop.</p><div className="theme-toggle"><button onClick={onReplayTour}><Play/> Replay walkthrough</button></div></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>SkillForge Academy</h3><p>Version 1.4.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. This independent educational app is not affiliated with or endorsed by {activeVendor || "the certification vendors"}.</small></div></div></div></>;
 }
 
 function PageHead({eyebrow,title,subtitle}:{eyebrow:string;title:string;subtitle:string}) { return <div className="page-title"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div></div>; }

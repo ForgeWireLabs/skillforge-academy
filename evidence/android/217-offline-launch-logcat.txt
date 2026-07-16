@@ -1,0 +1,442 @@
+--------- beginning of system
+07-02 14:01:34.615   595  2400 I ActivityManager: Force stopping com.apexlearning.aplusacademy appid=10148 user=0: from pid 2420
+07-02 14:01:34.621   595   774 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_RESTARTED on user 0
+07-02 14:01:34.621   595   774 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10148 package com.apexlearning.aplusacademy isStopped true
+--------- beginning of main
+07-02 14:01:34.622   965   965 D CarrierSvcBindHelper: onHandleForceStop: [com.apexlearning.aplusacademy]
+07-02 14:01:34.627   965   965 D CarrierSvcBindHelper: No carrier app for: 0
+07-02 14:01:34.678   388   388 I netd    : tetherGetStats() -> {[]} <3.64ms>
+07-02 14:01:34.694   595  1753 I WifiService: setWifiEnabled package=com.android.shell uid=2000 enable=false isPrivileged=true
+07-02 14:01:34.847  1219  1385 D EGL_emulation: app_time_stats: avg=130.98ms min=14.45ms max=1199.09ms count=12
+07-02 14:01:35.037  2432  2432 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-02 14:01:35.063  2432  2432 I AndroidRuntime: Using default boot image
+07-02 14:01:35.063  2432  2432 I AndroidRuntime: Leaving lock profiling enabled
+07-02 14:01:35.069  2432  2432 I app_process: Core platform API reporting enabled, enforcing=false
+07-02 14:01:35.070  2432  2432 I app_process: Using CollectorTypeCMC GC.
+07-02 14:01:35.328  2432  2432 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+07-02 14:01:35.366  2432  2432 D nativeloader: Load libicu_jni.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+07-02 14:01:35.367  2432  2432 D app_process: u_setTimeZoneFilesDirectory("/apex/com.android.tzdata/etc/tz/versioned/8/icu") succeeded.
+07-02 14:01:35.367  2432  2432 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt75l.dat
+07-02 14:01:35.373  2432  2432 D nativeloader: Load libjavacore.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+07-02 14:01:35.377  2432  2432 D nativeloader: Load libopenjdk.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+07-02 14:01:35.381  2432  2432 W app_process: Unexpected CPU variant for x86: x86_64.
+07-02 14:01:35.381  2432  2432 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+07-02 14:01:35.450  2432  2432 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+07-02 14:01:35.452  2432  2432 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+07-02 14:01:35.457  2432  2432 W Monkey  : args: [-p, com.apexlearning.aplusacademy, -c, android.intent.category.LAUNCHER, 1]
+07-02 14:01:35.459  2432  2432 W Monkey  :  arg: "-p"
+07-02 14:01:35.459  2432  2432 W Monkey  :  arg: "com.apexlearning.aplusacademy"
+07-02 14:01:35.460  2432  2432 W Monkey  :  arg: "-c"
+07-02 14:01:35.460  2432  2432 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+07-02 14:01:35.460  2432  2432 W Monkey  :  arg: "1"
+07-02 14:01:35.460  2432  2432 W Monkey  : data="com.apexlearning.aplusacademy"
+07-02 14:01:35.461  2432  2432 W Monkey  : data="android.intent.category.LAUNCHER"
+07-02 14:01:35.525   595  1753 W ActivityManager: registerReceiverWithFeature: no app for null
+07-02 14:01:35.577   595  2400 W ActivityTaskManager: callingPackage for (uid=2000, pid=2432) has no WPC
+07-02 14:01:35.580   595  2400 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+07-02 14:01:35.583   595  2400 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10148, packageName = null, attributionTag = null, token = android.os.Binder@3475d0e, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+07-02 14:01:35.597   595  2400 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+07-02 14:01:35.598   595  2400 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+07-02 14:01:35.636   835   945 V WindowManagerShell: Transition requested (#10): android.os.BinderProxy@bdcc170 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=14 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.apexlearning.aplusacademy/.MainActivity } baseActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} topActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} origActivity=null realActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} numActivities=1 lastActiveTime=820634 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@c8eace9} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{6a4cd6e com.apexlearning.aplusacademy.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 10 }
+07-02 14:01:35.638   595  2400 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.apexlearning.aplusacademy/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+07-02 14:01:35.642  2432  2432 I Monkey  : Events injected: 1
+07-02 14:01:35.671   595   627 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10148, packageName = null, attributionTag = null, token = android.os.Binder@3475d0e, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+07-02 14:01:35.679   835   945 W Looper  : Slow dispatch took 43ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda1@c82cb34 m=0
+07-02 14:01:35.679   835   945 W Looper  : Slow delivery took 32ms wmshell.main h=android.os.Handler c=null m=16
+07-02 14:01:35.701   835  1008 D SplashScreenView: Build android.window.SplashScreenView{51c03a3 V.E...... ......ID 0,0-0,0}
+07-02 14:01:35.701   835  1008 D SplashScreenView: Icon: view: android.widget.ImageView{91b66a0 V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@9afa259 size: 420
+07-02 14:01:35.701   835  1008 D SplashScreenView: Branding: view: android.view.View{d156e1e G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+07-02 14:01:35.703   595   627 W ActivityManager: Slow operation: 52ms so far, now at startProcess: done creating new process record
+07-02 14:01:35.704   595   627 W ActivityManager: Slow operation: 53ms so far, now at startProcess: stepping in to startProcess
+07-02 14:01:35.706   595   627 W ActivityManager: Slow operation: 55ms so far, now at startProcess: done starting proc!
+07-02 14:01:35.709   595  1753 D CoreBackPreview: Window{5b4b435 u0 Splash Screen com.apexlearning.aplusacademy}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@1ff7d58, mPriority=0, mIsAnimationCallback=false}
+07-02 14:01:35.714   835   945 W Looper  : Drained
+07-02 14:01:35.718  2432  2432 I Monkey  : ## Network stats: elapsed time=150ms (0ms mobile, 0ms wifi, 150ms not connected)
+07-02 14:01:35.725   389   389 D Zygote  : Forked child process 2444
+07-02 14:01:35.730   388   388 I netd    : tetherGetStats() -> {[]} <0.76ms>
+07-02 14:01:35.731  2432  2432 I app_process: System.exit called, status: 0
+07-02 14:01:35.731  2432  2432 I AndroidRuntime: VM exiting with result code 0.
+07-02 14:01:35.735   595   636 I ActivityManager: Start proc 2444:com.apexlearning.aplusacademy/u0a148 for next-top-activity {com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity}
+07-02 14:01:35.738  1219  1219 W SplitSelectStateCtor: Missing session instanceIds
+07-02 14:01:35.738  1219  1219 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+07-02 14:01:35.782  2444  2444 I ng.aplusacademy: Using CollectorTypeCMC GC.
+07-02 14:01:35.783  2444  2444 W ng.aplusacademy: Unexpected CPU variant for x86: x86_64.
+07-02 14:01:35.783  2444  2444 W ng.aplusacademy: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+07-02 14:01:35.808   595   774 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+07-02 14:01:35.808   595   774 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10148 package com.apexlearning.aplusacademy isStopped false
+07-02 14:01:35.820  2444  2444 E ng.aplusacademy: Not starting debugger since process cannot load the jdwp agent.
+07-02 14:01:35.824  2444  2444 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+07-02 14:01:35.827   835   945 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=294
+07-02 14:01:35.829  1219  1219 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=14, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.apexlearning.aplusacademy/.MainActivity }
+07-02 14:01:35.837   459   459 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+07-02 14:01:35.922  2444  2444 D nativeloader: Configuring clns-7 for other apk /data/app/~~MFYjG12_Y-0Wc4wF_T1vAA==/com.apexlearning.aplusacademy-tW6t0l1qo9jrOgiC0jczEw==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~MFYjG12_Y-0Wc4wF_T1vAA==/com.apexlearning.aplusacademy-tW6t0l1qo9jrOgiC0jczEw==/lib/x86_64:/data/app/~~MFYjG12_Y-0Wc4wF_T1vAA==/com.apexlearning.aplusacademy-tW6t0l1qo9jrOgiC0jczEw==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.apexlearning.aplusacademy
+07-02 14:01:35.923   595   624 V WindowManager: Sent Transition (#10) createdAt=07-02 14:01:35.599 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=14 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.apexlearning.aplusacademy/.MainActivity } baseActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} topActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} origActivity=null realActivity=ComponentInfo{com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity} numActivities=1 lastActiveTime=820634 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{e7c14a5 Task{e46f979 #14 type=standard A=10148:com.apexlearning.aplusacademy}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{5bd407a com.apexlearning.aplusacademy.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 10 }
+07-02 14:01:35.925   835  1390 V WindowManagerShell: onTransitionReady(transaction=2555505541771)
+07-02 14:01:35.928   835   945 V WindowManagerShell: onTransitionReady (#10) android.os.BinderProxy@bdcc170: {id=10 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@de51b93} m=OPEN f=NONE leash=Surface(name=Task=14)/@0x63106f7 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@fa5b7d0} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xd096964 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+07-02 14:01:35.929   595   624 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+07-02 14:01:35.929   595   624 V WindowManager:     info={id=10 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+07-02 14:01:35.929   595   624 V WindowManager:         {WCT{RemoteToken{e7c14a5 Task{e46f979 #14 type=standard A=10148:com.apexlearning.aplusacademy}}} m=OPEN f=NONE leash=Surface(name=Task=14)/@0x3adb6e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+07-02 14:01:35.929   595   624 V WindowManager:         {WCT{RemoteToken{5f4a489 Task{93b0277 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xdb4c924 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}
+07-02 14:01:35.929   595   624 V WindowManager:     ]}
+07-02 14:01:35.937  2444  2444 V GraphicsEnvironment: Currently set values for:
+07-02 14:01:35.938  2444  2444 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+07-02 14:01:35.939  2444  2444 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+07-02 14:01:35.940  2444  2444 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+07-02 14:01:35.941  2444  2444 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+07-02 14:01:35.942   595  2397 W UserManagerService: Requested status bar icon for non-badged user 0
+07-02 14:01:35.943   835   945 V WindowManagerShell: Playing animation for (#10) android.os.BinderProxy@bdcc170@0
+07-02 14:01:35.943   835   945 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@83673e
+07-02 14:01:35.944   835   945 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@95c099f
+07-02 14:01:35.983   835   945 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@718baec
+07-02 14:01:35.983   835   945 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@d03aeb5
+07-02 14:01:35.983   835   945 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@ecab94a
+07-02 14:01:35.983   835   945 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+07-02 14:01:35.984   835   945 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@a01a0bb
+07-02 14:01:35.984   835   945 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@d4c99d8
+07-02 14:01:35.984   835   945 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=10 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@de51b93} m=OPEN f=NONE leash=Surface(name=Task=14)/@0x63106f7 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@fa5b7d0} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xd096964 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+07-02 14:01:35.984   835   945 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@6949bdd, appThread = android.app.IApplicationThread$Stub$Proxy@eb1e352, debugName = QuickstepLaunchHome }}
+07-02 14:01:35.985   835   945 V WindowManagerShell:  Delegate animation for (#10) to null
+07-02 14:01:35.985   835   945 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@58d8131
+07-02 14:01:35.985   835   945 V WindowManagerShell: start default transition animation, info = {id=10 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@de51b93} m=OPEN f=NONE leash=Surface(name=Task=14)/@0x63106f7 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@fa5b7d0} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xd096964 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+07-02 14:01:35.986   835   945 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@abbddef animAttr=0x13 type=OPEN isEntrance=false
+07-02 14:01:35.986   835   945 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@57680fc animAttr=0x12 type=OPEN isEntrance=true
+07-02 14:01:35.997   835   945 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@58d8131
+07-02 14:01:35.998   835   945 W Looper  : Slow dispatch took 70ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@28695da m=0
+07-02 14:01:36.000  1219  1385 D EGL_emulation: app_time_stats: avg=3372.15ms min=23.54ms max=12794.29ms count=4
+07-02 14:01:36.012   835   945 W Looper  : Slow delivery took 47ms wmshell.main h=android.os.Handler c=com.android.wm.shell.common.ShellExecutor$$ExternalSyntheticLambda0@1aa3301 m=0
+07-02 14:01:36.023   835   945 W Looper  : Drained
+07-02 14:01:36.036   835  1024 D EGL_emulation: app_time_stats: avg=11242.24ms min=11242.24ms max=11242.24ms count=1
+07-02 14:01:36.072  2444  2444 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+07-02 14:01:36.087  1219  1385 D EGL_emulation: app_time_stats: avg=80.75ms min=46.20ms max=249.11ms count=11
+07-02 14:01:36.154  2444  2444 D nativeloader: Load /data/app/~~MFYjG12_Y-0Wc4wF_T1vAA==/com.apexlearning.aplusacademy-tW6t0l1qo9jrOgiC0jczEw==/base.apk!/lib/x86_64/libskillforge_academy_lib.so using ns clns-7 from class loader (caller=/data/app/~~MFYjG12_Y-0Wc4wF_T1vAA==/com.apexlearning.aplusacademy-tW6t0l1qo9jrOgiC0jczEw==/base.apk): ok
+07-02 14:01:36.210  2444  2444 W HWUI    : Unknown dataspace 0
+07-02 14:01:36.286   595  1373 D CoreBackPreview: Window{ad47115 u0 com.apexlearning.aplusacademy/com.apexlearning.aplusacademy.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a3b3cf7, mPriority=0, mIsAnimationCallback=false}
+07-02 14:01:36.286   835  1003 W Looper  : Slow dispatch took 30ms wmshell.anim h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@6beaf25 m=0
+07-02 14:01:36.301  2444  2458 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+07-02 14:01:36.311  2444  2458 I EGL_emulation: Opening libGLESv2_emulation.so
+07-02 14:01:36.312   835   945 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#10) android.os.BinderProxy@bdcc170@0
+07-02 14:01:36.317   595   624 V WindowManager: Finish Transition (#10): created at 07-02 14:01:35.599 collect-started=0.072ms request-sent=36.167ms started=77.876ms ready=317.909ms sent=321.43ms finished=715.27ms
+07-02 14:01:36.321  2444  2458 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+07-02 14:01:36.329   835   945 V WindowManagerShell: Track 0 became idle
+07-02 14:01:36.329   835   945 V WindowManagerShell: All active transition animations finished
+07-02 14:01:36.394   595  2400 W UserManagerService: Requested status bar icon for non-badged user 0
+07-02 14:01:36.399   176   176 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+07-02 14:01:36.399  2444  2458 I Gralloc4: mapper 4.x is not supported
+--------- beginning of kernel
+07-02 14:01:36.369     0     0 I servicemanager: Caller(pid=2444,uid=10148,sid=u:r:untrusted_app:s0:c148,c256,c512,c768) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+07-02 14:01:36.425   595  2400 W UserManagerService: Requested status bar icon for non-badged user 0
+07-02 14:01:36.457  1219  1219 D VRI[QuickstepLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+07-02 14:01:36.494  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name position
+07-02 14:01:36.494  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name color
+07-02 14:01:36.946   595   624 I ActivityTaskManager: Displayed com.apexlearning.aplusacademy/.MainActivity for user 0: +1s365ms
+07-02 14:01:36.963  2444  2444 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+07-02 14:01:36.963  2444  2444 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+07-02 14:01:36.974  1219  1219 D BaseDepthController: setSurface:
+07-02 14:01:36.974  1219  1219 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+07-02 14:01:36.974  1219  1219 D BaseDepthController: 	mSurface: null
+07-02 14:01:36.974  1219  1219 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+07-02 14:01:36.975  1219  1219 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+07-02 14:01:36.975  1219  1219 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(StateManager.java:453)
+07-02 14:01:36.975  1219  1219 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(StateManager.java:444)
+07-02 14:01:36.975  1219  1219 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(StatefulActivity.java:119)
+07-02 14:01:36.975  1219  1219 D StatsLog: LAUNCHER_ONSTOP
+07-02 14:01:36.976   595  2397 I AppWidgetServiceImpl: setAppWidgetHidden() 0
+07-02 14:01:37.045   388   388 I netd    : tetherGetStats() -> {[]} <1.25ms>
+07-02 14:01:37.070  2444  2444 I WebViewFactory: Loading com.android.webview version 124.0.6367.219 (code 636771907)
+07-02 14:01:37.095   595   625 W Looper  : Slow dispatch took 103ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.UidObserverController$$ExternalSyntheticLambda0@99b7061 m=0
+07-02 14:01:37.095  2444  2465 I HWUI    : Davey! duration=745ms; Flags=1, FrameTimelineVsyncId=20586, IntendedVsync=821215583022, Vsync=821215583022, InputEventId=0, HandleInputStart=821222790200, AnimationStart=821222820400, PerformTraversalsStart=821222864200, DrawStart=821447818600, FrameDeadline=821232249688, FrameInterval=821222772100, FrameStartTime=16666666, SyncQueued=821448747400, SyncStart=821449406900, IssueDrawCommandsStart=821453611900, SwapBuffers=821495616500, FrameCompleted=821961756300, DequeueBufferDuration=333600, QueueBufferDuration=346100, GpuCompleted=821961756300, SwapBuffersCompleted=821935460700, DisplayPresentTime=72904454231359566, CommandSubmissionCompleted=821495616500,
+07-02 14:01:37.118  2444  2444 V ResourcesManager: The following library key has been added: ResourcesKey{ mHash=8a56b867 mResDir=null mSplitDirs=[] mOverlayDirs=[/product/overlay/EmulationPixel6/EmulationPixel6Overlay.apk] mLibDirs=[/product/app/webview/webview.apk,/system_ext/framework/androidx.window.extensions.jar] mDisplayId=0 mOverrideConfig=v35 mCompatInfo={420dpi always-compat} mLoaders=[]}
+07-02 14:01:37.120  2444  2444 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+07-02 14:01:37.123  2444  2444 D nativeloader: InitLlndkLibrariesProduct: libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libRS.so:libandroid_net.so:libapexsupport.so:libbinder_ndk.so:libc.so:libcgrouprc.so:libclang_rt.asan-x86_64-android.so:libcom.android.tethering.connectivity_native.so:libdl.so:libft2.so:liblog.so:libm.so:libmediandk.so:libnativewindow.so:libneuralnetworks.so:libselinux.so:libsync.so:libvendorsupport.so:libvndksupport.so:libvulkan.so
+07-02 14:01:37.124  2444  2444 D nativeloader: Configuring product-clns-8 for unbundled product apk /product/app/webview/webview.apk. target_sdk_version=34, uses_libraries=, library_path=/product/app/webview/lib/x86_64:/product/app/webview/webview.apk!/lib/x86_64:/product/lib64:/system/product/lib64, permitted_path=/data:/mnt/expand:/product/lib64:/system/product/lib64
+07-02 14:01:37.125  2444  2444 D nativeloader: InitVndkspLibrariesProduct: VNDK is deprecated with product
+07-02 14:01:37.151  2444  2444 I cr_WVCFactoryProvider: Loaded version=124.0.6367.219 minSdkVersion=1 isBundle=false multiprocess=true packageId=2
+07-02 14:01:37.172  2444  2444 D nativeloader: Load /product/app/webview/webview.apk!/lib/x86_64/libwebviewchromium.so using ns product-clns-8 from class loader (caller=/product/app/webview/webview.apk): ok
+07-02 14:01:37.200  2444  2444 D nativeloader: Load /system/lib64/libwebviewchromium_plat_support.so using ns product-clns-8 from class loader (caller=/product/app/webview/webview.apk): ok
+07-02 14:01:37.207  2444  2474 E chromium: [0702/140137.206395:ERROR:variations_seed_loader.cc(37)] Seed missing signature.
+07-02 14:01:37.208  2444  2474 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.apexlearning.aplusacademy/app_webview/variations_seed_new"
+07-02 14:01:37.209  2444  2474 I chromium: [0702/140137.209191:INFO:variations_seed_loader.cc(66)] Failed to open file for reading.: No such file or directory (2)
+07-02 14:01:37.209  2444  2474 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.apexlearning.aplusacademy/app_webview/variations_seed"
+07-02 14:01:37.212  2444  2444 I cr_LibraryLoader: Successfully loaded native library
+07-02 14:01:37.214  2444  2444 I cr_CachingUmaRecorder: Flushed 6 samples from 6 histograms, 0 samples were dropped.
+07-02 14:01:37.215  2444  2461 I RustStdoutStderr: [0702/140137.206395:ERROR:variations_seed_loader.cc(37)] Seed missing signature.
+07-02 14:01:37.216  2444  2461 I RustStdoutStderr: [0702/140137.209191:INFO:variations_seed_loader.cc(66)] Failed to open file for reading.: No such file or directory (2)
+07-02 14:01:37.218  2444  2444 I cr_CombinedPProvider: #registerProvider() provider:WV.o7@816ed96 isPolicyCacheEnabled:false policyProvidersSize:0
+07-02 14:01:37.220  2444  2444 I cr_PolicyProvider: #setManagerAndSource() 0
+07-02 14:01:37.254   595  2400 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 99002, packageName = null, attributionTag = null, token = android.os.Binder@3475d0e, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+07-02 14:01:37.272   869   869 D Zygote  : Forked child process 2477
+07-02 14:01:37.285  2444  2444 I cr_CombinedPProvider: #linkNativeInternal() 1
+07-02 14:01:37.286  2477  2477 I ocessService0:0: Using CollectorTypeCMC GC.
+07-02 14:01:37.287  2444  2444 I cr_AppResProvider: #getApplicationRestrictionsFromUserManager() Bundle[EMPTY_PARCEL]
+07-02 14:01:37.287  2477  2477 W ocessService0:0: Unexpected CPU variant for x86: x86_64.
+07-02 14:01:37.287  2477  2477 W ocessService0:0: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+07-02 14:01:37.287  2444  2444 I cr_PolicyProvider: #notifySettingsAvailable() 0
+07-02 14:01:37.287  2444  2444 I cr_CombinedPProvider: #onSettingsAvailable() 0
+07-02 14:01:37.287  2444  2444 I cr_CombinedPProvider: #flushPolicies()
+07-02 14:01:37.303  2477  2477 E ocessService0:0: Not starting debugger since process cannot load the jdwp agent.
+07-02 14:01:37.309  2477  2477 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+07-02 14:01:37.316   595  2400 W ActivityManager: Slow operation: 61ms so far, now at startProcess: done updating battery stats
+07-02 14:01:37.316   595  2400 W ActivityManager: Slow operation: 61ms so far, now at startProcess: building log message
+07-02 14:01:37.316   595  2400 I ActivityManager: Start proc 2477:com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i2 for  {com.apexlearning.aplusacademy/org.chromium.content.app.SandboxedProcessService0:0}
+07-02 14:01:37.316   595  2400 W ActivityManager: Slow operation: 61ms so far, now at startProcess: starting to update pids map
+07-02 14:01:37.317   595  2400 W ActivityManager: Slow operation: 62ms so far, now at startProcess: done updating pids map
+07-02 14:01:37.324   595   636 W ActivityManager: Slow operation: 69ms so far, now at startProcess: returned from zygote!
+07-02 14:01:37.331  2477  2477 D CompatChangeReporter: Compat change id reported: 242716250; UID 99002; state: ENABLED
+07-02 14:01:37.347  2477  2477 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+07-02 14:01:37.311     0     0 W servicemanager: Isolated app with UID 99002 requested 'network_management', but the service is not allowed for isolated apps.
+07-02 14:01:37.326     0     0 W servicemanager: Isolated app with UID 99002 requested 'connectivity', but the service is not allowed for isolated apps.
+07-02 14:01:37.367  2477  2477 I cr_WebViewApkApp: Launched version=124.0.6367.219 minSdkVersion=1 isBundle=false processName=com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+07-02 14:01:37.420  2477  2477 I cr_ChildProcessService: Creating new ChildProcessService pid=2477
+07-02 14:01:37.388     0     0 E SELinux : avc:  denied  { find } for pid=2477 uid=99002 name=content_capture scontext=u:r:isolated_app:s0:c512,c768 tcontext=u:object_r:content_capture_service:s0 tclass=service_manager permissive=0
+07-02 14:01:37.428  2444  2496 W chromium: [WARNING:dns_config_service_android.cc(81)] Failed to read DnsConfig.
+07-02 14:01:37.430  2444  2461 I RustStdoutStderr: [WARNING:dns_config_service_android.cc(81)] Failed to read DnsConfig.
+07-02 14:01:37.468   835  1007 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@f264e2a
+07-02 14:01:37.469   595  1373 D CoreBackPreview: Window{5b4b435 u0 Splash Screen com.apexlearning.aplusacademy EXITING}: Setting back callback null
+07-02 14:01:37.471   595  2400 W InputManager-JNI: Input channel object '5b4b435 Splash Screen com.apexlearning.aplusacademy (client)' was disposed without first being removed with the input manager!
+07-02 14:01:37.505  2444  2496 E chromium: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/webui_js: No such file or directory (2)
+07-02 14:01:37.506  2444  2496 E chromium: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.506  2444  2496 E chromium: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/js: No such file or directory (2)
+07-02 14:01:37.507  2444  2496 E chromium: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.507  2444  2461 I RustStdoutStderr: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/webui_js: No such file or directory (2)
+07-02 14:01:37.507  2444  2461 I RustStdoutStderr: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.507  2444  2461 I RustStdoutStderr: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/js: No such file or directory (2)
+07-02 14:01:37.511  2444  2461 I RustStdoutStderr: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.512  2444  2496 E chromium: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/wasm: No such file or directory (2)
+07-02 14:01:37.513  2444  2496 E chromium: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.513  2444  2461 I RustStdoutStderr: [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.apexlearning.aplusacademy/cache/WebView/Default/HTTP Cache/Code Cache/wasm: No such file or directory (2)
+07-02 14:01:37.519   835  1007 W FrameTracker: Missed App frame:UNKNOWN: 10, 20720, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.519   835  1007 W FrameTracker: Missed SF frame:UNKNOWN: 10, 20720, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.520   835  1007 W FrameTracker: Missing HWUI jank callback for vsyncId: 20720, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.520   835  1007 W FrameTracker: Missed App frame:UNKNOWN: 74, 20735, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.520   835  1007 W FrameTracker: Missed SF frame:UNKNOWN: 74, 20735, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.520   835  1007 W FrameTracker: Missing HWUI jank callback for vsyncId: 20735, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.526   595  2400 D ActivityManager: sync unfroze 2079 com.android.webview:webview_service for 6
+07-02 14:01:37.527   595  2400 W IPCThreadState: Sending oneway calls to frozen process.
+07-02 14:01:37.527   835  1007 W FrameTracker: Missed App frame:UNKNOWN: 74, 20749, 247799576, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.527   835  1007 W FrameTracker: Missed SF frame:UNKNOWN: 74, 20749, 247799576, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.527   835  1007 W FrameTracker: Missed App frame:UNKNOWN: 74, 20763, 309003778, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.527   835  1007 W FrameTracker: Missed SF frame:UNKNOWN: 74, 20763, 309003778, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+07-02 14:01:37.528   835   997 V PerfettoTrigger: Not triggering com.android.telemetry.interaction-jank-monitor-39 - not enough time since last trigger
+07-02 14:01:37.529  2444  2461 I RustStdoutStderr: [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+07-02 14:01:37.531   595  2400 W ProcessStats: Tracking association SourceState{a296e65 com.apexlearning.aplusacademy/10148 BTop #518} whose proc state 2 is better than process ProcessState{afd956d com.android.webview:webview_service/10112 pkg=com.android.webview} proc state 14 (3 skipped)
+07-02 14:01:37.534  2079  2079 D ActivityThread: Package [com.apexlearning.aplusacademy] reported as REPLACED, but missing application info. Assuming REMOVED.
+07-02 14:01:37.866  2444  2444 E EGL_emulation: eglCreateContext: EGL_BAD_CONFIG: no ES 3.2 support
+07-02 14:01:37.866  2444  2444 E EGL_emulation: tid 2444: eglCreateContext(1830): error 0x3005 (EGL_BAD_CONFIG)
+07-02 14:01:37.866  2444  2444 E EGL_emulation: eglCreateContext: EGL_BAD_CONFIG: no ES 3.1 support
+07-02 14:01:37.866  2444  2444 E EGL_emulation: tid 2444: eglCreateContext(1824): error 0x3005 (EGL_BAD_CONFIG)
+07-02 14:01:37.964  2444  2494 W cr_media: BLUETOOTH_CONNECT permission is missing.
+07-02 14:01:37.967  2444  2494 W cr_media: registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+07-02 14:01:37.979  2477  2498 I cr_LibraryLoader: Successfully loaded native library
+07-02 14:01:37.979  2477  2498 I cr_CachingUmaRecorder: Flushed 2 samples from 2 histograms, 0 samples were dropped.
+07-02 14:01:38.007  2477  2498 W SystemServiceRegistry: No service published for: uimode
+07-02 14:01:37.979     0     0 W servicemanager: Isolated app with UID 99002 requested 'uimode', but the service is not allowed for isolated apps.
+07-02 14:01:38.066   595   713 I ImeTracker: com.apexlearning.aplusacademy:e8d61c04: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+07-02 14:01:38.067   595   713 I ImeTracker: com.apexlearning.aplusacademy:e8d61c04: onCancelled at PHASE_SERVER_SHOULD_HIDE
+07-02 14:01:38.068  2477  2498 W chromium: [WARNING:runtime_features.cc(694)] SharedStorage for M118+ cannot be enabled in this configuration. Use --enable-features=SharedStorageAPI,SharedStorageAPIM118 in addition.
+07-02 14:01:38.123   388   388 I netd    : tetherGetStats() -> {[]} <1.85ms>
+07-02 14:01:38.230  2444  2507 W chromium: [WARNING:display_webview.cc(32)] WebView overlays are enabled!
+07-02 14:01:38.231  2444  2461 I RustStdoutStderr: [WARNING:display_webview.cc(32)] WebView overlays are enabled!
+07-02 14:01:38.502  2477  2498 I chromium: [INFO:document_style_environment_variables.cc(104)] E2E_Used SafeAreaInsetBottom
+07-02 14:01:38.978  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:38.981  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:38.981  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:39.033  2477  2498 I chromium: [INFO:document_style_environment_variables.cc(104)] E2E_Used SafeAreaInsetBottom
+07-02 14:01:39.039  2477  2498 I chromium: [INFO:document_style_environment_variables.cc(104)] E2E_Used SafeAreaInsetBottom
+07-02 14:01:39.149   595  1345 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+07-02 14:01:39.278  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:39.281  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:39.281  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinCircleEdge
+07-02 14:01:39.386  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _ua_vertex
+07-02 14:01:39.545  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:39.545  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:39.713  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:39.714  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:40.042  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:40.043  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:40.393  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:40.393  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:40.529  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uresolveLevel_and_idx
+07-02 14:01:40.529  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _up01
+07-02 14:01:40.530  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _up23
+07-02 14:01:40.530  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _ufanPointAttrib
+07-02 14:01:40.530  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _ucurveType
+07-02 14:01:40.877  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:40.877  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:41.081  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:41.082  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:41.082  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:41.167  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:41.168  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:41.168  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinCircleEdge
+07-02 14:01:41.279  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uunitCoord
+07-02 14:01:41.280  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ufillBounds
+07-02 14:01:41.280  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ucolor
+07-02 14:01:41.280  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _ulocations
+07-02 14:01:41.367  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:41.368  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:41.368  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:41.442  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:41.443  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:41.443  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinTextureCoords
+07-02 14:01:41.535  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:41.535  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:41.536  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:41.536  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:41.678  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:41.679  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:41.680  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinCircleEdge
+07-02 14:01:41.681  2444  2458 D EGL_emulation: app_time_stats: avg=1177.06ms min=56.23ms max=3237.09ms count=4
+07-02 14:01:41.684  2444  2444 I Choreographer: Skipped 154 frames!  The application may be doing too much work on its main thread.
+07-02 14:01:41.740  2444  2455 I HWUI    : Davey! duration=2782ms; Flags=0, FrameTimelineVsyncId=21183, IntendedVsync=823898916248, Vsync=823915582914, InputEventId=0, HandleInputStart=823921353500, AnimationStart=823921381600, PerformTraversalsStart=823923432100, DrawStart=823923591000, FrameDeadline=823915582914, FrameInterval=823921333200, FrameStartTime=16666666, SyncQueued=823934307400, SyncStart=823934648000, IssueDrawCommandsStart=823934782700, SwapBuffers=826667533800, FrameCompleted=826681423800, DequeueBufferDuration=32500, QueueBufferDuration=335100, GpuCompleted=826680290800, SwapBuffersCompleted=826681423800, DisplayPresentTime=0, CommandSubmissionCompleted=826667533800,
+07-02 14:01:41.786  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:41.786  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:41.787  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinQuadEdge
+07-02 14:01:41.921  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:41.922  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:41.923  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:41.923  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:41.923  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:41.923  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:41.924  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:41.924  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:41.924  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:42.228  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:42.228  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:42.228  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:42.347  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:42.347  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:42.347  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:42.347  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:42.347  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:42.348  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:42.348  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:42.348  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:42.348  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:42.724  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:42.724  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:42.724  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:42.724  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:42.725  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:42.725  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:42.725  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:42.725  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:42.725  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:43.118   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+07-02 14:01:43.119   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+07-02 14:01:43.119   595   750 D InetDiagMessage: Destroyed live tcp sockets for uids={10112} in 2ms
+07-02 14:01:43.121   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+07-02 14:01:43.121   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+07-02 14:01:43.122   595   750 D InetDiagMessage: Destroyed live tcp sockets for uids={20112} in 2ms
+07-02 14:01:43.129  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:43.129  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:43.129  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinEllipseOffset
+07-02 14:01:43.129  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uinEllipseRadii
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:43.295  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:43.296  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ucolor
+07-02 14:01:43.694  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uedgeID
+07-02 14:01:43.695  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _upts01Attr
+07-02 14:01:43.695  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _upts23Attr
+07-02 14:01:43.695  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uargsAttr
+07-02 14:01:43.695  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _ucurveTypeAttr
+07-02 14:01:44.665   595   693 D ActivityManager: freezing 1061 com.android.permissioncontroller
+07-02 14:01:44.669   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+07-02 14:01:44.670   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+07-02 14:01:44.670   595   750 D InetDiagMessage: Destroyed live tcp sockets for uids={10146} in 2ms
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:44.962  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:44.963  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:45.587  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:45.588  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:45.588  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:45.748  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:45.749  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:45.750  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:46.061  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:46.061  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:46.061  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:46.062  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:46.062  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:46.062  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:46.062  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:46.063  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:46.063  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:46.454  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:46.455  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:46.455  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:46.455  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:46.455  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:46.456  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:46.463  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:46.463  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:46.464  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:46.909  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uinPosition
+07-02 14:01:46.910  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _uinColor
+07-02 14:01:46.910  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uinCircleEdge
+07-02 14:01:46.976  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:46.977  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:47.052  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:47.053  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:47.294  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:47.294  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:47.294  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _ulocalCoord
+07-02 14:01:47.483  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:47.483  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:47.648  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:47.649  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:47.649  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:47.650  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:47.650  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:47.650  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:47.651  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:47.651  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ucolor
+07-02 14:01:47.742  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _ua_vertex
+07-02 14:01:47.999  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:47.999  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucolor
+07-02 14:01:48.102   595   693 D ActivityManager: freezing 2079 com.android.webview:webview_service
+07-02 14:01:48.110   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+07-02 14:01:48.111   595   750 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+07-02 14:01:48.111   595   750 D InetDiagMessage: Destroyed live tcp sockets for uids={10112} in 2ms
+07-02 14:01:48.142  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:48.142  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:48.243  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uradii_selector
+07-02 14:01:48.244  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ucorner_and_radius_outsets
+07-02 14:01:48.244  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 2 name _uaa_bloat_and_coverage
+07-02 14:01:48.244  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 3 name _uradii_x
+07-02 14:01:48.244  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 4 name _uradii_y
+07-02 14:01:48.245  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 5 name _uskew
+07-02 14:01:48.245  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 6 name _utranslate_and_localrotate
+07-02 14:01:48.245  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 7 name _ulocalrect
+07-02 14:01:48.250  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 8 name _ucolor
+07-02 14:01:48.355  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:48.355  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:48.815  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 0 name _uposition
+07-02 14:01:48.815  2444  2461 I RustStdoutStderr: s_glBindAttribLocation: bind attrib 1 name _ulocalCoord
+07-02 14:01:49.149  2444  2458 D EGL_emulation: app_time_stats: avg=7468.50ms min=7468.50ms max=7468.50ms count=1
+07-02 14:01:49.162  2444  2444 I Choreographer: Skipped 447 frames!  The application may be doing too much work on its main thread.
+07-02 14:01:49.164  2444  2527 D ProfileInstaller: Installing profile for com.apexlearning.aplusacademy
+07-02 14:01:49.247  2444  2455 I HWUI    : Davey! duration=7491ms; Flags=0, FrameTimelineVsyncId=21246, IntendedVsync=824098916240, Vsync=824098916240, InputEventId=0, HandleInputStart=824103453600, AnimationStart=824103487700, PerformTraversalsStart=824104918800, DrawStart=824105001300, FrameDeadline=826698916136, FrameInterval=824103436300, FrameStartTime=16666666, SyncQueued=824105395300, SyncStart=826682092700, IssueDrawCommandsStart=826682200300, SwapBuffers=834144138000, FrameCompleted=834166920000, DequeueBufferDuration=38700, QueueBufferDuration=320100, GpuCompleted=834166920000, SwapBuffersCompleted=834150227100, DisplayPresentTime=72904454231491824, CommandSubmissionCompleted=834144138000,
+07-02 14:01:49.325  2444  2455 I HWUI    : Davey! duration=2729ms; Flags=0, FrameTimelineVsyncId=21253, IntendedVsync=824115582906, Vsync=826682249470, InputEventId=0, HandleInputStart=826690222600, AnimationStart=826690267800, PerformTraversalsStart=826746986600, DrawStart=826747068800, FrameDeadline=834198915836, FrameInterval=826684715500, FrameStartTime=16666666, SyncQueued=826747292400, SyncStart=834150403700, IssueDrawCommandsStart=834150450100, SwapBuffers=834237474100, FrameCompleted=834248656800, DequeueBufferDuration=34500, QueueBufferDuration=415200, GpuCompleted=834247882000, SwapBuffersCompleted=834248656800, DisplayPresentTime=72057628414509167, CommandSubmissionCompleted=834237474100,
+07-02 14:01:49.386  2444  2455 I HWUI    : Davey! duration=7583ms; Flags=0, FrameTimelineVsyncId=21268, IntendedVsync=826698916136, Vsync=834148915838, InputEventId=0, HandleInputStart=834164655900, AnimationStart=834164988500, PerformTraversalsStart=834202763300, DrawStart=834202861100, FrameDeadline=834265582500, FrameInterval=834162520700, FrameStartTime=16666666, SyncQueued=834203277900, SyncStart=834249775400, IssueDrawCommandsStart=834249806300, SwapBuffers=834325689300, FrameCompleted=834329002500, DequeueBufferDuration=45000, QueueBufferDuration=460100, GpuCompleted=834328799200, SwapBuffersCompleted=834329002500, DisplayPresentTime=0, CommandSubmissionCompleted=834325689300,
+07-02 14:01:51.267  2530  2530 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+07-02 14:01:51.268  2530  2530 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+07-02 14:01:51.286   176   176 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+07-02 14:01:51.286  2530  2531 I Gralloc4: mapper 4.x is not supported
+07-02 14:01:51.257     0     0 I servicemanager: Caller(pid=2530,uid=2000,sid=u:r:shell:s0) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.

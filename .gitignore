@@ -25,8 +25,9 @@ learner-state.json
 # Generated demo state for documentation screenshots (regenerate with npm run demo:state)
 docs/screenshots/demo-state.json
 
-# Tauri mobile generated output / local Android builds
-src-tauri/gen/
+# Local Android build and signing outputs. The generated project source under
+# src-tauri/gen/android is committed intentionally for first-class mobile work;
+# its nested .gitignore files exclude Gradle and Tauri build products.
 *.apk
 *.aab
 *.jks

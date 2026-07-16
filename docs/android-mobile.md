@@ -7,29 +7,46 @@ mobile application.
 
 ## Current Status
 
-The repository is prepared for Tauri Android development with mobile scripts and
-Vite dev-server host support. The local Windows host has Java 17 and an Android
-SDK root at `C:\Android\Sdk`, but `tauri android init` is currently blocked
-because required Android SDK packages are not installed successfully in SDK
-metadata.
+The repository now commits the generated Tauri Android project source and has a
+complete emulator runtime proof for the Android foundation. Nested ignore rules
+exclude Gradle caches, copied bundle resources, native libraries, APKs, and
+other reproducible build output.
 
-Attempted NDK installs with `sdkmanager` created temporary package directories
-but did not complete cleanly:
+On 2026-07-02, the verified local Android NDK r26d archive was installed into
+`C:\Android\Sdk\ndk\26.3.11579264`; `source.properties` reports
+`Pkg.Revision = 26.3.11579264` and `Pkg.ReleaseName = r26d`.
+`npm run mobile:android:init` succeeded and generated `src-tauri/gen/android`.
 
-- `ndk;27.2.12479018` stopped after a connection reset while preparing CMake.
-- `ndk;26.3.11579264` created a partial `C:\Android\Sdk\ndk\26.3.11579264`
-  directory but did not produce `source.properties`. `npm run
-  mobile:android:init` now finds that partial directory and fails while reading
-  the missing file.
-- A 2026-07-01 retry moved stale partial NDK/build-tools directories aside and
-  confirmed that `sdkmanager --list_installed` still lists only CMake, emulator,
-  platform-tools, and the Android 35 x86_64 system image. Direct downloads from
-  Google's Android repository are reachable but too slow in this host session to
-  complete the 64 MB platform, 60 MB build-tools, and 665 MB NDK archives.
+Android release and debug builds now work locally:
 
-Do not treat Android launch, offline content loading, persistence, or backup
-handoff as validated until the NDK install succeeds and the app has run on an
-emulator or physical device.
+- Universal unsigned APK:
+  `src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk`
+- Emulator proof APK (local proof artifact; APKs are intentionally ignored):
+  `evidence/android/217-app-x86_64-release-debug-signed.apk`
+- Signed proof APK SHA-256:
+  `DC10BD9A7637E2233721AD53CD7C6FF52DD8FF92FB134E2A73BC5B84E8F74C77`
+- Debug APK:
+  `src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk`
+
+The proof APK was installed on `emulator-5554` using the
+`forge_moto_one_hyper_lab_api35` Android 15 x86_64 AVD. With Wi-Fi and mobile
+data disabled, the app launched, cleared splash, loaded A+, Network+, and
+Security+ dashboard content, and persisted Security+ as the active track after
+force-stop/relaunch. Evidence is recorded in
+`evidence/runs/20260702-217-android-runtime-proof.json`.
+
+The 2026-07-16 closeout verification rebuilt the universal release and x86_64
+debug APKs from the committed project source, installed the fresh debug APK,
+and relaunched it offline with imported Security+ learner state intact. See
+`evidence/runs/20260716-217-android-closeout-verification.json`.
+
+The follow-up runtime proof also validates progress, notes, bookmarks,
+settings, flashcard scheduling, encrypted backup export handoff, and encrypted
+backup import through Android DocumentsUI. Export opens Android's share
+resolver and writes the `.apexbackup` file into app cache. The stock emulator
+image used for proof has no share targets, so the resolver reports `No apps can
+perform this action`; a physical device or emulator image with Files/Drive/mail
+targets should show destinations.
 
 ## Host Prerequisites
 
@@ -45,19 +62,24 @@ $env:ANDROID_SDK_ROOT = "C:\Android\Sdk"
 $env:PATH = "C:\Android\Sdk\platform-tools;C:\Android\Sdk\cmdline-tools\latest\bin;C:\Android\Sdk\emulator;$env:PATH"
 ```
 
-Required SDK packages for the next retry:
+Expected SDK packages:
 
 ```powershell
 sdkmanager "platforms;android-35" "build-tools;35.0.0" "ndk;26.3.11579264" "cmake;3.22.1"
 sdkmanager --list_installed
 ```
 
-The Android SDK is usable for this work only when `sdkmanager --list_installed`
-lists `platforms;android-35`, `build-tools;35.0.0`, and
-`ndk;26.3.11579264`, and
-`C:\Android\Sdk\ndk\26.3.11579264\source.properties` exists.
+The Android SDK is usable for release builds when
+`C:\Android\Sdk\ndk\26.3.11579264\source.properties` exists and the Tauri CLI
+reports `Using installed NDK: C:\Android\Sdk\ndk\26.3.11579264`.
 
 ## Commands
+
+Check the Windows Android toolchain before initializing or building:
+
+```powershell
+npm run mobile:android:doctor
+```
 
 Initialize Android project files:
 
@@ -83,6 +105,12 @@ Build a test APK:
 npm run mobile:android:build
 ```
 
+Build an emulator-targeted x86_64 APK:
+
+```powershell
+npm run tauri -- android build --apk --target x86_64
+```
+
 ## Android Product Rules
 
 - Keep the existing app identifier, `com.apexlearning.aplusacademy`, unless a
@@ -91,8 +119,10 @@ npm run mobile:android:build
 - Keep bundled certification content offline-first. Android builds must load
   `certifications.json`, per-track JSON banks, PBQs, lessons, and SVG lesson
   assets without requiring a network after install.
-- Keep `apex-state` browser fallback compatibility for frontend development and
-  continue using the Rust state commands in Tauri builds.
+- Keep `apex-state` browser fallback compatibility. On Android it is the
+  immediate durable store after the first successful local save, with the Rust
+  state command still attempted as a best-effort mirror. Desktop Tauri builds
+  continue to use the Rust state commands as their primary store.
 - Keep `.apexbackup` export/import format compatibility with Windows and legacy
   JSON imports.
 
@@ -118,24 +148,25 @@ Android phones use the existing single-shell app with a drawer-style sidebar:
 
 ## Android Storage And Backup Stance
 
-Tauri state commands should continue to write `learner-state.json` through
-`app.path().app_data_dir()`. On Android this resolves inside the app sandbox and
-should be treated as private app data.
+Android learner state is stored in the app-private WebView `apex-state` store so
+the UI remains usable if the Tauri command bridge stalls. Saves also attempt the
+Rust `save_state` command as a best-effort mirror. Both stores remain inside the
+Android application sandbox; neither requires broad storage permission.
 
 Encrypted backup export/import needs a platform handoff path rather than a raw
 desktop-style file path. The preferred implementation is:
 
 - Export: create the same `.apexbackup` envelope in the web layer, then hand it
   to an Android document/share flow.
-- Import: receive a document-picker result or share intent, read the selected
-  bytes, decrypt or parse through the existing `decryptBackup` and `migrateState`
-  path, then persist through `save_state`.
+- Import: receive a document-picker result, read the selected bytes, decrypt or
+  parse through the existing `decryptBackup` and `migrateState` path, then
+  persist through `save_state`.
 - Permissions: request only document/share capabilities required for explicit
   user-selected files. Do not request broad storage access for normal learner
   state.
 
-If Tauri core cannot provide the handoff, add a narrowly scoped Tauri mobile
-plugin or follow-up work item for Android document/share integration.
+Android may classify `.apexbackup` files as `application/octet-stream`, so the
+file input accepts that MIME type in addition to JSON and the custom extension.
 
 ## Validation Checklist
 

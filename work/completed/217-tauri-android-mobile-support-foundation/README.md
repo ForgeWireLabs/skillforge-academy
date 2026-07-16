@@ -1,6 +1,6 @@
 # 217 - Add Tauri Android mobile support foundation
 
-> **Status**: Blocked
+> **Status**: Active
 > **Owners**: Desktop/Mobile Specialist lead; QA Specialist support.
 > **Depends on**: none.
 
@@ -199,3 +199,134 @@ fully installed in `C:\Android\Sdk`, and the NDK must include
 `C:\Android\Sdk\ndk\26.3.11579264\source.properties`. Resume with a reliable SDK
 package install or a verified local copy of the official Android SDK/NDK
 archives, then run `npm run mobile:android:init`.
+
+### 2026-07-02 - Android runtime proof achieved; residual mobile handoff gaps
+
+- Installed the verified local Android NDK r26d archive into
+  `C:\Android\Sdk\ndk\26.3.11579264`; `source.properties` reports
+  `Pkg.Revision = 26.3.11579264` and `Pkg.ReleaseName = r26d`.
+- `npm run mobile:android:init` succeeded and generated the Tauri Android
+  project under `src-tauri/gen/android`.
+- Fixed the APK build script to call `tauri android build --apk`; the previous
+  `-- --apk` shape forwarded `--apk` to cargo and failed.
+- `npm run mobile:android:build` succeeded and produced
+  `src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk`.
+- `npm run tauri -- android build --apk --target x86_64` succeeded for the
+  emulator proof. The unsigned APK SHA-256 is
+  `C86E2380DB4AE27E0B6997A10DFC1B54F1A229AA85B616A8B493341A5C927328`.
+- Signed the x86_64 APK with the local Android debug key for emulator install.
+  The signed proof APK is
+  `evidence/android/217-app-x86_64-release-debug-signed.apk` with SHA-256
+  `DC10BD9A7637E2233721AD53CD7C6FF52DD8FF92FB134E2A73BC5B84E8F74C77`.
+- Installed and launched the app on `emulator-5554` using the
+  `forge_moto_one_hyper_lab_api35` Android 15 x86_64 AVD.
+- Disabled Wi-Fi and mobile data before runtime proof. Offline screenshots show
+  the Android app clearing splash and loading A+, Network+, and Security+
+  dashboard content from the bundled app:
+  - `evidence/android/217-offline-launch-timeout-fallback.png`
+  - `evidence/android/217-track-selector-open.png`
+  - `evidence/android/217-network-plus-dashboard-offline.png`
+  - `evidence/android/217-security-plus-dashboard-offline-2.png`
+- Verified active-track learner state persistence by selecting Security+,
+  force-stopping the app, relaunching it, and capturing Security+ still selected
+  in `evidence/android/217-security-plus-persisted-after-relaunch-2.png`.
+- Added a bounded mobile startup fallback so Android cannot remain permanently
+  on the splash screen if the Tauri backend bridge stalls: state falls back to
+  the existing `apex-state` localStorage key, content falls back to bundled JSON
+  banks, and backend saves are attempted without blocking local persistence.
+
+Validation evidence:
+
+- `npm run validate:content` passed: 3 certifications, 19 domains, 770
+  questions, 135 flashcards, 28 PBQs, and 150 lessons.
+- `npm run validate:a11y` passed.
+- `npm test -- --run` passed: 68 tests across 3 files.
+- `npm run build` passed.
+- `cargo fmt --check --manifest-path src-tauri/Cargo.toml` passed.
+- `cargo check --manifest-path src-tauri/Cargo.toml` passed.
+- Android release APK build, signing, install, offline launch, track switcher,
+  and active-track relaunch persistence passed.
+
+Residual limits:
+
+- `npm run tauri -- android build --debug --apk` still fails on this Windows
+  host with `link.exe` while compiling the Rust `displaydoc` proc-macro DLL.
+  Rust reports the Visual Studio C++ build tools may need repair or a missing
+  C++ workload component. Release Android builds are not blocked by this.
+- The proof validates active-track persistence, but not the full set of
+  progress, notes, bookmarks, settings, and flashcard-rating persistence flows.
+- Encrypted `.apexbackup` export/import through an Android document picker or
+  share sheet remains unvalidated and likely needs a narrowly scoped mobile
+  handoff implementation.
+
+Status: active, not blocked on Android NDK/toolchain. The Android runtime proof
+is real, but 217 should not be marked complete until the remaining persistence
+flows and backup document/share handoff are either validated or split into a
+new accepted follow-up.
+
+### 2026-07-02 - Android runtime foundation complete
+
+- Cleared the residual debug APK blocker by cleaning the stale Rust/Tauri build
+  output and rerunning `npm run tauri -- android build --debug --apk --target
+  x86_64`. The build now produces
+  `src-tauri/gen/android/app/build/outputs/apk/universal/debug/app-universal-debug.apk`.
+- Installed the debuggable APK on `emulator-5554`, cleared app data for a fresh
+  proof, launched with Wi-Fi/data disabled, and waited 20 seconds before the
+  first screenshot.
+- Proved full Android learner-state persistence through the real app sandbox:
+  completed a 10-question A+ practice session, bookmarked a question, created a
+  note, rated a flashcard, changed the daily goal, switched to light theme,
+  force-stopped/relaunched, waited 20 seconds, and verified the same
+  `learner-state.json` fields after relaunch.
+- Added a narrow Android WebView bridge for encrypted backup export. The app now
+  writes the encrypted `.apexbackup` payload into app cache and hands it to
+  Android's share resolver. The bare emulator opens the resolver but reports
+  `No apps can perform this action`, which is a host image limitation; the file
+  itself exists at `cache/backups/skillforge-progress-2026-07-02.apexbackup`.
+- Fixed Android `.apexbackup` import filtering by accepting
+  `application/octet-stream` as well as JSON/custom extension backups. Android
+  DocumentsUI had classified the pushed `.apexbackup` as octet-stream and
+  disabled selection before this fix.
+- Proved encrypted `.apexbackup` import through Android DocumentsUI: pushed
+  `evidence/android/217-import-test.apexbackup` to `/sdcard/Download`, selected
+  it through the picker, returned to the app, and verified the imported
+  Security+ learner state persisted after force-stop/relaunch.
+
+Additional evidence:
+
+- `evidence/android/217-debug-practice-after-finish-attempt.png`
+- `evidence/android/217-debug-state-after-practice-finish-attempt.json`
+- `evidence/android/217-debug-state-after-notes-flashcards-settings.json`
+- `evidence/android/217-debug-state-after-relaunch.json`
+- `evidence/android/217-debug-export-share-sheet.png`
+- `evidence/android/217-debug-import-picker-downloads-after-filter.png`
+- `evidence/android/217-debug-state-after-import-success.json`
+- `evidence/android/217-debug-state-after-final-import-relaunch.json`
+
+Status: completed. Android Tauri initialization, release/debug APK builds, emulator
+launch, offline content proof, full learner-state persistence, and encrypted
+backup export/import handoff have concrete local evidence. The only caveat is
+that this bare emulator image has no share targets for the export resolver,
+although the Android handoff is invoked and the backup file is written.
+
+### 2026-07-16 - Closeout verification
+
+- Synced the current upstream `main`, including the RepoPact 2.1 governance
+  upgrade and Android SDK doctor.
+- Committed the generated Android project source intentionally while retaining
+  nested ignores for Gradle caches, copied resources, native libraries, APKs,
+  keys, and other reproducible or sensitive output.
+- Fixed the Android SDK doctor to accept the verified official r26d archive by
+  exact `source.properties` revision when `sdkmanager` has no registry entry.
+- Removed a startup fallback path that could replace a loaded learner state with
+  `initialState` when content initialization lagged, and scoped WebView
+  `apex-state` fallback behavior to Android.
+- Restricted Android `FileProvider` exposure to `cache/backups/` instead of the
+  full cache/external roots.
+- Rebuilt the universal release and x86_64 debug APKs, installed the fresh debug
+  APK on `emulator-5554`, disabled Wi-Fi and mobile data, and verified imported
+  Security+ state after force-stop/relaunch.
+- Fixed light-theme recommendation-title contrast found in the final emulator
+  smoke.
+
+Closeout evidence: `20260716-217-android-closeout-verification`.
