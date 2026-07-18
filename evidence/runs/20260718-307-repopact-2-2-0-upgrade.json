@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260718-307-repopact-2-2-0-upgrade",
+  "timestamp": "2026-07-18T19:47:35Z",
+  "work_item": "307",
+  "result": "passed",
+  "provenance": "concrete",
+  "commands": [
+    {"command": "python -m pip install --no-cache-dir -r requirements-repopact.txt", "exit_code": 0, "summary": "Confirmed exact public dependency repopact==2.2.0 is installed."},
+    {"command": "python -m repopact_cli dashboard --root . && python -m repopact_cli validate --root .", "exit_code": 0, "summary": "Generated the canonical dashboard and passed RepoPact 2.2.0 governance validation."},
+    {"command": "npm run validate:content", "exit_code": 0, "summary": "Validated 3 certifications, 19 domains, 770 questions, 135 flashcards, 28 PBQs, and 150 lessons with complete objective coverage."}
+  ],
+  "artifacts": ["requirements-repopact.txt", "decisions/0008-consume-repopact-from-pypi.md", "audits/reports/dashboard.md"],
+  "environment": {"repository": "ForgeWireLabs/skillforge-academy", "platform": "Windows", "python": "3.12", "repopact_version": "2.2.0"}
+}

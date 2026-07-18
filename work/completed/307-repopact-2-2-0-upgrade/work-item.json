@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "307",
+  "title": "Upgrade RepoPact to 2.2.0",
+  "status": "completed",
+  "owner_scope": "governance",
+  "affected_scopes": ["governance", "foundation"],
+  "depends_on": ["306"],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-07-18T19:42:24Z",
+    "note": "Created before changing the RepoPact dependency or generated dashboard."
+  },
+  "acceptance_criteria": [
+    {"id": "RPU-001", "text": "Pin repopact==2.2.0 and align the PyPI-consumption decision.", "state": "satisfied", "evidence": ["20260718-307-repopact-2-2-0-upgrade"]},
+    {"id": "RPU-002", "text": "Regenerate the dashboard and pass RepoPact validation.", "state": "satisfied", "evidence": ["20260718-307-repopact-2-2-0-upgrade"]},
+    {"id": "RPU-003", "text": "Run the repository's relevant native validation gate.", "state": "satisfied", "evidence": ["20260718-307-repopact-2-2-0-upgrade"]},
+    {"id": "RPU-004", "text": "Record evidence, close the item, and publish the upgrade.", "state": "satisfied", "evidence": ["20260718-307-repopact-2-2-0-upgrade"]}
+  ],
+  "created": "2026-07-18",
+  "updated": "2026-07-18"
+}

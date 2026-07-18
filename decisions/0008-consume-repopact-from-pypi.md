@@ -62,3 +62,9 @@ Consume RepoPact as a **pinned PyPI dependency** instead of vendoring it.
   (the part that is genuinely SkillForge's contract) still travel in-repo.
 - The repo gains the `deferred` and `rejected` decision statuses.
 - Reproducibility is preserved by the exact version pin.
+
+## Implementation update (2026-07-18)
+
+Work item 307 advances the exact pin to `repopact==2.2.0`. This release adds
+validator-enforced canonical dashboard equality: a missing or stale checked-in
+dashboard is rejected and repaired deterministically with `repopact dashboard`.
