@@ -33,11 +33,11 @@ progress, streaks, and analytics.
 - Focus-trapped dialogs, keyboard-dismissable menus, and expanded automated
   accessibility checks
 - Vendor-agnostic content model ready for additional (non-CompTIA) tracks
+- Primary vs Tools navigation IA pass with Mock remediation CTAs
 
 ## Next
 
-- Primary vs secondary navigation IA pass (`309`) after UX audit `308`
-- Resume real learner beta (`228`) after IA follow-through
+- Resume real learner beta (`228`) after UX/IA passes `308`/`309`
 - Add installer code signing when a trusted certificate is available
 - Screen-reader (NVDA/VoiceOver) walkthrough of every view and the lesson reader
 - Author the next certification tracks on the content factory

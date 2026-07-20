@@ -12,6 +12,8 @@ const checks = [
   [app.includes('id="main-content"'), "Main content landmark has a target"],
   [app.includes('aria-live="polite"'), "View changes are announced politely"],
   [app.includes('aria-label="Primary navigation"'), "Primary navigation is labelled"],
+  [app.includes('aria-label="Tools navigation"'), "Tools navigation is labelled"],
+  [app.includes('className="nav-section-label"'), "Tools section label is present"],
   [app.includes("aria-current={view===item.id"), "Current navigation destination is exposed"],
   [app.includes('e.key === "Escape"'), "Escape closes transient overlays"],
   [styles.includes("*:focus-visible"), "Visible keyboard focus styling is present"],

@@ -15,17 +15,17 @@
 | Audit findings | 5 |
 | Decision records | 9 |
 | Policy records | 1 |
-| Evidence runs | 42 |
+| Evidence runs | 43 |
 
 ## Work
 
 | Status | Count |
 | --- | ---: |
-| proposed | 1 |
+| proposed | 0 |
 | active | 1 |
 | blocked | 2 |
 | deferred | 1 |
-| completed | 40 |
+| completed | 41 |
 
 ## Audit freshness
 

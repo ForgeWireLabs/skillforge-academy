@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-20 (UX/IA audit closeout)
+Last updated: 2026-07-20 (nav IA pass closeout)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -28,6 +28,5 @@ Last updated: 2026-07-20 (UX/IA audit closeout)
 
 ## Next Recommended Audit
 
-Candidate: primary vs secondary navigation IA pass (`309`), then resume deferred
-learner beta (`228`). NVDA/VoiceOver walkthrough remains valuable when AT
-environments are available.
+Candidate: resume deferred learner beta (`228`) after nav IA `309`. True NVDA/VoiceOver
+walkthrough remains valuable when AT environments are available.
