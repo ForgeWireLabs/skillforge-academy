@@ -106,7 +106,7 @@ See [Backup, Restore, And Cross-Device Transfer](docs/backup-restore.md) for pla
 
 ### Private by Design
 
-Progress is stored locally through the Rust backend. The app does not require a cloud account, does not send telemetry, and does not upload crash reports. When you need help troubleshooting, start with [Support And Troubleshooting](docs/support-troubleshooting.md) or export a local diagnostic file from Preferences — see [Diagnostics And Error Reporting](docs/diagnostics.md).
+Progress is stored locally through the Rust backend. The app does not require a cloud account, does not send telemetry, and does not upload crash reports. When you need help troubleshooting, start with [Support And Troubleshooting](docs/support-troubleshooting.md) or export a local diagnostic file from Preferences — see [Diagnostics And Error Reporting](docs/diagnostics.md). Data-handling details: [Privacy And Security](docs/privacy-security.md).
 
 ## Certification Tracks
 
