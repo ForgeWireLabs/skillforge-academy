@@ -19,4 +19,15 @@ describe("contentRevision", () => {
     };
     expect(contentRevision(mutated)).not.toBe(base);
   });
+
+  it("changes when authored fields change while ids stay the same", () => {
+    const base = contentRevision(bundledContent);
+    const [first, ...rest] = bundledContent.questions;
+    const mutated: ContentBundle = {
+      ...bundledContent,
+      questions: [{ ...first, explanation: `${first.explanation} [revised]` }, ...rest]
+    };
+    expect(mutated.questions[0].id).toBe(first.id);
+    expect(contentRevision(mutated)).not.toBe(base);
+  });
 });
