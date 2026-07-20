@@ -6,6 +6,7 @@ All notable changes to SkillForge Academy are documented here. SkillForge Academ
 
 ### Added
 
+- **Privacy and security review.** Documented local-data, backup crypto, diagnostics, and permission expectations in `docs/privacy-security.md`, with hardening for backup/state size limits, crypto-parameter checks, a packaged CSP, and a narrowed Tauri capability set (removed unused opener plugin / `export_state`).
 - **Support and troubleshooting guide.** User-facing recovery docs cover SmartScreen/install, launch, content loading, backup restore, data locations, reset, diagnostics, and Android/iOS notes. Linked from the README installer section — see `docs/support-troubleshooting.md`.
 - **Local diagnostics export.** Preferences can export a `skillforge-diagnostic-*.json` file for support. The app still sends no telemetry and no crash reports. Display name and note text stay redacted unless you explicitly opt in. See `docs/diagnostics.md` and decision 0009.
 

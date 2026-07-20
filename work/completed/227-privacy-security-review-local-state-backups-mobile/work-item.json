@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "227",
   "title": "Privacy and security review for local state, backups, and mobile",
-  "status": "active",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [
     "implementation",
@@ -20,41 +20,53 @@
     {
       "id": "AC-1",
       "text": "Review backup cryptography choices, including key derivation, salt/nonce handling, authentication failure behavior, and format-version compatibility.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     },
     {
       "id": "AC-2",
       "text": "Review local state storage on Windows, Android, and iOS for confidentiality expectations, corruption safety, permissions, and deletion/reset behavior.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     },
     {
       "id": "AC-3",
       "text": "Review import validation for malicious, oversized, malformed, or unsupported backup/state files.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     },
     {
       "id": "AC-4",
       "text": "Review Tauri permissions/capabilities and mobile permissions so the app asks for only what it needs.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     },
     {
       "id": "AC-5",
       "text": "Update SECURITY.md or privacy docs with accurate local-data, backup, diagnostics, and mobile permission statements.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     },
     {
       "id": "AC-6",
       "text": "Create a security/privacy audit with findings, fixes, residual risks, and release recommendation.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-227-privacy-security"
+      ]
     }
   ],
   "created": "2026-06-22",
-  "updated": "2026-06-22",
+  "updated": "2026-07-20",
   "source": "Gap review: privacy/security audit"
 }

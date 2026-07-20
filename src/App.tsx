@@ -806,6 +806,10 @@ function Preferences({ state, update, setState, onReplayTour }: { state:LearnerS
     e.target.value = "";
     if (!file) return;
     try {
+      // Reject oversized files before reading the full contents into memory.
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error("Backup file is too large to import safely.");
+      }
       const text = await file.text();
       const parsed = await decryptBackup(text, passphrase);
       if (isTauri()) await invoke("import_state", { raw: JSON.stringify(parsed) });
