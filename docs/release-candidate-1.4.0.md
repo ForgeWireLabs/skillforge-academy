@@ -44,7 +44,9 @@ SkillForge Academy 1.4.0 is the first multi-cert release candidate with:
 
 Windows code signing remains blocked by work item 212 until a trusted
 certificate is available. Unsigned installers are expected to trigger Windows
-SmartScreen unrecognized-publisher warnings.
+SmartScreen unrecognized-publisher warnings. User-facing recovery steps for
+SmartScreen, launch, backups, and diagnostics are in
+[Support And Troubleshooting](support-troubleshooting.md).
 
 ## Required Gates
 

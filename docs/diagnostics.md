@@ -1,10 +1,12 @@
 # Diagnostics And Error Reporting
 
 SkillForge Academy is offline-first and private by design. It does **not** send
-telemetry, crash reports, or learner activity to any external service.
+telemetry, crash reports, or learner activity to an external service.
 
 When something goes wrong, support uses a **local diagnostic export** that you
 create on demand. Nothing leaves your device unless you choose to share the file.
+For broader install/backup/reset recovery steps, see
+[Support And Troubleshooting](support-troubleshooting.md).
 
 Product stance: [decision 0009](../decisions/0009-no-telemetry-local-diagnostic-export-only.md).
 

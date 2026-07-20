@@ -106,7 +106,7 @@ See [Backup, Restore, And Cross-Device Transfer](docs/backup-restore.md) for pla
 
 ### Private by Design
 
-Progress is stored locally through the Rust backend. The app does not require a cloud account, does not send telemetry, and does not upload crash reports. When you need help troubleshooting, export a local diagnostic file from Preferences — see [Diagnostics And Error Reporting](docs/diagnostics.md).
+Progress is stored locally through the Rust backend. The app does not require a cloud account, does not send telemetry, and does not upload crash reports. When you need help troubleshooting, start with [Support And Troubleshooting](docs/support-troubleshooting.md) or export a local diagnostic file from Preferences — see [Diagnostics And Error Reporting](docs/diagnostics.md).
 
 ## Certification Tracks
 
@@ -175,6 +175,8 @@ Learner state is written atomically to the operating system's application-data d
 > `1.3.0` is the first release under the SkillForge Academy name. Earlier installers were published as `Apex A+ Academy_*` (e.g. `Apex A+ Academy_1.2.1_x64-setup.exe`).
 
 Download the `.exe`, run it, and follow the prompts. Because the build is not yet code-signed, Windows SmartScreen may show an unrecognized-publisher warning — choose **More info → Run anyway**. To sign your own builds and remove that warning, see [docs/CODE-SIGNING.md](docs/CODE-SIGNING.md).
+
+Need help after install? See **[Support And Troubleshooting](docs/support-troubleshooting.md)** for SmartScreen, launch, backup restore, data locations, reset/recovery, diagnostics, and mobile notes.
 
 A SHA-256 checksum is attached to each release as `SHA256SUMS.txt`. Verify your download in PowerShell:
 

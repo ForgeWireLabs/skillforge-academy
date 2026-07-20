@@ -1,6 +1,6 @@
 # 226 - Support and troubleshooting documentation
 
-> **Status**: Active
+> **Status**: Completed
 > **Owners**: Documentation lead; QA support.
 > **Depends on**: 219, 221, 225.
 
@@ -20,5 +20,12 @@ diagnostics, and recovery should be documented before users need to ask.
 
 ## Closeout
 
-Close when README points users to practical support docs and those docs match
-verified app behavior.
+Closed with `docs/support-troubleshooting.md` as the user-facing support hub,
+linked from README (installer + privacy), getting-started, backup-restore,
+diagnostics, the `1.4.0` RC checklist, and CHANGELOG Unreleased.
+
+Android recovery notes reflect work item `217` emulator-validated behavior.
+iOS remains honestly marked blocked on macOS/Xcode (`218`).
+
+Evidence: `20260720-226-support-troubleshooting-docs`.
+Audit: `audits/AUDIT-2026-07-20-support-troubleshooting-docs.md`.
