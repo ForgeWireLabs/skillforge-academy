@@ -27,8 +27,18 @@
     },
     {
       "command": "cargo test assemble_content --manifest-path src-tauri/Cargo.toml",
-      "exit_code": 1,
-      "summary": "Rust unit test for assemble_content_from_dir could not link on this host (missing gdk-3.0). Source includes the test; frontend Tauri-content-contract tests cover the shared bank shape."
+      "exit_code": 0,
+      "summary": "[308] Rust unit test assemble_content_includes_objectives_array passed after installing libgtk-3-dev / gdk-3.0 on the validation host."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Native crate check passed with GTK/WebKit system libraries installed."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Rust formatting check passed."
     }
   ],
   "artifacts": [
