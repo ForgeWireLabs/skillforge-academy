@@ -1,0 +1,76 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "310",
+  "title": "Pre-beta candidate refresh and operational readiness gate",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": [
+    "implementation",
+    "docs",
+    "foundation"
+  ],
+  "depends_on": [
+    "219",
+    "220",
+    "221",
+    "222",
+    "225",
+    "226",
+    "227",
+    "308",
+    "309"
+  ],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-07-20T00:00:00Z",
+    "note": "Stamped by `repopact new`; the work item was recorded before implementation began."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Assign a unique beta identity (for example 1.4.1-beta.1 or 1.5.0-beta.1) so package.json, VERSION, and Tauri agree, and expose that version plus a source/build identifier (commit SHA or equivalent) in diagnostic exports so testers cannot confuse this candidate with the June 22 1.4.0 installer.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "text": "Build and retain a Windows installer from the frozen candidate commit, recording full commit SHA, installer filename, SHA-256 checksum, file size, build environment, signed/unsigned status, content.revision, and application version/build ID; keep that exact artifact unchanged for the first pilot round.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "text": "Run local Windows gates (content, a11y, unit tests, frontend build, Rust fmt/check as applicable) and independently dispatch or otherwise obtain green remote Windows CI evidence against that exact candidate commit.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "text": "Complete a packaged-app acceptance pass on the exact beta installer covering clean install/SmartScreen, first-run tour, A+/Network+/Security+ track switch, lesson progress, domain-scoped Practice, PBQ types, short Mock plus weakest-domain remediation, Recall, notes/bookmarks, persistence across reopen, encrypted backup export/import, diagnostics identity/redaction, and uninstall/reinstall or upgrade data behavior.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "text": "Either complete an NVDA walkthrough of the beta candidate (tour, sidebar/Tools, track switcher, lessons, Practice, PBQ, Mock, Recall, backup/diagnostics, dialog focus) or explicitly scope the first beta as not yet assistive-technology-qualified and exclude AT users from the first cohort, recording the residual risk.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "text": "Publish a controlled pilot runbook covering Windows 10/11 x64 private cohort distribution, unsigned-installer/SmartScreen guidance, published checksum, tester consent/privacy expectations, support channel, known limitations, severity definitions, stop-the-pilot conditions, and feedback fields for app version, build ID, content.revision, track/exam/domain, and defect-vs-content distinction.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "text": "Reconcile WI 228 dependencies and roadmap/audit pointers so 228 depends on 310 and the actual July prerequisite chain (219–222, 225–227, 308–309), then mark 228 ready to activate only after this gate is green.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-07-20",
+  "updated": "2026-07-20",
+  "source": "Steward conclusion: beta integrity gate before learner pilot 228; not another product feature pass"
+}
