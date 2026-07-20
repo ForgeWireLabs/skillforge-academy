@@ -4,7 +4,10 @@ import { SCHEMA_VERSION } from "./logic";
 import type { LearnerState } from "./types";
 
 /** Product version for diagnostic bundles; keep aligned with package.json / VERSION. */
-export const APP_VERSION = "1.4.0";
+export const APP_VERSION = "1.4.1-beta.1";
+
+/** Source/build identity injected at build time (git short SHA or SKILLFORGE_BUILD). */
+export const APP_BUILD = typeof __APP_BUILD__ !== "undefined" ? __APP_BUILD__ : "unknown";
 
 export const DIAGNOSTIC_FORMAT = "skillforge-diagnostic" as const;
 export const DIAGNOSTIC_VERSION = 1 as const;
@@ -45,6 +48,8 @@ export type DiagnosticBundle = {
   };
   app: {
     version: string;
+    /** Short git SHA (or SKILLFORGE_BUILD) so bug reports pin an exact binary. */
+    build: string;
     schemaVersion: number;
   };
   platform: DiagnosticPlatform;
@@ -245,6 +250,7 @@ export function buildDiagnosticBundle(state: LearnerState, options: DiagnosticOp
     },
     app: {
       version: APP_VERSION,
+      build: APP_BUILD,
       schemaVersion: SCHEMA_VERSION
     },
     platform: detectPlatform(options.platform),

@@ -29,9 +29,11 @@
   "acceptance_criteria": [
     {
       "id": "AC-1",
-      "text": "Assign a unique beta identity (for example 1.4.1-beta.1 or 1.5.0-beta.1) so package.json, VERSION, and Tauri agree, and expose that version plus a source/build identifier (commit SHA or equivalent) in diagnostic exports so testers cannot confuse this candidate with the June 22 1.4.0 installer.",
-      "state": "pending",
-      "evidence": []
+      "text": "Assign a unique beta identity (1.4.1-beta.1) so package.json and Tauri agree, keep VERSION at RepoPact-strict 1.4.1 for that beta line, and expose the prerelease version plus a source/build identifier (commit SHA or equivalent) in diagnostic exports so testers cannot confuse this candidate with the June 22 1.4.0 installer.",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-310-beta-identity"
+      ]
     },
     {
       "id": "AC-2",
@@ -65,7 +67,7 @@
     },
     {
       "id": "AC-7",
-      "text": "Reconcile WI 228 dependencies and roadmap/audit pointers so 228 depends on 310 and the actual July prerequisite chain (219–222, 225–227, 308–309), then mark 228 ready to activate only after this gate is green.",
+      "text": "Reconcile WI 228 dependencies and roadmap/audit pointers so 228 depends on 310 and the actual July prerequisite chain (219\u2013222, 225\u2013227, 308\u2013309), then mark 228 ready to activate only after this gate is green.",
       "state": "pending",
       "evidence": []
     }

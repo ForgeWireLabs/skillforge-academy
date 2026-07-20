@@ -1,0 +1,44 @@
+{
+  "": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-310-beta-identity",
+  "timestamp": "2026-07-20T21:00:00Z",
+  "work_item": "310",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-1] 89 tests passed; diagnostic bundle includes app.version 1.4.1-beta.1 and app.build."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "[AC-1] TypeScript and Vite production build with __APP_BUILD__ injection."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-1] Rust package version 1.4.1-beta.1 compiles."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "Governance validation after AC-1 identity + evidence."
+    }
+  ],
+  "artifacts": [
+    "package.json",
+    "VERSION",
+    "src-tauri/tauri.conf.json",
+    "src-tauri/Cargo.toml",
+    "src/diagnostics.ts",
+    "vite.config.ts",
+    "docs/diagnostics.md",
+    "CHANGELOG.md"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "process_note": "Product identity 1.4.1-beta.1; VERSION file stays RepoPact-strict 1.4.1. NSIS accepts semver prerelease."
+  }
+}

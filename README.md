@@ -168,9 +168,11 @@ Learner state is written atomically to the operating system's application-data d
 
 ### Installer
 
-**Current release candidate:** SkillForge Academy `1.4.0` (Windows x64 installer), built locally at `src-tauri/target/release/bundle/nsis/SkillForge Academy_1.4.0_x64-setup.exe`.
+**Current development candidate:** SkillForge Academy `1.4.1-beta.1` (pre-beta gate `310`; uniquely identifiable vs the June 22 `1.4.0` RC). A frozen Windows installer + checksum will be recorded when that gate closes.
 
-**Latest published GitHub release:** [SkillForge Academy 1.3.2](https://github.com/ForgeWireLabs/skillforge-academy/releases/tag/v1.3.2). Publishing `1.4.0` to GitHub is pending resolution of an external billing issue.
+**Prior local release candidate:** SkillForge Academy `1.4.0` (Windows x64), historically at `src-tauri/target/release/bundle/nsis/SkillForge Academy_1.4.0_x64-setup.exe`.
+
+**Latest published GitHub release:** [SkillForge Academy 1.3.2](https://github.com/ForgeWireLabs/skillforge-academy/releases/tag/v1.3.2). Public GitHub publication of a newer Windows installer is pending resolution of an external billing issue.
 
 > `1.3.0` is the first release under the SkillForge Academy name. Earlier installers were published as `Apex A+ Academy_*` (e.g. `Apex A+ Academy_1.2.1_x64-setup.exe`).
 
