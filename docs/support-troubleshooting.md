@@ -9,6 +9,7 @@ Related docs:
 - [Getting started](getting-started.md)
 - [Backup, restore, and cross-device transfer](backup-restore.md)
 - [Diagnostics and error reporting](diagnostics.md)
+- [Privacy and security](privacy-security.md)
 - [Windows code signing](CODE-SIGNING.md)
 - [Android mobile support](android-mobile.md)
 - [iOS mobile support](ios-mobile.md)

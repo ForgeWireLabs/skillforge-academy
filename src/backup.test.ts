@@ -85,4 +85,21 @@ describe("encrypted backups", () => {
 
     await expect(decryptBackup(JSON.stringify(raw), "correct-passphrase")).rejects.toThrow(/incorrect|damaged/i);
   });
+
+  it("rejects oversized backup payloads before parsing", async () => {
+    const huge = `{"name":"${"x".repeat(5 * 1024 * 1024)}"}`;
+    await expect(decryptBackup(huge, "")).rejects.toThrow(/too large/i);
+  });
+
+  it("rejects encrypted envelopes with hostile iteration counts", async () => {
+    const raw = JSON.parse(await encryptBackup({ private: true }, "correct-passphrase"));
+    raw.iterations = 50_000_000;
+    await expect(decryptBackup(JSON.stringify(raw), "correct-passphrase")).rejects.toThrow(/unsupported|invalid/i);
+  });
+
+  it("rejects encrypted envelopes with the wrong salt or iv length", async () => {
+    const raw = JSON.parse(await encryptBackup({ private: true }, "correct-passphrase"));
+    raw.salt = btoa("short");
+    await expect(decryptBackup(JSON.stringify(raw), "correct-passphrase")).rejects.toThrow(/incorrect|damaged/i);
+  });
 });

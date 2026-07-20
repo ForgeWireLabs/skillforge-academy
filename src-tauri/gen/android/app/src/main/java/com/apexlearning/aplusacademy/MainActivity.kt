@@ -22,6 +22,11 @@ class MainActivity : TauriActivity() {
   inner class BackupShareBridge {
     @JavascriptInterface
     fun shareBackup(filename: String, contents: String): Boolean {
+      // Match the frontend/Rust 5 MiB soft ceiling so a hostile WebView call cannot
+      // fill cache with unbounded backup payloads.
+      if (contents.length > 5 * 1024 * 1024) {
+        throw IllegalArgumentException("Backup payload is too large to share safely.")
+      }
       val safeName = filename.replace(Regex("[^A-Za-z0-9._-]"), "_")
       val outDir = File(cacheDir, "backups")
       outDir.mkdirs()

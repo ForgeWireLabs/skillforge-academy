@@ -23,6 +23,10 @@ The encrypted backup envelope remains:
 - KDF: `PBKDF2-SHA256`
 - Cipher: `AES-256-GCM`
 - Minimum export passphrase length: 8 characters
+- Soft import/export size ceiling: 5 MiB
+
+Privacy and permission expectations for local state, backups, diagnostics, and
+mobile platforms are summarized in [Privacy And Security](privacy-security.md).
 
 ## Export
 
@@ -57,6 +61,7 @@ Import errors are designed to stop before replacing local learner data.
 | Wrong passphrase, corrupted encrypted data, or partial file | `The passphrase is incorrect or the backup is damaged.` | Keep the current app data, find the original backup, and verify the passphrase. |
 | Unsupported encrypted backup version or malformed envelope | `Unsupported or invalid encrypted backup format.` | Keep the original file and check whether it came from a newer app version. |
 | Malformed JSON backup | `Backup file is not valid JSON.` | Re-export the backup from the source device if possible. |
+| Oversized backup file | `Backup file is too large to import safely.` | Keep current app data; confirm you selected a SkillForge `.apexbackup`, not an unrelated large file. |
 
 Before attempting a risky restore, export a fresh backup from the current device.
 If an import fails, do not uninstall or reset the app until the original backup
