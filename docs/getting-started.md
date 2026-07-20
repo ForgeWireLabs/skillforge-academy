@@ -39,7 +39,13 @@ selected. Switching tracks never mixes or resets another track's progress.
 ## 3. The daily study loop
 
 A good session moves through four stages. You don't need all four every day, but
-over a week you want to touch each one.
+over a week you want to touch each one. In the sidebar, these sit under the
+primary study destinations: **Learning Paths**, **Practice Lab**, **Mock Exam**,
+and **Recall Deck**. PBQ Lab, Performance, Notes, and Preferences live under
+**Tools**.
+
+The **Command Center** highlights one next best domain drill — use that when you
+are not sure where to start.
 
 ### Learn — read the lesson
 
@@ -55,9 +61,10 @@ straight into practice.
 
 ### Practice — prove it
 
-Open the **Practice Lab**, choose an exam (or "Mixed") and a question count, and
-launch a session. Each original question gives immediate feedback and a
-technician-focused explanation after you answer.
+Open the **Practice Lab**, choose an exam (or "Mixed"), optionally a **domain
+focus**, and a question count, then launch. From Command Center or Learning Paths
+you can jump straight into a domain-scoped drill. Each original question gives
+immediate feedback and a technician-focused explanation after you answer.
 
 ![Practice Lab](screenshots/03-practice-lab.png)
 
@@ -73,7 +80,9 @@ When a domain feels solid, open **Mock Exam** for a full-length, timed,
 domain-weighted simulation. The timer counts down and auto-submits at zero, and
 there's no feedback until you finish — just like the real thing. You then get a
 pass/fail result against that track's official pass line (A+ 75%, Network+ 80%,
-Security+ 83%), a per-domain breakdown, and a full review.
+Security+ 83%), a per-domain breakdown, and a full review. After the exam, use
+**Drill {weakest domain}** to remediate immediately, or warm up beforehand in
+**PBQ Lab** under Tools.
 
 ![Mock Exam](screenshots/04-mock-exam.png)
 

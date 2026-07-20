@@ -4,9 +4,9 @@ import {
   Activity, BarChart3, Bell, BookOpen, Bookmark, Brain, CalendarDays, Check,
   ChevronDown, ChevronLeft, ChevronRight, ChevronUp, CircleHelp, ClipboardCheck, Clock3, Download, Flame, Gauge, GraduationCap, Home,
   Layers3, Menu, Moon, NotebookPen, Play, Plus, RotateCcw, Search, Settings, ShieldCheck,
-  Sparkles, Sun, Target, Trash2, Trophy, Upload, X, Zap
+  Sparkles, Sun, Target, Trash2, Upload, X, Zap
 } from "lucide-react";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { loadContent, bundledContent, type ContentBundle } from "./content";
 import { ContentProvider, useContent } from "./ContentContext";
 import { decryptBackup, encryptBackup } from "./backup";
@@ -33,17 +33,26 @@ declare global {
   }
 }
 
-const nav: { id: View; label: string; icon: typeof Home }[] = [
+type NavItem = { id: View; label: string; icon: typeof Home };
+
+/** Study loop destinations — keep these visually primary in the sidebar. */
+const primaryNav: NavItem[] = [
   { id: "dashboard", label: "Command Center", icon: Home },
   { id: "learn", label: "Learning Paths", icon: BookOpen },
   { id: "practice", label: "Practice Lab", icon: Target },
-  { id: "pbq", label: "PBQ Lab", icon: Sparkles },
   { id: "mock", label: "Mock Exam", icon: ClipboardCheck },
-  { id: "flashcards", label: "Recall Deck", icon: Layers3 },
+  { id: "flashcards", label: "Recall Deck", icon: Layers3 }
+];
+
+/** Supporting tools — demoted under a Tools label so the study loop stays clear. */
+const toolsNav: NavItem[] = [
+  { id: "pbq", label: "PBQ Lab", icon: Sparkles },
   { id: "analytics", label: "Performance", icon: BarChart3 },
   { id: "notes", label: "Notes & Saves", icon: NotebookPen },
   { id: "settings", label: "Preferences", icon: Settings }
 ];
+
+const nav: NavItem[] = [...primaryNav, ...toolsNav];
 
 function isTauri() { return "__TAURI_INTERNALS__" in window; }
 function hasAndroidBridge() { return Boolean(window.SkillForgeAndroid); }
@@ -201,7 +210,13 @@ export default function App() {
       <div className="brand"><div className="brand-mark"><Zap /></div><div><b>SKILLFORGE</b><span>ACADEMY</span></div></div>
       <button className="collapse" aria-label={sidebar ? "Collapse sidebar" : "Expand sidebar"} onClick={() => setSidebar(!sidebar)}>{sidebar ? <ChevronLeft /> : <ChevronRight />}</button>
       <TrackSwitcher certs={content.certifications} activeCertId={state.activeCertId} onSelect={id => { setState(s => ({ ...s, activeCertId: id })); setView("dashboard"); }} />
-      <nav aria-label="Primary navigation">{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} aria-current={view===item.id?"page":undefined} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
+      <nav aria-label="Primary navigation" className="nav-primary">
+        {primaryNav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} aria-current={view===item.id?"page":undefined} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}
+      </nav>
+      <nav aria-label="Tools navigation" className="nav-tools">
+        <div className="nav-section-label" role="presentation">Tools</div>
+        {toolsNav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} aria-current={view===item.id?"page":undefined} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}
+      </nav>
       <div className="sidebar-card">
         <div className="mini-ring" style={{ "--value": `${avg}%` } as React.CSSProperties}><span>{avg}%</span></div>
         <div><b>Readiness</b><small>{attempts.length ? "Keep building" : "Take a baseline"}</small></div>
@@ -224,8 +239,8 @@ export default function App() {
         {view === "dashboard" && <Dashboard state={state} setView={setView} openPractice={openPractice} />}
         {view === "learn" && <Learn key={state.activeCertId} state={state} setState={setState} setView={setView} openPractice={openPractice} />}
         {view === "practice" && <Practice key={`${state.activeCertId}:${studyFocus?.domainId ?? ""}:${studyFocus?.examId ?? ""}`} state={state} setState={setState} studyFocus={studyFocus} clearStudyFocus={() => setStudyFocus(null)} />}
+        {view === "mock" && <MockExam key={state.activeCertId} state={state} setState={setState} openPractice={openPractice} setView={selectView} />}
         {view === "pbq" && <PbqLab key={state.activeCertId} activeCertId={state.activeCertId} />}
-        {view === "mock" && <MockExam key={state.activeCertId} state={state} setState={setState} />}
         {view === "flashcards" && <Flashcards key={state.activeCertId} state={state} setState={setState} />}
         {view === "analytics" && <Suspense fallback={<div className="panel analytics-loading" role="status">Loading analytics…</div>}><Analytics state={state} /></Suspense>}
         {view === "notes" && <Notes state={state} setState={setState} />}
@@ -380,33 +395,41 @@ function Dashboard({ state, setView, openPractice }: { state: LearnerState; setV
   const certQuestions = questions.filter(q => q.certId === cert);
   const certFlashcards = flashcards.filter(f => f.certId === cert);
   const certAttempts = state.attempts.filter(a => a.certId === cert);
-  const attempted = certQuestions.filter(q => state.answered[q.id]?.attempts).length;
-  const mastered = certQuestions.filter(q => state.answered[q.id]?.lastCorrect).length;
   const todayCount = questionsToday(progress);
   const avg = certAttempts.length ? Math.round(certAttempts.reduce((a, x) => a + pct(x.score, x.total), 0) / certAttempts.length) : 0;
-  const trend = certAttempts.slice(-7).map((a, i) => ({ name: `Test ${i + 1}`, score: pct(a.score, a.total) }));
   const days = progress.targetDate ? Math.max(0, Math.ceil((new Date(progress.targetDate).getTime() - Date.now()) / 86400000)) : null;
   const domainData = certDomains.map(d => ({ ...d, mastery: domainMastery(certQuestions.filter(q => q.domain === d.id), state.answered) }));
   const nextDomain = [...domainData].sort((a,b) => a.mastery - b.mastery)[0];
+  const cardsDue = certFlashcards.filter(f => isCardDue(state.cardRatings[f.id])).length;
 
   return <>
-    <div className="page-title"><div><span className="eyebrow">YOUR STUDY COMMAND CENTER</span><h1>Ready to level up, {state.name.split(" ")[0]}?</h1><p>Build real troubleshooting instincts, one focused session at a time.</p></div><div className="date-pill"><CalendarDays/><span>{days === null ? "Set an exam date" : `${days} days to exam`}</span></div></div>
+    <div className="page-title"><div><span className="eyebrow">YOUR STUDY COMMAND CENTER</span><h1>Ready to level up, {state.name.split(" ")[0]}?</h1><p>One focused next step — then keep the study loop moving.</p></div><div className="date-pill"><CalendarDays/><span>{days === null ? "Set an exam date" : `${days} days to exam`}</span></div></div>
     <div className="hero-grid">
       <div className="hero-card glow-card">
-        <div className="hero-copy"><span className="pill teal"><Sparkles/> SMART RECOMMENDATION</span><h2>Strengthen {nextDomain.name}</h2><p>Your current activity suggests this is the best place to earn the next chunk of exam readiness.</p><button className="primary" onClick={() => openPractice({ domainId: nextDomain.id, examId: nextDomain.exam })}><Play/> Drill {nextDomain.name}</button></div>
+        <div className="hero-copy"><span className="pill teal"><Sparkles/> NEXT BEST DRILL</span><h2>Strengthen {nextDomain.name}</h2><p>This is your weakest domain right now. Run a short drill here before hopping into other tools.</p><button className="primary" onClick={() => openPractice({ domainId: nextDomain.id, examId: nextDomain.exam })}><Play/> Drill {nextDomain.name}</button></div>
         <div className="hero-visual"><div className="orb"><Brain/><span>{nextDomain.mastery}%</span><small>mastery</small></div></div>
       </div>
       <div className="goal-card panel"><div className="panel-heading"><span>DAILY MISSION</span><Flame/></div><div className="goal-number"><b>{Math.min(todayCount, progress.dailyGoal)}</b><span>/ {progress.dailyGoal} today</span></div><div className="progress"><i style={{width:`${Math.min(100,pct(todayCount,progress.dailyGoal))}%`}}/></div><div className="streak"><Flame/><b>{progress.streak === 0 ? "Start your streak" : `${progress.streak} day streak`}</b><span>Consistency compounds.</span></div></div>
     </div>
-    <div className="stats-grid">
-      <Stat icon={Gauge} label="Overall readiness" value={`${avg}%`} sub={certAttempts.length ? `${certAttempts.length} exams completed` : "Baseline not taken"} color="blue"/>
-      <Stat icon={CircleHelp} label="Questions explored" value={`${attempted}`} sub={`${mastered} currently mastered`} color="purple"/>
-      <Stat icon={Layers3} label="Cards due" value={`${certFlashcards.filter(f => isCardDue(state.cardRatings[f.id])).length}`} sub="Spaced recall queue" color="amber"/>
-      <Stat icon={Trophy} label="Best score" value={`${Math.max(0,...certAttempts.map(a => pct(a.score,a.total)))}%`} sub="Personal record" color="teal"/>
+    <div className="stats-grid stats-grid-compact">
+      <Stat icon={Gauge} label="Overall readiness" value={`${avg}%`} sub={certAttempts.length ? `${certAttempts.length} sessions logged` : "Take a baseline mock or practice"} color="blue"/>
+      <Stat icon={Layers3} label="Cards due" value={`${cardsDue}`} sub="Clear these in Recall Deck" color="amber"/>
     </div>
-    <div className="two-col">
-      <div className="panel chart-panel"><div className="panel-title"><div><span>PERFORMANCE TREND</span><h3>Practice exam scores</h3></div><button className="text-btn" onClick={() => setView("analytics")}>Full report <ChevronRight/></button></div>{trend.length ? <ResponsiveContainer width="100%" height={230}><AreaChart data={trend}><defs><linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#55a8ff" stopOpacity={.45}/><stop offset="95%" stopColor="#55a8ff" stopOpacity={0}/></linearGradient></defs><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis dataKey="name" stroke="var(--muted)"/><YAxis domain={[0,100]} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Area type="monotone" dataKey="score" stroke="#55a8ff" strokeWidth={3} fill="url(#scoreFill)"/></AreaChart></ResponsiveContainer> : <Empty message="Complete a practice session to reveal your trend." action="Start practice" onClick={() => openPractice(null)}/>}</div>
-      <div className="panel"><div className="panel-title"><div><span>DOMAIN MASTERY</span><h3>Objective coverage</h3></div></div><div className="domain-list">{domainData.slice(0,5).map(d => <div className="domain-row" key={d.id}><span className="domain-dot" style={{background:d.color}}/><div><b>{d.name}</b><small>{d.exam}</small></div><div className="thin-progress"><i style={{width:`${d.mastery}%`,background:d.color}}/></div><strong>{d.mastery}%</strong></div>)}</div></div>
+    <div className="panel command-followups">
+      <div className="panel-title"><div><span>KEEP GOING</span><h3>Study loop shortcuts</h3></div></div>
+      <div className="followup-actions">
+        <button className="ghost" onClick={() => setView("learn")}><BookOpen/> Learning Paths</button>
+        <button className="ghost" onClick={() => setView("flashcards")}><Layers3/> Recall Deck{cardsDue ? ` (${cardsDue})` : ""}</button>
+        <button className="ghost" onClick={() => setView("mock")}><ClipboardCheck/> Mock Exam</button>
+        <button className="ghost" onClick={() => setView("analytics")}><BarChart3/> Full performance report</button>
+      </div>
+      <div className="domain-list compact-domains" aria-label="Weakest domains">
+        {domainData.slice().sort((a,b)=>a.mastery-b.mastery).slice(0,3).map(d => (
+          <button type="button" className="domain-row domain-row-btn" key={d.id} onClick={() => openPractice({ domainId: d.id, examId: d.exam })}>
+            <span className="domain-dot" style={{background:d.color}}/><div><b>{d.name}</b><small>{d.mastery}% mastery · drill this domain</small></div><strong>{d.mastery}%</strong>
+          </button>
+        ))}
+      </div>
     </div>
     <TrademarkNote vendor={activeCert?.vendor} shortName={activeCert?.shortName}/>
   </>;
@@ -488,6 +511,7 @@ function Learn({ state, setState, setView, openPractice }: { state:LearnerState;
             : <div className="topic-grid">{active.topics.map((t,i)=><div key={t}><span>{i+1}</span><div><b>{t}</b><small>Concepts, scenarios, and field notes</small></div><Check/></div>)}</div>}
           <h3>Knowledge checks</h3><div className="check-list">{activeQuestions.map(q=><div key={q.id}><div className={`status ${state.answered[q.id]?.lastCorrect ? "done":""}`}>{state.answered[q.id]?.lastCorrect?<Check/>:<CircleHelp/>}</div><div><b>{q.objective}</b><small>{objCode(q.objectiveId)?`Obj ${objCode(q.objectiveId)} · `:""}{q.difficulty} · Original practice scenario</small></div><button className="ghost" aria-label="Bookmark this question and open practice" onClick={()=>{setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks:s.bookmarks.concat(q.id)}));openPractice({ domainId: active.id, examId: active.exam })}}><Bookmark/></button></div>)}</div>
           <button className="primary wide" onClick={()=>openPractice({ domainId: active.id, examId: active.exam })}><Play/> Practice this domain</button>
+          <p className="pbq-discover"><button className="text-btn" onClick={()=>setView("pbq")}><Sparkles/> Practice interactive PBQ simulations for this track <ChevronRight/></button></p>
         </>}
       </div>
     </div>
@@ -667,7 +691,7 @@ function PbqLab({ activeCertId }: { activeCertId: CertId }) {
   </>;
 }
 
-function MockExam({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
+function MockExam({ state, setState, openPractice, setView }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>>; openPractice:(focus?: StudyFocus | null)=>void; setView:(v:View)=>void }) {
   const { certifications, domains, questions, pbqs } = useContent();
   const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
   const certQuestions = questions.filter(q => q.certId === cert.id);
@@ -731,7 +755,9 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
       <label>Multiple-choice questions</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={qCount===x?"selected":""} aria-pressed={qCount===x} onClick={()=>setQCount(x)}>{x}</button>)}<input aria-label="Custom question count" type="number" min="10" max={availableMcq} value={qCount} onChange={e=>setQCount(Math.max(10, Number(e.target.value)||10))}/></div>
       <label>Performance-based questions</label><div className="count-picker">{[0,1,2,3].map(x=><button key={x} disabled={x>availablePbqs} className={requestedPbqs===x?"selected":""} aria-pressed={requestedPbqs===x} onClick={()=>setRequestedPbqs(x)}>{x}</button>)}</div>
       <label>Time limit (minutes)</label><div className="count-picker">{[30,60,90].map(x=><button key={x} className={minutes===x?"selected":""} aria-pressed={minutes===x} onClick={()=>setMinutes(x)}>{x}</button>)}<input aria-label="Custom time limit in minutes" type="number" min="15" max="240" value={minutes} onChange={e=>setMinutes(Math.max(15, Number(e.target.value)||15))}/></div>
-      <button className="primary wide launch" onClick={start}><ClipboardCheck/> Begin mock exam</button></div>
+      <button className="primary wide launch" onClick={start}><ClipboardCheck/> Begin mock exam</button>
+      {availablePbqs > 0 && <p className="pbq-discover"><button className="text-btn" onClick={()=>setView("pbq")}><Sparkles/> Warm up with PBQ Lab simulations first <ChevronRight/></button></p>}
+      </div>
       <div className="panel setup-side"><span className="pill purple"><Sparkles/> EXAM PREVIEW</span><h2>{plannedQ} questions</h2>
         <div className="preview-row"><Clock3/><div><b>Time limit</b><small>{minutes} minutes, counts down</small></div></div>
         <div className="preview-row"><ClipboardCheck/><div><b>Performance-based</b><small>{pbqCount ? `${pbqCount} PBQ${pbqCount>1?"s":""} first, then multiple choice` : "Multiple choice"}</small></div></div>
@@ -741,13 +767,18 @@ function MockExam({ state, setState }: { state:LearnerState; setState:React.Disp
   </>;
 
   if(phase==="results" && grade) {
-    const rows = Object.entries(grade.domainScores).map(([id,v])=>({ name: domains.find(d=>d.id===id)?.name.split(" ")[0]||id, score: pct(Math.round(v.correct), v.total), color: domains.find(d=>d.id===id)?.color||"#55a8ff" }));
+    const rows = Object.entries(grade.domainScores).map(([id,v])=>({ id, name: domains.find(d=>d.id===id)?.name.split(" ")[0]||id, score: pct(Math.round(v.correct), v.total), color: domains.find(d=>d.id===id)?.color||"#55a8ff", exam: domains.find(d=>d.id===id)?.exam || exam }));
+    const weakest = [...rows].sort((a,b)=>a.score-b.score)[0];
     return <>
       <PageHead eyebrow="EXAM COMPLETE" title={grade.passed?"Passed":"Not yet"} subtitle="A full breakdown of your performance, domain by domain."/>
       <div className="results panel"><div className={`result-ring ${grade.passed?"pass":""}`}><b>{grade.pct}%</b><span>{Math.round(grade.earned)} / {grade.total}</span></div>
         <h2>{grade.passed?"You cleared the passing bar.":`${Math.round(passThreshold*100)}% needed to pass.`}</h2>
         <p>{grade.passed?"Keep this consistency and you're exam ready.":"Review the misses below and drill your weakest domains."}</p>
-        <div className="result-actions"><button className="primary" onClick={()=>setPhase("setup")}><RotateCcw/> New exam</button></div>
+        <div className="result-actions">
+          {weakest && <button className="primary" onClick={()=>openPractice({ domainId: weakest.id, examId: weakest.exam })}><Target/> Drill {domains.find(d=>d.id===weakest.id)?.name || weakest.name}</button>}
+          <button className="ghost" onClick={()=>setPhase("setup")}><RotateCcw/> New exam</button>
+          {availablePbqs > 0 && <button className="ghost" onClick={()=>setView("pbq")}><Sparkles/> PBQ Lab</button>}
+        </div>
       </div>
       <div className="panel chart-panel"><div className="panel-title"><div><span>DOMAIN BREAKDOWN</span><h3>Score by domain</h3></div></div><ResponsiveContainer width="100%" height={Math.max(160, rows.length*42)}><BarChart data={rows} layout="vertical" margin={{left:15}}><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis type="number" domain={[0,100]} stroke="var(--muted)"/><YAxis dataKey="name" type="category" width={80} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Bar dataKey="score" radius={[0,6,6,0]}>{rows.map(r=><Cell key={r.name} fill={r.color}/>)}</Bar></BarChart></ResponsiveContainer></div>
       <div className="review-list">{items.map((it,i)=>{

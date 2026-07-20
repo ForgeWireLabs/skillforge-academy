@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "309",
   "title": "Primary vs secondary navigation IA pass",
-  "status": "proposed",
+  "status": "completed",
   "owner_scope": "governance",
   "affected_scopes": [
     "implementation",
@@ -21,26 +21,34 @@
     {
       "id": "AC-1",
       "text": "Regroup or visually demote secondary destinations (PBQ Lab, Performance, Notes, Preferences) so Learn/Practice/Mock/Recall read as the primary study loop.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-309-nav-ia-pass"
+      ]
     },
     {
       "id": "AC-2",
       "text": "Reduce Command Center competing chrome so the weak-domain next action remains dominant without removing access to trends/mastery.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-309-nav-ia-pass"
+      ]
     },
     {
       "id": "AC-3",
       "text": "Add Mock-results remediation CTA that reuses StudyFocus domain drills, and surface PBQ discovery from Mock or Learn.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-309-nav-ia-pass"
+      ]
     },
     {
       "id": "AC-4",
       "text": "Validate keyboard/a11y still pass after nav regrouping; update getting-started if labels or hierarchy change.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-309-nav-ia-pass"
+      ]
     }
   ],
   "created": "2026-07-20",

@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-309-nav-ia-pass",
+  "timestamp": "2026-07-20T18:09:20Z",
+  "work_item": "309",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "Unit tests passed after nav IA and Mock remediation CTAs."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "[AC-4] Accessibility validation passed (20 checks) including Tools navigation label."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "[AC-1..AC-3] TypeScript and Vite production build passed."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "Governance validation passed after completing work item 309."
+    }
+  ],
+  "artifacts": [
+    "src/App.tsx",
+    "src/styles.css",
+    "scripts/validate-accessibility.mjs",
+    "docs/getting-started.md",
+    "work/completed/309-primary-vs-secondary-navigation-ia-pass"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "process_note": "Primary vs tools nav, Command Center density reduction, Mock remediation and PBQ discovery."
+  }
+}
