@@ -8,9 +8,10 @@ import {
   recordDiagnosticError,
   serializeDiagnosticBundle
 } from "./diagnostics";
+import { contentRevision } from "./content/revision";
+import { bundledContent } from "./content";
 import { initialState, migrateState, SCHEMA_VERSION } from "./logic";
 import type { LearnerState } from "./types";
-import { bundledContent } from "./content";
 
 const sampleState = (): LearnerState => ({
   ...initialState,
@@ -76,6 +77,8 @@ describe("buildDiagnosticBundle", () => {
     });
     expect(bundle.platform.tauri).toBe(true);
     expect(bundle.content.totals.questions).toBeGreaterThan(0);
+    expect(bundle.content.revision).toMatch(/^fnv1a-[0-9a-f]{8}$/);
+    expect(bundle.content.revision).toBe(contentRevision(bundledContent));
   });
 
   it("redacts display name and note text by default", () => {

@@ -65,18 +65,10 @@ fn reset_state(app: AppHandle) -> Result<(), String> {
     Ok(())
 }
 
-/// Reads the study content from the bundled resource directory. The
-/// `certifications.json` manifest lists each track; per-track banks live under
-/// `content/<certId>/` and are concatenated into flat arrays. Keeping content in
-/// external resource files lets the banks grow or be corrected without
-/// rebuilding the application binary.
-#[tauri::command]
-fn load_content(app: AppHandle) -> Result<Value, String> {
-    let dir = app
-        .path()
-        .resource_dir()
-        .map_err(|e| e.to_string())?
-        .join("content");
+/// Assembles a content bundle from a resource `content/` directory.
+/// Extracted from the Tauri command so unit tests can exercise the same path
+/// without an AppHandle (desktop GTK deps are not required for this check).
+fn assemble_content_from_dir(dir: &std::path::Path) -> Result<Value, String> {
     let read = |path: PathBuf, label: &str| -> Result<Value, String> {
         let raw = fs::read_to_string(&path).map_err(|e| format!("{label}: {e}"))?;
         serde_json::from_str(&raw).map_err(|e| format!("{label}: {e}"))
@@ -93,8 +85,14 @@ fn load_content(app: AppHandle) -> Result<Value, String> {
         })
         .unwrap_or_default();
 
-    let (mut domains, mut questions, mut flashcards, mut pbqs, mut lessons) =
-        (Vec::new(), Vec::new(), Vec::new(), Vec::new(), Vec::new());
+    let (mut domains, mut questions, mut flashcards, mut pbqs, mut lessons, mut objectives) = (
+        Vec::new(),
+        Vec::new(),
+        Vec::new(),
+        Vec::new(),
+        Vec::new(),
+        Vec::new(),
+    );
     let extend = |target: &mut Vec<Value>, value: Value| {
         if let Value::Array(items) = value {
             target.extend(items);
@@ -117,12 +115,19 @@ fn load_content(app: AppHandle) -> Result<Value, String> {
                 &format!("{id}/flashcards.json"),
             )?,
         );
-        // PBQs and lessons are optional so a track without them still loads.
+        // PBQs, lessons, and objectives are optional so a track without them
+        // still loads; the frontend requires `objectives` to be an array key.
         if let Ok(value) = read(cdir.join("pbqs.json"), &format!("{id}/pbqs.json")) {
             extend(&mut pbqs, value);
         }
         if let Ok(value) = read(cdir.join("lessons.json"), &format!("{id}/lessons.json")) {
             extend(&mut lessons, value);
+        }
+        if let Ok(value) = read(
+            cdir.join("objectives.json"),
+            &format!("{id}/objectives.json"),
+        ) {
+            extend(&mut objectives, value);
         }
     }
 
@@ -132,8 +137,24 @@ fn load_content(app: AppHandle) -> Result<Value, String> {
         "questions": questions,
         "flashcards": flashcards,
         "pbqs": pbqs,
-        "lessons": lessons
+        "lessons": lessons,
+        "objectives": objectives
     }))
+}
+
+/// Reads the study content from the bundled resource directory. The
+/// `certifications.json` manifest lists each track; per-track banks live under
+/// `content/<certId>/` and are concatenated into flat arrays. Keeping content in
+/// external resource files lets the banks grow or be corrected without
+/// rebuilding the application binary.
+#[tauri::command]
+fn load_content(app: AppHandle) -> Result<Value, String> {
+    let dir = app
+        .path()
+        .resource_dir()
+        .map_err(|e| e.to_string())?
+        .join("content");
+    assemble_content_from_dir(&dir)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -148,4 +169,35 @@ pub fn run() {
         ])
         .run(tauri::generate_context!())
         .expect("error while running SkillForge Academy");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::PathBuf;
+
+    #[test]
+    fn assemble_content_includes_objectives_array() {
+        let dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../src/content");
+        let bundle = assemble_content_from_dir(&dir).expect("content dir should assemble");
+        let objectives = bundle
+            .get("objectives")
+            .and_then(Value::as_array)
+            .expect("objectives key must be an array");
+        assert!(
+            !objectives.is_empty(),
+            "shipped tracks should contribute objectives.json entries"
+        );
+        for key in [
+            "certifications",
+            "domains",
+            "questions",
+            "flashcards",
+            "pbqs",
+            "lessons",
+            "objectives",
+        ] {
+            assert!(bundle.get(key).is_some(), "missing content key {key}");
+        }
+    }
 }

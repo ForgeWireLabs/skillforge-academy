@@ -23,7 +23,8 @@
       "text": "Document a structured cold-walkthrough of first-launch, daily session, Learn→Practice, Practice session, PBQ Lab, Mock, Recall, track switch, and recovery journeys with found/hesitated/failed scores.",
       "state": "satisfied",
       "evidence": [
-        "20260720-308-ux-ia-audit"
+        "20260720-308-ux-ia-audit",
+        "20260720-verification-remediation-225-308-309"
       ]
     },
     {
@@ -47,7 +48,8 @@
       "text": "Add Practice domain targeting and honor Learn 'Practice this domain' / study-focus handoffs so Learn→Practice stays on the same domain.",
       "state": "satisfied",
       "evidence": [
-        "20260720-308-ux-ia-audit"
+        "20260720-308-ux-ia-audit",
+        "20260720-verification-remediation-225-308-309"
       ]
     },
     {
@@ -61,5 +63,5 @@
   ],
   "created": "2026-07-20",
   "updated": "2026-07-20",
-  "source": "Steward: UX audit before learner beta (228 deferred)"
+  "source": "Steward: UX audit before learner beta (228 deferred); reopened to fix Tauri objectives load for Learn"
 }

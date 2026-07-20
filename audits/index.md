@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-20 (nav IA pass closeout)
+Last updated: 2026-07-20 (verification remediation for 225/308/309)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |

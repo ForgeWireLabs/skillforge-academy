@@ -1,0 +1,61 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-verification-remediation-225-308-309",
+  "timestamp": "2026-07-20T18:36:30Z",
+  "work_item": "308",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[308/309/225] 88 tests passed including Tauri objectives contract, weakest-domain fractional PBQ selection, and content.revision diagnostics."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "TypeScript and Vite production build passed after remediation."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "Accessibility validation passed (20 checks)."
+    },
+    {
+      "command": "python3 -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "Governance validation after reopening and re-completing 225/308/309."
+    },
+    {
+      "command": "cargo test assemble_content --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[308] Rust unit test assemble_content_includes_objectives_array passed after installing libgtk-3-dev / gdk-3.0 on the validation host."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Native crate check passed with GTK/WebKit system libraries installed."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Rust formatting check passed."
+    }
+  ],
+  "artifacts": [
+    "src-tauri/src/lib.rs",
+    "src/content/validate.ts",
+    "src/content/index.ts",
+    "src/content/tauri-content-contract.test.ts",
+    "src/logic.ts",
+    "src/App.tsx",
+    "src/diagnostics.ts",
+    "src/content/revision.ts",
+    "docs/diagnostics.md",
+    "docs/support-troubleshooting.md"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "process_note": "Post-merge verification remediation for 225 AC-4, 308 Tauri objectives load, 309 weakest-domain pct."
+  }
+}

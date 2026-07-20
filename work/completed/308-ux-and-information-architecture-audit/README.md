@@ -17,4 +17,11 @@ recommendation and Learn “practice this domain” open a scoped Practice drill
 - Follow-up proposed: `309` (primary vs secondary nav IA)
 - Beta `228` deferred pending UX follow-through
 
-Evidence: `20260720-308-ux-ia-audit`.
+Evidence: `20260720-308-ux-ia-audit`,
+`20260720-verification-remediation-225-308-309`.
+
+## Verification amendment (2026-07-20)
+
+Reopened after source review: Tauri `load_content` omitted `objectives`, so
+Learning Paths could crash on the desktop resource path. Rust now returns
+objectives; runtime validation requires the array; contract tests added.

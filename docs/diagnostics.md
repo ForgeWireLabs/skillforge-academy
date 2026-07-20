@@ -19,7 +19,7 @@ A diagnostic file (`skillforge-diagnostic-YYYY-MM-DD.json`) contains:
 | Stance | Explicit `telemetry: none`, `crashReporting: none`, local-export-only |
 | App | App version and learner-state schema version |
 | Platform | Browser/WebView user agent, language, online flag, Tauri/Android bridge flags, viewport size |
-| Content | Per-track counts of domains, questions, flashcards, PBQs, lessons, and objectives |
+| Content | Content revision fingerprint plus per-track counts of domains, questions, flashcards, PBQs, lessons, and objectives |
 | State summary | Active track, theme, progress cadence metrics, attempt score summaries, and item counts |
 | Recent errors | In-session support messages (save/load/backup failures), if any occurred |
 | Redaction flags | Whether sensitive fields were included |
@@ -47,6 +47,9 @@ not free-form study notes.
 Also useful for support tickets:
 
 - App version shown on the Preferences about card (and inside the diagnostic file)
+- Content revision string inside the diagnostic file (`content.revision`) — a
+  fingerprint of the loaded banks so support can confirm two installs share the
+  same authored content set
 - Operating system and whether you are on Windows desktop or Android
 - Exact error text shown after a failed backup import/export
 - Whether you can still open Command Center after the failure (state should remain intact)

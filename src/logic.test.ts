@@ -4,7 +4,7 @@ import {
   scheduleCard, isCardDue, domainMastery, masteredCount, objectiveStats, migrateState,
   buildNotifications, initialState, SCHEMA_VERSION,
   buildWeightedQuestionSet, buildMockExam, gradePbq, gradeMcq, isMultiSelect, scoreMock, type MockItem,
-  isCertAvailable, sortCertifications, resolveActiveCert, practicePool
+  isCertAvailable, sortCertifications, resolveActiveCert, practicePool, weakestDomainFromScores
 } from "./logic";
 import type { AnsweredStat, Certification, CertProgress, Domain, LearnerState, Pbq, Question } from "./types";
 
@@ -368,6 +368,26 @@ describe("mock exam: scoring and assembly", () => {
     const msItems: MockItem[] = [{ type: "mcq", question: ms }];
     expect(scoreMock(msItems, { ms: [1, 3] }, {}).earned).toBe(1);
     expect(scoreMock(msItems, { ms: [1] }, {}).earned).toBe(0);
+  });
+  it("preserves fractional PBQ credit when selecting the weakest domain", () => {
+    // Domain net: half-credit PBQ only → 50%. Domain hw: perfect MCQ → 100%.
+    // Rounding the numerator before pct would turn 0.5/1 into 1/1 and hide the weak domain.
+    const halfPbq: Pbq = {
+      ...pbq,
+      id: "half",
+      domain: "net",
+      steps: [{ id: "s1", text: "1" }, { id: "s2", text: "2" }],
+      answer: ["s1", "s2"]
+    };
+    const itemsHalf: MockItem[] = [
+      { type: "pbq", pbq: halfPbq },
+      { type: "mcq", question: q("hw1", "hw", "obj") }
+    ];
+    const g = scoreMock(itemsHalf, { hw1: 0 }, { half: ["s1", "wrong"] });
+    expect(g.domainScores.net.correct).toBe(0.5);
+    expect(g.domainScores.net.total).toBe(1);
+    expect(g.domainScores.hw.correct).toBe(1);
+    expect(weakestDomainFromScores(g.domainScores)?.id).toBe("net");
   });
   it("places PBQs before MCQs in a built exam", () => {
     const domains: Domain[] = [{ id: "net", certId: "a-plus", exam: "220-1201", name: "Networking", weight: 100, color: "#000", description: "", topics: [] }];

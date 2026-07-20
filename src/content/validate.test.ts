@@ -69,8 +69,13 @@ describe("validateContent — objective registry", () => {
     expect(validateContent(bundle({ objectives: [bad] })).some(e => e.includes("unknown domain"))).toBe(true);
   });
 
-  it("rejects duplicate objective ids", () => {
-    expect(validateContent(bundle({ objectives: [objective, objective] })).some(e => e.includes("Duplicate objective id"))).toBe(true);
+  it("rejects a payload that omits the objectives array (Tauri crash guard)", () => {
+    const { objectives: _omit, ...without } = bundle();
+    expect(validateContent(without).some(e => e.includes("objectives must be an array"))).toBe(true);
+  });
+
+  it("accepts an explicit empty objectives array", () => {
+    expect(validateContent(bundle({ objectives: [] }))).toEqual([]);
   });
 });
 

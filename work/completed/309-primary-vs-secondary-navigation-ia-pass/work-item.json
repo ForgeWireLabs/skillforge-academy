@@ -39,7 +39,8 @@
       "text": "Add Mock-results remediation CTA that reuses StudyFocus domain drills, and surface PBQ discovery from Mock or Learn.",
       "state": "satisfied",
       "evidence": [
-        "20260720-309-nav-ia-pass"
+        "20260720-309-nav-ia-pass",
+        "20260720-verification-remediation-225-308-309"
       ]
     },
     {
@@ -53,5 +54,5 @@
   ],
   "created": "2026-07-20",
   "updated": "2026-07-20",
-  "source": "Follow-up from AUDIT-2026-07-20-ux-ia / work item 308"
+  "source": "Follow-up from AUDIT-2026-07-20-ux-ia / work item 308; reopened to fix weakest-domain fractional PBQ math"
 }

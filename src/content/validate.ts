@@ -7,7 +7,7 @@ export interface ContentBundle {
   flashcards: Flashcard[];
   pbqs: Pbq[];
   lessons: Lesson[];
-  /** Published exam objectives per track (optional bank). */
+  /** Published exam objectives per track (required array; may be empty). */
   objectives: Objective[];
 }
 
@@ -54,7 +54,9 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
   if (!Array.isArray(flashcards) || flashcards.length === 0) errors.push("flashcards must be a non-empty array");
   if (pbqs !== undefined && !Array.isArray(pbqs)) errors.push("pbqs must be an array when present");
   if (lessons !== undefined && !Array.isArray(lessons)) errors.push("lessons must be an array when present");
-  if (objectives !== undefined && !Array.isArray(objectives)) errors.push("objectives must be an array when present");
+  // Objectives are required so Learning Paths can call `.filter` safely on the
+  // Tauri resource-loading path (missing key previously passed validation).
+  if (!Array.isArray(objectives)) errors.push("objectives must be an array");
   if (errors.length) return errors;
 
   // ---- Certification manifest ------------------------------------------------
