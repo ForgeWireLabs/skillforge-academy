@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-20 (support troubleshooting docs closeout)
+Last updated: 2026-07-20 (UX/IA audit closeout)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -24,9 +24,10 @@ Last updated: 2026-07-20 (support troubleshooting docs closeout)
 | [AUDIT-2026-07-01-ios-mobile-foundation](AUDIT-2026-07-01-ios-mobile-foundation.md) | iOS Mobile Foundation | implementation / mobile readiness | blocked-with-repo-foundation | [218](../work/blocked/218-tauri-ios-mobile-support-foundation/README.md) | 2026-07-01 |
 | [AUDIT-2026-07-20-local-diagnostics](AUDIT-2026-07-20-local-diagnostics.md) | Local Diagnostics And Error-Reporting Stance | implementation / privacy | passed | [225](../work/completed/225-local-diagnostics-and-error-reporting-stance/README.md) | 2026-07-20 |
 | [AUDIT-2026-07-20-support-troubleshooting-docs](AUDIT-2026-07-20-support-troubleshooting-docs.md) | Support And Troubleshooting Documentation | documentation / release support | passed | [226](../work/completed/226-support-and-troubleshooting-docs/README.md) | 2026-07-20 |
+| [AUDIT-2026-07-20-ux-ia](AUDIT-2026-07-20-ux-ia.md) | UX And Information-Architecture Audit | UX / information architecture | passed-with-follow-ups | [308](../work/completed/308-ux-and-information-architecture-audit/README.md) | 2026-07-20 |
 
 ## Next Recommended Audit
 
-Candidate: privacy/security review across local state, backups, diagnostics, and
-mobile permissions (`227`), or a true NVDA/VoiceOver walkthrough when those
-assistive technology environments are available.
+Candidate: primary vs secondary navigation IA pass (`309`), then resume deferred
+learner beta (`228`). NVDA/VoiceOver walkthrough remains valuable when AT
+environments are available.

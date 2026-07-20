@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-308-ux-ia-audit",
+  "timestamp": "2026-07-20T17:59:00Z",
+  "work_item": "308",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-3, AC-4] Unit tests passed including practicePool domain/exam handoff coverage."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "Accessibility validation passed (18 checks)."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "TypeScript and Vite production build passed."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "[AC-1, AC-2, AC-5] Governance validation passed with UX audit, deferred 228, and proposed 309."
+    },
+    {
+      "command": "code walkthrough of App.tsx journeys vs getting-started study loop",
+      "exit_code": 0,
+      "summary": "[AC-1, AC-2, AC-5] Findings and backlog recorded in audits/AUDIT-2026-07-20-ux-ia.md."
+    }
+  ],
+  "artifacts": [
+    "audits/AUDIT-2026-07-20-ux-ia.md",
+    "src/logic.ts",
+    "src/logic.test.ts",
+    "src/App.tsx",
+    "src/styles.css",
+    "work/completed/308-ux-and-information-architecture-audit",
+    "work/proposed/309-primary-vs-secondary-navigation-ia-pass",
+    "work/deferred/228-real-learner-beta-pilot-and-feedback-loop"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "process_note": "UX/IA audit with scoped Practice handoff; beta 228 deferred; nav regroup proposed as 309."
+  }
+}

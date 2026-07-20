@@ -6,6 +6,8 @@ All notable changes to SkillForge Academy are documented here. SkillForge Academ
 
 ### Added
 
+- **Scoped practice drills.** Command Center weak-domain recommendations and Learning Paths “Practice this domain” now open Practice Lab filtered to that domain. UX/IA audit recorded in `audits/AUDIT-2026-07-20-ux-ia.md`.
+
 - **Support and troubleshooting guide.** User-facing recovery docs cover SmartScreen/install, launch, content loading, backup restore, data locations, reset, diagnostics, and Android/iOS notes. Linked from the README installer section — see `docs/support-troubleshooting.md`.
 - **Local diagnostics export.** Preferences can export a `skillforge-diagnostic-*.json` file for support. The app still sends no telemetry and no crash reports. Display name and note text stay redacted unless you explicitly opt in. See `docs/diagnostics.md` and decision 0009.
 

@@ -1,0 +1,65 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "308",
+  "title": "UX and information-architecture audit",
+  "status": "completed",
+  "owner_scope": "governance",
+  "affected_scopes": [
+    "implementation",
+    "docs"
+  ],
+  "depends_on": [
+    "226"
+  ],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-07-20T00:00:00Z",
+    "note": "Stamped by `repopact new`; the work item was recorded before implementation began."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Document a structured cold-walkthrough of first-launch, daily session, Learn→Practice, Practice session, PBQ Lab, Mock, Recall, track switch, and recovery journeys with found/hesitated/failed scores.",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-308-ux-ia-audit"
+      ]
+    },
+    {
+      "id": "AC-2",
+      "text": "Produce a prioritized UX/IA backlog (flow blockers, IA/navigation, seam fixes, polish) and file follow-up work for items not fixed in this pass.",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-308-ux-ia-audit"
+      ]
+    },
+    {
+      "id": "AC-3",
+      "text": "Implement Command Center smart-recommendation CTA so it launches a Practice session scoped to the recommended weak domain (not a generic unscoped lab).",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-308-ux-ia-audit"
+      ]
+    },
+    {
+      "id": "AC-4",
+      "text": "Add Practice domain targeting and honor Learn 'Practice this domain' / study-focus handoffs so Learn→Practice stays on the same domain.",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-308-ux-ia-audit"
+      ]
+    },
+    {
+      "id": "AC-5",
+      "text": "Record nav density / primary-vs-secondary IA recommendation for a follow-up item without a full visual reskin.",
+      "state": "satisfied",
+      "evidence": [
+        "20260720-308-ux-ia-audit"
+      ]
+    }
+  ],
+  "created": "2026-07-20",
+  "updated": "2026-07-20",
+  "source": "Steward: UX audit before learner beta (228 deferred)"
+}

@@ -15,17 +15,17 @@
 | Audit findings | 5 |
 | Decision records | 9 |
 | Policy records | 1 |
-| Evidence runs | 41 |
+| Evidence runs | 42 |
 
 ## Work
 
 | Status | Count |
 | --- | ---: |
-| proposed | 0 |
-| active | 2 |
+| proposed | 1 |
+| active | 1 |
 | blocked | 2 |
-| deferred | 0 |
-| completed | 39 |
+| deferred | 1 |
+| completed | 40 |
 
 ## Audit freshness
 
@@ -34,6 +34,5 @@ All audit scopes are within their review cadence.
 ## Active items
 
 - 227: Privacy and security review for local state, backups, and mobile (active)
-- 228: Real learner beta pilot and feedback loop (active)
 - 212: Add installer code signing when a trusted certificate is available (blocked)
 - 218: Add Tauri iOS mobile support foundation (blocked)

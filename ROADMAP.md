@@ -36,6 +36,8 @@ progress, streaks, and analytics.
 
 ## Next
 
+- Primary vs secondary navigation IA pass (`309`) after UX audit `308`
+- Resume real learner beta (`228`) after IA follow-through
 - Add installer code signing when a trusted certificate is available
 - Screen-reader (NVDA/VoiceOver) walkthrough of every view and the lesson reader
 - Author the next certification tracks on the content factory

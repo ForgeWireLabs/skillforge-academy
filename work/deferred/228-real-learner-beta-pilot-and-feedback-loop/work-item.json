@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/work-item.schema.json",
   "id": "228",
   "title": "Real learner beta pilot and feedback loop",
-  "status": "active",
+  "status": "deferred",
   "owner_scope": "governance",
   "affected_scopes": [
     "docs",
@@ -47,6 +47,6 @@
     }
   ],
   "created": "2026-06-22",
-  "updated": "2026-06-22",
+  "updated": "2026-07-20",
   "source": "Gap review: real learner beta loop"
 }
