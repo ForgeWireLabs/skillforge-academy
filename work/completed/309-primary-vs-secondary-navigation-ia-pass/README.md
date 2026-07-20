@@ -17,4 +17,11 @@ Center focused on one next action, and add Mock remediation / PBQ discovery.
 - Learn: PBQ discovery link
 - getting-started + a11y checks updated
 
-Evidence: `20260720-309-nav-ia-pass`.
+Evidence: `20260720-309-nav-ia-pass`,
+`20260720-verification-remediation-225-308-309`.
+
+## Verification amendment (2026-07-20)
+
+Reopened after source review: Mock results rounded fractional PBQ credit before
+`pct`, which could pick the wrong weakest domain. Remediation now uses
+`weakestDomainFromScores` without rounding the numerator.
