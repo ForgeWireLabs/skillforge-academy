@@ -32,16 +32,17 @@ should be inserted between them.
 - Public mass distribution or publisher reputation claims.
 - Waiting on code signing (`212`) for a small private Windows beta.
 
-## Decisions to make during this item
+## Decisions
 
-1. Exact prerelease version string (`1.4.1-beta.1` vs `1.5.0-beta.1`, etc.).
-2. Whether diagnostics include an explicit `app.build` / commit field in addition
-   to the unique version.
-3. NVDA pass before invite **or** first beta explicitly not AT-qualified.
-4. Stop-the-pilot conditions (suggested): lost/corrupted learner state; backup
-   restore replacing good state unexpectedly; repeatable start failure; security
-   or privacy exposure; demonstrably incorrect answer that damages trust; study
-   flow blocker; serious accessibility trap for any included AT participant.
+1. **Version string:** Product/installer identity is `1.4.1-beta.1` (`package.json`,
+   Tauri, Cargo, diagnostics). RepoPact requires `VERSION` to be strict
+   `MAJOR.MINOR.PATCH`, so `VERSION` is `1.4.1` and maps to this beta line.
+2. **Build identity:** Vite injects `__APP_BUILD__` from `git rev-parse --short HEAD`
+   (override with `SKILLFORGE_BUILD`). Diagnostics expose `app.build` alongside
+   `app.version`.
+3. Whether the first beta is AT-qualified (NVDA) **or** explicitly not — pending
+   AC-5.
+4. Stop-the-pilot conditions — pending AC-6 runbook.
 
 ## Scope
 

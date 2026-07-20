@@ -1,11 +1,24 @@
+import { execSync } from "node:child_process";
 import { defineConfig, configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 const mobileDevHost = process.env.TAURI_DEV_HOST;
 
+function resolveAppBuild(): string {
+  if (process.env.SKILLFORGE_BUILD?.trim()) return process.env.SKILLFORGE_BUILD.trim();
+  try {
+    return execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
+  } catch {
+    return "unknown";
+  }
+}
+
 export default defineConfig({
   plugins: [react()],
   clearScreen: false,
+  define: {
+    __APP_BUILD__: JSON.stringify(resolveAppBuild())
+  },
   server: {
     host: mobileDevHost || false,
     port: 1420,

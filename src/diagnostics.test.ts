@@ -1,6 +1,7 @@
 import { describe, expect, it, beforeEach } from "vitest";
 import {
   APP_VERSION,
+  APP_BUILD,
   DIAGNOSTIC_FORMAT,
   buildDiagnosticBundle,
   clearDiagnosticErrors,
@@ -69,6 +70,8 @@ describe("buildDiagnosticBundle", () => {
     });
     expect(bundle.format).toBe(DIAGNOSTIC_FORMAT);
     expect(bundle.app.version).toBe(APP_VERSION);
+    expect(bundle.app.build).toBe(APP_BUILD);
+    expect(bundle.app.build).toMatch(/^[0-9a-f]{7,40}$|^unknown$/);
     expect(bundle.app.schemaVersion).toBe(SCHEMA_VERSION);
     expect(bundle.stance).toEqual({
       telemetry: "none",
