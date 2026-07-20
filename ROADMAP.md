@@ -37,9 +37,11 @@ progress, streaks, and analytics.
 
 ## Next
 
-- Resume real learner beta (`228`) after UX/IA passes `308`/`309`
+- Pre-beta candidate refresh and operational readiness gate (`310`), then resume
+  real learner beta (`228`)
 - Add installer code signing when a trusted certificate is available
 - Screen-reader (NVDA/VoiceOver) walkthrough of every view and the lesson reader
+  (or explicitly scope the first private beta as not yet AT-qualified via `310`)
 - Author the next certification tracks on the content factory
 - Continue expanding original assessment content and future simulation formats
   such as categorization and hotspot interactions

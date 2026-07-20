@@ -12,24 +12,30 @@
     "219",
     "220",
     "221",
-    "222"
+    "222",
+    "225",
+    "226",
+    "227",
+    "308",
+    "309",
+    "310"
   ],
   "acceptance_criteria": [
     {
       "id": "AC-1",
-      "text": "Define a beta pilot script that asks real learners to install, choose a track, study for at least 30 minutes, complete practice, take or start a mock exam, use flashcards, create a backup, restore/import if practical, and report friction.",
+      "text": "Define a beta pilot script that asks real learners to install the exact 310 candidate, choose a track, study for at least 30 minutes, complete practice, take or start a mock exam, use flashcards, create a backup, restore/import if practical, and report friction using the 310 runbook fields (version, build ID, content.revision, track/exam/domain).",
       "state": "pending",
       "evidence": []
     },
     {
       "id": "AC-2",
-      "text": "Recruit or identify a small beta cohort with at least one A+ learner and one non-A+ track learner, or record the exact recruiting blocker.",
+      "text": "Recruit or identify a small beta cohort with at least one A+ learner and one non-A+ track learner, or record the exact recruiting blocker; honor any AT exclusion decided in 310.",
       "state": "pending",
       "evidence": []
     },
     {
       "id": "AC-3",
-      "text": "Create a structured feedback form that separates install friction, study clarity, content trust, assessment difficulty, accessibility, performance, backup confidence, and overall willingness to keep using the app.",
+      "text": "Create a structured feedback form that separates install friction, study clarity, content trust, assessment difficulty, accessibility, performance, backup confidence, and overall willingness to keep using the app; include severity, defect-vs-content distinction, candidate identity fields, and stop-condition reporting from the 310 runbook.",
       "state": "pending",
       "evidence": []
     },
@@ -48,5 +54,5 @@
   ],
   "created": "2026-06-22",
   "updated": "2026-07-20",
-  "source": "Gap review: real learner beta loop"
+  "source": "Gap review: real learner beta loop; deferred pending 310 pre-beta candidate gate"
 }

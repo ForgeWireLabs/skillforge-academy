@@ -309,6 +309,7 @@ Shipped:
 
 Next:
 
+- Pre-beta candidate refresh (`310`), then real learner beta pilot (`228`)
 - Add installer code signing when a trusted Windows certificate is available
 - Screen-reader (NVDA/VoiceOver) walkthrough of every view and the lesson reader
 - Author the next certification tracks on the content factory

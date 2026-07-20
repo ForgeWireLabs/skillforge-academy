@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-20 (verification remediation for 225/308/309)
+Last updated: 2026-07-20 (proposed 310 pre-beta gate; 228 deps reconciled)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -29,5 +29,7 @@ Last updated: 2026-07-20 (verification remediation for 225/308/309)
 
 ## Next Recommended Audit
 
-Candidate: resume deferred learner beta (`228`) after nav IA `309`. True NVDA/VoiceOver
-walkthrough remains valuable when AT environments are available.
+Candidate: pre-beta candidate gate (`310`) — unique build identity, frozen Windows
+installer + checksum, packaged-app acceptance, Windows CI against the candidate,
+and NVDA pass or explicit non-AT-qualified first cohort. Resume deferred learner
+beta (`228`) only after `310` is green.
