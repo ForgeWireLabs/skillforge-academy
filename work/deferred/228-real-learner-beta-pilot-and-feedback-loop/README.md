@@ -1,6 +1,8 @@
 # 228 - Real learner beta pilot and feedback loop
 
-> **Status**: Active
+> **Status**: Deferred
+>
+> Deferred until after the UX/IA audit (`308`) lands prioritized flow fixes. Resume before public learner recruitment.
 > **Owners**: Steward/Product lead; QA and Content Specialists support.
 > **Depends on**: 219, 220, 221, 222.
 

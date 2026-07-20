@@ -187,6 +187,21 @@ export function domainMastery(domainQuestions: Question[], answered: Record<stri
   return pct(mastered, domainQuestions.length);
 }
 
+/**
+ * Builds the Practice Lab question pool for a track, optionally narrowed by
+ * exam and/or domain. Domain wins when both are set so Command Center / Learn
+ * handoffs stay on the weak domain even when that domain's exam is selected.
+ */
+export function practicePool(
+  questions: Question[],
+  opts: { certId: CertId; exam?: string; domainId?: string }
+): Question[] {
+  let pool = questions.filter(q => q.certId === opts.certId);
+  if (opts.domainId) pool = pool.filter(q => q.domain === opts.domainId);
+  else if (opts.exam && opts.exam !== "Mixed") pool = pool.filter(q => q.exam === opts.exam);
+  return pool;
+}
+
 /** Total distinct questions currently mastered (latest attempt correct). */
 export function masteredCount(answered: Record<string, AnsweredStat>): number {
   return Object.values(answered).filter(a => a.lastCorrect).length;

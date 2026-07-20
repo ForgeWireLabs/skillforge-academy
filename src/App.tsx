@@ -17,8 +17,11 @@ import {
   recordAnswer, scheduleCard, isCardDue, domainMastery, migrateState,
   activeProgress, patchProgress, isCertAvailable, sortCertifications, resolveActiveCert,
   buildNotifications, buildMockExam, scoreMock, gradePbq, gradeMcq, isMultiSelect, MOCK_PASS, MOCK_DEFAULT_QUESTIONS,
-  MOCK_DEFAULT_MINUTES, type MockItem
+  MOCK_DEFAULT_MINUTES, type MockItem, practicePool
 } from "./logic";
+
+/** Optional handoff so Command Center / Learn can open a scoped Practice drill. */
+export type StudyFocus = { domainId?: string; examId?: string };
 
 const Analytics = lazy(() => import("./Analytics"));
 
@@ -140,6 +143,7 @@ export default function App() {
   const [palette, setPalette] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [onboarding, setOnboarding] = useState(false);
+  const [studyFocus, setStudyFocus] = useState<StudyFocus | null>(null);
 
   useEffect(() => {
     Promise.all([readState(), loadContent()]).then(([s, c]) => {
@@ -176,6 +180,10 @@ export default function App() {
   const update = (next: Partial<LearnerState>) => setState(s => ({ ...s, ...next }));
   // Navigate, and on a phone-width screen dismiss the slide-over drawer after picking.
   const selectView = (v: View) => { setView(v); if (typeof window !== "undefined" && window.innerWidth <= 760) setSidebar(false); };
+  const openPractice = (focus?: StudyFocus | null) => {
+    setStudyFocus(focus ?? null);
+    selectView("practice");
+  };
   const attempts = state.attempts.filter(a => a.certId === state.activeCertId);
   const avg = attempts.length ? Math.round(attempts.reduce((a, x) => a + pct(x.score, x.total), 0) / attempts.length) : 0;
   const notifications = buildNotifications(state, content);
@@ -213,9 +221,9 @@ export default function App() {
       </header>
 
       <section id="main-content" className="content" ref={contentRef} tabIndex={-1} aria-live="polite" aria-label={`${nav.find(item=>item.id===view)?.label} content`}>
-        {view === "dashboard" && <Dashboard state={state} setView={setView} />}
-        {view === "learn" && <Learn key={state.activeCertId} state={state} setState={setState} setView={setView} />}
-        {view === "practice" && <Practice key={state.activeCertId} state={state} setState={setState} />}
+        {view === "dashboard" && <Dashboard state={state} setView={setView} openPractice={openPractice} />}
+        {view === "learn" && <Learn key={state.activeCertId} state={state} setState={setState} setView={setView} openPractice={openPractice} />}
+        {view === "practice" && <Practice key={`${state.activeCertId}:${studyFocus?.domainId ?? ""}:${studyFocus?.examId ?? ""}`} state={state} setState={setState} studyFocus={studyFocus} clearStudyFocus={() => setStudyFocus(null)} />}
         {view === "pbq" && <PbqLab key={state.activeCertId} activeCertId={state.activeCertId} />}
         {view === "mock" && <MockExam key={state.activeCertId} state={state} setState={setState} />}
         {view === "flashcards" && <Flashcards key={state.activeCertId} state={state} setState={setState} />}
@@ -363,7 +371,7 @@ function CommandPalette({ activeCertId, onClose, onPick }: { activeCertId: CertI
   </div>;
 }
 
-function Dashboard({ state, setView }: { state: LearnerState; setView: (v: View) => void }) {
+function Dashboard({ state, setView, openPractice }: { state: LearnerState; setView: (v: View) => void; openPractice: (focus?: StudyFocus | null) => void }) {
   const { certifications, domains, questions, flashcards } = useContent();
   const cert = state.activeCertId;
   const activeCert = certifications.find(c => c.id === cert);
@@ -385,7 +393,7 @@ function Dashboard({ state, setView }: { state: LearnerState; setView: (v: View)
     <div className="page-title"><div><span className="eyebrow">YOUR STUDY COMMAND CENTER</span><h1>Ready to level up, {state.name.split(" ")[0]}?</h1><p>Build real troubleshooting instincts, one focused session at a time.</p></div><div className="date-pill"><CalendarDays/><span>{days === null ? "Set an exam date" : `${days} days to exam`}</span></div></div>
     <div className="hero-grid">
       <div className="hero-card glow-card">
-        <div className="hero-copy"><span className="pill teal"><Sparkles/> SMART RECOMMENDATION</span><h2>Strengthen {nextDomain.name}</h2><p>Your current activity suggests this is the best place to earn the next chunk of exam readiness.</p><button className="primary" onClick={() => setView("practice")}><Play/> Start focused drill</button></div>
+        <div className="hero-copy"><span className="pill teal"><Sparkles/> SMART RECOMMENDATION</span><h2>Strengthen {nextDomain.name}</h2><p>Your current activity suggests this is the best place to earn the next chunk of exam readiness.</p><button className="primary" onClick={() => openPractice({ domainId: nextDomain.id, examId: nextDomain.exam })}><Play/> Drill {nextDomain.name}</button></div>
         <div className="hero-visual"><div className="orb"><Brain/><span>{nextDomain.mastery}%</span><small>mastery</small></div></div>
       </div>
       <div className="goal-card panel"><div className="panel-heading"><span>DAILY MISSION</span><Flame/></div><div className="goal-number"><b>{Math.min(todayCount, progress.dailyGoal)}</b><span>/ {progress.dailyGoal} today</span></div><div className="progress"><i style={{width:`${Math.min(100,pct(todayCount,progress.dailyGoal))}%`}}/></div><div className="streak"><Flame/><b>{progress.streak === 0 ? "Start your streak" : `${progress.streak} day streak`}</b><span>Consistency compounds.</span></div></div>
@@ -397,7 +405,7 @@ function Dashboard({ state, setView }: { state: LearnerState; setView: (v: View)
       <Stat icon={Trophy} label="Best score" value={`${Math.max(0,...certAttempts.map(a => pct(a.score,a.total)))}%`} sub="Personal record" color="teal"/>
     </div>
     <div className="two-col">
-      <div className="panel chart-panel"><div className="panel-title"><div><span>PERFORMANCE TREND</span><h3>Practice exam scores</h3></div><button className="text-btn" onClick={() => setView("analytics")}>Full report <ChevronRight/></button></div>{trend.length ? <ResponsiveContainer width="100%" height={230}><AreaChart data={trend}><defs><linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#55a8ff" stopOpacity={.45}/><stop offset="95%" stopColor="#55a8ff" stopOpacity={0}/></linearGradient></defs><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis dataKey="name" stroke="var(--muted)"/><YAxis domain={[0,100]} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Area type="monotone" dataKey="score" stroke="#55a8ff" strokeWidth={3} fill="url(#scoreFill)"/></AreaChart></ResponsiveContainer> : <Empty message="Complete a practice session to reveal your trend." action="Start practice" onClick={() => setView("practice")}/>}</div>
+      <div className="panel chart-panel"><div className="panel-title"><div><span>PERFORMANCE TREND</span><h3>Practice exam scores</h3></div><button className="text-btn" onClick={() => setView("analytics")}>Full report <ChevronRight/></button></div>{trend.length ? <ResponsiveContainer width="100%" height={230}><AreaChart data={trend}><defs><linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#55a8ff" stopOpacity={.45}/><stop offset="95%" stopColor="#55a8ff" stopOpacity={0}/></linearGradient></defs><CartesianGrid strokeDasharray="3 3" stroke="var(--line)"/><XAxis dataKey="name" stroke="var(--muted)"/><YAxis domain={[0,100]} stroke="var(--muted)"/><Tooltip contentStyle={{background:"var(--panel)",border:"1px solid var(--line)"}}/><Area type="monotone" dataKey="score" stroke="#55a8ff" strokeWidth={3} fill="url(#scoreFill)"/></AreaChart></ResponsiveContainer> : <Empty message="Complete a practice session to reveal your trend." action="Start practice" onClick={() => openPractice(null)}/>}</div>
       <div className="panel"><div className="panel-title"><div><span>DOMAIN MASTERY</span><h3>Objective coverage</h3></div></div><div className="domain-list">{domainData.slice(0,5).map(d => <div className="domain-row" key={d.id}><span className="domain-dot" style={{background:d.color}}/><div><b>{d.name}</b><small>{d.exam}</small></div><div className="thin-progress"><i style={{width:`${d.mastery}%`,background:d.color}}/></div><strong>{d.mastery}%</strong></div>)}</div></div>
     </div>
     <TrademarkNote vendor={activeCert?.vendor} shortName={activeCert?.shortName}/>
@@ -431,7 +439,7 @@ function LessonSections({ lesson }: { lesson: Lesson }) {
   </section>)}</div>;
 }
 
-function Learn({ state, setState, setView }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>>; setView:(v:View)=>void }) {
+function Learn({ state, setState, setView, openPractice }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>>; setView:(v:View)=>void; openPractice:(focus?: StudyFocus | null)=>void }) {
   const { certifications, domains, questions, lessons, objectives } = useContent();
   const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
   const certDomains = domains.filter(d => d.certId === cert.id);
@@ -471,15 +479,15 @@ function Learn({ state, setState, setView }: { state:LearnerState; setState:Reac
           <button className="ghost lesson-back" onClick={()=>setOpenLessonId(null)}><ChevronLeft/> {active.name}</button>
           <div className="lesson-read-head"><span className="eyebrow">LESSON {openIdx+1} OF {domainLessons.length}{objCode(openLesson.objectiveId)?` · OBJECTIVE ${objCode(openLesson.objectiveId)}`:""}</span><h2>{openLesson.title}</h2><div className="lesson-meta"><span><Clock3/> {openLesson.estMinutes} min read</span><span className="lesson-read-tag"><Check/> Read</span></div></div>
           <LessonSections lesson={openLesson}/>
-          <div className="lesson-reader-nav"><button className="ghost" disabled={openIdx<=0} onClick={()=>openAndRead(domainLessons[openIdx-1].id)}><ChevronLeft/> Previous</button>{openIdx < domainLessons.length-1 ? <button className="primary" onClick={()=>openAndRead(domainLessons[openIdx+1].id)}>Next lesson <ChevronRight/></button> : <button className="primary" onClick={()=>setView("practice")}><Play/> Practice this domain</button>}</div>
+          <div className="lesson-reader-nav"><button className="ghost" disabled={openIdx<=0} onClick={()=>openAndRead(domainLessons[openIdx-1].id)}><ChevronLeft/> Previous</button>{openIdx < domainLessons.length-1 ? <button className="primary" onClick={()=>openAndRead(domainLessons[openIdx+1].id)}>Next lesson <ChevronRight/></button> : <button className="primary" onClick={()=>openPractice({ domainId: active.id, examId: active.exam })}><Play/> Practice this domain</button>}</div>
         </> : <>
           <div className="lesson-hero" style={{"--accent":active.color} as React.CSSProperties}><span>{active.exam} DOMAIN</span><h2>{active.name}</h2><p>{active.description}</p><div className="lesson-meta"><span><Target/> {active.weight}% exam weight</span>{domainLessons.length>0 && <span><BookOpen/> {readCount}/{domainLessons.length} lessons read</span>}{domainObjectives.length>0 && <span><Check/> {domainObjectives.filter(o=>{const p=objProgress(o.id);return p.ol.length>0 && p.lr===p.ol.length && p.pct>=75;}).length}/{domainObjectives.length} objectives mastered</span>}</div></div>
           {domainObjectives.length>0 && <><h3>Exam objectives</h3><ul className="objective-list">{domainObjectives.map(o=>{ const p=objProgress(o.id); const target=p.ol.find(l=>!readSet.has(l.id)) || p.ol[0]; const mastered=p.ol.length>0 && p.lr===p.ol.length && p.pct>=75; return <li key={o.id}><button className={`objective-row${mastered?" mastered":""}`} disabled={!p.ol.length} aria-label={`Objective ${o.code}: ${o.title}. ${p.lr} of ${p.ol.length} lessons read, ${p.qm} of ${p.oq.length} questions mastered.`} onClick={()=>target&&openAndRead(target.id)}><span className="obj-code">{o.code}</span><div className="obj-main"><b>{o.title}</b><small>{p.lr}/{p.ol.length} lessons · {p.qm}/{p.oq.length} questions mastered</small><div className="thin-progress" role="progressbar" aria-valuenow={p.pct} aria-valuemin={0} aria-valuemax={100}><i style={{width:`${p.pct}%`,background:active.color}}/></div></div><strong>{mastered?<Check/>:`${p.pct}%`}</strong></button></li>})}</ul></>}
           <h3>Lessons</h3>
           {domainLessons.length>0 ? <div className="lesson-list">{domainLessons.map((l,i) => { const done=readSet.has(l.id); const code=objCode(l.objectiveId); return <button key={l.id} className={`lesson-item${done?" done":""}`} onClick={()=>openAndRead(l.id)}><span className="lesson-num">{done?<Check/>:String(i+1).padStart(2,"0")}</span><div><b>{l.title}</b><small>{l.estMinutes} min read{code?` · Obj ${code}`:""}{done?" · read":""}</small></div><ChevronRight/></button>})}</div>
             : <div className="topic-grid">{active.topics.map((t,i)=><div key={t}><span>{i+1}</span><div><b>{t}</b><small>Concepts, scenarios, and field notes</small></div><Check/></div>)}</div>}
-          <h3>Knowledge checks</h3><div className="check-list">{activeQuestions.map(q=><div key={q.id}><div className={`status ${state.answered[q.id]?.lastCorrect ? "done":""}`}>{state.answered[q.id]?.lastCorrect?<Check/>:<CircleHelp/>}</div><div><b>{q.objective}</b><small>{objCode(q.objectiveId)?`Obj ${objCode(q.objectiveId)} · `:""}{q.difficulty} · Original practice scenario</small></div><button className="ghost" aria-label="Bookmark this question and open practice" onClick={()=>{setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks:s.bookmarks.concat(q.id)}));setView("practice")}}><Bookmark/></button></div>)}</div>
-          <button className="primary wide" onClick={()=>setView("practice")}><Play/> Practice this domain</button>
+          <h3>Knowledge checks</h3><div className="check-list">{activeQuestions.map(q=><div key={q.id}><div className={`status ${state.answered[q.id]?.lastCorrect ? "done":""}`}>{state.answered[q.id]?.lastCorrect?<Check/>:<CircleHelp/>}</div><div><b>{q.objective}</b><small>{objCode(q.objectiveId)?`Obj ${objCode(q.objectiveId)} · `:""}{q.difficulty} · Original practice scenario</small></div><button className="ghost" aria-label="Bookmark this question and open practice" onClick={()=>{setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks:s.bookmarks.concat(q.id)}));openPractice({ domainId: active.id, examId: active.exam })}}><Bookmark/></button></div>)}</div>
+          <button className="primary wide" onClick={()=>openPractice({ domainId: active.id, examId: active.exam })}><Play/> Practice this domain</button>
         </>}
       </div>
     </div>
@@ -508,12 +516,14 @@ const formatMcqSelection = (q: Question, sel: McqSelection | undefined) => {
 /** Comma-joined option text for the correct answer(s). */
 const formatMcqCorrect = (q: Question) => (Array.isArray(q.answer) ? q.answer : [q.answer]).map(i => q.options[i]).join(", ");
 
-function Practice({ state, setState }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>> }) {
+function Practice({ state, setState, studyFocus, clearStudyFocus }: { state:LearnerState; setState:React.Dispatch<React.SetStateAction<LearnerState>>; studyFocus: StudyFocus | null; clearStudyFocus: () => void }) {
   const { certifications, domains, questions } = useContent();
   const cert = certifications.find(c => c.id === state.activeCertId) ?? certifications[0];
+  const certDomains = domains.filter(d => d.certId === cert.id);
   const certQuestions = questions.filter(q => q.certId === cert.id);
   const [mode, setMode] = useState<"setup"|"active"|"results">("setup");
-  const [exam, setExam] = useState<string>(cert.exams[0]?.id ?? "Mixed");
+  const [exam, setExam] = useState<string>(studyFocus?.examId ?? cert.exams[0]?.id ?? "Mixed");
+  const [domainId, setDomainId] = useState<string>(studyFocus?.domainId ?? "");
   const [count, setCount] = useState(10);
   const [session, setSession] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
@@ -522,16 +532,25 @@ function Practice({ state, setState }: { state:LearnerState; setState:React.Disp
   const [revealed, setRevealed] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   useEffect(()=>{ if(mode!=="active") return; const t=setInterval(()=>setElapsed(x=>x+1),1000); return ()=>clearInterval(t); },[mode]);
+  const focusedDomain = domainId ? certDomains.find(d => d.id === domainId) : undefined;
+  const pool = practicePool(questions, { certId: cert.id, exam: domainId ? undefined : exam, domainId: domainId || undefined });
+  const pickExam = (id: string) => { setExam(id); setDomainId(""); clearStudyFocus(); };
+  const pickDomain = (id: string) => {
+    setDomainId(id);
+    const d = certDomains.find(x => x.id === id);
+    if (d) setExam(d.exam);
+    clearStudyFocus();
+  };
   const start = () => {
-    const pool=exam==="Mixed"?certQuestions:certQuestions.filter(q=>q.exam===exam);
     const picked=shuffle(pool).slice(0,Math.min(count,pool.length));
     const ord:Record<string,number[]>={}; picked.forEach(q=>{ord[q.id]=shuffle(q.options.map((_,i)=>i));});
     setSession(picked);setOrder(ord);setIndex(0);setAnswers({});setElapsed(0);setRevealed(false);setMode("active");
+    clearStudyFocus();
   };
   const finish = () => {
     const score=session.filter(q=>gradeMcq(q,answers[q.id])).length;
     const ds:Attempt["domainScores"]={}; session.forEach(q=>{ds[q.domain] ||= {correct:0,total:0};ds[q.domain].total++;if(gradeMcq(q,answers[q.id]))ds[q.domain].correct++;});
-    const attempt:Attempt={id:crypto.randomUUID(),certId:state.activeCertId,date:new Date().toISOString(),exam,score,total:session.length,durationSec:elapsed,domainScores:ds};
+    const attempt:Attempt={id:crypto.randomUUID(),certId:state.activeCertId,date:new Date().toISOString(),exam: focusedDomain?.exam ?? exam,score,total:session.length,durationSec:elapsed,domainScores:ds};
     setState(s=>{
       const answered={...s.answered};
       session.forEach(q=>{answered[q.id]=recordAnswer(answered[q.id],gradeMcq(q,answers[q.id]));});
@@ -541,7 +560,7 @@ function Practice({ state, setState }: { state:LearnerState; setState:React.Disp
     setMode("results");
   };
   if(!certQuestions.length) return <><PageHead eyebrow="ADAPTIVE PRACTICE" title="Practice lab" subtitle="Choose a target, enter focus mode, and learn from every explanation."/><Empty message="No practice questions are available for this track yet."/></>;
-  if(mode==="setup") return <><PageHead eyebrow="ADAPTIVE PRACTICE" title="Practice lab" subtitle="Choose a target, enter focus mode, and learn from every explanation."/><div className="setup-grid"><div className="panel setup-main"><h3>Build your session</h3><label>Exam track</label><div className="option-grid">{[...cert.exams.map(e=>e.id), "Mixed"].map(x=>{const meta=cert.exams.find(e=>e.id===x);return <button key={x} className={exam===x?"selected":""} onClick={()=>setExam(x)}><span>{x==="Mixed"?<Brain/>:<Activity/>}</span><b>{x==="Mixed"?"Mixed":(meta?.name||x)}</b><small>{x==="Mixed"?"All exams":x}</small></button>})}</div><label>Question count</label><div className="count-picker">{[5,10,15,20].map(x=><button key={x} className={count===x?"selected":""} onClick={()=>setCount(x)}>{x}</button>)}</div><button className="primary wide launch" onClick={start}><Play/> Launch session</button></div><div className="panel setup-side"><span className="pill purple"><Sparkles/> SESSION PREVIEW</span><h2>{Math.min(count,exam==="Mixed"?certQuestions.length:certQuestions.filter(q=>q.exam===exam).length)} questions</h2><div className="preview-row"><Clock3/><div><b>Estimated time</b><small>{Math.min(count,20)*1.5} minutes</small></div></div><div className="preview-row"><Target/><div><b>Coverage</b><small>{exam === "Mixed" ? `All ${cert.shortName} domains` : `Weighted ${exam} mix`}</small></div></div><div className="preview-row"><CircleHelp/><div><b>Learning mode</b><small>Explanations available after answering</small></div></div></div></div></>;
+  if(mode==="setup") return <><PageHead eyebrow="ADAPTIVE PRACTICE" title="Practice lab" subtitle="Choose a target, enter focus mode, and learn from every explanation."/><div className="setup-grid"><div className="panel setup-main"><h3>Build your session</h3>{studyFocus?.domainId && focusedDomain && <p className="setting-notice" role="status">Scoped to <strong>{focusedDomain.name}</strong> from your study recommendation.</p>}<label>Exam track</label><div className="option-grid">{[...cert.exams.map(e=>e.id), "Mixed"].map(x=>{const meta=cert.exams.find(e=>e.id===x);return <button key={x} className={!domainId && exam===x?"selected":""} onClick={()=>pickExam(x)}><span>{x==="Mixed"?<Brain/>:<Activity/>}</span><b>{x==="Mixed"?"Mixed":(meta?.name||x)}</b><small>{x==="Mixed"?"All exams":x}</small></button>})}</div><label>Domain focus</label><div className="count-picker domain-focus-picker"><button className={!domainId?"selected":""} onClick={()=>{setDomainId(""); clearStudyFocus();}}>All domains</button>{certDomains.filter(d => exam==="Mixed" || d.exam===exam || domainId===d.id).map(d=><button key={d.id} className={domainId===d.id?"selected":""} onClick={()=>pickDomain(d.id)} title={d.name}>{d.name}</button>)}</div><label>Question count</label><div className="count-picker">{[5,10,15,20].map(x=><button key={x} className={count===x?"selected":""} onClick={()=>setCount(x)}>{x}</button>)}</div><button className="primary wide launch" disabled={!pool.length} onClick={start}><Play/> {focusedDomain ? `Launch ${focusedDomain.name} drill` : "Launch session"}</button></div><div className="panel setup-side"><span className="pill purple"><Sparkles/> SESSION PREVIEW</span><h2>{Math.min(count,pool.length)} questions</h2><div className="preview-row"><Clock3/><div><b>Estimated time</b><small>{Math.min(count,20)*1.5} minutes</small></div></div><div className="preview-row"><Target/><div><b>Coverage</b><small>{focusedDomain ? focusedDomain.name : exam === "Mixed" ? `All ${cert.shortName} domains` : `Weighted ${exam} mix`}</small></div></div><div className="preview-row"><CircleHelp/><div><b>Learning mode</b><small>Explanations available after answering</small></div></div></div></div></>;
   if(mode==="results") { const score=session.filter(q=>gradeMcq(q,answers[q.id])).length; return <><PageHead eyebrow="SESSION COMPLETE" title="Your results" subtitle="Review what clicked and turn misses into your next study plan."/><div className="results panel"><div className={`result-ring ${pct(score,session.length)>=75?"pass":""}`}><b>{pct(score,session.length)}%</b><span>{score} of {session.length}</span></div><h2>{pct(score,session.length)>=75?"Strong work.":"Good baseline. Keep sharpening."}</h2><p>{pct(score,session.length)>=75?"Your decisions are trending toward exam readiness.":"Review the explanations below, then run a focused domain drill."}</p><div className="result-actions"><button className="primary" onClick={()=>setMode("setup")}><RotateCcw/> New session</button></div></div><div className="review-list">{session.map((q,i)=>{const ok=gradeMcq(q,answers[q.id]);return <div className={`panel review ${ok?"correct":"wrong"}`} key={q.id}><span>{ok?<Check/>:<X/>}</span><div><small>QUESTION {i+1} · {q.objective}</small><b>{q.prompt}</b><p><strong>Your answer:</strong> {formatMcqSelection(q,answers[q.id])}</p>{!ok&&<p><strong>Correct:</strong> {formatMcqCorrect(q)}</p>}<em>{q.explanation}</em></div></div>})}</div></>; }
   const q=session[index]; const selected=answers[q.id]; const multi=isMultiSelect(q); const isLast=index===session.length-1;
   return <div className="exam-shell"><div className="exam-top"><button className="ghost" onClick={()=>setMode("setup")}><X/> Exit</button><div><span>QUESTION {index+1} OF {session.length}</span><div className="exam-progress"><i style={{width:`${pct(index+1,session.length)}%`}}/></div></div><div className="timer"><Clock3/>{formatTime(elapsed)}</div></div><div className="question-card panel"><div className="question-meta"><span>{q.exam}</span><span>{domains.find(d=>d.id===q.domain)?.name}</span><span>{q.difficulty}</span><button className={state.bookmarks.includes(q.id)?"saved":""} aria-label={state.bookmarks.includes(q.id)?"Remove bookmark":"Bookmark this question"} aria-pressed={state.bookmarks.includes(q.id)} onClick={()=>setState(s=>({...s,bookmarks:s.bookmarks.includes(q.id)?s.bookmarks.filter(x=>x!==q.id):[...s.bookmarks,q.id]}))}><Bookmark/></button></div><h2>{q.prompt}</h2>{multi&&<p className="mcq-hint">Select {(q.answer as number[]).length} answers.</p>}<div className="answers">{(order[q.id]||q.options.map((_,i)=>i)).map((oi,k)=>{const opt=q.options[oi];const sel=isOptionSelected(selected,oi);const corr=isOptionCorrect(q,oi);const cls=revealed?(corr?"correct":sel?"wrong":""):sel?"selected":"";return <button key={oi} className={cls} disabled={revealed} role={multi?"checkbox":undefined} aria-checked={multi?sel:undefined} aria-label={`Option ${String.fromCharCode(65+k)}: ${opt}`} onClick={()=>setAnswers(a=>({...a,[q.id]:nextMcqSelection(a[q.id],oi,multi)}))}><span>{String.fromCharCode(65+k)}</span><b>{opt}</b>{revealed&&corr&&<Check/>}{revealed&&sel&&!corr&&<X/>}</button>})}</div>{revealed&&<div className="explanation"><Sparkles/><div><b>{gradeMcq(q,selected)?"Exactly right":"Key takeaway"}</b><p>{q.explanation}</p><small>OBJECTIVE · {q.objective}</small></div></div>}<div className="question-actions"><button className="ghost" disabled={index===0} onClick={()=>{setIndex(i=>i-1);setRevealed(false)}}><ChevronLeft/> Previous</button>{!revealed?<button className="primary" disabled={!hasMcqSelection(selected)} onClick={()=>setRevealed(true)}>Check answer</button>:<button className="primary" onClick={()=>{if(isLast)finish();else{setIndex(i=>i+1);setRevealed(false)}}}>{isLast?"Finish session":"Next question"}<ChevronRight/></button>}</div></div></div>;

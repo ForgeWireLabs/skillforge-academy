@@ -4,7 +4,7 @@ import {
   scheduleCard, isCardDue, domainMastery, masteredCount, objectiveStats, migrateState,
   buildNotifications, initialState, SCHEMA_VERSION,
   buildWeightedQuestionSet, buildMockExam, gradePbq, gradeMcq, isMultiSelect, scoreMock, type MockItem,
-  isCertAvailable, sortCertifications, resolveActiveCert
+  isCertAvailable, sortCertifications, resolveActiveCert, practicePool
 } from "./logic";
 import type { AnsweredStat, Certification, CertProgress, Domain, LearnerState, Pbq, Question } from "./types";
 
@@ -396,5 +396,23 @@ describe("buildNotifications", () => {
     const ids = buildNotifications(s, content, now).map(n => n.id);
     expect(ids).not.toContain("daily-goal");
     expect(ids).not.toContain("baseline");
+  });
+});
+
+describe("practicePool", () => {
+  const qs = [
+    q("aplus-a", "dom-a", "oa", "220-1201"),
+    q("aplus-b", "dom-b", "ob", "220-1201"),
+    q("aplus-c", "dom-c", "oc", "220-1202"),
+    { ...q("net-a", "net-dom", "on"), certId: "network-plus", exam: "N10-009" as const }
+  ];
+  it("filters to the active certification", () => {
+    expect(practicePool(qs, { certId: "a-plus" }).map(x => x.id)).toEqual(["aplus-a", "aplus-b", "aplus-c"]);
+  });
+  it("narrows by exam when no domain is set", () => {
+    expect(practicePool(qs, { certId: "a-plus", exam: "220-1202" }).map(x => x.id)).toEqual(["aplus-c"]);
+  });
+  it("lets domain focus win over exam so Learn/Command Center handoffs stay scoped", () => {
+    expect(practicePool(qs, { certId: "a-plus", exam: "220-1202", domainId: "dom-a" }).map(x => x.id)).toEqual(["aplus-a"]);
   });
 });

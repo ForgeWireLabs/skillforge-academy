@@ -181,3 +181,5 @@ body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-i
 
 /* The recommendation card remains dark in both themes. */
 .glow-card h2,.glow-card .orb span{color:#f4f7fb}
+
+.domain-focus-picker{flex-wrap:wrap}.domain-focus-picker button{width:auto;min-width:0;padding:10px 12px;font-size:11px;max-width:100%}

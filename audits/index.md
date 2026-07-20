@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-20 (privacy/security review closeout)
+Last updated: 2026-07-20 (UX/IA + privacy/security closeout)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -25,8 +25,10 @@ Last updated: 2026-07-20 (privacy/security review closeout)
 | [AUDIT-2026-07-20-local-diagnostics](AUDIT-2026-07-20-local-diagnostics.md) | Local Diagnostics And Error-Reporting Stance | implementation / privacy | passed | [225](../work/completed/225-local-diagnostics-and-error-reporting-stance/README.md) | 2026-07-20 |
 | [AUDIT-2026-07-20-support-troubleshooting-docs](AUDIT-2026-07-20-support-troubleshooting-docs.md) | Support And Troubleshooting Documentation | documentation / release support | passed | [226](../work/completed/226-support-and-troubleshooting-docs/README.md) | 2026-07-20 |
 | [AUDIT-2026-07-20-privacy-security](AUDIT-2026-07-20-privacy-security.md) | Privacy And Security Review | security / privacy | passed-with-notes | [227](../work/completed/227-privacy-security-review-local-state-backups-mobile/README.md) | 2026-07-20 |
+| [AUDIT-2026-07-20-ux-ia](AUDIT-2026-07-20-ux-ia.md) | UX And Information-Architecture Audit | UX / information architecture | passed-with-follow-ups | [308](../work/completed/308-ux-and-information-architecture-audit/README.md) | 2026-07-20 |
 
 ## Next Recommended Audit
 
-Candidate: real learner beta feedback triage (`228`), or a true NVDA/VoiceOver
-walkthrough when those assistive technology environments are available.
+Candidate: primary vs secondary navigation IA pass (`309`), then resume deferred
+learner beta (`228`). NVDA/VoiceOver walkthrough remains valuable when AT
+environments are available.
