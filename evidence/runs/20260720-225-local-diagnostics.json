@@ -1,0 +1,61 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-225-local-diagnostics",
+  "timestamp": "2026-07-20T17:13:05Z",
+  "work_item": "225",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-3, AC-5] 76 tests passed, including diagnostic redaction, error-ring, and malformed-state recovery coverage."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "[AC-2] Accessibility validation passed (18 checks); Preferences diagnostic status uses role=status."
+    },
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "Content validation passed; diagnostic work did not alter content banks."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "[AC-2] TypeScript and Vite production build passed with the existing chunk-size warning."
+    },
+    {
+      "command": "python -m repopact_cli dashboard",
+      "exit_code": 0,
+      "summary": "RepoPact dashboard regenerated after completing work item 225."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "[AC-1] Governance validation passed after evidence registration for 225."
+    }
+  ],
+  "artifacts": [
+    "src/diagnostics.ts",
+    "src/diagnostics.test.ts",
+    "src/App.tsx",
+    "src/styles.css",
+    "docs/diagnostics.md",
+    "decisions/0009-no-telemetry-local-diagnostic-export-only.md",
+    "SECURITY.md",
+    "README.md",
+    "docs/getting-started.md",
+    "docs/backup-restore.md",
+    "CHANGELOG.md",
+    "audits/AUDIT-2026-07-20-local-diagnostics.md",
+    "work/completed/225-local-diagnostics-and-error-reporting-stance"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "node": "v22.14.0",
+    "repopact": "2.2.0",
+    "process_note": "Implemented no-telemetry local diagnostic export with default redaction of display name and note text."
+  }
+}

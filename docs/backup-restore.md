@@ -57,7 +57,11 @@ Import errors are designed to stop before replacing local learner data.
 
 Before attempting a risky restore, export a fresh backup from the current device.
 If an import fails, do not uninstall or reset the app until the original backup
-and passphrase have been verified.
+and passphrase have been verified. Import and export failures show a status
+message in Preferences and never replace your current progress on failure. For
+support-oriented troubleshooting (app version, platform, content counts, recent
+errors), export a local diagnostic file instead — see
+[Diagnostics And Error Reporting](diagnostics.md).
 
 ## Android Notes
 

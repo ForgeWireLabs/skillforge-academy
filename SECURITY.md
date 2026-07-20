@@ -13,3 +13,11 @@ Security fixes are applied to the latest published release and the current main 
 ## Local data
 
 SkillForge Academy stores learner data locally. Backups may contain study history, notes, bookmarks, settings, and scheduling data. Use passphrase-protected backups for transfer and avoid sharing exported data publicly.
+
+## Telemetry and diagnostics
+
+SkillForge Academy does not collect telemetry and does not upload crash reports.
+Support uses an optional **local diagnostic export** from Preferences. By default
+that export redacts display name and note text. See
+[docs/diagnostics.md](docs/diagnostics.md) and
+[decision 0009](decisions/0009-no-telemetry-local-diagnostic-export-only.md).

@@ -106,7 +106,7 @@ See [Backup, Restore, And Cross-Device Transfer](docs/backup-restore.md) for pla
 
 ### Private by Design
 
-Progress is stored locally through the Rust backend. The app does not require a cloud account or send learner activity to an external service.
+Progress is stored locally through the Rust backend. The app does not require a cloud account, does not send telemetry, and does not upload crash reports. When you need help troubleshooting, export a local diagnostic file from Preferences — see [Diagnostics And Error Reporting](docs/diagnostics.md).
 
 ## Certification Tracks
 
