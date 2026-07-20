@@ -1,6 +1,6 @@
 # 225 - Local diagnostics and error-reporting stance
 
-> **Status**: Active
+> **Status**: Completed
 > **Owners**: Steward lead; Desktop Specialist support.
 > **Depends on**: none.
 
@@ -21,5 +21,14 @@ privacy-preserving support path.
 
 ## Closeout
 
-Close when the privacy stance is documented and support has a practical,
-user-controlled diagnostic path.
+Closed with decision `0009`, `docs/diagnostics.md`, Preferences diagnostic
+export, and `audits/AUDIT-2026-07-20-local-diagnostics.md`.
+
+Stance:
+
+- No telemetry.
+- No automatic crash reporting.
+- User-controlled local diagnostic export only.
+- Display name and note text redacted unless the learner opts in.
+
+Evidence: `20260720-225-local-diagnostics`.

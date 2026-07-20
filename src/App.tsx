@@ -10,6 +10,7 @@ import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContaine
 import { loadContent, bundledContent, type ContentBundle } from "./content";
 import { ContentProvider, useContent } from "./ContentContext";
 import { decryptBackup, encryptBackup } from "./backup";
+import { buildDiagnosticBundle, downloadDiagnosticBundle, recordDiagnosticError } from "./diagnostics";
 import type { Attempt, CertId, Certification, LearnerState, Lesson, Pbq, Question, View } from "./types";
 import {
   initialState, pct, shuffle, formatTime, dateKey, questionsToday, applyStudyActivity,
@@ -72,20 +73,24 @@ async function readState(): Promise<LearnerState> {
 
     const saved = await withTimeout(invoke<unknown>("load_state"), 5000, "load_state");
     return migrateState(saved);
-  } catch {
+  } catch (error) {
+    recordDiagnosticError("load_state", error);
     try { return readLocalState(); }
-    catch { return initialState; }
+    catch (fallbackError) {
+      recordDiagnosticError("load_state_local", fallbackError);
+      return initialState;
+    }
   }
 }
 
 async function writeState(state: LearnerState) {
   if (!isTauri() || hasAndroidBridge()) {
     try { localStorage.setItem("apex-state", JSON.stringify(state)); }
-    catch { /* continue to the Tauri store when WebView storage is unavailable */ }
+    catch (error) { recordDiagnosticError("localStorage_save", error); }
   }
   if (isTauri()) {
     try { await withTimeout(invoke("save_state", { state }), 5000, "save_state"); }
-    catch { /* keep localStorage as the durable mobile fallback */ }
+    catch (error) { recordDiagnosticError("save_state", error); }
   }
 }
 
@@ -775,11 +780,14 @@ function Notes({ state, setState }: { state:LearnerState; setState:React.Dispatc
 }
 
 function Preferences({ state, update, setState, onReplayTour }: { state:LearnerState; update:(n:Partial<LearnerState>)=>void; setState:React.Dispatch<React.SetStateAction<LearnerState>>; onReplayTour:()=>void }) {
-  const { certifications } = useContent();
+  const content = useContent();
+  const { certifications } = content;
   const activeVendor = certifications.find(c => c.id === state.activeCertId)?.vendor;
   const fileRef = useRef<HTMLInputElement>(null);
   const [passphrase, setPassphrase] = useState("");
   const [backupNotice, setBackupNotice] = useState("");
+  const [includeSensitiveDiagnostics, setIncludeSensitiveDiagnostics] = useState(false);
+  const [diagnosticNotice, setDiagnosticNotice] = useState("");
   const progress = activeProgress(state);
   const onExport = async () => {
     try {
@@ -789,6 +797,7 @@ function Preferences({ state, update, setState, onReplayTour }: { state:LearnerS
         ? "Encrypted backup handed to Android. Keep the passphrase somewhere safe; it cannot be recovered."
         : "Encrypted backup created. Keep the passphrase somewhere safe; it cannot be recovered.");
     } catch (error) {
+      recordDiagnosticError("export_backup", error);
       setBackupNotice(error instanceof Error ? error.message : "The encrypted backup could not be created.");
     }
   };
@@ -804,15 +813,32 @@ function Preferences({ state, update, setState, onReplayTour }: { state:LearnerS
       setPassphrase("");
       setBackupNotice("Backup imported. Your progress has been restored on this device.");
     } catch (error) {
+      // Fail before setState so a bad import never replaces current progress.
+      recordDiagnosticError("import_backup", error);
       setBackupNotice(error instanceof Error ? error.message : "That backup could not be imported.");
     }
   };
   const onReset = async () => {
     if (!window.confirm("Reset all progress? This permanently clears your study history, notes, bookmarks, and card scheduling on this computer.")) return;
-    if (isTauri()) { try { await invoke("reset_state"); } catch { /* file may not exist yet */ } }
+    if (isTauri()) { try { await invoke("reset_state"); } catch (error) { recordDiagnosticError("reset_state", error); } }
     setState(migrateState({}));
   };
-  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={progress.targetDate} onChange={e=>setState(s=>patchProgress(s,{targetDate:e.target.value}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={progress.dailyGoal} onChange={e=>setState(s=>patchProgress(s,{dailyGoal:Number(e.target.value)}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} aria-pressed={state.theme==="dark"} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} aria-pressed={state.theme==="light"} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Encrypted backup</h3><p>Use the same passphrase to restore this portable backup on another device. Legacy plain JSON backups can still be imported.</p><label>Backup passphrase<input type="password" minLength={8} autoComplete="new-password" value={passphrase} onChange={e=>setPassphrase(e.target.value)} placeholder="At least 8 characters"/></label><div className="theme-toggle data-actions"><button onClick={onExport}><Download/> Export encrypted</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div>{backupNotice&&<span className="setting-notice" role="status">{backupNotice}</span>}<input ref={fileRef} type="file" accept="application/json,application/octet-stream,.json,.apexbackup" hidden onChange={onImport}/></div></div><div className="panel settings-card"><div className="setting-icon"><Sparkles/></div><div><h3>Product tour</h3><p>Replay the first-run walkthrough of the study loop.</p><div className="theme-toggle"><button onClick={onReplayTour}><Play/> Replay walkthrough</button></div></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>SkillForge Academy</h3><p>Version 1.4.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. This independent educational app is not affiliated with or endorsed by {activeVendor || "the certification vendors"}.</small></div></div></div></>;
+  const onExportDiagnostics = () => {
+    try {
+      const bundle = buildDiagnosticBundle(state, {
+        includeSensitive: includeSensitiveDiagnostics,
+        content
+      });
+      const filename = downloadDiagnosticBundle(bundle);
+      setDiagnosticNotice(includeSensitiveDiagnostics
+        ? `Diagnostic file saved as ${filename}. It includes your display name and note text — share only with trusted support.`
+        : `Diagnostic file saved as ${filename}. Display name and note text were omitted.`);
+    } catch (error) {
+      recordDiagnosticError("export_diagnostics", error);
+      setDiagnosticNotice(error instanceof Error ? error.message : "The diagnostic file could not be created.");
+    }
+  };
+  return <><PageHead eyebrow="MAKE IT YOURS" title="Preferences" subtitle="Tune your study target, daily rhythm, and workspace."/><div className="settings-grid"><div className="panel settings-card"><div className="setting-icon"><GraduationCap/></div><div><h3>Learner profile</h3><p>This name appears throughout your workspace.</p><label>Display name<input value={state.name} onChange={e=>update({name:e.target.value})}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><CalendarDays/></div><div><h3>Exam target</h3><p>Set a date to add a countdown to your dashboard.</p><label>Target date<input type="date" value={progress.targetDate} onChange={e=>setState(s=>patchProgress(s,{targetDate:e.target.value}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Target/></div><div><h3>Daily mission</h3><p>Choose a realistic question goal you can sustain.</p><label>Questions per day<input type="number" min="5" max="100" value={progress.dailyGoal} onChange={e=>setState(s=>patchProgress(s,{dailyGoal:Number(e.target.value)}))}/></label></div></div><div className="panel settings-card"><div className="setting-icon"><Moon/></div><div><h3>Appearance</h3><p>Switch the complete interface theme.</p><div className="theme-toggle"><button className={state.theme==="dark"?"active":""} aria-pressed={state.theme==="dark"} onClick={()=>update({theme:"dark"})}><Moon/> Dark</button><button className={state.theme==="light"?"active":""} aria-pressed={state.theme==="light"} onClick={()=>update({theme:"light"})}><Sun/> Light</button></div></div></div><div className="panel settings-card"><div className="setting-icon"><ShieldCheck/></div><div><h3>Encrypted backup</h3><p>Use the same passphrase to restore this portable backup on another device. Legacy plain JSON backups can still be imported.</p><label>Backup passphrase<input type="password" minLength={8} autoComplete="new-password" value={passphrase} onChange={e=>setPassphrase(e.target.value)} placeholder="At least 8 characters"/></label><div className="theme-toggle data-actions"><button onClick={onExport}><Download/> Export encrypted</button><button onClick={()=>fileRef.current?.click()}><Upload/> Import backup</button><button className="danger" onClick={onReset}><Trash2/> Reset progress</button></div>{backupNotice&&<span className="setting-notice" role="status">{backupNotice}</span>}<input ref={fileRef} type="file" accept="application/json,application/octet-stream,.json,.apexbackup" hidden onChange={onImport}/></div></div><div className="panel settings-card"><div className="setting-icon"><Activity/></div><div><h3>Diagnostics</h3><p>SkillForge does not send telemetry or crash reports. Export a local diagnostic file only when you want to share troubleshooting details.</p><label className="checkbox-row"><input type="checkbox" checked={includeSensitiveDiagnostics} onChange={e=>setIncludeSensitiveDiagnostics(e.target.checked)}/> Include display name and note text</label><div className="theme-toggle data-actions"><button onClick={onExportDiagnostics}><Download/> Export diagnostics</button></div>{diagnosticNotice&&<span className="setting-notice" role="status">{diagnosticNotice}</span>}</div></div><div className="panel settings-card"><div className="setting-icon"><Sparkles/></div><div><h3>Product tour</h3><p>Replay the first-run walkthrough of the study loop.</p><div className="theme-toggle"><button onClick={onReplayTour}><Play/> Replay walkthrough</button></div></div></div><div className="panel about-card"><div className="brand-mark"><Zap/></div><div><h3>SkillForge Academy</h3><p>Version 1.4.0 · Offline-first desktop edition</p><small>Your progress is stored locally on this computer. No telemetry is sent. This independent educational app is not affiliated with or endorsed by {activeVendor || "the certification vendors"}.</small></div></div></div></>;
 }
 
 function PageHead({eyebrow,title,subtitle}:{eyebrow:string;title:string;subtitle:string}) { return <div className="page-title"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div></div>; }

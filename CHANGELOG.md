@@ -2,6 +2,12 @@
 
 All notable changes to SkillForge Academy are documented here. SkillForge Academy was previously developed under the working name Apex A+ Academy.
 
+## Unreleased
+
+### Added
+
+- **Local diagnostics export.** Preferences can export a `skillforge-diagnostic-*.json` file for support. The app still sends no telemetry and no crash reports. Display name and note text stay redacted unless you explicitly opt in. See `docs/diagnostics.md` and decision 0009.
+
 ## 1.4.0 - 2026-06-22
 
 Release status: local Windows release candidate built and validated. GitHub publication is pending resolution of an external billing issue.

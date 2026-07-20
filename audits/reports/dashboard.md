@@ -13,19 +13,19 @@
 | Scope contracts | 1 |
 | Audit registry entries | 1 |
 | Audit findings | 5 |
-| Decision records | 8 |
+| Decision records | 9 |
 | Policy records | 1 |
-| Evidence runs | 39 |
+| Evidence runs | 40 |
 
 ## Work
 
 | Status | Count |
 | --- | ---: |
 | proposed | 0 |
-| active | 4 |
+| active | 3 |
 | blocked | 2 |
 | deferred | 0 |
-| completed | 37 |
+| completed | 38 |
 
 ## Audit freshness
 
@@ -33,7 +33,6 @@ All audit scopes are within their review cadence.
 
 ## Active items
 
-- 225: Local diagnostics and error-reporting stance (active)
 - 226: Support and troubleshooting documentation (active)
 - 227: Privacy and security review for local state, backups, and mobile (active)
 - 228: Real learner beta pilot and feedback loop (active)

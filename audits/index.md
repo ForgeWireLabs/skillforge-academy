@@ -1,6 +1,6 @@
 # Audit Index
 
-Last updated: 2026-07-16 (Android mobile foundation closeout reverified)
+Last updated: 2026-07-20 (local diagnostics stance closeout)
 
 | ID | Title | Type | Status | Related Todo | Date |
 | --- | --- | --- | --- | --- | --- |
@@ -22,8 +22,10 @@ Last updated: 2026-07-16 (Android mobile foundation closeout reverified)
 | [AUDIT-2026-06-30-objective-drift-watch](AUDIT-2026-06-30-objective-drift-watch.md) | Official Objective Drift Watch | content / release governance | passed-with-notes | [223](../work/completed/223-official-objective-drift-watch/README.md) | 2026-06-30 |
 | [AUDIT-2026-06-30-next-generation-pbq-ux-depth](AUDIT-2026-06-30-next-generation-pbq-ux-depth.md) | Next-Generation PBQ UX Depth | implementation / content / accessibility | passed-with-notes | [224](../work/completed/224-next-generation-pbq-ux-depth/README.md) | 2026-06-30 |
 | [AUDIT-2026-07-01-ios-mobile-foundation](AUDIT-2026-07-01-ios-mobile-foundation.md) | iOS Mobile Foundation | implementation / mobile readiness | blocked-with-repo-foundation | [218](../work/blocked/218-tauri-ios-mobile-support-foundation/README.md) | 2026-07-01 |
+| [AUDIT-2026-07-20-local-diagnostics](AUDIT-2026-07-20-local-diagnostics.md) | Local Diagnostics And Error-Reporting Stance | implementation / privacy | passed | [225](../work/completed/225-local-diagnostics-and-error-reporting-stance/README.md) | 2026-07-20 |
 
 ## Next Recommended Audit
 
-Candidate: a true NVDA/VoiceOver walkthrough when those assistive technology
-environments are available.
+Candidate: privacy/security review across local state, backups, diagnostics, and
+mobile permissions (`227`), or a true NVDA/VoiceOver walkthrough when those
+assistive technology environments are available.

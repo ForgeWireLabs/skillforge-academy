@@ -18,7 +18,9 @@ on your computer.
 3. Launch the app. It opens on the **Command Center**, your home base.
 
 There is nothing to sign up for. Your name, progress, notes, and schedule are
-stored locally and never leave the machine.
+stored locally and never leave the machine. SkillForge does not send telemetry.
+If you ever need to troubleshoot with support, export a local diagnostic file from
+**Preferences → Diagnostics** — see [Diagnostics And Error Reporting](diagnostics.md).
 
 ## 2. Choose your certification track
 
