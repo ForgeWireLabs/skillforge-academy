@@ -1,0 +1,68 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-227-privacy-security",
+  "timestamp": "2026-07-20T17:52:05Z",
+  "work_item": "227",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-1, AC-3] 79 tests passed including oversized backup, hostile iteration, and salt/IV length rejection."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "Accessibility validation passed (18 checks)."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "TypeScript and Vite production build passed with the existing chunk-size warning."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 1,
+      "summary": "Unavailable on this Linux host: gdk-3.0 pkg-config missing for Tauri GTK deps. Rust sources still reviewed; Cargo.lock regenerated after removing tauri-plugin-opener."
+    },
+    {
+      "command": "cargo generate-lockfile --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "[AC-4] Lockfile refreshed without tauri-plugin-opener after capability narrowing."
+    },
+    {
+      "command": "python -m repopact_cli dashboard && python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "[AC-5, AC-6] Governance validation passed with privacy audit and docs registered."
+    },
+    {
+      "command": "security review of backup.ts, lib.rs, capabilities, CSP, Android FileProvider/share bridge",
+      "exit_code": 0,
+      "summary": "[AC-1..AC-6] Findings recorded in audits/AUDIT-2026-07-20-privacy-security.md with fixes and residual risks."
+    }
+  ],
+  "artifacts": [
+    "src/backup.ts",
+    "src/backup.test.ts",
+    "src/App.tsx",
+    "src-tauri/src/lib.rs",
+    "src-tauri/Cargo.toml",
+    "src-tauri/Cargo.lock",
+    "src-tauri/capabilities/default.json",
+    "src-tauri/tauri.conf.json",
+    "src-tauri/gen/android/app/src/main/java/com/apexlearning/aplusacademy/MainActivity.kt",
+    "docs/privacy-security.md",
+    "SECURITY.md",
+    "docs/backup-restore.md",
+    "audits/AUDIT-2026-07-20-privacy-security.md",
+    "work/completed/227-privacy-security-review-local-state-backups-mobile"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "node": "v22.14.0",
+    "rustc": "1.97.1",
+    "repopact": "2.2.0",
+    "process_note": "Privacy/security review with hardening; full cargo check blocked by missing Linux GTK packages on this host."
+  }
+}
