@@ -1,4 +1,5 @@
 import type { ContentBundle } from "./content/validate";
+import { contentRevision } from "./content/revision";
 import { SCHEMA_VERSION } from "./logic";
 import type { LearnerState } from "./types";
 
@@ -48,6 +49,8 @@ export type DiagnosticBundle = {
   };
   platform: DiagnosticPlatform;
   content: {
+    /** Deterministic fingerprint of loaded bank ids (not a marketing version). */
+    revision: string;
     certifications: {
       id: string;
       status: string;
@@ -161,7 +164,20 @@ function contentInventory(content?: ContentBundle): DiagnosticBundle["content"] 
     }),
     { domains: 0, questions: 0, flashcards: 0, pbqs: 0, lessons: 0, objectives: 0 }
   );
-  return { certifications, totals };
+  const empty: ContentBundle = {
+    certifications: [],
+    domains: [],
+    questions: [],
+    flashcards: [],
+    pbqs: [],
+    lessons: [],
+    objectives: []
+  };
+  return {
+    revision: contentRevision(content ?? empty),
+    certifications,
+    totals
+  };
 }
 
 /**

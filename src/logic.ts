@@ -381,6 +381,21 @@ export function scoreMock(
   return { earned, total, pct: Math.round(ratio * 100), passed: total > 0 && ratio >= passThreshold, domainScores };
 }
 
+/**
+ * Picks the weakest domain from mock (or attempt) domain scores.
+ * Preserves fractional PBQ credit — do not round `correct` before `pct`.
+ */
+export function weakestDomainFromScores(
+  domainScores: Record<string, { correct: number; total: number }>
+): { id: string; score: number } | undefined {
+  const rows = Object.entries(domainScores).map(([id, v]) => ({
+    id,
+    score: pct(v.correct, v.total)
+  }));
+  if (!rows.length) return undefined;
+  return [...rows].sort((a, b) => a.score - b.score || a.id.localeCompare(b.id))[0];
+}
+
 export interface ObjectiveStat {
   objective: string;
   domain: string;

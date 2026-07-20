@@ -31,4 +31,10 @@ Stance:
 - User-controlled local diagnostic export only.
 - Display name and note text redacted unless the learner opts in.
 
-Evidence: `20260720-225-local-diagnostics`.
+Evidence: `20260720-225-local-diagnostics`,
+`20260720-verification-remediation-225-308-309` (AC-4 content.revision).
+
+## Verification amendment (2026-07-20)
+
+Reopened briefly after source review: diagnostics lacked a content version.
+Added deterministic `content.revision` fingerprint plus docs updates.

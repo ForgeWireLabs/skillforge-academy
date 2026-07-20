@@ -16,7 +16,7 @@ import {
   initialState, pct, shuffle, formatTime, dateKey, questionsToday, applyStudyActivity,
   recordAnswer, scheduleCard, isCardDue, domainMastery, migrateState,
   activeProgress, patchProgress, isCertAvailable, sortCertifications, resolveActiveCert,
-  buildNotifications, buildMockExam, scoreMock, gradePbq, gradeMcq, isMultiSelect, MOCK_PASS, MOCK_DEFAULT_QUESTIONS,
+  buildNotifications, buildMockExam, scoreMock, gradePbq, gradeMcq, isMultiSelect, MOCK_PASS, MOCK_DEFAULT_QUESTIONS, weakestDomainFromScores,
   MOCK_DEFAULT_MINUTES, type MockItem, practicePool
 } from "./logic";
 
@@ -767,8 +767,9 @@ function MockExam({ state, setState, openPractice, setView }: { state:LearnerSta
   </>;
 
   if(phase==="results" && grade) {
-    const rows = Object.entries(grade.domainScores).map(([id,v])=>({ id, name: domains.find(d=>d.id===id)?.name.split(" ")[0]||id, score: pct(Math.round(v.correct), v.total), color: domains.find(d=>d.id===id)?.color||"#55a8ff", exam: domains.find(d=>d.id===id)?.exam || exam }));
-    const weakest = [...rows].sort((a,b)=>a.score-b.score)[0];
+    const rows = Object.entries(grade.domainScores).map(([id,v])=>({ id, name: domains.find(d=>d.id===id)?.name.split(" ")[0]||id, score: pct(v.correct, v.total), color: domains.find(d=>d.id===id)?.color||"#55a8ff", exam: domains.find(d=>d.id===id)?.exam || exam }));
+    const weakestId = weakestDomainFromScores(grade.domainScores)?.id;
+    const weakest = rows.find(r => r.id === weakestId) ?? [...rows].sort((a,b)=>a.score-b.score)[0];
     return <>
       <PageHead eyebrow="EXAM COMPLETE" title={grade.passed?"Passed":"Not yet"} subtitle="A full breakdown of your performance, domain by domain."/>
       <div className="results panel"><div className={`result-ring ${grade.passed?"pass":""}`}><b>{grade.pct}%</b><span>{Math.round(grade.earned)} / {grade.total}</span></div>

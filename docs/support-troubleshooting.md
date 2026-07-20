@@ -238,11 +238,12 @@ Developer host setup: [ios-mobile.md](ios-mobile.md).
 Send support:
 
 1. App version from Preferences (about card) or the diagnostic file.
-2. Platform (Windows version, or Android device/emulator).
-3. Exact on-screen error text.
-4. Whether Command Center still opens after the failure.
-5. The diagnostic JSON (redacted unless they asked for note text).
-6. Confirmation that you still have a separate `.apexbackup` if progress matters.
+2. Content revision from the diagnostic file (`content.revision`).
+3. Platform (Windows version, or Android device/emulator).
+4. Exact on-screen error text.
+5. Whether Command Center still opens after the failure.
+6. The diagnostic JSON (redacted unless they asked for note text).
+7. Confirmation that you still have a separate `.apexbackup` if progress matters.
 
 Do not paste real exam credentials, unrelated personal files, or passphrase
 secrets into public issues.

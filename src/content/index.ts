@@ -92,7 +92,13 @@ export async function loadContent(): Promise<ContentBundle> {
       return bundledContent;
     }
     const bundle = remote as ContentBundle;
-    return { ...bundle, certifications: sortCertifications(bundle.certifications) };
+    return {
+      ...bundle,
+      pbqs: bundle.pbqs ?? [],
+      lessons: bundle.lessons ?? [],
+      objectives: bundle.objectives ?? [],
+      certifications: sortCertifications(bundle.certifications)
+    };
   } catch (err) {
     console.warn("Could not load backend content; using bundled content.", err);
     return bundledContent;

@@ -39,7 +39,8 @@
       "text": "Add user-facing troubleshooting guidance for collecting logs, app version, platform, content version, and backup/error context.",
       "state": "satisfied",
       "evidence": [
-        "20260720-225-local-diagnostics"
+        "20260720-225-local-diagnostics",
+        "20260720-verification-remediation-225-308-309"
       ]
     },
     {
@@ -53,5 +54,5 @@
   ],
   "created": "2026-06-22",
   "updated": "2026-07-20",
-  "source": "Gap review: crash/error reporting stance"
+  "source": "Gap review: crash/error reporting stance; reopened for AC-4 content.revision after verification"
 }
