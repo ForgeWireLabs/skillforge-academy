@@ -19,8 +19,10 @@ on your computer.
 
 There is nothing to sign up for. Your name, progress, notes, and schedule are
 stored locally and never leave the machine. SkillForge does not send telemetry.
-If you ever need to troubleshoot with support, export a local diagnostic file from
-**Preferences → Diagnostics** — see [Diagnostics And Error Reporting](diagnostics.md).
+If install, backups, or progress go wrong, use
+[Support And Troubleshooting](support-troubleshooting.md). For a support ticket,
+export a local diagnostic file from **Preferences → Diagnostics** — see
+[Diagnostics And Error Reporting](diagnostics.md).
 
 ## 2. Choose your certification track
 

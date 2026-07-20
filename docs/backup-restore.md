@@ -10,8 +10,11 @@ a learner can recover or move devices without a cloud account.
 | Platform | Local state | Encrypted `.apexbackup` export/import | Legacy JSON import | Status |
 | --- | --- | --- | --- | --- |
 | Windows desktop | `%APPDATA%\com.apexlearning.aplusacademy\learner-state.json` through the Tauri backend | Validated by unit tests and release smoke checks | Supported through `decryptBackup` plus `migrateState` | Supported in `1.4.0` |
-| Android | Tauri app sandbox through `app.path().app_data_dir()` once the Android target is initialized | Must use Android document/share APIs and preserve the same backup envelope | Must route imported JSON through the same migration path | Designed in `217`; runtime validation blocked by local NDK install |
+| Android | App-private WebView `apex-state` with best-effort Rust `learner-state.json` mirror in the app sandbox | Share-sheet export and DocumentsUI import of the same `.apexbackup` envelope | Same decrypt + `migrateState` path as desktop | Foundation validated in `217` (emulator proof); end-user distribution still separate from Play Store work |
 | iOS | Tauri app container through `app.path().app_data_dir()` once the iOS target is initialized | Must use iOS document picker/share APIs and preserve the same backup envelope | Must route imported JSON through the same migration path | Designed in `218`; runtime validation blocked by macOS/Xcode dependency |
+
+For install, SmartScreen, reset, and recovery workflows that surround backups, see
+[Support And Troubleshooting](support-troubleshooting.md).
 
 The encrypted backup envelope remains:
 
@@ -71,8 +74,9 @@ encrypted `.apexbackup` envelope and hand it to Android's document or share UI,
 then import user-selected files through the same decrypt-and-migrate path used on
 desktop. Do not request broad storage permissions for normal progress storage.
 
-See [Android Mobile Support](android-mobile.md) for the current Tauri Android
-host blocker and the validation checklist.
+See [Android Mobile Support](android-mobile.md) for host prerequisites and the
+validation checklist, and [Support And Troubleshooting](support-troubleshooting.md)
+for end-user Android recovery notes.
 
 ## iOS Notes
 

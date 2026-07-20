@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-226-support-troubleshooting-docs",
+  "timestamp": "2026-07-20T17:50:00Z",
+  "work_item": "226",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "python -m repopact_cli dashboard",
+      "exit_code": 0,
+      "summary": "RepoPact dashboard regenerated after completing work item 226."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "[AC-1..AC-5] Governance validation passed with support docs, audit, and evidence registered."
+    },
+    {
+      "command": "doc review: docs/support-troubleshooting.md vs App Preferences, backup-restore, diagnostics, android-mobile, ios-mobile, CODE-SIGNING, README installer",
+      "exit_code": 0,
+      "summary": "[AC-1..AC-5] Support guide matches verified Windows/Android behavior and honest iOS blocker; README and RC notes link the guide."
+    }
+  ],
+  "artifacts": [
+    "docs/support-troubleshooting.md",
+    "docs/backup-restore.md",
+    "docs/diagnostics.md",
+    "docs/getting-started.md",
+    "docs/release-candidate-1.4.0.md",
+    "README.md",
+    "CHANGELOG.md",
+    "audits/AUDIT-2026-07-20-support-troubleshooting-docs.md",
+    "work/completed/226-support-and-troubleshooting-docs"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Linux",
+    "repopact": "2.2.0",
+    "process_note": "Documentation-only closeout for support/troubleshooting; depends on completed 219/221/225 and Android foundation 217."
+  }
+}
