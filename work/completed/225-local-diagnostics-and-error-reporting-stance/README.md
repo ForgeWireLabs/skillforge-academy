@@ -38,3 +38,11 @@ Evidence: `20260720-225-local-diagnostics`,
 
 Reopened briefly after source review: diagnostics lacked a content version.
 Added deterministic `content.revision` fingerprint plus docs updates.
+
+## Verification amendment (2026-07-20, payload fingerprint)
+
+Post-merge review found AC-4 still incomplete: the first fingerprint hashed
+only bank item ids, so answer/wording/explanation edits kept the same revision.
+`contentRevision` now hashes a canonical serialization of each bank item’s full
+payload; regression coverage asserts a same-id field edit changes the digest.
+Evidence: `20260720-225-content-revision-payload`.

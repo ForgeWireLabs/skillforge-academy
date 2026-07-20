@@ -48,8 +48,9 @@ Also useful for support tickets:
 
 - App version shown on the Preferences about card (and inside the diagnostic file)
 - Content revision string inside the diagnostic file (`content.revision`) — a
-  fingerprint of the loaded banks so support can confirm two installs share the
-  same authored content set
+  fingerprint of the full loaded bank payloads (ids plus wording, answers,
+  explanations, and other authored fields) so support can confirm two installs
+  share the same authored content set
 - Operating system and whether you are on Windows desktop or Android
 - Exact error text shown after a failed backup import/export
 - Whether you can still open Command Center after the failure (state should remain intact)

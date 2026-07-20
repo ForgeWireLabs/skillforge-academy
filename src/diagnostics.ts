@@ -49,7 +49,7 @@ export type DiagnosticBundle = {
   };
   platform: DiagnosticPlatform;
   content: {
-    /** Deterministic fingerprint of loaded bank ids (not a marketing version). */
+    /** Deterministic fingerprint of loaded bank payloads (not a marketing version). */
     revision: string;
     certifications: {
       id: string;

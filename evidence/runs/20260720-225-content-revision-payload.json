@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-225-content-revision-payload",
+  "timestamp": "2026-07-20T19:40:00Z",
+  "work_item": "225",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "[AC-4] 89 tests passed including contentRevision same-id field-edit regression (explanation change changes digest)."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "TypeScript and Vite production build passed after full-payload content.revision fix."
+    },
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "Governance validation after AC-4 content.revision payload fingerprint amendment."
+    }
+  ],
+  "artifacts": [
+    "src/content/revision.ts",
+    "src/content/revision.test.ts",
+    "src/diagnostics.ts",
+    "docs/diagnostics.md",
+    "docs/support-troubleshooting.md",
+    "work/completed/225-local-diagnostics-and-error-reporting-stance/README.md",
+    "work/completed/225-local-diagnostics-and-error-reporting-stance/work-item.json"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "process_note": "AC-4 fix: content.revision hashes canonical full bank payloads, not item ids only."
+  }
+}

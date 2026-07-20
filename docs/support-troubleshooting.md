@@ -238,7 +238,8 @@ Developer host setup: [ios-mobile.md](ios-mobile.md).
 Send support:
 
 1. App version from Preferences (about card) or the diagnostic file.
-2. Content revision from the diagnostic file (`content.revision`).
+2. Content revision from the diagnostic file (`content.revision`) — fingerprints
+   the full authored banks, not only item ids.
 3. Platform (Windows version, or Android device/emulator).
 4. Exact on-screen error text.
 5. Whether Command Center still opens after the failure.
