@@ -81,3 +81,8 @@ Close when all acceptance criteria have evidence, the candidate artifact is
 retained unchanged for pilot round one, and `228` is unblocked to activate.
 Do not treat automated a11y validation as a substitute for the real NVDA
 walkthrough unless AC-5 records an explicit non-AT-qualified cohort scope.
+
+**Progress (2026-07-20):** AC-1 identity, AC-2 frozen installer metadata, AC-5
+AT exclusion, AC-6 runbook, and AC-7 governance reconciliation are done. AC-3
+remote Windows CI is waived/blocked on GitHub billing (local gates green).
+**Remaining:** AC-4 packaged-app interactive acceptance on the frozen installer.

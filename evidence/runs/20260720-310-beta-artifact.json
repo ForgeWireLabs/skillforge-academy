@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-310-beta-artifact",
+  "timestamp": "2026-07-21T03:55:00Z",
+  "work_item": "310",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "SKILLFORGE_BUILD=ca6d5b6 npm run desktop:build",
+      "exit_code": 0,
+      "summary": "[AC-2] Produced SkillForge Academy_1.4.1-beta.1_x64-setup.exe (2336892 bytes), retained under artifacts/beta-1.4.1-beta.1/."
+    },
+    {
+      "command": "Get-FileHash ... -Algorithm SHA256",
+      "exit_code": 0,
+      "summary": "[AC-2] SHA-256 fac057f6e3ed478160845c2b5793734ce04bd388d98458bcfd819253225b15b8; Authenticode NotSigned."
+    }
+  ],
+  "artifacts": [
+    "docs/beta-candidate-1.4.1-beta.1.md",
+    "artifacts/beta-1.4.1-beta.1/SHA256SUMS.txt",
+    "artifacts/beta-1.4.1-beta.1/content.revision.txt",
+    "artifacts/beta-1.4.1-beta.1/SkillForge Academy_1.4.1-beta.1_x64-setup.exe"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows NT 10.0.19045 AMD64",
+    "node": "v24.15.0",
+    "rustc": "1.96.0",
+    "commit": "ca6d5b6d11741b3d7fc2890976ee5005c330b735",
+    "app_version": "1.4.1-beta.1",
+    "app_build": "ca6d5b6",
+    "content_revision": "fnv1a-78e5d93f",
+    "process_note": "Installer binary is gitignored; checksum and metadata are committed. Retain local copy unchanged for pilot round one."
+  }
+}
