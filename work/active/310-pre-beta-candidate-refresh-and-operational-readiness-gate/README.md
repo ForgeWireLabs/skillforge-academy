@@ -34,9 +34,9 @@ should be inserted between them.
 
 ## Decisions
 
-1. **Version string:** Product/installer identity is `1.4.1-beta.1` (`package.json`,
-   Tauri, Cargo, diagnostics). RepoPact requires `VERSION` to be strict
-   `MAJOR.MINOR.PATCH`, so `VERSION` is `1.4.1` and maps to this beta line.
+1. **Version string:** RepoPact 2.3.0 keeps `VERSION` as `1.4.1` and puts maturity
+   in optional `RELEASE_LABEL` (`1.4.1-beta.1`, decision 0026). Product/installer
+   surfaces (`package.json`, Tauri, diagnostics) use that same label.
 2. **Build identity:** Vite injects `__APP_BUILD__` from `git rev-parse --short HEAD`
    (override with `SKILLFORGE_BUILD`). Diagnostics expose `app.build` alongside
    `app.version`.

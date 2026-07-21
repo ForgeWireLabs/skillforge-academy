@@ -17,7 +17,7 @@ A diagnostic file (`skillforge-diagnostic-YYYY-MM-DD.json`) contains:
 | Section | Contents |
 | --- | --- |
 | Stance | Explicit `telemetry: none`, `crashReporting: none`, local-export-only |
-| App | App version, build/commit identifier, and learner-state schema version |
+| App | App version (from `RELEASE_LABEL` / package identity), build/commit identifier, and learner-state schema version |
 | Platform | Browser/WebView user agent, language, online flag, Tauri/Android bridge flags, viewport size |
 | Content | Content revision fingerprint plus per-track counts of domains, questions, flashcards, PBQs, lessons, and objectives |
 | State summary | Active track, theme, progress cadence metrics, attempt score summaries, and item counts |

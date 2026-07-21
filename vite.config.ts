@@ -1,8 +1,11 @@
 import { execSync } from "node:child_process";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { defineConfig, configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 const mobileDevHost = process.env.TAURI_DEV_HOST;
+const root = resolve(__dirname);
 
 function resolveAppBuild(): string {
   if (process.env.SKILLFORGE_BUILD?.trim()) return process.env.SKILLFORGE_BUILD.trim();
@@ -13,10 +16,22 @@ function resolveAppBuild(): string {
   }
 }
 
+/** Prefer RELEASE_LABEL (RepoPact 2.3 decision 0026); fall back to package.json. */
+function resolveAppVersion(): string {
+  const labelPath = resolve(root, "RELEASE_LABEL");
+  if (existsSync(labelPath)) {
+    const label = readFileSync(labelPath, "utf8").trim();
+    if (label) return label;
+  }
+  const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8")) as { version?: string };
+  return pkg.version ?? "0.0.0";
+}
+
 export default defineConfig({
   plugins: [react()],
   clearScreen: false,
   define: {
+    __APP_VERSION__: JSON.stringify(resolveAppVersion()),
     __APP_BUILD__: JSON.stringify(resolveAppBuild())
   },
   server: {

@@ -50,6 +50,7 @@
       "id": "release",
       "paths": [
         "VERSION",
+        "RELEASE_LABEL",
         "CHANGELOG.md",
         "ROADMAP.md"
       ],
