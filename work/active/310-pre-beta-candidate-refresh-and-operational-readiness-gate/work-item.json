@@ -39,14 +39,18 @@
     {
       "id": "AC-2",
       "text": "Build and retain a Windows installer from the frozen candidate commit, recording full commit SHA, installer filename, SHA-256 checksum, file size, build environment, signed/unsigned status, content.revision, and application version/build ID; keep that exact artifact unchanged for the first pilot round.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-310-beta-artifact"
+      ]
     },
     {
       "id": "AC-3",
       "text": "Run local Windows gates (content, a11y, unit tests, frontend build, Rust fmt/check as applicable) and independently dispatch or otherwise obtain green remote Windows CI evidence against that exact candidate commit.",
-      "state": "pending",
-      "evidence": []
+      "state": "waived",
+      "evidence": [
+        "20260720-310-windows-gates"
+      ]
     },
     {
       "id": "AC-4",
@@ -57,20 +61,26 @@
     {
       "id": "AC-5",
       "text": "Either complete an NVDA walkthrough of the beta candidate (tour, sidebar/Tools, track switcher, lessons, Practice, PBQ, Mock, Recall, backup/diagnostics, dialog focus) or explicitly scope the first beta as not yet assistive-technology-qualified and exclude AT users from the first cohort, recording the residual risk.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-310-pilot-ops-at-scope"
+      ]
     },
     {
       "id": "AC-6",
       "text": "Publish a controlled pilot runbook covering Windows 10/11 x64 private cohort distribution, unsigned-installer/SmartScreen guidance, published checksum, tester consent/privacy expectations, support channel, known limitations, severity definitions, stop-the-pilot conditions, and feedback fields for app version, build ID, content.revision, track/exam/domain, and defect-vs-content distinction.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-310-pilot-ops-at-scope"
+      ]
     },
     {
       "id": "AC-7",
       "text": "Reconcile WI 228 dependencies and roadmap/audit pointers so 228 depends on 310 and the actual July prerequisite chain (219\u2013222, 225\u2013227, 308\u2013309), then mark 228 ready to activate only after this gate is green.",
-      "state": "pending",
-      "evidence": []
+      "state": "satisfied",
+      "evidence": [
+        "20260720-310-pilot-ops-at-scope"
+      ]
     }
   ],
   "created": "2026-07-20",

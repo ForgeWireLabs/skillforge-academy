@@ -29,7 +29,6 @@ Last updated: 2026-07-20 (proposed 310 pre-beta gate; 228 deps reconciled)
 
 ## Next Recommended Audit
 
-Candidate: pre-beta candidate gate (`310`) — unique build identity, frozen Windows
-installer + checksum, packaged-app acceptance, Windows CI against the candidate,
-and NVDA pass or explicit non-AT-qualified first cohort. Resume deferred learner
-beta (`228`) only after `310` is green.
+Candidate: packaged-app acceptance on frozen `1.4.1-beta.1` installer (`310` AC-4),
+then activate learner beta (`228`). Remote Windows CI remains blocked by GitHub
+billing until unlocked. True NVDA walkthrough remains required before AT recruitment.

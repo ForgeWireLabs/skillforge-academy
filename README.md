@@ -169,9 +169,10 @@ Learner state is written atomically to the operating system's application-data d
 ### Installer
 
 **Current development candidate:** SkillForge Academy `1.4.1-beta.1` (`RELEASE_LABEL`;
-pre-beta gate `310`; uniquely identifiable vs the June 22 `1.4.0` RC). Release line
-`VERSION` is `1.4.1`. A frozen Windows installer + checksum will be recorded when
-that gate closes.
+pre-beta gate `310`). Frozen local installer metadata:
+[docs/beta-candidate-1.4.1-beta.1.md](docs/beta-candidate-1.4.1-beta.1.md). Pilot ops:
+[docs/pilot-runbook-1.4.1-beta.1.md](docs/pilot-runbook-1.4.1-beta.1.md). Release line
+`VERSION` is `1.4.1`.
 
 **Prior local release candidate:** SkillForge Academy `1.4.0` (Windows x64), historically at `src-tauri/target/release/bundle/nsis/SkillForge Academy_1.4.0_x64-setup.exe`.
 

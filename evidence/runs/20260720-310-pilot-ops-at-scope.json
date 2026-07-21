@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260720-310-pilot-ops-at-scope",
+  "timestamp": "2026-07-21T03:57:00Z",
+  "work_item": "310",
+  "result": "passed",
+  "commands": [
+    {
+      "command": "python -m repopact_cli validate",
+      "exit_code": 0,
+      "summary": "[AC-5][AC-6][AC-7] Pilot runbook, AT cohort exclusion, and beta-candidate docs recorded; 228 deps already include 310."
+    }
+  ],
+  "artifacts": [
+    "docs/pilot-runbook-1.4.1-beta.1.md",
+    "docs/packaged-acceptance-1.4.1-beta.1.md",
+    "docs/beta-candidate-1.4.1-beta.1.md",
+    "work/deferred/228-real-learner-beta-pilot-and-feedback-loop/work-item.json"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "platform": "Windows",
+    "process_note": "First cohort explicitly not AT-qualified; NVDA remains residual before broader recruitment. AC-4 interactive packaged pass still required before closing 310."
+  }
+}

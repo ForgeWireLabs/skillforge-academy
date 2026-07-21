@@ -33,3 +33,7 @@ docs/screenshots/demo-state.json
 *.jks
 *.keystore
 android_gradle_warning_mode_all.log
+
+# Retained local beta installers (checksums/docs may be committed)
+artifacts/**/*.exe
+
