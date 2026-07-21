@@ -3,8 +3,8 @@ import { contentRevision } from "./content/revision";
 import { SCHEMA_VERSION } from "./logic";
 import type { LearnerState } from "./types";
 
-/** Product version for diagnostic bundles; keep aligned with package.json / VERSION. */
-export const APP_VERSION = "1.4.1-beta.1";
+/** Product version for diagnostic bundles; injected from RELEASE_LABEL / package.json. */
+export const APP_VERSION = typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "0.0.0";
 
 /** Source/build identity injected at build time (git short SHA or SKILLFORGE_BUILD). */
 export const APP_BUILD = typeof __APP_BUILD__ !== "undefined" ? __APP_BUILD__ : "unknown";

@@ -68,3 +68,10 @@ Consume RepoPact as a **pinned PyPI dependency** instead of vendoring it.
 Work item 307 advances the exact pin to `repopact==2.2.0`. This release adds
 validator-enforced canonical dashboard equality: a missing or stale checked-in
 dashboard is rejected and repaired deterministically with `repopact dashboard`.
+
+## Implementation update (2026-07-20)
+
+Work item 310 advances the exact pin to `repopact==2.3.0`. This release keeps
+`VERSION` as a clean `MAJOR.MINOR.PATCH` triple and adds optional `RELEASE_LABEL`
+(decision 0026) for SemVer pre-release product/maturity identity pinned to that
+base — used here as `1.4.1-beta.1` with `VERSION` `1.4.1`.

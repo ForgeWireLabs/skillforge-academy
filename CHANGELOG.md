@@ -6,11 +6,11 @@ All notable changes to SkillForge Academy are documented here. SkillForge Academ
 
 ### Added
 
-- **Pre-beta candidate identity (`1.4.1-beta.1`).** Unique prerelease version across
-  `package.json` and Tauri (`VERSION` stays RepoPact-strict `1.4.1`). Diagnostic
+- **Pre-beta candidate identity (`1.4.1-beta.1`).** RepoPact `RELEASE_LABEL` plus
+  matching `package.json` / Tauri identity on the `VERSION` `1.4.1` line. Diagnostic
   exports and Preferences include `app.build` (git short SHA, overridable via
   `SKILLFORGE_BUILD`) so bug reports can distinguish this candidate from the
-  June 22 `1.4.0` installer.
+  June 22 `1.4.0` installer. Governance pin advanced to `repopact==2.3.0`.
 - **Primary vs Tools navigation.** Sidebar splits the study loop (Learn / Practice / Mock / Recall) from Tools (PBQ, Performance, Notes, Preferences). Command Center is leaner; Mock results offer a weak-domain drill CTA.
 - **Scoped practice drills.** Command Center weak-domain recommendations and Learning Paths “Practice this domain” now open Practice Lab filtered to that domain. UX/IA audit recorded in `audits/AUDIT-2026-07-20-ux-ia.md`.
 - **Privacy and security review.** Documented local-data, backup crypto, diagnostics, and permission expectations in `docs/privacy-security.md`, with hardening for backup/state size limits, crypto-parameter checks, a packaged CSP, and a narrowed Tauri capability set (removed unused opener plugin / `export_state`).

@@ -70,6 +70,7 @@ describe("buildDiagnosticBundle", () => {
     });
     expect(bundle.format).toBe(DIAGNOSTIC_FORMAT);
     expect(bundle.app.version).toBe(APP_VERSION);
+    expect(bundle.app.version).toBe("1.4.1-beta.1");
     expect(bundle.app.build).toBe(APP_BUILD);
     expect(bundle.app.build).toMatch(/^[0-9a-f]{7,40}$|^unknown$/);
     expect(bundle.app.schemaVersion).toBe(SCHEMA_VERSION);
