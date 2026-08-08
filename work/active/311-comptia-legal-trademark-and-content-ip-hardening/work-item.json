@@ -1,0 +1,72 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "311",
+  "title": "CompTIA legal, trademark, and content-IP hardening",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": [
+    "implementation",
+    "docs",
+    "foundation"
+  ],
+  "depends_on": [],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-08-08T16:13:00Z",
+    "note": "Created from a repository-specific CompTIA legal/IP risk review before cleanup implementation begins."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Inventory every current consumer-facing and authoring surface that references CompTIA, A+, Network+, Security+, exam identifiers, exam objectives, passing scores, affiliation/endorsement, or legacy Apex A+ Academy branding, and record the exact files/surfaces that require change or explicit no-action disposition.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "text": "Replace verbatim or substantially verbatim CompTIA objective-title text in the A+, Network+, and Security+ objective registries with original SkillForge-authored summaries while preserving objective codes, exam mappings, domains, IDs, ordering, and objective coverage; validate that lessons/questions/PBQs/flashcards continue to resolve to the same objectives.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "text": "Remove claims that SkillForge raw mock-exam percentages are CompTIA's official passing line or are direct conversions of CompTIA scaled scores. Model and label SkillForge readiness benchmarks as SkillForge-owned practice heuristics, retain official CompTIA scaled-score facts only where accurately sourced, and ensure A+ Core 1/Core 2 are not collapsed into a misleading single official percentage.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "text": "Audit trademark presentation across README, application UI, manifests, installer/release copy, screenshots/store-facing metadata, and documentation so SkillForge remains the primary product brand; retain clear non-affiliation/non-endorsement language; and remove or explicitly prohibit unlicensed CompTIA logos, certification badges, partner marks, or 'official/authorized' claims.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "text": "Add or update a durable third-party trademark/IP notice explaining that CompTIA and its certification marks belong to CompTIA, that SkillForge is independent, and that the repository's Apache-2.0 license does not grant rights to third-party trademarks or proprietary third-party assessment material.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "text": "Audit legacy 'Apex A+ Academy' consumer-facing references and historical release surfaces, retire or clearly contextualize legacy branding where it could imply that A+ is part of the product's own mark, and preserve legacy application IDs/storage keys/backup extensions only where required for backward compatibility with that rationale documented.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "text": "Strengthen content-provenance governance so contributors and maintainers must author original educational material from public objectives, standards, documentation, and subject-matter knowledge; must not submit recalled live exam questions, dumps, reconstructed PBQs, or proprietary assessment content; and must record a review of the existing A+/Network+/Security+ banks against that rule.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-8",
+      "text": "Publish a closeout audit summarizing the legal/IP hardening changes, residual risks that require qualified counsel or an actual CompTIA license/partner agreement, and evidence from repository validation/tests showing the cleanup did not reduce objective coverage or break certification-track behavior.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-08-08",
+  "updated": "2026-08-08",
+  "source": "Repository-specific CompTIA legal/IP risk review requested by the Steward on 2026-08-08"
+}
