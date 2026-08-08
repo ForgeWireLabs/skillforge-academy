@@ -22,7 +22,7 @@
 | Status | Count |
 | --- | ---: |
 | proposed | 0 |
-| active | 1 |
+| active | 2 |
 | blocked | 2 |
 | deferred | 1 |
 | completed | 42 |
@@ -34,5 +34,6 @@ All audit scopes are within their review cadence.
 ## Active items
 
 - 310: Pre-beta candidate refresh and operational readiness gate (active)
+- 311: CompTIA legal, trademark, and content-IP hardening (active)
 - 212: Add installer code signing when a trusted certificate is available (blocked)
 - 218: Add Tauri iOS mobile support foundation (blocked)
