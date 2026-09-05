@@ -1,0 +1,69 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "312",
+  "title": "Learner Privacy, Minor, and Institutional Data Boundary",
+  "status": "proposed",
+  "owner_scope": "foundation",
+  "affected_scopes": [
+    "foundation",
+    "implementation",
+    "docs",
+    "release"
+  ],
+  "depends_on": [
+    "228",
+    "310"
+  ],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-09-05T19:30:00Z",
+    "note": "Created before any new minor-data, institutional-hosting, account/sync, telemetry, hosted analytics, or regulatory-privacy implementation begins."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "LPB-001",
+      "text": "Document the current local-first learner-data boundary and prove beta/pilot participation does not silently authorize telemetry, cloud upload, marketing, model training, publication, or unrelated secondary use.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-002",
+      "text": "Pilot/support workflows use pseudonymous identifiers where practical and keep real learner data, diagnostic details, screenshots, notes, scores, credentials, and other sensitive material out of public issues, test fixtures, CI logs, and RepoPact evidence unless explicitly redacted and authorized.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-003",
+      "text": "Define the COPPA/minor boundary: general-audience local use does not create a blanket COPPA claim, but child-directed design, actual-knowledge under-13 online collection, or school-controlled child workflows require separately reviewed parental-consent, notice, minimization, retention/deletion, and provider controls before collection proceeds.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-004",
+      "text": "Define the FERPA/institutional boundary for any future hosted/admin deployment that receives or maintains education records on behalf of a school or other education institution, including control, use, redisclosure, retention, deletion, and provider responsibilities; the standalone local app is not described as FERPA compliant by default.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-005",
+      "text": "Before accounts, synchronization, cohort/instructor dashboards, remote diagnostics, telemetry, hosted backup, or hosted analytics are enabled, record data categories/purposes, user/institution roles, provider/subprocessor inventory, retention/deletion, access/export/correction, consent/notice, minor handling, and privacy-jurisdiction applicability.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-006",
+      "text": "Treat scores, weak-domain analytics, notes, accessibility/accommodation feedback, study history, and backup contents as sensitive learner data even when no specific statute applies, and keep them separate from proprietary CompTIA assessment/credential-verification data.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "LPB-007",
+      "text": "Document applicability and product claims so FERPA, COPPA, GDPR/CCPA-style privacy, and SOC 2 readiness are not asserted without the deployment facts, controls, and authority needed to support the statement.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-09-05",
+  "updated": "2026-09-05"
+}
