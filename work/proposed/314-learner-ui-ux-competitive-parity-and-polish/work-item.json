@@ -1,0 +1,99 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "314",
+  "title": "Learner UI/UX Competitive Parity and Polished Cross-Platform Study Experience",
+  "status": "proposed",
+  "owner_scope": "implementation",
+  "affected_scopes": [
+    "implementation",
+    "accessibility",
+    "content",
+    "docs",
+    "foundation"
+  ],
+  "depends_on": [
+    "310"
+  ],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-09-11T21:48:00-05:00",
+    "note": "Created from the 2026-09-11 competitive product review before a broad visual/interaction redesign begins. SkillForge already has a coherent React/Tauri study product; this work closes discoverability, cross-platform interaction, perceived polish, accessibility, and real-learner usability gaps without copying competitor design or weakening the app's offline-first/no-account posture."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "UX-001",
+      "text": "Publish a task-based UX parity study of representative current certification-prep products using only public/product-observable behavior. Compare first-run/start-study flow, resume/next-action guidance, objective browsing, custom practice, mock exams, PBQs, flashcards, bookmarks/notes, search, weak-area targeting, analytics, settings, backup/restore, and mobile behavior. Record friction and useful patterns without copying protected visual design or content.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-002",
+      "text": "Define and apply one coherent SkillForge design system for typography, spacing, density, surfaces, controls, data visualization, status/feedback, focus/selection, dialog/sheet behavior, touch targets, desktop pointer behavior, dark/light themes, and semantic states. The system supports desktop and mobile rather than treating mobile as a scaled-down desktop screenshot.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-003",
+      "text": "Reconcile information architecture and navigation around learner intent. A learner can quickly answer: what should I study next, how ready am I and why, what am I weak on, how do I practice one objective/domain, how do I take a realistic exam, what did I miss, and how do I resume unfinished work. Advanced analytics remain available without making the primary study path cognitively heavy.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-004",
+      "text": "Improve onboarding and return-session behavior with a bounded first-run walkthrough, certification/goal selection, clear local-data/no-account explanation, and a useful default next action. Returning learners resume meaningful context without being forced through repeated prompts, and zero-history/empty states teach the workflow instead of appearing unfinished.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-005",
+      "text": "Make practice, PBQ, flashcard, and mock-exam interaction states fully polished: selected/unselected answers, multi-select limits, validation, timer behavior, pause/exit confirmation where applicable, keyboard/touch input, feedback timing, explanations, bookmarking/notes, partial credit, completion review, retry/drill actions, and accidental-navigation protection are consistent and tested.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-006",
+      "text": "Make analytics and readiness explanations actionable rather than decorative. Charts/heatmaps have accessible labels and textual equivalents, drill-down reaches the underlying objective/evidence, weak-area recommendations explain their basis, insufficient-data states are explicit, and color alone is never required to interpret mastery or risk.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-007",
+      "text": "Close responsive/mobile interaction gaps across supported Tauri targets: safe areas, orientation/viewport changes, virtual keyboard behavior, scrolling and sticky controls, dialogs/sheets, back navigation, touch hit targets, long content, chart readability, offline launch, and process/lifecycle resume are tested on real or supported emulator/device paths. Desktop-specific shortcuts remain enhancements, not prerequisites for core workflows.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-008",
+      "text": "Meet a manual accessibility acceptance gate in addition to automated checks. Run keyboard-only walkthroughs of every major workflow and screen-reader walkthroughs with NVDA on Windows and VoiceOver when macOS/iOS evidence becomes available; record focus order, announcements, dynamic updates, error handling, dialog containment, reduced-motion/high-contrast behavior, and unresolved limitations.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-009",
+      "text": "Establish perceived-performance gates for startup, navigation, question advance, search, large question/lesson lists, analytics rendering, backup/restore feedback, and track switching. Expensive operations expose progress or remain off the interaction-critical path; no animation or polish work may hide blocked input or stale state. Record representative low/mid-range hardware results.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-010",
+      "text": "Add automated screenshot/visual-regression and interaction-state coverage for the highest-value desktop and responsive views using deterministic demo state. Baselines cover empty, populated, loading where applicable, error/degraded, completed/review, and theme states while allowing deliberate design updates through reviewed baseline changes.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-011",
+      "text": "Run a small real-learner usability pilot before declaring UX parity. Preserve task-completion observations, time/friction, navigation mistakes, misunderstood labels/metrics, accessibility feedback, and qualitative preference notes. Fix or explicitly disposition high-severity findings; maintainer familiarity and screenshot aesthetics do not substitute for learner evidence.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UX-012",
+      "text": "Preserve SkillForge's product advantages through the redesign: core study remains account-free, offline-capable, telemetry-free by default, locally owned, and transparent about backup/data handling. Competitive polish may add optional conveniences but cannot make a hosted account, advertising/engagement loop, or opaque cloud recommendation service a prerequisite for ordinary learning.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-09-11",
+  "updated": "2026-09-11"
+}
