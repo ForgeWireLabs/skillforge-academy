@@ -1,0 +1,87 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "313",
+  "title": "Certification Content Depth, Assessment Breadth, and Mastery Parity",
+  "status": "proposed",
+  "owner_scope": "content",
+  "affected_scopes": [
+    "content",
+    "implementation",
+    "docs",
+    "foundation"
+  ],
+  "depends_on": [
+    "310",
+    "311"
+  ],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-09-11T21:47:00-05:00",
+    "note": "Created from the 2026-09-11 competitive product review before a broad content-expansion pass begins. SkillForge already has complete published-objective coverage for A+, Network+, and Security+, PBQs, mock exams, spaced repetition, and analytics. The remaining competitive gap is depth, item diversity, validated difficulty/misconception quality, simulation breadth, and evidence that readiness/mastery signals improve learner decisions rather than simply increasing raw question count."
+  },
+  "acceptance_criteria": [
+    {
+      "id": "CONTENT-001",
+      "text": "Publish a dated, source-backed content/assessment parity inventory for the current A+, Network+, and Security+ product surface. Compare publicly documented competing prep products on question-bank scale, exam coverage, PBQ/simulation types, explanation depth, adaptive/weak-area practice, mock-exam behavior, flashcards, analytics, and update cadence without copying proprietary questions, UI, or protected assessment material. Record which gaps require raw volume, which require richer item types, and which are intentional product differences.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-002",
+      "text": "Set and satisfy per-track original-content depth gates derived from the parity inventory rather than an arbitrary global question number. Every published objective retains coverage and gains enough independent items to exercise recall, application, troubleshooting/scenario reasoning, and common misconception discrimination appropriate to that objective; no objective is padded with superficial paraphrases merely to hit a count.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-003",
+      "text": "Introduce a content-quality rubric and machine-checkable metadata for difficulty, cognitive demand, scenario/troubleshooting type, distractor rationale or misconception target, source/reference category, review state, and freshness/version. Validation rejects malformed mappings, duplicate IDs, objective drift, unsupported exam codes, and structurally near-duplicate items beyond an accepted threshold.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-004",
+      "text": "Expand performance-based assessment beyond the existing matching/ordering/fill-in set where the certification objectives justify it. Evaluate and implement additional original simulation forms such as hotspot/topology selection, multi-step configuration/troubleshooting, command/terminal interaction, log/output interpretation, or other objective-faithful tasks, with partial-credit and explanation contracts that remain independent of proprietary live-exam content.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-005",
+      "text": "Strengthen mock-exam diversity and repeatability controls so repeated exams do not collapse into memorizing a small fixed bank. Selection respects published domain weights and configured exam constraints while minimizing recent-item overlap where the bank permits it; the result report distinguishes domain/objective performance, item-type performance, time behavior, and confidence/readiness limitations.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-006",
+      "text": "Evolve readiness/mastery from raw recent accuracy into a documented learner model that can combine recency, repeated evidence, objective coverage, item difficulty/cognitive demand, spaced-repetition state, mock-exam evidence, and uncertainty. The model exposes why it recommends the next drill and avoids presenting a single readiness percentage as a validated pass probability unless calibration evidence supports that claim.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-007",
+      "text": "Create a bounded content-authoring/review pipeline for human and agent-assisted drafting. Generated or transformed material must remain original, map to a current published objective, pass technical and IP/legal checks from WI311, pass duplicate/quality validators, and receive the configured review level before entering the production bank. Agent generation is an authoring aid, not evidence of correctness.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-008",
+      "text": "Run blind or semi-blind quality review on representative samples from every track and item type, recording correctness, ambiguity, distractor quality, explanation usefulness, objective fit, difficulty estimate, and learner-facing terminology. Findings drive remediation of the bank rather than being reduced to a pass/fail validator count.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-009",
+      "text": "Use real beta/pilot learner evidence when available to evaluate item difficulty, distractor behavior, repeated-error/misconception patterns, readiness usefulness, and content gaps while respecting WI312 privacy boundaries. Statistical signals may inform review but do not automatically delete or promote items without content-owner review.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CONTENT-010",
+      "text": "Update README/product claims and objective-drift documentation from generated/validated content statistics so published counts and coverage are reproducible. Competitive parity claims clearly distinguish quantity, objective coverage, simulation breadth, local-first behavior, and quality evidence rather than implying that a larger question count alone makes SkillForge better.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-09-11",
+  "updated": "2026-09-11"
+}
