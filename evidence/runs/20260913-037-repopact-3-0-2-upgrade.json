@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260913-037-repopact-3-0-2-upgrade",
+  "timestamp": "2026-09-13T21:30:00Z",
+  "work_item": "315",
+  "result": "passed",
+  "provenance": "concrete",
+  "summary": "Migrated SkillForge Academy from the RepoPact 2.3.0 package boundary to the exact public repopact==3.0.2 pin and updated the supported CLI invocation without vendoring RepoPact modules.",
+  "commands": [
+    {
+      "command": "python -m pip install -r requirements-repopact.txt",
+      "exit_code": 0,
+      "summary": "Installed or confirmed the exact public repopact==3.0.2 dependency."
+    },
+    {
+      "command": "repopact dashboard --root . && repopact validate --root .",
+      "exit_code": 0,
+      "summary": "Regenerated the canonical dashboard and passed governance validation against the SkillForge repository records."
+    },
+    {
+      "command": "npm run validate:content",
+      "exit_code": 0,
+      "summary": "The certification content validation gate passed for the A+, Network+, and Security+ tracks."
+    },
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "summary": "Native application tests passed."
+    }
+  ],
+  "artifacts": [
+    "requirements-repopact.txt",
+    "audits/reports/dashboard.md"
+  ],
+  "environment": {
+    "repository": "ForgeWireLabs/skillforge-academy",
+    "branch": "codex/wi037-skillforge",
+    "platform": "Windows",
+    "repopact_version": "3.0.2",
+    "live_services": "not used"
+  }
+}

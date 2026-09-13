@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "315",
+  "title": "Adopt RepoPact 3.0.2",
+  "status": "completed",
+  "owner_scope": "foundation",
+  "affected_scopes": ["foundation", "implementation", "content"],
+  "depends_on": ["307"],
+  "provenance": "concrete",
+  "preflight": {
+    "created_before_work_started": true,
+    "created_at": "2026-09-13T21:25:00Z",
+    "note": "Created before changing the RepoPact dependency or adding the migration evidence record; coordinated under RepoPact WI037."
+  },
+  "acceptance_criteria": [
+    {"id": "RPU-001", "text": "Pin the exact public repopact==3.0.2 package and document the supported CLI entry points.", "state": "satisfied", "evidence": ["20260913-037-repopact-3-0-2-upgrade"]},
+    {"id": "RPU-002", "text": "Regenerate the canonical dashboard and pass RepoPact governance validation.", "state": "satisfied", "evidence": ["20260913-037-repopact-3-0-2-upgrade"]},
+    {"id": "RPU-003", "text": "Run the native content validation and application test gates.", "state": "satisfied", "evidence": ["20260913-037-repopact-3-0-2-upgrade"]},
+    {"id": "RPU-004", "text": "Record dated evidence and complete the adoption on the isolated migration branch.", "state": "satisfied", "evidence": ["20260913-037-repopact-3-0-2-upgrade"]}
+  ],
+  "created": "2026-09-13",
+  "updated": "2026-09-13"
+}
